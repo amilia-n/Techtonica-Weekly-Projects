@@ -9,3 +9,25 @@ body{
     font-family: 'Playfair Display', 'Times New Roman', Times, serif;
     color: #FCD6D6;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;  
+    padding: 20px; 
+    background-color: #FDF1D9; 
+}
+
+.headerflex {
+    flex: 1; 
+    margin: 0 10px; 
+    padding: 10px; 
+    background-color: #FDF1D9; 
+    text-align: center; 
+}
+#description {
+    width: 250px; 
+    display: block;
+    text-align: left; 
+    margin: 0 auto; 
+}
