@@ -4,3 +4,8 @@ body{
     flex-direction: column;
     background-color: #FDF1D9;
 }
+
+.headingcss{
+    font-family: 'Playfair Display', 'Times New Roman', Times, serif;
+    color: #FCD6D6;
+}
