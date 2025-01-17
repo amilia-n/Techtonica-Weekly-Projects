@@ -6,11 +6,22 @@ body{
 }
 .headingcss{
     font-family: 'Playfair Display', 'Times New Roman', Times, serif;
-    color: #FCD6D6;
+    color: #A68A6D;
+    margin-bottom: 5px;
+}
+#headingSTRONG {
+    margin-top: 10px; /* Adjust this value as needed */
+    margin-bottom: 20px;
+    align-self: center;
+    font-size: 2em; /* Make the font size larger */
+    font-family: 'Bubbler One', sans-serif;
+    text-align: center; /* Ensures text is centered */
+    color: #A68A6D;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
 }
 .header {
     display: flex;
-    justify-content: space-between; 
+    justify-content: center; 
     align-items: center;  
     padding: 20px; 
     background-color: #FDF1D9; 
@@ -22,11 +33,64 @@ body{
     background-color: #FDF1D9; 
     text-align: center; 
 }
-#description {
-    width: 250px; 
-    display: block;
-    text-align: left; 
-    margin: 0 auto; 
+.brand {
+    font-family: 'Playwrite IN', sans-serif;
+    font-weight: bold;
+    font-size: 1.7em;
+    color: #A17D58; 
+    margin: 0;
+    padding-left: 10px;
+    line-height: 1.2; 
+}
+.favorite {
+    margin-right: 30px;
+    margin-left: 30px; /* Adjust the value to control the space */
+}
+input[name="favorite_soup"] {
+    width: 200px;
+    height: 50px; /* Keeps the input box height */
+    box-sizing: border-box; /* Ensures padding stays inside */
+    padding: 2px 5px; /* Minimal padding to move text higher */
+    font-size: 16px; /* Adjusts the size of the input text */
+    line-height: 0%; /* Reduces extra spacing inside the input box */
+}
+
+input[name="favorite_soup"]::placeholder {
+    text-align: left; /* Aligns the placeholder to the left */
+    font-size: 12px; /* Makes the placeholder text smaller */
+    padding: 0; /* Removes extra padding that might push it down */
+    line-height: 1; /* Ensures placeholder aligns higher */
+}
+.msgsubmit {
+    margin-top: 7px;
+    margin-left: 140px; /* Adds space between the input field and the button */
+}
+.hyperlink {
+    position: relative; /* This makes the container the reference point for positioning */
+    display: inline-block; /* So it only takes up the size of the image */
+    text-align: center;
+}
+
+.redirectIMG {
+    width: 100px; /* Adjust image size */
+    padding-top: -20px; /* Move the text closer to the image */
+}
+.hyperlink-text {
+    position: absolute; /* Position the text over the image */
+    top: 65%; /* Vertically center the text */
+    left: 50%; /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Adjust to ensure perfect centering */
+    font-size: 1em; /* Adjust font size */
+    font-weight: bold;
+    color: #A17D58; /* Text color */
+    text-decoration: none; /* Remove underline from the link */
+    z-index: 1; /* Make sure the text is on top of the image */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Optional: add some shadow for readability */
+}
+
+.hyperlink-text:hover {
+    color: #F27C05; /* Change text color on hover */
+    text-decoration: underline; /* Optional: adds underline on hover */
 }
 .flex-container{
     display: flex;
@@ -38,9 +102,9 @@ body{
 .flex-box1, .flex-box2 {
     display: flex;
     flex-direction: column;
-    background-color: #daba5b; 
+    background-color: #FFF8F0; 
     border-radius: 25px;
-    padding: 20px;
+    padding: 30px;
     margin-right: 10px;
     min-width: 200px;
     max-width: 350px;
@@ -50,14 +114,117 @@ body{
     box-sizing: border-box;
     overflow: auto;
 }
-.bullet-list {
-    list-style: none; 
-    margin: 10px 0 10px 0;
-    position: relative; 
-    left: 0; 
-    padding-left: 20px; 
+#description {
+    width: 250px;
+    display: block;
+    text-align: left;
+    margin: 0 auto 15px;  
+}
+#ingredients {
+    margin-top: 5px; /* Minimal space above the Ingredients heading */
+    margin-bottom: 5px; /* Consistent space below the heading */
+}
+#instructions {
+    margin-top: 2px; /* Creates space above the heading */
+    margin-bottom: 18px; /* Adds spacing below */
+    font-size: 1.8em; /* Adjusts the font size */
+    color: #2a7f62; /* Adds a distinct color */
+    text-align: center; /* Centers the heading */
+    text-transform: uppercase; /* Makes the text uppercase */
+}
+#prep {
+    margin-top: 5px; /* Adjust the value as needed */
+}
+.flex-box1 img {
+    width: 250px;
+    margin: 0 auto 0;  
+}
+.flex-box2 h2.headingcss {
+    margin-top: -30px; /* Adjust this value to move the heading up */
+}
+.bulletlist {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0;
+}
+.bulletlist li {
+    position: relative;
+    padding-left: 35px; /* Adds space for the custom bullet */
     margin-bottom: 10px;
     white-space: normal;
+}
+.bulletlist li:last-child {
+    width: 100%;
+    margin-bottom: 0;
+}
+.bulletlist li::before {
+    content: '✰'; /* Custom bullet, can use other characters like '✰' */
+    position: absolute;
+    left: 0;
+    color: #A17D58; /* Set bullet color */
+    font-size: 1.5em; /* Adjust the bullet size if needed */
+    top: -4px; /* Align bullet to the top of the list item */
+}
+.reminder {
+    margin-bottom: 10px; /* Reduce space below each paragraph */
+    margin-top: 5px;      /* Ensure no extra space above each paragraph */
+}
+.checklist {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0;
+}
+.checklist li {
+    position: relative;
+    padding-left: 30px; /* Adds space for the checkbox */
+    margin-bottom: 10px;
+    white-space: normal;
+}
+
+.checklist li:last-child {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.checklist li::before {
+    content: '☑︎'; /* Empty checkbox character */
+    position: absolute;
+    left: 0;
+    color: #A17D58; /* Set checkbox color */
+    font-size: 1.5em; /* Adjust the checkbox size */
+    top: -4px; /* Align checkbox to the top of the list item */
+}
+.numberlist {
+    list-style-type: none; /* Remove default numbers */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure the list takes the full width of the container */
+    box-sizing: border-box; /* Include padding and borders in the width */
+}
+
+.numberlist li {
+    position: relative;
+    padding-left: 40px; /* Space for the number */
+    margin-bottom: 10px;
+    margin-right: 15px; /* Add some space to the right to prevent overflow */
+    white-space: normal; /* Allow wrapping of long words */
+    word-wrap: break-word; /* Break long words onto the next line */
+    overflow-wrap: break-word; /* Ensure wrapping works in all browsers */
+    box-sizing: border-box; /* Keep everything within the defined box */
+    overflow: hidden; /* Prevent content from overflowing */
+}
+
+.numberlist li:last-child {
+    margin-bottom: 0;
+}
+
+.numberlist li::before {
+    content: counter(list-item) '. '; /* Add numbers before list items */
+    position: absolute;
+    left: 0;
+    color: #A17D58; /* Set number color */
+    font-size: 1.2em; /* Adjust the number size */
+    top: 0; /* Align the number to the top of the list item */
+    width: 30px; /* Reserve space for the number */
+    text-align: right; /* Align the number neatly to the right */
 }
 footer {
     display: flex;                
@@ -68,7 +235,7 @@ footer {
     position: relative;          
     width: 100%;                 
     margin: 0 auto;  
-    border-top: 2px dotted #739774;   
+    border-top: 2px dotted #FCD6D6;   
     max-width: 750px;
     bottom: 0;
 }
@@ -84,7 +251,7 @@ footer {
     margin-right: auto;
 }
 .copyright {
-    color: #739774;             
+    color: #A68A6D;             
     margin: 0;  
     text-align: right;
     flex-grow: 1;         

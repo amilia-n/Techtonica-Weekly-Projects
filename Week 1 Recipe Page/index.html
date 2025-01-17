@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta property="viewport" content="width=device-width, initial-scale=1">
-	<title>Clam Chowder Recipe</title>
+	<title>Ami's New England Clam Chowder</title>
     <meta property="og:title" content="Homepage">
     <meta property="og:type" content="website">
     <meta property="og:image" content="logo.png">
@@ -14,28 +14,48 @@
     <meta property="og:site_name" content="Ami's Clam Chowder Recipe">
     <link rel="icon" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bubbler+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="header">
-		<p class="headerflex">Website Name</p>
-        <p id="description">I first tried New England clam chowder during a trip with my family to Boston. 
-            On that crisp autumn afternoon, I stumbled into a cozy restaurant and found my favorite soup. 
-            This recipe is my tribute to that memorable first taste and the warmth it brought on a chilly day.
-        </p>
-        <p class="headerflex">Button to Redirect</p>
+		<p class="brand">Ami's 
+            <br>Favorite Recipe</br></p>
+            <div>
+            <form class="favorite">
+                <fieldset>
+                    <legend id="favoriteSoup">What's <i>Your</i> Favorite Soup?</legend>
+                    <input type="text" name="favorite_soup" placeholder="Enter your favorite soup :D">
+                    <br>
+                    <button type="button" class="msgsubmit" onclick="alert('haha there\'s nowhere to submit')">Submit</button>
+                    </br>
+                </fieldset>
+                </form>
+            </div>
+        <div class="hyperlink">
+            <p>Explore a popular variation:</p>
+            <a href="https://www.dinneratthezoo.com/manhattan-clam-chowder/" class="hyperlink-text">
+                Manhattan Style
+            </a>
+        <img src="Redirect.png" alt="plate" class="redirectIMG" width="100">
+        </div>
 	</header>
 
 	<main class = "flex-container">
         <section class= "flex-box1">
-            <h1 class= "headingcss">Clam Chowder Recipe</h1>
+            <h1 id= "headingSTRONG">Ami's New England<br>Clam Chowder</br></h1>
+            <p id="description">I first tried New England clam chowder during a trip with my family to Boston. 
+                On that crisp autumn afternoon, I stumbled into a cozy restaurant and found my favorite soup. 
+                <br>This recipe is my tribute to that memorable first taste and the warmth it brought on a chilly day. </br>
+            </p>
             <img src="chowder.jpg" width="250">
             <p>
 			<div><strong>Serving:</strong> 5 hearty bowls of soup</div>
 			<div><strong>Prep Time:</strong> 15 minutes</div>
 			<div><strong>Cook Time:</strong> 1 hour</div> </p>
-		    <h2 class= "headingcss">Ingredients:</h2>
-			<ul class="bullet-list">
+		    <h2 class= "headingcss" id="ingredients">Ingredients:</h2>
+			<ul class="bulletlist">
 				<li>1 yellow onion</li>
 				<li>2 cloves of garlic</li>
 				<li>2 ribs of celery</li>
@@ -52,13 +72,13 @@
 				<li>Oyster crackers</li>
 				<li>Salt</li>
 			</ul>
-            <h2 class= "headingcss">Storage and Reheating Instructions:</h2>
-			<p>Can be refrigerated in an airtight container for 3 days.</p>
-			<p><strong class= "headingcss">Reheating:</strong> Thaw before heating. Simmer on medium heat, stirring frequently, until thoroughly heated through.</p>	
-        </section>
+            <h2 class= "headingcss">Reminder:</h2>
+			<p class="reminder">Storage: Can be refrigerated in an airtight container for 3 days.</p>
+			<p class="reminder">Reheating: Thaw before heating. Simmer on medium heat, stirring frequently, until thoroughly heated through.</p>
+			</section>
         <section class= "flex-box2">
-			<h2 class= "headingcss">Prep:</h2>
-			<ul class="bullet-list">
+			<h2 class= "headingcss" id="prep">Prep:</h2>
+			<ul class="checklist">
 				<li>Dice onion, mince garlic</li>
 				<li>Slice or dice celery</li>
 				<li>Peel and cube potatoes (~1-inch)</li>
@@ -66,8 +86,8 @@
 				<li>Drain and SAVE the clam juice from the cans of chopped clams</li>
 			</ul>
 
-            <h2 class= "headingcss">Cooking Instructions:</h2>
-			<ol class="number-list">
+            <h2 class= "headingcss" id="instructions">Cooking Instructions:</h2>
+			<ol class="numberlist">
 				<li>Warm the soup pot over medium fire, add a small amount of cooking oil to prevent sticking.</li>
 				<li>Add the bacon to the pot.</li>
 				<li>Once cooked, take out and set aside the bacon.</li>
@@ -89,7 +109,7 @@
 	<footer>
 		<div class="footers">	
 		<img src="logo.png" width="50" class="child">
-		<p class="copyright">Ami's Recipe © Copyright</p>
+		<p class="copyright">Ami's Recipe © haha Just Kidding</p>
 		</div>
 	</footer>
 </body>
