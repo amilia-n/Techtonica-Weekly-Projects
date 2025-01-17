@@ -124,8 +124,9 @@ input[name="favorite_soup"]::placeholder {
     overflow: hidden;
 }
 .flex-box2 {
-    flex-shrink: 1;  
+    flex-shrink: 0;  
     overflow: hidden; 
+    margin-left: 15px; 
 }
 #headingSTRONG {
     min-width: 250px; 
