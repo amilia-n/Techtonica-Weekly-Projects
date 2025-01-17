@@ -63,9 +63,21 @@ input[name="favorite_soup"]::placeholder {
     line-height: 1; 
     color: #FAB3B3
 }
+button.msgsubmit {
+    background-color: #A17D58;  
+    color: white;               
+    border: none;               
+    padding: 5px 15px;          
+    font-size: 14px;            
+    cursor: pointer;           
+    border-radius: 4px;         
+}
+button.msgsubmit:hover {
+    background-color: #FAB3B3; 
+}
 .msgsubmit {
     margin-top: 7px;
-    margin-left: 140px; 
+    margin-left: 125px; 
     color: #FAB3B3;
 }
 .hyperlink {
