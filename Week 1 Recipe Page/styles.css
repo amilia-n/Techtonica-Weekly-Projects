@@ -216,7 +216,7 @@ input[name="favorite_soup"]::placeholder {
     left: 0;
     color: #A17D58; 
     font-size: 1.5em; 
-    top: -4px; 
+    top: -5px; 
 }
 .numberlist {
     list-style-type: none; 
@@ -248,6 +248,7 @@ input[name="favorite_soup"]::placeholder {
     top: 0; 
     width: 30px; 
     text-align: right; 
+    top: -4px;
 }
 footer {
     display: flex;                
