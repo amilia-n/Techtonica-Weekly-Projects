@@ -84,6 +84,7 @@ input[name="favorite_soup"]::placeholder {
     margin-top: -10px; 
 }
 .hyperlink-text {
+    font-family: 'Happy Monkey', sans-serif;
     position: absolute; 
     top: 65%; 
     left: 50%; 
