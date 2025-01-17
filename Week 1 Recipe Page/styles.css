@@ -105,20 +105,25 @@ input[name="favorite_soup"]::placeholder {
     align-items: flex-start;
     flex-grow: 1;
     padding: 20px;
-}
-.flex-box1, .flex-box2 {
+}.flex-box1, .flex-box2 {
     display: flex;
     flex-direction: column;
     background-color: #FFF8F0; 
     border-radius: 25px;
     padding: 30px;
     margin-right: 10px;
-    flex-basis: 250px;  
+    flex-grow: 1;  
     min-width: 200px;   
-    max-width: 350px;
-    margin: 0 15px;
+    max-width: 350px;  
     box-sizing: border-box;
-    overflow: auto;
+}
+.flex-box1 {
+    flex-shrink: 0;  
+    overflow: hidden; 
+}
+.flex-box2 {
+    flex-shrink: 1;  
+    overflow: hidden; 
 }
 #headingSTRONG {
     min-width: 250px; 
