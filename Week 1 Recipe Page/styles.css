@@ -11,11 +11,12 @@ body{
 }
 .header {
     display: flex;
-    justify-content: center; 
+    justify-content: flex-start; 
     align-items: center;  
     padding: 15px 20px; 
     background-color: #FDF1D9; 
     height: 100px;
+    width: 100%;
 }
 .headerflex {
     flex: 1; 
@@ -24,6 +25,15 @@ body{
     background-color: #FDF1D9; 
     text-align: center; 
 }
+.brand, .favorite {
+    flex-shrink: 0;         
+    min-width: 150px;       
+    max-width: 250px;      
+    box-sizing: border-box;
+    overflow: hidden;       
+    white-space: nowrap;    
+}
+
 .brand {
     font-family: 'Playwrite IN', sans-serif;
     font-weight: bold;
@@ -36,7 +46,7 @@ body{
 .favorite {
     margin-right: 30px;
     margin-left: 30px; 
-    color: #A17D58
+    color: #A17D58;
 }
 input[name="favorite_soup"] {
     width: 200px;
@@ -59,10 +69,15 @@ input[name="favorite_soup"]::placeholder {
     color: #FAB3B3;
 }
 .hyperlink {
-    position: relative; 
-    display: inline-block; 
+    position: relative;
+    display: inline-block;
     text-align: center;
-    color: #A17D58
+    color: #A17D58;
+    overflow: hidden;     
+    white-space: nowrap;    
+    min-width: 150px;      
+    max-width: 250px;       
+    text-overflow: ellipsis;
 }
 .redirectIMG {
     width: 100px; 
@@ -98,15 +113,18 @@ input[name="favorite_soup"]::placeholder {
     border-radius: 25px;
     padding: 30px;
     margin-right: 10px;
-    min-width: 200px;
+    flex-basis: 250px;  
+    min-width: 200px;   
     max-width: 350px;
     margin: 0 15px;
-    flex-grow: 1;
-    flex-shrink: 1;
     box-sizing: border-box;
     overflow: auto;
 }
 #headingSTRONG {
+    min-width: 250px; 
+    max-width: 350px; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
     margin-top: 10px; 
     margin-bottom: 20px;
     align-self: center;
