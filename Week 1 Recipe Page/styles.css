@@ -251,24 +251,26 @@ input[name="favorite_soup"]::placeholder {
     top: -4px;
 }
 footer {
-    display: flex;                
-    justify-content: space-between; 
-    align-items: center;         
+    display: inline-flex;                       
     background-color: #FDF1D9;   
     padding: 10px 20px;          
     position: relative;          
-    width: 100%;                 
-    margin: 0 auto;  
+    width: 100%;                  
     border-top: 2px dotted #FCD6D6;   
-    max-width: 750px;
+    max-width: 600px;
+    min-width: 300px;
     bottom: 0;
+    overflow: hidden; 
+    flex-shrink: 0;  
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    margin-left: 55px;
 }
 .footers {
     display: flex;               
     justify-content: space-between; 
-    max-width: 750px;
     width: 100%;      
-    margin: 0 auto;         
+    margin: 0 auto;        
 }
 .footers img{
     width: 30px;
