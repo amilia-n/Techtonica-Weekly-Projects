@@ -21,6 +21,38 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-light">
+		<a class="navbar-brand">
+		</a>
+		<button id="nav-button" class="navbar-toggler btn btn-sm btn-neutral" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			Menu
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="container">
+				<div class="navbar-nav mr-auto row">
+					<div class="nav-item active col-1">
+						<a id="col1" class="nav-link" href="#">Link1</a>
+					</div>
+					<div class="nav-item col-1">
+						<a id="col2" class="nav-link" href="#">Link2</a>
+					</div>
+					<div class="nav-item dropdown col-1">
+						<a id="col3" class="nav-link dropdown-toggle hyperlink" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Link3
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">
+								Item1
+							</a>
+							<a class="dropdown-item" href="#">
+								Item2
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</nav>
     <header class="header">
 		<p class="brand">Ami's 
             <br>Favorite Recipe</br></p>
