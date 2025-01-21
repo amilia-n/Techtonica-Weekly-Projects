@@ -6,7 +6,23 @@ body{
     font-family: 'Times New Roman', Times, serif;
     line-height: 20px;
 }
-
+.navbar{
+    background-color: #FDF1D9;
+    position: center;
+    z-index: 2;
+}
+#nav-button{
+    margin-right: 30px;
+}
+#col1{
+    min-width: 20px;
+}
+#col2{
+    min-width: 20px;
+}
+#col3{
+    min-width: 20px;
+}
 .headingcss{
     font-family: 'Playfair Display', 'Times New Roman', Times, serif !important;
     color: #A68A6D;
