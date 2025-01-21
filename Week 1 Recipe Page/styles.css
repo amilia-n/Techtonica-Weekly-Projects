@@ -1,85 +1,40 @@
 body{
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #FDF1D9;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 20px;
 }
+
 .headingcss{
-    font-family: 'Playfair Display', 'Times New Roman', Times, serif;
+    font-family: 'Playfair Display', 'Times New Roman', Times, serif !important;
     color: #A68A6D;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    flex-shrink: 0; 
+    flex-grow: 0;
+    font-size: x-large;
 }
-.header {
-    display: flex;
-    justify-content: flex-start; 
-    align-items: center;  
-    padding: 15px 20px; 
-    background-color: #FDF1D9; 
-    height: 100px;
-    width: 100%;
-}
-.headerflex {
-    flex: 1; 
-    margin: 0 10px; 
-    padding: 10px; 
-    background-color: #FDF1D9; 
-    text-align: center; 
-}
-.brand, .favorite {
+
+.brand{
     flex-shrink: 0;         
     min-width: 150px;       
     max-width: 250px;      
     box-sizing: border-box;
     overflow: hidden;       
-    white-space: nowrap;    
+    white-space: nowrap; 
 }
 
 .brand {
-    font-family: 'Playwrite IN', sans-serif;
+    font-family: 'Playwrite IN', sans-serif !important;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1em;
     color: #A17D58; 
     margin: 0;
-    padding-left: 10px;
-    line-height: 1.2; 
+    padding-left: 30px;
+    line-height: 1.5; 
 }
-.favorite {
-    margin-right: 30px;
-    margin-left: 30px; 
-    color: #A17D58;
-}
-input[name="favorite_soup"] {
-    width: 200px;
-    height: 50px; 
-    box-sizing: border-box; 
-    padding: 2px 5px;
-    font-size: 16px; 
-    line-height: 0%; 
-}
-input[name="favorite_soup"]::placeholder {
-    text-align: left;
-    font-size: 12px; 
-    padding: 0; 
-    line-height: 1; 
-    color: #FAB3B3
-}
-button.msgsubmit {
-    background-color: #A17D58;  
-    color: white;               
-    border: none;               
-    padding: 5px 15px;          
-    font-size: 14px;            
-    cursor: pointer;           
-    border-radius: 4px;         
-}
-button.msgsubmit:hover {
-    background-color: #FAB3B3; 
-}
-.msgsubmit {
-    margin-top: 7px;
-    margin-left: 125px; 
-    color: #FAB3B3;
-}
+
 .hyperlink {
     position: relative;
     display: inline-block;
@@ -114,10 +69,12 @@ button.msgsubmit:hover {
 }
 .flex-container{
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
     padding: 20px;
+    padding-top: 0;
+
 }.flex-box1, .flex-box2 {
     display: flex;
     flex-direction: column;
@@ -135,11 +92,15 @@ button.msgsubmit:hover {
     justify-content: flex-start; 
     align-items: flex-start; 
     overflow: hidden;
+    min-height: 1353px;
+    max-height: 1353px;
 }
 .flex-box2 {
     flex-shrink: 0;  
     overflow: hidden; 
     margin-left: 15px; 
+    min-height: 1353px;
+    max-height: 1353px;
 }
 #headingSTRONG {
     min-width: 250px; 
