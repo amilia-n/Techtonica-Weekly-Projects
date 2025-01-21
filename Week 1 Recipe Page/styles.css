@@ -23,6 +23,29 @@ body{
 #col3{
     min-width: 20px;
 }
+@media (max-width: 768px) {
+    .navbar-collapse {
+        display: none;
+    }
+    
+    .navbar-collapse.show {
+        display: block;
+    }
+    
+    .navbar-toggler {
+        display: block;
+    }
+}
+
+@media (min-width: 1393px) {
+    .navbar-collapse {
+        display: flex !important;
+    }
+    
+    .navbar-toggler {
+        display: none;
+    }
+}
 .headingcss{
     font-family: 'Playfair Display', 'Times New Roman', Times, serif !important;
     color: #A68A6D;
