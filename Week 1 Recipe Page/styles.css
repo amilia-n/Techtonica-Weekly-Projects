@@ -224,6 +224,23 @@ body{
     text-align: right; 
     top: -4px;
 }
+.flex-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 0;
+    padding: 20px;
+    flex-shrink: 0;
+    
+}
+.flexbox2-1 .flexbox2-2 {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;  
+    overflow: hidden; 
+    width: 300px;
+    background-color: #FCD6D6; 
+}
 footer {
     display: inline-flex;                       
     background-color: #FDF1D9;   
