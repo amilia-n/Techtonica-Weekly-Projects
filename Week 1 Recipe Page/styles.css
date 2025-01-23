@@ -305,21 +305,48 @@ body{
 }
 .checklist li {
     position: relative;
-    padding-left: 30px; 
+    padding-left: 5px;
     margin-bottom: 10px;
     white-space: normal;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+.checklist li.completed span {
+    color: #999;
+    text-decoration: line-through;
 }
 .checklist li:last-child {
     width: 100%;
     margin-bottom: 0;
 }
-.checklist li::before {
-    content: '☑︎'!important; 
-    position: absolute !important;
-    left: 0;
-    color: #A17D58; 
-    font-size: 1.5em; 
-    top: -1px; 
+.checkbox {
+    margin-top: 3px;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #A17D58;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+.checkbox:checked {
+    background-color: #A17D58;
+}
+.checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: 3px;
+    top: -1px;
+}
+.checklist li span {
+    flex: 1;
+    transition: all 0.3s ease;
 }
 .numberlist {
     list-style-type: none; 
