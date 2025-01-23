@@ -6,6 +6,15 @@ body{
     font-family: 'Times New Roman', Times, serif;
     line-height: 20px;
 }
+#confetti-canvas {
+    position: fixed !important;
+    z-index: 9999 !important;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 .navbar{
     background-color: #FDF1D9;
     position: center;
