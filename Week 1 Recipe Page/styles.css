@@ -28,6 +28,43 @@ body{
 #col3{
     min-width: 20px;
 }
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin-right: 0;
+}
+
+#nav-button {
+    float: right;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.navbar-collapse {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-collapse.collapse.show {
+    opacity: 1;
+    max-height: none;
+    display: block;
+}
+
+.nav-links-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px; 
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
 @media (max-width: 768px) {
     .navbar-collapse {
         display: none;
@@ -36,12 +73,8 @@ body{
     .navbar-collapse.show {
         display: block;
     }
-    
-    .navbar-toggler {
-        display: block;
-    }
 }
-@media (min-width: 1393px) {
+@media (min-width: 769px) {
     .navbar-collapse {
         display: flex !important;
     }
@@ -49,6 +82,27 @@ body{
     .navbar-toggler {
         display: none;
     }
+}
+
+@media (max-width: 767px) {
+    .navbar-toggler {
+        display: block;
+    }
+
+    .nav-links-container {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2rem;
+    }
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    min-width: 200px;
 }
 #confetti-canvas {
     position: fixed !important;
