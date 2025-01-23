@@ -24,14 +24,14 @@
 	<div class="container">
 		<nav class="navbar navbar-expand-md navbar-light">
 			<div class="row nav-top w-100">
-				<div class="col-6">
-					<a class="navbar-brand">
-						<p class="brand">Ami's 
-						<br>Favorite Recipe</p>
-					</a>
-				</div>
-				<div class="col-6 text-right">
-					<button id="nav-button" 
+			<div class="col-6">
+				<a class="navbar-brand">
+					<p class="brand">Ami's 
+					<br>Favorite Recipe</p>
+				</a>
+			</div>
+			<div class="col-6 text-right">
+				<button id="nav-button" 
 					class="navbar-toggler" 
 					type="button" 
 					data-toggle="collapse" 
@@ -40,34 +40,44 @@
 					aria-expanded="false" 
 					aria-label="Toggle navigation">
 				Menu
-			</button>
-		</div>
-	</div>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<div class="container">
-					<div class="navbar-nav mr-auto row">
-						<div class="nav-item active col-1">
-							<a id="col1" class="nav-link" href="#">LINK1</a>
-						</div>
-						<div class="nav-item col-1">
-							<a id="col2" class="nav-link" href="#">LINK2</a>
-						</div>
-						<div class="nav-item dropdown col-1">
-							<a id="col3" class="nav-link dropdown-toggle hyperlink" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Explore some popular variations:
+				</button>
+			</div>
+			</div>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="row justify-content-center align-items-center w-100">
+				<div class="col-auto">
+					<a id="col1" class="nav-link" href="#">LINK1</a>
+				</div>
+				<div class="col-auto">
+					<a id="col2" class="nav-link" href="#">LINK2</a>
+				</div>
+				<div class="col-auto">
+					<div class="dropdown">
+						<a id="col3" 
+						class="nav-link dropdown-toggle" 
+						href="#" 
+						role="button" 
+						data-toggle="dropdown" 
+						aria-haspopup="true" 
+						aria-expanded="false">
+						Explore some popular variations:
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" 
+							href="https://www.bowlofdelicious.com/rhode-island-clam-chowder/" 
+							id="rhodeisland">
+							Rhode Island Style
 							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="https://www.bowlofdelicious.com/rhode-island-clam-chowder/" class="hyperlink-text" id="rhodeisland">
-									Rhode Island Style
-								</a>
-								<a class="dropdown-item" href="https://www.dinneratthezoo.com/manhattan-clam-chowder/" class="hyperlink-text">
-									Manhattan Style
-								</a>
-							</div>
+							<a class="dropdown-item" 
+							href="https://www.dinneratthezoo.com/manhattan-clam-chowder/">
+							Manhattan Style
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
 	</nav>
 	<main>
 		<div class= "flex-container">
