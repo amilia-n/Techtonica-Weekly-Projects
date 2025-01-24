@@ -21,40 +21,68 @@
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<nav class="navbar navbar-expand-md navbar-light">
-			<a class="navbar-brand">
-				<p class="brand">Ami's 
-				<br>Favorite Recipe</p>
-			</a>
-			<button id="nav-button" class="navbar-toggler btn btn-sm btn-neutral" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				Menu
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<div class="container">
-					<div class="navbar-nav mr-auto row">
-						<div class="nav-item active col-1">
-							<a id="col1" class="nav-link" href="#">LINK1</a>
-						</div>
-						<div class="nav-item col-1">
-							<a id="col2" class="nav-link" href="#">LINK2</a>
-						</div>
-						<div class="nav-item dropdown col-1">
-							<a id="col3" class="nav-link dropdown-toggle hyperlink" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Explore some popular variations:
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+		<div class="row nav-top w-100">
+			<div class="col-3">
+				<a class="navbar-brand">
+					<p class="brand">Ami's 
+					<br>Favorite Recipe</p>
+				</a>
+				<div class="text-right">
+					<button id="nav-button" 
+						class="navbar-toggler" 
+						type="button" 
+						data-toggle="collapse" 
+						data-target="#navbarSupportedContent" 
+						aria-controls="navbarSupportedContent" 
+						aria-expanded="false" 
+						aria-label="Toggle navigation">
+					Menu
+					</button>
+				</div>
+			</div>
+		<div class="collapse navbar-collapse col-9" id="navbarSupportedContent">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-auto">
+					<a id="col1" class="nav-link" href="https://github.com/amilia-n" target="_blank">My Portfolio</a>
+				</div>
+				<div class="col-auto">
+					<a id="col2" class="nav-link" href="https://linkedin.com/in/amilia-n" target="_blank">My LinkedIn</a>
+				</div>
+				<div class="col-auto">
+					<div class="dropdown">
+						<a id="col3" 
+						class="nav-link dropdown-toggle" 
+						role="button" 
+						data-toggle="dropdown" 
+						aria-haspopup="true" 
+						aria-expanded="false">
+						Explore some popular variations:
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" 
+							id="hyperlink-text"
+							href="https://www.bowlofdelicious.com/rhode-island-clam-chowder/"
+							target="_blank">
+							Rhode Island Style
 							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="https://www.bowlofdelicious.com/rhode-island-clam-chowder/" class="hyperlink-text" id="rhodeisland">
-									Rhode Island Style
-								</a>
-								<a class="dropdown-item" href="https://www.dinneratthezoo.com/manhattan-clam-chowder/" class="hyperlink-text">
-									Manhattan Style
-								</a>
-							</div>
+							<a class="dropdown-item" 
+							id="hyperlink-text"
+							href="https://www.dinneratthezoo.com/manhattan-clam-chowder/"
+							target="_blank">
+							Manhattan Style
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+
+	</div>
+	</div>
 	</nav>
+	<br/>
 	<main>
 		<div class= "flex-container">
         <section class= "flex-box1">
@@ -93,11 +121,11 @@
         <section class= "flex-box2">
 			<h2 class= "headingcss" id="prep">Prep:</h2>
 			<ul class="checklist">
-				<li>Dice onion, mince garlic</li>
-				<li>Slice or dice celery</li>
-				<li>Peel and cube potatoes (~1-inch)</li>
-				<li>Slice bacon into 1-inch strips</li>
-				<li>Drain and SAVE the clam juice from the cans of chopped clams</li>
+				<li><input type="checkbox" class="checkbox" id="prep1"><span>Dice onion, mince garlic</span></li>
+				<li><input type="checkbox" class="checkbox" id="prep2"><span>Slice or dice celery</span></li>
+				<li><input type="checkbox" class="checkbox" id="prep3"><span>Peel and cube potatoes (~1-inch)</span></li>
+				<li><input type="checkbox" class="checkbox" id="prep4"><span>Slice bacon into 1-inch strips</span></li>
+				<li><input type="checkbox" class="checkbox" id="prep5"><span>Drain and SAVE the clam juice from the cans of chopped clams</span></li>
 			</ul>
             <h2 class= "headingcss" id="instructions">Cooking Instructions:</h2>
 			<ol class="numberlist">
@@ -119,22 +147,18 @@
 			</ol>
         </section>    
 		</div>
-		<div class="flex-container2">
-			<section class="flexbox2-1">
-				FLEXBOX2.1
-			</section>
-			<section class="flexbox2-2">
-				FLEXBOX2.2
-			</section>
-		</div>
 	</main>
 	<footer>
 		<div class="footers">	
 		<img src="Redirect.png" width="50" class="child">
-		<p class="copyright">Ami's Recipe © haha Just Kidding</p>
+		<p class="copyright">Techtonica Weekly Project 1 & 2</p>
 		</div>
 	</footer>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+	<script src="checkbox.js"></script>
+	<script src="bulletlist.js"></script>
+	<script src="confetti.js"></script>
 </body>
 </html>
