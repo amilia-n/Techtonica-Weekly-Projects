@@ -1,31 +1,17 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+function setupCheckboxes() {
     var checkboxes = document.querySelectorAll('.checkbox');
-    //localStorage allows checkbox state to remain if page refreshed
-    for (var i = 0; i < checkboxes.length; i++) {
-        var checkbox = checkboxes[i];
-        var savedState = localStorage.getItem(checkbox.id);
-        
-        if (savedState === 'true') {
+    
+    checkboxes.forEach(function(checkbox) {
+        if (localStorage.getItem(checkbox.id) === 'true') {
             checkbox.checked = true;
         }
-
-        // Add a event listener
-        checkbox.addEventListener('change', function() {
-            // Save state to localStorage
+        
+        checkbox.onclick = function() {
             localStorage.setItem(this.id, this.checked);
-
             var listItem = this.closest('li');
-            
-            if (this.checked) {
-                listItem.classList.add('completed');
-            } else {
-                listItem.classList.remove('completed');
-            }
-        });
+            listItem.classList.toggle('completed', this.checked);
+        };
+    });
+}
 
-        // To uncheck
-        var event = new Event('change');
-        checkbox.dispatchEvent(event);
-    }
-});
+document.addEventListener('DOMContentLoaded', setupCheckboxes);
