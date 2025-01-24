@@ -72,7 +72,7 @@ body {
 }
 /* Navigation Links */
 .navbar-collapse {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.009s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: top;
     transform: scaleY(0);
     opacity: 0;
@@ -156,14 +156,14 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
-    height: 1300px;
+    height: 1320px;
 }
 /* Right Box Specific */
 .flex-box2 {
     flex-shrink: 0;
     overflow: hidden;
     margin-left: 15px;
-    height: 1300px;
+    height: 1320px;
 
 }
 /* Headings */
@@ -183,12 +183,40 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     align-self: center;
-    font-size: 2em;
+    font-size: 2em; 
     font-family: 'Bubbler One', sans-serif !important;
     text-align: center;
     color: #A68A6D;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-weight: 600;
+}
+#prep {
+    margin-top: 5px;
+}
+#instructions {
+    margin-bottom: 15px; 
+    font-size: 1.5em; 
+    color: #2a7f62; 
+    text-align: center; 
+    text-transform: uppercase; 
+}
+#reminder {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+#ingredients {
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+#description {
+    max-width: 250px;
+    margin-left: 20px;
+}
+#img1 {
+    margin-left: 20px;
+}
+#underimg {
+    margin-left: 20px;
 }
 /* Lists */
 .bulletlist {
@@ -291,17 +319,10 @@ body {
     left: 0;
     color: #A17D58;
     font-size: 1.2em;
-    top: -3px;
+    top: -2px;
     width: 30px;
     text-align: right;
     padding-right: 5px;
-}
-#reminder {
-    margin-top: 15px;
-}
-#ingredients {
-    margin-top: 15px;
-    margin-bottom: 20px;
 }
 /* Footer */
 footer {
