@@ -7,14 +7,12 @@ body {
     font-family: 'Times New Roman', Times, serif;
     line-height: 20px;
 }
-
 /* Container */
 .container {
     padding: 0;
     margin: 0;
     max-width: 100%;
 }
-
 /* Navigation */
 .navbar {
     background-color: #FDF1D9;
@@ -24,13 +22,11 @@ body {
     font-weight: bold;
     color: #A68A6D;
 }
-
 .nav-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .brand {
     font-family: 'Playwrite IN', sans-serif !important;
     font-weight: bold;
@@ -43,11 +39,9 @@ body {
     box-sizing: border-box;
     white-space: nowrap;
 }
-
 .navbar-brand {
     margin-right: 0;
 }
-
 /* Navigation Button */
 #nav-button {
     float: inline-end;
@@ -67,18 +61,15 @@ body {
     right: 15px;
     top: 20px;
 }
-
 #nav-button:hover {
     background-color: #A17D58;
     color: white;
 }
-
 #nav-button:focus {
     outline: none;
     box-shadow: none;
     background-color: #FAB3B3;
 }
-
 /* Navigation Links */
 .navbar-collapse {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -88,33 +79,27 @@ body {
     padding-top: 1rem;
     height: 0;
 }
-
 .navbar-collapse.collapse.show {
     opacity: 1;
     transform: scaleY(1);
     height: auto;
 }
-
 .nav-link {
     text-decoration: none;
     position: relative;
 }
-
 .nav-link:hover {
     text-decoration: underline;
     color: #A17D58;
 }
-
 /* Dropdown Menu */
 .dropdown {
     position: relative;
 }
-
 .dropdown-toggle:hover {
     text-decoration: underline;
     color: #A17D58;
 }
-
 .dropdown-menu {
     position: absolute;
     min-width: 200px;
@@ -122,12 +107,10 @@ body {
     right: 0;
     left: 120px;
 }
-
 .dropdown-menu.show {
     display: block;
     margin-top: 10px;
 }
-
 .dropdown-item {
     display: block;
     width: 100%;
@@ -141,12 +124,10 @@ body {
     background-color: transparent;
     border: 0;
 }
-
 .dropdown-item:hover {
     background-color: #fab3b375;
     color: white;
 }
-
 /* Main Content */
 .flex-container {
     display: flex;
@@ -156,7 +137,6 @@ body {
     padding: 20px;
     padding-top: 0;
 }
-
 /* Content Boxes */
 .flex-box1, .flex-box2 {
     display: flex;
@@ -170,7 +150,6 @@ body {
     max-width: 350px;
     box-sizing: border-box;
 }
-
 /* Left Box Specific */
 .flex-box1 {
     flex-shrink: 0;
@@ -179,7 +158,6 @@ body {
     overflow: hidden;
     height: 1300px;
 }
-
 /* Right Box Specific */
 .flex-box2 {
     flex-shrink: 0;
@@ -188,7 +166,6 @@ body {
     height: 1300px;
 
 }
-
 /* Headings */
 .headingcss {
     font-family: 'Playfair Display', 'Times New Roman', Times, serif !important;
@@ -198,7 +175,6 @@ body {
     flex-grow: 0;
     font-size: x-large;
 }
-
 #headingSTRONG {
     min-width: 250px;
     max-width: 350px;
@@ -214,13 +190,11 @@ body {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     font-weight: 600;
 }
-
 /* Lists */
 .bulletlist {
     list-style-type: none;
     padding: 0;
 }
-
 .bulletlist li {
     position: relative;
     padding-left: 35px;
@@ -248,7 +222,6 @@ body {
     list-style-type: none;
     padding: 0;
 }
-
 .checklist li {
     position: relative;
     padding-left: 5px;
@@ -301,7 +274,6 @@ body {
     width: 100%;
     box-sizing: border-box;
 }
-
 .numberlist li {
     position: relative;
     padding-left: 40px;
@@ -313,7 +285,6 @@ body {
     box-sizing: border-box;
     overflow: hidden;
 }
-
 .numberlist li::before {
     content: counter(list-item) '. ';
     position: absolute;
@@ -325,7 +296,13 @@ body {
     text-align: right;
     padding-right: 5px;
 }
-
+#reminder {
+    margin-top: 15px;
+}
+#ingredients {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
 /* Footer */
 footer {
     display: flex;
@@ -343,16 +320,20 @@ footer {
     flex-grow: 0;
     margin: 0 55px;
 }
-
 .footers {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin: 0 auto;
 }
-
+#clickableImage {
+    animation: none;  
+}
+#clickableImage:hover {
+    cursor: pointer;  
+}
 .copyright {
-    color: #A68A6D;
+    color: #fab3b375;
     margin: 0;
     text-align: right;
     flex-grow: 1;
@@ -366,7 +347,6 @@ footer {
     justify-content: center;
     gap: 2rem; 
 }
-
 @media (min-width: 990px) {
     .navbar-collapse {
         display: flex !important;
@@ -374,31 +354,24 @@ footer {
         opacity: 1 !important;
         height: auto !important;
     }
-    
     .navbar-toggler {
         display: none !important;
     }
-
     .navbar-collapse .col-auto {
     padding: 0 15px;
     }
-
 }
-
 @media (max-width: 912px) {
     .navbar-collapse {
         display: none !important;
     }
-    
     .navbar-collapse.show {
         display: block !important;
     }
-
     .navbar-toggler {
         display: block !important;
     }
 }
-
 /* Confetti Canvas */
 #confetti-canvas {
     position: fixed !important;
