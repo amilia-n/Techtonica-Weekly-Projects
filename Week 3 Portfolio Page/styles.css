@@ -1,0 +1,8 @@
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFDFDF;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 20px;
+}
