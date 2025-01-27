@@ -1,8 +1,35 @@
 body {
     height: 100vh;
-    display: flex;
     flex-direction: column;
     background-color: #FFDFDF;
     font-family: 'Times New Roman', Times, serif;
     line-height: 20px;
 }
+main {
+    padding: 10%;
+    width: 1000px;
+    overflow: hidden;
+}
+.namebox {
+    display: flex;
+    height: 250px;
+    background-color: antiquewhite;
+    justify-content: center;
+}
+.namebox h1 {
+    font-size: 2.5rem;
+    color: #343a40;
+}
+.flex-container {
+    display: flex;
+    gap: 30px;
+    background-color:aquamarine;
+    height: 400px;
+}
+#flex1, #flex2 {
+    display:inline-block;
+    flex: 1;
+    background-color:bisque;
+    margin: 5px;
+}
+
