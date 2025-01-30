@@ -31,5 +31,6 @@ main {
     flex: 1;
     background-color:bisque;
     margin: 5px;
+    padding: .5rem;
 }
 
