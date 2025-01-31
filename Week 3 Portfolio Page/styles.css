@@ -285,6 +285,7 @@ body.theme-dawn .header-area {
     dark:  rgba(227, 227, 240, 0.5);*/
     margin-top: 0;
     margin-bottom: 30px;
+    width: 100%;
     padding-top: 30px;
     padding-left: 45px;
 }
@@ -293,7 +294,7 @@ body.theme-dawn .header-area {
     font-size: 3.5rem;
     color: #343a40;
     font-family: 'Space Mono', monospace;
-    position: relative; 
+    position: relative;
 }
 /* blinking terminal effect */
 .namebox h1::after {
@@ -327,6 +328,7 @@ body.theme-dawn .header-area {
     margin-left: 20px;
     margin-top: -50px; 
     border-radius: 0 0 60px 60px; 
+    padding-right: 20px;
 }
 /* container1: child2 */
 #flex2 {
@@ -348,10 +350,13 @@ body.theme-dawn .header-area {
     content: 'NOTE';
     display: flex;
     align-items: center;
-    padding-left: 12px;
+    padding-left: 25px;
+    margin-left: -15px;
+    padding-right: 20px;
     min-height: 28px; 
     height: 28px;
     background-color: #000;
+    width: 620px;
     border-bottom: 2px solid #000;
     font-family: 'Press Start 2P', cursive;
     font-size: 15px; 
@@ -386,8 +391,8 @@ body.theme-dawn .header-area {
     /* imgs */
 .card-columns .card-img,
 .card-columns .card-img-top {
-    height: 250px;  /* Increased from 150px */
-    width: 250px;  /* Same as height to make it square */
+    max-height: 250px;  /* Increased from 150px */
+    max-width: 250px;  /* Same as height to make it square */
     object-fit: cover;
     display: block;
     margin: 20px auto;
