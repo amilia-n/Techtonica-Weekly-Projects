@@ -17,112 +17,171 @@
 	<link rel="icon" href="icon.png">
 	
 	<!-- Include your CSS files here -->
-    <!-- <link href="#" rel="stylesheet"> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body class="container">
-	<nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
-          Bootstrap
-        </a>
-    </nav>
+  <div class="fireflies">
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+  </div> 
+  <nav>
+    <div class="theme-container">
+      <div class="header-area">
+        <!-- Social icons in specified order: LinkedIn, GitHub, Resume -->
+        <div class="social-icons">
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/amilia-n" target="_blank" class="social-link">
+                <img src="LIL.svg" alt="LinkedIn" class="social-icon light-mode-icon">
+                <img src="LID.svg" alt="LinkedIn" class="social-icon dark-mode-icon">
+            </a>
+            <!-- GitHub -->
+            <a href="https://github.com/amilia-n" target="_blank" class="social-link">
+                <img src="GHL.svg" alt="GitHub" class="social-icon light-mode-icon">
+                <img src="GHD.svg" alt="GitHub" class="social-icon dark-mode-icon">
+            </a>
+            <!-- Resume -->
+            <a href="your-resume-link" target="_blank" class="social-link">
+                <img src="RESL.svg" alt="Resume" class="social-icon light-mode-icon">
+                <img src="RESD.svg" alt="Resume" class="social-icon dark-mode-icon">
+            </a>
+        </div>
+      </div>
+      <div class="page theme-dusk active">
+          <!-- Dusk theme content -->
+      </div>
+      <div class="page theme-dawn">
+          <!-- Dawn theme content -->
+      </div>
+      <!-- Keep clouds and toggle button outside the pages -->
+      <button id="themeToggle" class="theme-toggle">
+          <img src="Background/togglebutton.png" alt="Toggle theme" class="toggle-icon">
+      </button>
+      <img src="Background/duskcloud.png" alt="dusk cloud" class="lightmode">
+      <img src="Background/dawncloudL.png" alt="dawn cloud left" class="darkmodeL">
+      <img src="Background/dawncloudR.png" alt="dawn cloud right" class="darkmodeR">
+  </div>
+</nav>
 	<main>
 		<!-- Add your main content here -->
 		<section class="namebox">
-            <h1>MY NAME</h1>
-        </section>
+      <h1>Ami Lian</h1>
+    </section>
         <div class="flex-container">
           <div id="flex1">
-            <img src="#" >
-          </div>
+            <img src="Ami/Ami1.png">
+        </div>
           <div id="flex2">
-              <h2 >About Me</h2>
-                <p>Hey there! My name is Ami, and I am a Software Engineer in Training at Techtonica!
-                    As a first-generation immigrant, I've seen firsthand how technology can open doors to new opportunities and empower communities.
+                <p id="abt-me">
+                  <span class="single-line">I am a Software Engineer in Training at Techtonica.</span>
+                  <br>
+                    As a first-generation immigrant, I've seen how technology open doors to new opportunities and empower communities.
                     With a strong foundation in law, my journey into software engineering has been fuled by a passion for problem-solving. 
-                    Coming from a background that values hard work and adaptability, I'm driven to build solutions that are innovative and inclusive.
+                  <br>
+                    I came from a background that values hard work and adaptability, and I'm driven to build solutions that are innovative and inclusive.
                 </p>
           </div>
         </div>
             <!-- Dusty, interests, and about me (birthplace, hometown, languages spoken) -->
             <div class="card-columns">
                 <div class="card">
-                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <img class="card-img-top" src="Ami/child.png" alt="Ami as a child">
                   <div class="card-body">
-                    <h5 class="card-title">Card title that wraps to a new line</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <h5 class="card-title">That's me!</h5>
+                    <p class="card-text">My story begins in Fuzhou City, China, where I grew up until 2008.</p>
                   </div>
                 </div>
                 <div class="card p-3">
                   <blockquote class="blockquote mb-0 card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">
-                      <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
+                    <p>After a long, long flight, my family and I settled in Queens, New York.</p>
                   </blockquote>
+                  <img class="card-img" id="flight" src="Ami/flight.png" alt="Flight to Queens"> 
                 </div>
                 <div class="card">
-                  <img class="card-img-top" src="..." alt="Card image cap">
+                  <img class="card-img-top" src="Ami/AmiID.png" alt="That's me in law school!">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <h5 class="card-title">Before I was here...</h5>
+                    <p class="card-text">After getting a bachelor in Psychology and Law, I went on to attend law school in San Francisco.</p>
                   </div>
                 </div>
-                <div class="card bg-primary text-white text-center p-3">
+                <div class="card">
+                  <img class="card-img" src="Dusty/1.png" alt="Dusty with teddy bear">
+                </div>
+                <div class="card p-3">
+                  <h5 class="card-title">But I couldn't have done it without my best friend since high school!</h5>
+                  <p class="card-text">Dusty has accompanied me through high school, then upstate to Buffalo for college, and finally across the country for law school.</p>
+                </div>
+                <div class="card">
+                  <img class="card-img" src="Dusty/2.png" alt="Dusty watching ipad">
+                </div>
+                <div class="card text-center p-3">
                   <blockquote class="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-                    <footer class="blockquote-footer">
-                      <small>
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
+                    <h4>And now we're here!</h4>
+                    <p>I'm excited to contribute meaningfully as an engineer, and to create applications that make a difference!</p>
                   </blockquote>
+                  <img class="card-img" id="gif" src="Ami/bootstrap.gif" alt="Coding gif">  <!-- Add your gif here -->
                 </div>
-                <div class="card text-center">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              </div> 
+              <div class="flex-container2">
+                <section id="flex2-1">
+                </section>
+                <section id="flex2-2">
+                  <div class="text-right">
+                      <h2>Say Hello!</h2>
+                      <p class="form-subtitle">Tell me about yourself</p>
                   </div>
-                </div>
-                <div class="card">
-                  <img class="card-img" src="..." alt="Card image">
-                </div>
-                <div class="card p-3 text-right">
-                  <blockquote class="blockquote mb-0">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <footer class="blockquote-footer">
-                      <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                      </small>
-                    </footer>
-                  </blockquote>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
-                </div>
-              </div>
+                  <form>
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name (required)" required/>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name (required)" required/>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-md-6">
+                              <input type="email" class="form-control" id="email" name="email" placeholder="Email (not required)" required/>
+                          </div>
+                          <div class="form-group col-md-6">
+                              <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone (not required)"/>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <textarea class="form-control" id="message" name="message" rows="4" placeholder="What's up?" style="resize: none;"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+              </section>
+              </div> 
 	</main>
 	<footer>
 		<div class="footers">	
-		<img src="#" width="50" class="child" id="clickableImage">
 		<p>Techtonica Week 3 Project </p>
 		</div>
 	</footer>
 	<!-- Include your JavaScript files here -->
      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

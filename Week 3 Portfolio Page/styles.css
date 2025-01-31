@@ -1,35 +1,482 @@
 body {
-    height: 100vh;
+    display: flex;
+    /* takes full height of viewport */
+    min-height: 100vh;
+    /* flex container stack children vertically  */
     flex-direction: column;
-    background-color: #FFDFDF;
     font-family: 'Times New Roman', Times, serif;
     line-height: 20px;
+    margin: 0;
+    padding: 0;
+    /* white space for icons */
+    padding-top: 80px;
+    /* child elements are positioned relative to body */
+    position: relative;
+    /* Initial theme (LightDusk) */
+    background: 
+    /* transitiont to make top and bottom image look better */
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            #F8BDA9 50%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+    /*importing as url allows me to apply multiple background imgs to this element*/
+        url('./Background/dusksky.png') top center/100% 50vh no-repeat,
+        url('./Background/duskcity.png') bottom center/100% 50vh no-repeat;
+    /* to stay fixed while scrolling */
+    background-attachment: fixed;
+    background-color: #F8BDA9;
+    /* smoother transition background  */
+    transition: background 0.10s ease;
 }
+/* defines background for DarkDawn theme */
+body.theme-dawn {
+    background: 
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            #CD90B9 50%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        url('./Background/dawnsky.png') top center/100% 50vh no-repeat,
+        url('./Background/dawncity.png') bottom center/100% 50vh no-repeat;
+    background-attachment: fixed;
+    background-color: #CD90B9;
+}
+/* main content container */
 main {
-    padding: 10%;
-    width: 1000px;
+    position: relative;
+    z-index: 1;
+    padding: 5% 10%;
+    width: 1111px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    margin-bottom: 50vh;
+    margin-top: 80px;
+}
+/* theme transition overlay to troubleshoot imgs not displaying */
+.theme-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+    display: none;
+}
+/* theme toggle button (moon) */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1001;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
     overflow: hidden;
 }
+/* places moon under toggle icon */
+.toggle-icon {
+    width: 300%; 
+    height: 300%;
+    object-fit: contain;
+    transform: translate(-27.33%, -33.33%);  
+    position: relative;
+    left: -10px; 
+}
+/* glow effect on hover */
+.theme-toggle:hover,
+.theme-toggle:focus {
+    /* removes default focus outline */
+    outline: none;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 30px rgba(255, 255, 255, 0.6);
+    transition: box-shadow 0.10s ease;
+}
+/* Changing clouds with theme */
+.lightmode,
+.darkmodeL,
+.darkmodeR {
+    opacity: 0;
+    transition: opacity 0.10s ease-out;
+    position: fixed;
+    pointer-events: none;
+    z-index: 1001;
+}
+.lightmode {
+    opacity: 1;
+    position: fixed;
+    top: 15px;  
+    right: -145px;
+    width: 300px;
+    height: 300px;
+    z-index: 1001;
+    pointer-events: none;
+}
+.darkmodeL {
+    position: fixed;
+    top: -111px;
+    left: 1250px;
+    width: 300px;
+    height: 300px;
+    z-index: 1001;
+    pointer-events: none;
+}
+.darkmodeR {
+    position: fixed;
+    top: -82px;
+    right: -115px;
+    width: 300px;
+    height: 300px;
+    z-index: 1001;
+    pointer-events: none;
+}
+/* when darkdusk is active */
+body.theme-dawn .lightmode {
+    opacity: 0;
+}
+body.theme-dawn .darkmodeL,
+body.theme-dawn .darkmodeR {
+    opacity: 1;
+}
+/* when lightdawn is active */
+body.theme-dusk .darkmodeL,
+body.theme-dusk .darkmodeR {
+    opacity: 0;
+}
+body.theme-dusk .lightmode {
+    opacity: 1;
+}
+/* container for firefly elements */
+.fireflies {
+    /* fixed at the bottom of the screen */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh;
+    pointer-events: none;
+    z-index: 2;
+}
+/* represents the individual fireflies */
+.firefly {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background-color: #ffd700;
+    border-radius: 50%;
+    filter: blur(0.8px);
+    /* applies the float-random keyframes */
+    animation: float-random 8s ease-in-out infinite;
+    opacity: 0;
+}
+/* firefly keyframes */
+@keyframes float-random {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0;
+        box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.6); 
+    }
+    20% {
+        opacity: 0.8; 
+    }
+    40% {
+        transform: translate(50px, -10px);
+        box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7); 
+    }
+    60% {
+        transform: translate(-25px, 15px);
+        opacity: 0.8;
+        box-shadow: 0 0 15px 4px rgba(255, 215, 0, 0.6);
+    }
+    80% {
+        transform: translate(15px, -5px);
+        opacity: 0.8;
+        box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.5);
+    }
+}
+/* random starting position and delays */
+.firefly:nth-child(1) { left: 10%; bottom: 20%; animation-delay: 0s; }
+.firefly:nth-child(2) { left: 20%; bottom: 35%; animation-delay: 1.5s; }
+.firefly:nth-child(3) { left: 35%; bottom: 15%; animation-delay: 3s; }
+.firefly:nth-child(4) { left: 50%; bottom: 40%; animation-delay: 4.5s; }
+.firefly:nth-child(5) { left: 65%; bottom: 25%; animation-delay: 2s; }
+.firefly:nth-child(6) { left: 75%; bottom: 30%; animation-delay: 5s; }
+.firefly:nth-child(7) { left: 85%; bottom: 45%; animation-delay: 1s; }
+.firefly:nth-child(8) { left: 90%; bottom: 20%; animation-delay: 3.5s; }
+.firefly:nth-child(9) { left: 25%; bottom: 40%; animation-delay: 2.5s; }
+.firefly:nth-child(10) { left: 70%; bottom: 15%; animation-delay: 4s; }
+
+/* changes firefly color based on theme */
+body.theme-dawn .firefly {
+    background-color: #fff;
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.6); 
+}
+
+body:not(.theme-dawn) .firefly {
+    background-color: #ffd700;
+    box-shadow: 0 0 8px 2px rgba(255, 215, 0, 0.6); 
+}
+/* social icons at top-left */
+.social-icons {
+    position: fixed;
+    top: 20px;
+    left: calc((100% - 1111px) / 2);
+    display: flex;
+    gap: 30px;
+    z-index: 1001;
+    padding-left: 10%;
+}
+/* size and transition*/
+.social-icon {
+    width: 32px; 
+    height: 32px;
+    transition: opacity 0.3s ease, transform 0.3s ease;  
+}
+/* theme specific icon visability */
+body:not(.theme-dawn) .dark-mode-icon {
+    display: none;
+}
+
+body.theme-dawn .light-mode-icon {
+    display: none;
+}
+/* header area for icon */
+.header-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+    /* LightDusk theme */
+        rgba(248, 189, 169, 1) 0%,  
+        rgba(248, 189, 169, 0.9) 50%,
+        rgba(248, 189, 169, 0) 100%
+    );
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    transition: background 0.10s ease;
+}
+/* Darkdawn theme */
+body.theme-dawn .header-area {
+    background: linear-gradient(to bottom, 
+        rgba(205, 144, 185, 1) 0%, 
+        rgba(205, 144, 185, 0.9) 50%,
+        rgba(205, 144, 185, 0) 100%
+    );
+}
+
+
+/* header box for name */
 .namebox {
     display: flex;
     height: 250px;
-    background-color: antiquewhite;
-    justify-content: center;
+    background-color: rgba(240, 231, 227, 0.5);
+    /* add light/dark mode */
+    /* light: rgba(240, 231, 227, 0.5);
+    dark:  rgba(227, 227, 240, 0.5);*/
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    padding-left: 45px;
 }
+/* font + styling */
 .namebox h1 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     color: #343a40;
+    font-family: 'Space Mono', monospace;
+    position: relative; 
 }
+/* blinking terminal effect */
+.namebox h1::after {
+    content: '_';
+    position: absolute;
+    color: #343a40;
+    animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+/* flex container 1 for about me intro */
 .flex-container {
     display: flex;
-    gap: 30px;
-    background-color:aquamarine;
-    height: 400px;
+    gap: 15px;
+    height: 365px;
+    padding: 10px;
+    margin-bottom: 25px;
+    overflow: hidden;
 }
-#flex1, #flex2 {
-    display:inline-block;
+/* container1: child1 */
+/* img of self aligned to top, crop bottom with rounded corners*/
+#flex1 img {
+    display: inline-block;
     flex: 1;
-    background-color:bisque;
-    margin: 5px;
+    width: 300px;
+    height: 367px;  
+    object-fit: cover;
+    object-position: top;  
+    margin-left: 20px;
+    margin-top: -50px; 
+    border-radius: 0 0 60px 60px; 
 }
-
+/* container1: child2 */
+#flex2 {
+    display: flex;
+    flex-direction: column;
+    flex: 3;
+    background-color: white;
+    margin: 25px;
+    height: 300px;
+    margin-top: 15px;
+    border: 3px solid #000;
+    border-radius: 3px;
+    /* keeps content within borders */
+    overflow: hidden; 
+    position: relative;
+}
+/* window header bar and X button */
+#flex2::before {
+    content: 'NOTE';
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    min-height: 28px; 
+    height: 28px;
+    background-color: #000;
+    border-bottom: 2px solid #000;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px; 
+    color: white;
+}
+#flex2::after {
+    content: '×';
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+}
+/* about me text */
+#abt-me {
+    padding: 20px;
+    line-height: 1.4;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px;
+}
+.single-line {
+    white-space: nowrap;
+    display: block;
+    margin-bottom: -10px;
+}
+/* bootstrap card styling */
+    /* imgs */
+.card-columns .card-img,
+.card-columns .card-img-top {
+    height: 250px;  /* Increased from 150px */
+    width: 250px;  /* Same as height to make it square */
+    object-fit: cover;
+    display: block;
+    margin: 20px auto;
+}
+.card-columns .card:not(:has(.card-body)) .card-img {
+    margin: 30px auto;
+}
+#flight {
+    margin-top: -25px;
+    margin-bottom: -5px;
+    height: 250px;
+    width: 250px;
+}
+#gif{
+    height: 100px;
+    width: 100px;
+    margin-top: -15px;
+    margin-bottom: 2px;
+}
+/* darkmode  */
+/* .card {
+    background-color: #202020;
+    color: #ffffff;
+}
+.card .card-title,
+.card .card-text,
+.card blockquote,
+.card .blockquote {
+    color: #ffffff;
+} */
+/* flex container 2 for form requirement */
+.flex-container2{
+    display: flex;
+    gap: 15px;
+    height: 460px;
+    padding: 20px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    /* font light weight */
+    font-weight: 300;
+}
+/* container 2 child */
+#flex2-1{
+    flex: 1;
+}
+#flex2-2{
+    flex: 1;
+    background-color:rgba(236, 182, 207, 0.461);
+    padding: 20px;
+    margin-right: -15px;
+}
+/* form input box styling */
+#flex2-2 h2,
+#flex2-2 .form-subtitle {
+    text-align: right;
+    color: white;
+}
+#flex2-2 input, 
+#flex2-2 textarea {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* rounded corners */
+    border-radius: 25px;
+    padding: 10px 20px;
+}
+/* style placeholder text for readability */
+#flex2-2 input::placeholder, 
+#flex2-2 textarea::placeholder {
+    color: rgba(255, 255, 255, 0.9); 
+    font-weight: 300; 
+    letter-spacing: 0.5px; 
+}
+/* slightly less rounded corners for textarea */
+#flex2-2 textarea {
+    border-radius: 15px;
+}
+/* submit button styling (need to style hover/post click) */
+#flex2-2 button {
+    border-radius: 25px;
+    padding: 8px 30px;
+    margin-left: 320px;
+    background-color: rgba(252, 218, 218, 0.7);
+    color: white;
+}
+/* footer */
+footer {
+    margin-top: auto;  /* Push footer to bottom */
+    position: relative;
+    z-index: 1;
+}
