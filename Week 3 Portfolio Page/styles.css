@@ -28,10 +28,26 @@ body {
     background-attachment: fixed;
     background-color: #F8BDA9;
     /* smoother transition background  */
-    transition: background 0.10s ease;
+    transition: background 750ms ease,
+                background-color 750ms ease;
 }
+
 /* defines background for DarkDawn theme */
-body.theme-dawn {
+.theme-dusk {
+    background: 
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            #F8BDA9 50%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        url('./Background/dusksky.png') top center/100% 50vh no-repeat,
+        url('./Background/duskcity.png') bottom center/100% 50vh no-repeat;
+    background-attachment: fixed;
+    background-color: #F8BDA9;
+}
+
+.theme-dawn {
     background: 
         linear-gradient(
             to bottom,
@@ -44,19 +60,51 @@ body.theme-dawn {
     background-attachment: fixed;
     background-color: #CD90B9;
 }
-/* main content container */
-main {
-    position: relative;
-    z-index: 1;
-    padding: 5% 10%;
-    width: 1111px;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 0 auto;
-    margin-bottom: 50vh;
-    margin-top: 80px;
+.theme-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
-/* theme transition overlay to troubleshoot imgs not displaying */
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition: none;
+}
+
+.page.active {
+    z-index: 2;
+}
+/* header area for icon */
+.header-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom, 
+        rgba(248, 189, 169, 1) 0%,
+        rgba(248, 189, 169, 0.9) 50%,
+        rgba(248, 189, 169, 0) 100%
+    );
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+/* Darkdawn theme */
+body.theme-dawn .header-area {
+    background: linear-gradient(to bottom, 
+        rgba(205, 144, 185, 1) 0%, 
+        rgba(205, 144, 185, 0.9) 50%,
+        rgba(205, 144, 185, 0) 100%
+    );
+}
+/* theme transition from moon */
 .theme-transition-overlay {
     position: fixed;
     top: 0;
@@ -154,6 +202,7 @@ body.theme-dusk .darkmodeR {
 body.theme-dusk .lightmode {
     opacity: 1;
 }
+
 /* container for firefly elements */
 .fireflies {
     /* fixed at the bottom of the screen */
@@ -238,7 +287,7 @@ body:not(.theme-dawn) .firefly {
 .social-icon {
     width: 32px; 
     height: 32px;
-    transition: opacity 0.3s ease, transform 0.3s ease;  
+    transition: opacity 0.3s ease;  
 }
 /* theme specific icon visability */
 body:not(.theme-dawn) .dark-mode-icon {
@@ -248,33 +297,20 @@ body:not(.theme-dawn) .dark-mode-icon {
 body.theme-dawn .light-mode-icon {
     display: none;
 }
-/* header area for icon */
-.header-area {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: linear-gradient(to bottom, 
-    /* LightDusk theme */
-        rgba(248, 189, 169, 1) 0%,  
-        rgba(248, 189, 169, 0.9) 50%,
-        rgba(248, 189, 169, 0) 100%
-    );
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-    transition: background 0.10s ease;
-}
-/* Darkdawn theme */
-body.theme-dawn .header-area {
-    background: linear-gradient(to bottom, 
-        rgba(205, 144, 185, 1) 0%, 
-        rgba(205, 144, 185, 0.9) 50%,
-        rgba(205, 144, 185, 0) 100%
-    );
-}
 
 
+/* main content container */
+main {
+    position: relative;
+    z-index: 1;
+    padding: 5% 10%;
+    width: 1111px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 0 auto;
+    margin-bottom: 50vh;
+    margin-top: 80px;
+}
 /* header box for name */
 .namebox {
     display: flex;
@@ -356,7 +392,7 @@ body.theme-dawn .header-area {
     min-height: 28px; 
     height: 28px;
     background-color: #000;
-    width: 620px;
+    width: 600px;
     border-bottom: 2px solid #000;
     font-family: 'Press Start 2P', cursive;
     font-size: 15px; 
@@ -484,4 +520,62 @@ footer {
     margin-top: auto;  /* Push footer to bottom */
     position: relative;
     z-index: 1;
+}
+/* media queries */
+
+@media (max-width:1110px){
+    main {
+        width: 100%;
+        padding: 5% 0%;
+    }
+    #flex1 {
+        display: block;
+        text-align: center;
+    }
+    #flex2 {
+        display: block;
+    }
+    #abt-me {
+        padding: 10px;
+        min-width: 300px;
+        
+    }
+    .flex-container {
+        display: block;
+    }
+    span.single-line {
+        /* display: inline; */
+        word-wrap: normal;
+        white-space: normal;
+    }
+
+    .flex-container2 {
+        height: auto;
+    }
+    #flex2-2 {
+        padding: 20px;
+        margin-right: auto;
+    }
+    #flex2-2 h2,
+    #flex2-2 .form-subtitle {
+        text-align: left;
+    }
+    #flex2-2 input, 
+    #flex2-2 textarea {
+        padding: 10px 10px;
+    }
+    .form-group {
+        width: 90%;
+    }
+
+    #flex2-2 button {
+        border-radius: 25px;
+        padding: 8px 30px;
+        position: relative;
+        right: 5%;
+    }
+
+    .social-icons {
+        left: 1%;
+    }
 }
