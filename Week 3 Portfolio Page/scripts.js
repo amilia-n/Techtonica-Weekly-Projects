@@ -16,7 +16,7 @@ function initializeThemeTransition() {
         
         anime({
             targets: nextPage,
-            duration: 750,
+            duration: 800,
             easing: 'easeInOutQuad',
             update: function(anim) {
                 nextPage.style.clipPath = `circle(${anim.progress * 2}% at ${x}px ${y}px)`;
@@ -38,3 +38,4 @@ function initializeThemeTransition() {
 }
 
 document.addEventListener('DOMContentLoaded', initializeThemeTransition);
+
