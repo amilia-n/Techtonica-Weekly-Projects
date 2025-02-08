@@ -164,3 +164,29 @@ h1 {
     background-color: #666;
     position: absolute;
 }
+
+#stair1 { bottom: 17px; right: 10px; }
+#stair2 { bottom: 37px; right: 75px; }
+#stair3 { bottom: 57px; right: 135px; }
+#stair4 { bottom: 77px; right: 195px; }
+#stair5 { bottom: 97px; right: 255px; }
+#stair6 { bottom: 122px; right: 195px; }
+#stair7 { bottom: 142px; right: 135px; }
+#stair8 { bottom: 162px; right: 75px; }
+#stair9 { bottom: 182px; right: 10px; }
+#stair10 { bottom: 207px; right: 75px; }
+#stair11 { bottom: 227px; right: 135px; }
+#stair12 { bottom: 247px; right: 195px; }
+#stair13 { bottom: 267px; right: 255px; }
+#stair14 { bottom: 292px; right: 195px; }
+#stair15 { bottom: 312px; right: 135px; }
+#stair16 { bottom: 332px; right: 75px; }
+#stair17 { bottom: 352px; right: 10px; }
+#stair18 { bottom: 377px; right: 75px; }
+#stair19 { bottom: 397px; right: 135px; }
+#stair20 { bottom: 417px; right: 195px; }
+#stair21 { bottom: 437px; right: 255px; }
+#stair22 { bottom: 462px; right: 195px; }
+#stair23 { bottom: 482px; right: 135px; }
+#stair24 { bottom: 502px; right: 75px; }
+#stair25 { bottom: 522px; right: 10px; }
