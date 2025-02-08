@@ -36,3 +36,11 @@ let totalScore = parseInt(localStorage.getItem('totalScore')) || 0;  // Persiste
 totalScoreElement.textContent = totalScore;
 let score = 0;                                         // Current game score
 let canSpawnCoin = true;                              // Coin spawn cooldown flag
+
+/****************************
+ * Element Dimensions
+ ****************************/
+const ratWidth = rat.offsetWidth;
+const ratHeight = rat.offsetHeight;
+const gamedisplayWidth = gamedisplay.offsetWidth;
+const gamedisplayHeight = gamedisplay.offsetHeight;
