@@ -83,3 +83,38 @@ function repositionCoin() {
         canSpawnCoin = true;
     }, Math.random() * 3000 + 2000);  // Random cooldown between 2-5 seconds
 }
+
+/****************************
+ * Game Initialization and State Management
+ ****************************/
+function initGame() {
+    // Reset game state
+    score = 0;
+    currentScore.textContent = score;
+    posX = leftGap;
+    posY = gamedisplayHeight - ratHeight;
+    velocityX = 0;
+    velocityY = 0;
+    onGround = false;
+    
+    // Reset rat position
+    rat.style.left = `${posX}px`;
+    rat.style.top = `${posY}px`;
+    
+    // Reset stairs to original positions
+    const stairs = document.querySelectorAll('.stair');
+    stairs.forEach((stair) => {
+        stair.style.top = '';
+    });
+    
+    repositionCoin();
+}
+
+function startGame() {
+    if (!gameStarted) {
+        gameStarted = true;
+        startScreen.classList.add('hidden');
+        initGame();
+        requestAnimationFrame(updateRat);
+    }
+}
