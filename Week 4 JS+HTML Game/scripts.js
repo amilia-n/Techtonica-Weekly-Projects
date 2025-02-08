@@ -234,3 +234,36 @@ function updateRat() {
 
     requestAnimationFrame(updateRat);
 }
+
+/****************************
+ * Event Listeners
+ ****************************/
+// Keyboard Controls
+document.addEventListener('keydown', function(event) {
+    if (!gameStarted) {
+        startGame();
+        return;
+    }
+
+    // Movement Controls
+    switch (event.key) {
+        case 'ArrowLeft':
+            velocityX = -5;
+            break;
+        case 'ArrowRight':
+            velocityX = 5;
+            break;
+        case 'ArrowUp':
+            if (onGround) {
+                velocityY = jumpStrength;
+                onGround = false;
+            }
+            break;
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        velocityX = 0;
+    }
+});
