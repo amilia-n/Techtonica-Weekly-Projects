@@ -118,3 +118,119 @@ function startGame() {
         requestAnimationFrame(updateRat);
     }
 }
+
+/****************************
+ * Main Game Loop
+ ****************************/
+function updateRat() {
+    if (!gameStarted) return;
+
+    // Apply Physics
+    let prevPosY = posY;
+    velocityY += gravity;
+    posX += velocityX;
+    posY += velocityY;
+
+    // Boundary Checks
+    if (posX < leftGap) posX = leftGap;
+    if (posX + ratWidth > gamedisplayWidth) posX = gamedisplayWidth - ratWidth;
+    if (posY < 0) posY = 0;
+    if (posY + ratHeight > gamedisplayHeight) {
+        posY = gamedisplayHeight - ratHeight;
+        velocityY = 0;
+        onGround = true;
+    } else {
+        onGround = false;
+    }
+
+    // Collision Detection with Stairs
+    const stairs = document.querySelectorAll('.stair');
+    for (let i = 0; i < stairs.length; i++) {
+        let stair = stairs[i];
+        let stairTop = stair.offsetTop;
+        let stairLeft = stair.offsetLeft + leftGap;
+        let stairRight = stairLeft + stair.offsetWidth;
+
+        // Check if rat is landing on stair
+        if (prevPosY + ratHeight <= stairTop &&
+            posY + ratHeight >= stairTop &&
+            posX + ratWidth > stairLeft &&
+            posX < stairRight &&
+            velocityY > 0) {
+            
+            // Edge detection for stairs
+            let edgeMargin = 5;
+            if (posX + ratWidth - stairLeft < edgeMargin ||
+                stairRight - posX < edgeMargin) {
+                velocityY = gravity;
+                onGround = false;
+            } else {
+                posY = stairTop - ratHeight;
+                velocityY = 0;
+                onGround = true;
+            }
+        }
+    }
+
+    // Coin Collection Logic
+    const coinRect = coin.getBoundingClientRect();
+    const ratRect = rat.getBoundingClientRect();
+
+    if (ratRect.left < coinRect.right &&
+        ratRect.right > coinRect.left &&
+        ratRect.top < coinRect.bottom &&
+        ratRect.bottom > coinRect.top) {
+        
+        // Update scores
+        score++;
+        totalScore++;
+        currentScore.textContent = score;
+        totalScoreElement.textContent = totalScore;
+        localStorage.setItem('totalScore', totalScore);
+        updateBuyButton();
+        
+        // Hide coin and set respawn timer
+        coin.style.display = 'none';
+        setTimeout(() => {
+            if (Math.random() > 0.5) {  // 50% chance to spawn
+                coin.style.display = 'block';
+                repositionCoin();
+            }
+        }, Math.random() * 3000 + 2000);
+    }
+
+    // Camera Scroll Logic
+    if (posY < scrollThreshold) {
+        let scrollAmount = (scrollThreshold - posY) * scrollSpeed;
+        posY += scrollAmount;
+
+        // Update stair positions
+        stairs.forEach((stair, index) => {
+            stair.style.top = `${stair.offsetTop + scrollAmount}px`;
+
+            // Recycle stairs that go off screen
+            if (index === 1 && stair.offsetTop >= stairs[23].offsetTop) {
+                let stair25 = stairs[24];
+                let stair1 = stairs[0];
+                stairs[24] = stairs[0];
+                stair25.style.top = stair1.style.top;
+                stair25.style.right = stair1.style.right;
+            }
+
+            if (stair.offsetTop > gamedisplayHeight) {
+                stair.style.top = `-${stair.offsetHeight}px`;
+            }
+        });
+
+        // Update coin position with scroll
+        if (coin.style.display !== 'none') {
+            coin.style.top = `${parseFloat(coin.style.top) + scrollAmount}px`;
+        }
+    }
+
+    // Update Rat Position
+    rat.style.left = `${posX}px`;
+    rat.style.top = `${posY}px`;
+
+    requestAnimationFrame(updateRat);
+}
