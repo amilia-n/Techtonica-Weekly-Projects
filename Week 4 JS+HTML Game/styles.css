@@ -157,3 +157,10 @@ h1 {
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+.stair {
+    width: 30px;
+    height: 10px;
+    background-color: #666;
+    position: absolute;
+}
