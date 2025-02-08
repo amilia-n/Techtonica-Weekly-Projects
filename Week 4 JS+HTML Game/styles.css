@@ -157,7 +157,9 @@ h1 {
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
-
+.hidden {
+    display: none !important;
+}
 .stair {
     width: 30px;
     height: 10px;

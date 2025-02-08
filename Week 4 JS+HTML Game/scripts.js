@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 /****************************
  * DOM Element References
  ****************************/
@@ -335,4 +336,5 @@ buyFreedomBtn.addEventListener('click', () => {
         menuPopup.classList.add('hidden');
         initGame();
     }
+});
 });
