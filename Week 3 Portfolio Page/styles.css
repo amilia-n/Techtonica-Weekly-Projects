@@ -389,7 +389,7 @@ main {
     display: flex;
     align-items: center;
     padding-left: 25px;
-    margin-left: -15px;
+    margin-left: -20px;
     padding-right: 20px;
     min-height: 28px; 
     height: 28px;
@@ -464,7 +464,6 @@ main {
 /* flex container 2 for form requirement */
 .flex-container2{
     display: flex;
-    gap: 15px;
     height: 460px;
     padding: 20px;
     margin-bottom: 25px;
@@ -480,8 +479,8 @@ main {
 #flex2-2{
     flex: 1;
     background-color:rgba(236, 182, 207, 0.461);
-    padding: 20px;
-    margin-right: -15px;
+    padding: 0px;
+    margin: 0;
 }
 /* form input box styling */
 #flex2-2 h2,
@@ -496,7 +495,7 @@ main {
     border: 1px solid rgba(255, 255, 255, 0.2);
     /* rounded corners */
     border-radius: 25px;
-    padding: 10px 20px;
+    padding: 10px 30px;
 }
 /* style placeholder text for readability */
 #flex2-2 input::placeholder, 
@@ -526,22 +525,25 @@ footer {
 }
 /* media queries */
 /* phone */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
     main {
-        width: 100%;
+        width: 80%;
         padding: 0%;
+        align-items: center;
+        margin-top: 0;
     }
     .header-area {
         max-width: 100 vw;
     }
     .social-icons {
-        left: 1%;
+        left: -7%;
+        flex-direction: column;
     }
     .theme-toggle, .toggle-icon {
-        right: 10%;
+        right: 3%;
     }
     .lightmode {
-        right: -28%;
+        right: -35%;
     }
     .darkmodeL {
         left: 60%;
@@ -553,55 +555,364 @@ footer {
     .namebox {
         width: 400px;
         height: 200px;
-        padding: 30px 0 0 40px;
-        margin: 0 0 35px 0;
+        padding: 25px 0 0 30px;
     }
     .namebox h1 {
         font-size: 3rem;
     }
     #flex1 img {
-        margin-left: 60px;
+        margin-left: 18px;
     }
     #flex2 {
-        width: 400px;
+        width: 300px;
         height: 420px;
     }
     #abt-me {
-        width: 330px;
+        margin: 5px 15px 0 -13px;
+        width: 300px;
     }
     .single-line {
         word-wrap: normal;
         white-space: normal;
     } 
+    .card {
+        align-items: center;
+        padding: 0;
+        margin: 0 20px 0 -10px;
+    }
     .card-columns {
-        width: 380px;
-        margin-left: 10px;
+        width: 350px;
     }
     .card-title, .card-text {
         padding: 0 15px 0 15px;
     }
+    .card-img-top {
+        width: 330px;
+        margin: 0 10px -10px 10px;
+    }
     .flex-container2 {
-        width: 380px;
-        height: 590px;
+        width: 100%;
+        height: 550px;
+        margin: 0;
+        padding: 0;
     }
     #flex2-1 {
         display: none;
     }
+    .form-row {
+        margin: 0 15px 0 15px;
+    }
+    textarea#message.form-control {
+        width: 280px;
+        margin-left: 20px;
+    }
     #flex2-2 {
-        width: 100%;
+        width: 320px;
+        margin: 0;
+    }
+    .text-right {
+        padding: 15px 20px 5px 0;
     }
     #submitbtn {
         position: relative;
-        left: 188px;
+        left: 176px;
     }
 }
+
+@media only screen and (min-width: 500px) {
+    main {
+        width: 80%;
+        padding: 0%;
+        align-items: center;
+        margin-top: 0;
+    }
+    .header-area {
+        max-width: 100 vw;
+    }
+    .social-icons {
+        left: -7%;
+        flex-direction: column;
+    }
+    .theme-toggle, .toggle-icon {
+        right: 1.7%;
+    }
+    .lightmode {
+        right: -30%;
+    }
+    .darkmodeL {
+        left: 70%;
+    }
+    .darkmodeR {
+        top: -10%;
+        left: 65%;
+    }
+    .namebox {
+        width: 400px;
+        height: 200px;
+        padding: 30px 0 0 35px;
+    }
+    .namebox h1 {
+        font-size: 3.2rem;
+    }
+    #flex1 img {
+        position: relative;
+        left: 7%;
+    }
+    #flex2 {
+        width: 300px;
+        height: 420px;
+    }
+    #abt-me {
+        padding: 20px;
+        margin: 5px 5px 0 5px;
+        width: 300px;
+    }
+    .single-line {
+        word-wrap: normal;
+        white-space: normal;
+    } 
+    .card {
+        align-items: center;
+        padding: 0;
+    }
+    .card-columns {
+        width: 100%;
+    }
+    .card-title, .card-text {
+        padding: 0 15px 0 15px;
+    }
+    .card-img-top {
+        width: 330px;
+        margin: 0 10px -10px 10px;
+    }
+    .flex-container2 {
+        width: 100%;
+        height: 550px;
+        margin: 0;
+        padding: 0;
+    }
+    #flex2-1 {
+        display: none;
+    }
+    .form-row {
+        margin: 0 15px 0 15px;
+    }
+    textarea#message.form-control {
+        width: 336px;
+        margin-left: 20px;
+    }
+    #flex2-2 {
+        width: 320px;
+        margin: 0;
+    }
+    .text-right {
+        padding: 15px 20px 5px 0;
+    }
+    #submitbtn {
+        position: relative;
+        left: 62%;
+    }
+}
+
 /* smaller browser window */
-@media only screen and (min-width: 768px) {
-    
+@media only screen and (min-width: 700px) {
+    main {
+        width: 90%;
+        padding: 0%;
+        align-items: center;
+        margin-top: 0;
+    }
+    .header-area {
+        max-width: 100 vw;
+    }
+    .social-icons {
+        left: -7%;
+        flex-direction: column;
+    }
+    .theme-toggle, .toggle-icon {
+        right: 2%;
+    }
+    .lightmode {
+        right: -25%;
+    }
+    .darkmodeL {
+        left: 77%;
+    }
+    .darkmodeR {
+        top: -10%;
+        left: 70%;
+    }
+    .namebox {
+        width: 100%;
+        height: 200px;
+        padding: 30px 0 0 35px;
+    }
+    .namebox h1 {
+        font-size: 3.5rem;
+    }
+    #flex1 img {
+        position: relative;
+        left: 7%;
+    }
+    #flex2 {
+        width: 300px;
+        height: 420px;
+    }
+    #abt-me {
+        padding: 20px;
+        margin: 5px 5px 0 5px;
+        width: 300px;
+    }
+    .single-line {
+        word-wrap: normal;
+        white-space: normal;
+    } 
+    .card {
+        align-items: center;
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+    .card-columns {
+        width: 100%;
+    }
+    .card-title, .card-text {
+        padding: 0 15px 0 15px;
+    }
+    .card-img-top {
+        width: 330px;
+        margin: 0 10px -10px 10px;
+    }
+    .flex-container2 {
+        width: 100%;
+        height: 550px;
+        margin: 0;
+        padding: 0;
+    }
+    #flex2-1 {
+        display: none;
+    }
+    .form-row {
+        margin: 0 15px 0 15px;
+    }
+    textarea#message.form-control {
+        width: 336px;
+        margin-left: 20px;
+    }
+    #flex2-2 {
+        width: 320px;
+        margin: 0;
+    }
+    .text-right {
+        padding: 15px 20px 5px 0;
+    }
+    #submitbtn {
+        position: relative;
+        left: 62%;
+    }
 }
 /* full screen browser window */
-@media only screen and (min-width: 1200px) {
-    
+@media only screen and (min-width: 1280px) {
+    main {
+        width: 90%;
+        padding: 0%;
+        align-items: center;
+        margin-top: 0;
+    }
+    .header-area {
+        max-width: 100 vw;
+    }
+    .social-icons {
+        left: -7%;
+        flex-direction: column;
+    }
+    .theme-toggle, .toggle-icon {
+        right: 2%;
+    }
+    .lightmode {
+        right: -25%;
+    }
+    .darkmodeL {
+        left: 77%;
+    }
+    .darkmodeR {
+        top: -10%;
+        left: 70%;
+    }
+    .namebox {
+        width: 100%;
+        height: 200px;
+        padding: 30px 0 0 35px;
+    }
+    .namebox h1 {
+        font-size: 3.5rem;
+    }
+    #flex1 img {
+        position: relative;
+        left: 7%;
+    }
+    #flex2 {
+        width: 300px;
+        height: 420px;
+    }
+    #abt-me {
+        padding: 20px;
+        margin: 5px 5px 0 5px;
+        width: 300px;
+    }
+    .single-line {
+        word-wrap: normal;
+        white-space: normal;
+    } 
+    .card {
+        align-items: center;
+        padding: 0;
+        display: block;
+        width: 100%;
+    }
+    .card-columns {
+        width: 100%;
+    }
+    .card-title, .card-text {
+        padding: 0 15px 0 15px;
+    }
+    .card-img-top {
+        width: 330px;
+        margin: 0 10px -10px 10px;
+    }
+    .flex-container2 {
+        width: 100%;
+        height: 550px;
+        margin: 0;
+        padding: 0;
+    }
+    #flex2-1{
+        flex: 1;
+    }
+    #flex2-2{
+        flex: 1;
+        background-color:rgba(236, 182, 207, 0.461);
+        padding: 0px;
+        margin: 0;
+    }
+    .form-row {
+        margin: 0 15px 0 15px;
+    }
+    textarea#message.form-control {
+        width: 336px;
+        margin-left: 20px;
+    }
+    #flex2-2 {
+        width: 320px;
+        margin: 0;
+    }
+    .text-right {
+        padding: 15px 20px 5px 0;
+    }
+    #submitbtn {
+        position: relative;
+        left: 62%;
+    }
 }
 /* 
 @media (max-width:1110px){
