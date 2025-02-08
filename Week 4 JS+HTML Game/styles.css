@@ -8,3 +8,24 @@ body {
     justify-content: center;
     align-items: center;
 }
+h1 {
+    justify-self: center;
+}
+.gamedisplay {
+    width: 300px;
+    height: 549px;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.gameUI {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+    height: 60px;
+    column-gap: 25px;
+    padding-top: 5px;
+}
