@@ -52,3 +52,34 @@ function updateBuyButton() {
     // Disable freedom button if player can't afford it
     buyFreedomBtn.disabled = totalScore < FREEDOM_COST;
 }
+
+/****************************
+ * Coin Spawn Functions
+ ****************************/
+function getRandomStair() {
+    // Select a random stair for coin placement
+    const stairs = document.querySelectorAll('.stair');
+    const randomIndex = Math.floor(Math.random() * stairs.length);
+    return stairs[randomIndex];
+}
+
+function repositionCoin() {
+    if (!canSpawnCoin) return;
+    
+    // Get random stair and position coin above it
+    const randomStair = getRandomStair();
+    const stairTop = randomStair.offsetTop;
+    const stairLeft = randomStair.offsetLeft;
+    
+    // Center coin above stair
+    coin.style.top = `${stairTop - coin.offsetHeight}px`;
+    coin.style.left = `${stairLeft + (randomStair.offsetWidth - coin.offsetWidth) / 2}px`;
+    coin.style.bottom = 'auto';
+    coin.style.right = 'auto';
+    
+    // Implement coin spawn cooldown
+    canSpawnCoin = false;
+    setTimeout(() => {
+        canSpawnCoin = true;
+    }, Math.random() * 3000 + 2000);  // Random cooldown between 2-5 seconds
+}
