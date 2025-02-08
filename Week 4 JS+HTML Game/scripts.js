@@ -22,3 +22,17 @@ const jumpStrength = -7;                               // Upward force when jump
 const scrollThreshold = gamedisplay.offsetHeight / 2;   // Point at which camera starts scrolling
 const scrollSpeed = 0.3;                               // Speed of camera scroll
 const FREEDOM_COST = 1000000;                          // Cost to win the game
+
+/****************************
+ * Game State Variables
+ ****************************/
+let posX = leftGap;                                    // Rat's horizontal position
+let posY = gamedisplay.offsetHeight - rat.offsetHeight;// Rat's vertical position
+let velocityX = 0;                                     // Rat's horizontal speed
+let velocityY = 0;                                     // Rat's vertical speed
+let onGround = false;                                  // Whether rat is on a platform
+let gameStarted = false;                               // Game state flag
+let totalScore = parseInt(localStorage.getItem('totalScore')) || 0;  // Persistent total score
+totalScoreElement.textContent = totalScore;
+let score = 0;                                         // Current game score
+let canSpawnCoin = true;                              // Coin spawn cooldown flag
