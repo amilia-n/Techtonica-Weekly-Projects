@@ -44,3 +44,11 @@ const ratWidth = rat.offsetWidth;
 const ratHeight = rat.offsetHeight;
 const gamedisplayWidth = gamedisplay.offsetWidth;
 const gamedisplayHeight = gamedisplay.offsetHeight;
+
+/****************************
+ * Menu and Shop Functions
+ ****************************/
+function updateBuyButton() {
+    // Disable freedom button if player can't afford it
+    buyFreedomBtn.disabled = totalScore < FREEDOM_COST;
+}
