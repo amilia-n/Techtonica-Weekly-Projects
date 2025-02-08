@@ -267,3 +267,72 @@ document.addEventListener('keyup', function(event) {
         velocityX = 0;
     }
 });
+
+/****************************
+ * UI Event Handlers
+ ****************************/
+// Restart Button
+restartBtn.addEventListener('click', () => {
+    // Stop the game loop
+    gameStarted = false;
+    
+    // Reset current score only (keep total score)
+    score = 0;
+    currentScore.textContent = score;
+    
+    // Reset positions
+    posX = leftGap;
+    posY = gamedisplayHeight - ratHeight;
+    velocityX = 0;
+    velocityY = 0;
+    onGround = false;
+    
+    // Reset rat position
+    rat.style.left = `${posX}px`;
+    rat.style.top = `${posY}px`;
+    
+    // Reset stairs to original positions
+    const stairs = document.querySelectorAll('.stair');
+    stairs.forEach((stair) => {
+        stair.style.top = '';
+    });
+    
+    // Reset coin
+    coin.style.display = 'block';
+    repositionCoin();
+    
+    // Show start screen and ensure clean state
+    startScreen.classList.remove('hidden');
+});
+
+// Menu Button
+menuBtn.addEventListener('click', () => {
+    menuPopup.classList.remove('hidden');
+    gameStarted = false;
+    updateBuyButton();
+});
+
+// Close Popup Button
+closePopupBtn.addEventListener('click', () => {
+    menuPopup.classList.add('hidden');
+    if (!startScreen.classList.contains('hidden')) {
+        gameStarted = true;
+        requestAnimationFrame(updateRat);
+    }
+});
+
+// Buy Freedom Button
+buyFreedomBtn.addEventListener('click', () => {
+    if (totalScore >= FREEDOM_COST) {
+        totalScore -= FREEDOM_COST;
+        localStorage.setItem('totalScore', totalScore);
+        totalScoreElement.textContent = totalScore;
+        
+        alert("Congratulations! You've escaped the rat race!");
+        
+        gameStarted = false;
+        startScreen.classList.remove('hidden');
+        menuPopup.classList.add('hidden');
+        initGame();
+    }
+});
