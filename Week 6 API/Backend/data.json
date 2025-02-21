@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "ISBN-10": "9780451493910",
+    "title": "The Crisis of the Middle-Class Constitution: Why Economic Inequality Threatens Our Republic",
+    "author": "Ganesh Sitaraman",
+    "genre": "Political Science",
+    "description": "Compared to Europe and the ancient world, America was a society of almost unprecedented economic equality, and the founding generation saw this equality as essential for the preservation of America's republic. Sitaraman argues that a strong and sizable middle class is a prerequisite for America's constitutional system.",
+    "pageCount": 432,
+    "cover": "/covers/9780451493910.jpg"
+  },
+  {
+    "id": 2,
+    "ISBN-10": "9780812986686",
+    "title": "America's Bitter Pill: Money, Politics, Backroom Deals, and the Fight to Fix Our Broken Healthcare System",
+    "author": "Steven Brill",
+    "genre": "Political Science",
+    "description": "America's Bitter Pill is Steven Brill's acclaimed book on how the Affordable Care Act, or Obamacare, was written, how it is being implemented, and, most important, how it is changing—and failing to change—the rampant abuses in the healthcare industry.",
+    "pageCount": 528,
+    "cover": "/covers/9780812986686.jpg"
+  },
+  {
+    "id": 3,
+    "ISBN-10": "1400096790",
+    "title": "The Nine: Inside the Secret World of the Supreme Court",
+    "author": "Jeffrey Ross Toobin",
+    "genre": "Political Science",
+    "description": "Acclaimed journalist Jeffrey Toobin takes us into the chambers of the most important—and secret—legal body in our country, the Supreme Court, revealing the complex dynamic among the nine people who decide the law of the land.",
+    "pageCount": 480,
+    "cover": "/covers/1400096790.jpg"
+  },
+  {
+    "id": 4,
+    "ISBN-10": "162779073X",
+    "title": "No Place to Hide: Edward Snowden, the NSA, and the U.S. Surveillance State",
+    "author": "Glenn Greenwald",
+    "genre": "Political Science",
+    "description": "A groundbreaking look at the NSA surveillance scandal, from the reporter who broke the story, Glenn Greenwald, star of Citizenfour, the Academy Award-winning documentary on Edward Snowden",
+    "pageCount": 272,
+    "cover": "/covers/162779073X.jpg"
+  },
+  {
+    "id": 5,
+    "ISBN-10": "0307888711",
+    "title": "Writing to Win: The Legal Writer",
+    "author": "Steven D. Stark",
+    "genre": "Reference Work",
+    "description": "Steven D. Stark, a former lecturer at Harvard Law School, who has inspired thousands of aspiring and practicing lawyers, applies the universal principles of powerful, vigorous prose to the job of making a legal case—and winning it.",
+    "pageCount": 320,
+    "cover": "/covers/0307888711.jpg"
+  },
+  {
+    "id": 6,
+    "ISBN-10": "9780141441146",
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "genre": "Fiction",
+    "description": "A revolutionary novel given it's elements of social criticism, morality, exploration of classism, sexuality, religion, and proto-feminism.",
+    "pageCount": 290,
+    "cover": "/covers/9780141441146.jpg"
+  },
+  {
+    "id": 7,
+    "ISBN-10": "1607102110",
+    "title": "The Adventures of Sherlock Holmes, and Other Stories",
+    "author": "Sir Arthur Conan Doyle",
+    "genre": "Fiction",
+    "coverColor": "#DC954E",
+    "coverContrast": "# ",
+    "aspectRatio": 1.6,
+    "nonlinearThickness": 30,
+    "description": "Sherlock Holmes, the famous gumshoe of 221B Baker Street. And Sir Arthur Conan Doyle--the man who made him famous in such tales as The Hound of the Baskervilles and A Study in Scarlet--changed the world of mysteries, inspiring legions of devoted fans.",
+    "pageCount": 1052,
+    "cover": "/covers/1607102110.jpg"
+  },
+  {
+    "id": 8,
+    "ISBN-10": "9780141439518",
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "genre": "Fiction",
+    "description": "One of English literature's classic masterpieces—a gripping novel of love, propriety, and tragedy. Nominated as one of America's best-loved novels by PBS",
+    "pageCount": 416,
+    "cover": "/covers/9780141439518.jpg"
+  },
+  {
+    "id": 9,
+    "ISBN-10": "0143039709",
+    "title": "The Custom of the Country",
+    "author": "Edith Wharton",
+    "genre": "Fiction",
+    "description": "A scathing yet personal examination of the exploits and follies of the modern upper class in early 20th-century New York City.",
+    "pageCount": 400,
+    "cover": "/covers/0143039709.jpg"
+  },
+  {
+    "id": 10,
+    "ISBN-10": "0307741206",
+    "title": "The Wisdom of Insecurity",
+    "author": "Alan Watts",
+    "genre": "Self-Help",
+    "description": "An acclaimed philosopher shows us how—in an age of unprecedented anxiety—we can find fulfillment by embracing the present and living more fully in the now.",
+    "pageCount": 160,
+    "cover": "/covers/0307741206.jpg"
+  },
+  {
+    "id": "ecdd9e28-bad5-4827-80d9-53d4dda30807"
+  },
+  {
+    "id": "4c49326e-22ae-4fff-abe8-5004dfc7e9cf"
+  },
+  {
+    "id": "84fb9c30-3a49-4384-ab0d-cf1d635de7d6",
+    "query": "\n    query IntrospectionQuery {\n      __schema {\n        \n        queryType { name }\n        mutationType { name }\n        subscriptionType { name }\n        types {\n          ...FullType\n        }\n        directives {\n          name\n          description\n          \n          locations\n          args {\n            ...InputValue\n          }\n        }\n      }\n    }\n\n    fragment FullType on __Type {\n      kind\n      name\n      description\n      \n      fields(includeDeprecated: true) {\n        name\n        description\n        args {\n          ...InputValue\n        }\n        type {\n          ...TypeRef\n        }\n        isDeprecated\n        deprecationReason\n      }\n      inputFields {\n        ...InputValue\n      }\n      interfaces {\n        ...TypeRef\n      }\n      enumValues(includeDeprecated: true) {\n        name\n        description\n        isDeprecated\n        deprecationReason\n      }\n      possibleTypes {\n        ...TypeRef\n      }\n    }\n\n    fragment InputValue on __InputValue {\n      name\n      description\n      type { ...TypeRef }\n      defaultValue\n      \n      \n    }\n\n    fragment TypeRef on __Type {\n      kind\n      name\n      ofType {\n        kind\n        name\n        ofType {\n          kind\n          name\n          ofType {\n            kind\n            name\n            ofType {\n              kind\n              name\n              ofType {\n                kind\n                name\n                ofType {\n                  kind\n                  name\n                  ofType {\n                    kind\n                    name\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  "
+  }
+]
