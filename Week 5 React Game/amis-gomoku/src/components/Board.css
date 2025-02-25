@@ -151,3 +151,44 @@
     background-color: #654321;
     color: white;
 }
+.label {
+    position: absolute;
+    font-size: 13px;
+    color: #654321; 
+    user-select: none; 
+}
+
+.row-label {
+    left: -30px; 
+    transform: translateY(-50%);
+}
+
+.column-label {
+    bottom: -30px;
+    transform: translateX(-50%);
+}
+
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+.winner {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #654321;
+    background-color: rgba(255, 255, 255, 0.868);
+    padding: 20px 20px;
+    border-radius: 10px;
+    z-index: 10;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    line-height: 50px;
+}
