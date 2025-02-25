@@ -117,6 +117,16 @@ const GomokuBoard = () => {
     setGameStarted(false);
     setWinner(null);
   };
+  
+const rowLabels = Array.from({ length: 15 }, (_, i) => 15 - i);
+const columnLabels = Array.from({ length: 15 }, (_, i) => String.fromCharCode(65 + i));
+const starPoints = [
+  { row: 3, col: 3 },
+  { row: 3, col: 11 },
+  { row: 7, col: 7 },
+  { row: 11, col: 3 },
+  { row: 11, col: 11 }
+];
   return (
     <div className="main">
       <div className="gomoku-board">
