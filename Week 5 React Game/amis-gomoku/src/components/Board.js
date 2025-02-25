@@ -65,6 +65,28 @@ const GomokuBoard = () => {
   
   const checkTie = () => board.every(row => row.every(cell => cell !== null));
    
+  const handleCellClick = (row, col) => {
+    if (checkTie()) setWinner('T');
+    if (board[row][col] || winner) return;
+  
+    const newBoard = board.map((r, rIdx) =>
+      r.map((cell, cIdx) =>
+        rIdx === row && cIdx === col ? (isBlackTurn ? 'B' : 'W') : cell
+      )
+    );
+  
+    setBoard(newBoard);
+  
+    const currentPlayer = isBlackTurn ? 'B' : 'W';
+    if (checkWin(row, col, currentPlayer)) {
+      setWinner(currentPlayer);
+      shootConfetti();
+    } else {
+      setIsBlackTurn(!isBlackTurn);
+      setActivePlayer(isBlackTurn ? 'white' : 'black');
+    }
+    if (!gameStarted) setGameStarted(true);
+  };
   return (
     <div className="main">
       <div className="gomoku-board">
