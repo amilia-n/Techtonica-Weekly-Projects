@@ -75,3 +75,40 @@
 .stone-white {
     background-color: white;
 }
+.gomoku-board::before,
+.gomoku-board::after,
+.gomoku-board .border-left,
+.gomoku-board .border-right {
+    content: "";
+    position: absolute;
+    background-color: #654321; 
+    z-index: 2; 
+}
+
+.gomoku-board::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px; 
+}
+
+.gomoku-board::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+
+.gomoku-board .border-left {
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 100%;
+}
+
+.gomoku-board .border-right {
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 100%;
+}
