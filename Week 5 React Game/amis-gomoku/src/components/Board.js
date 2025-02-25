@@ -87,6 +87,27 @@ const GomokuBoard = () => {
     }
     if (!gameStarted) setGameStarted(true);
   };
+  const shootConfetti = () => {
+    const shoot = () => {
+      confetti({
+        particleCount: 50,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.5 },
+        colors: ['#A17D58', '#FAB3B3', '#FDF1D9', '#FFF8F0']
+      });
+      confetti({
+        particleCount: 50,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.5 },
+        colors: ['#A17D58', '#FAB3B3', '#FDF1D9', '#FFF8F0']
+      });
+    };
+    shoot();
+    setTimeout(shoot, 500);
+    setTimeout(shoot, 1000);
+  };
   return (
     <div className="main">
       <div className="gomoku-board">
