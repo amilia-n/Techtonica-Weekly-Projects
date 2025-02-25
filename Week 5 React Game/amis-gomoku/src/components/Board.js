@@ -36,7 +36,35 @@ const GomokuBoard = () => {
     const seconds = time % 60;
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
+  const checkWin = (row, col, player) => {
+    const directions = [
+      { x: 1, y: 0 },  
+      { x: 0, y: 1 },  
+      { x: 1, y: 1 },  
+      { x: 1, y: -1 } 
+    ];
   
+    for (let { x, y } of directions) {
+      let count = 1;
+      for (let i = 1; i < 5; i++) {
+        const newRow = row + i * y;
+        const newCol = col + i * x;
+        if (newRow < 0 || newRow >= 15 || newCol < 0 || newCol >= 15 || board[newRow][newCol] !== player) break;
+        count++;
+      }
+      for (let i = 1; i < 5; i++) {
+        const newRow = row - i * y;
+        const newCol = col - i * x;
+        if (newRow < 0 || newRow >= 15 || newCol < 0 || newCol >= 15 || board[newRow][newCol] !== player) break;
+        count++;
+      }
+      if (count === 5) return true;
+    }
+    return false;
+  };
+  
+  const checkTie = () => board.every(row => row.every(cell => cell !== null));
+   
   return (
     <div className="main">
       <div className="gomoku-board">
