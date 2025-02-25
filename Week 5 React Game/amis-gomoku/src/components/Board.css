@@ -60,3 +60,18 @@
     top: 50%;
     transform: translateY(-50%);
 }
+.stone { 
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
+}
+
+.stone-black {
+    background-color: black;
+}
+
+.stone-white {
+    background-color: white;
+}
