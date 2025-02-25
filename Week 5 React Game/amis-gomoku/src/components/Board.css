@@ -112,3 +112,42 @@
     width: 15px;
     height: 100%;
 }
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.timer-label {
+    font-size: 14px;
+    color: #654321;
+    margin-bottom: 5px;
+}
+
+.timer {
+    font-size: 18px;
+    color: #654321;
+}
+
+.reset-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    color: #654321;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: #654321;
+    color: white;
+}
