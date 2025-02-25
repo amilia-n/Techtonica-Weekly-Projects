@@ -1,6 +1,6 @@
 # React Gomoku Game
 
-![Gomoku Game Screenshot](./amis-gomoku/src/components/img/gamestart.png)
+![Gomoku Game Screenshot](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%205%20React%20Game/amis-gomoku/src/components/img/gamestart.png)
 
 Gomoku is a traditional board game where two players take turns placing black and white stones on a grid. The goal is to be the first to get **five stones in a row** (horizontally, vertically, or diagonally). 
 
@@ -29,13 +29,13 @@ In your terminal:
 
 ### How to Play 
 1. Game Start:
-![First Stone](./amis-gomoku/src/components/img/firstmove.png)
+![First Move](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%205%20React%20Game/amis-gomoku/src/components/img/firstmove.png)
 
 2. Mid-Game:
-![Mid Game](./amis-gomoku/src/components/img/midgame.png)
+![Mid Game](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%205%20React%20Game/amis-gomoku/src/components/img/midgame.png)
 
 3. Win-Condition:
-![Win](./amis-gomoku/src/components/img/win.png)
+![Win](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%205%20React%20Game/amis-gomoku/src/components/img/win.png)
 
 4. Tie:
-![Win](./amis-gomoku/src/components/img/tie.png)
+![Win](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%205%20React%20Game/amis-gomoku/src/components/img/tie.png)
