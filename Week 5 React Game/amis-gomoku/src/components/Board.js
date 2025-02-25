@@ -108,6 +108,15 @@ const GomokuBoard = () => {
     setTimeout(shoot, 500);
     setTimeout(shoot, 1000);
   };
+  const resetBoard = () => {
+    setBoard(Array(15).fill().map(() => Array(15).fill(null)));
+    setIsBlackTurn(true);
+    setBlackTime(600);
+    setWhiteTime(600);
+    setActivePlayer(null);
+    setGameStarted(false);
+    setWinner(null);
+  };
   return (
     <div className="main">
       <div className="gomoku-board">
