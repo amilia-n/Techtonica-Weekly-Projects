@@ -10,7 +10,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "canvas-confetti": "^1.9.3",
+    "react-confetti": "^6.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

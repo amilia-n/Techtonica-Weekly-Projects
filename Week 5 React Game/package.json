@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "canvas-confetti": "^1.9.3",
-    "react-confetti": "^6.2.3"
-  }
-}

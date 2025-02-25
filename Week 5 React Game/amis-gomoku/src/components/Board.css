@@ -13,110 +13,22 @@
     color: #603d1bd3;
     margin-bottom: 10px;
     text-align: center;
-    margin-top: 0;
+    margin-top: 0; 
 }
 
 .directions {
     font-size: 16px;
     color: #654321;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     text-align: center;
-    margin-top: 0;
-}
-.gomoku-board {
-    display: grid;
-    grid-template-columns: repeat(15, 30px);
-    grid-template-rows: repeat(15, 30px);
-    position: relative;
-    background-color: rgb(239, 219, 191);
-}
-
-.cell {
-    position: relative;
-    background-color: transparent; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.cell::before,
-.cell::after {
-    content: '';
-    position: absolute;
-    background-color: #654321; 
-}
-
-.cell::before {
-    width: 1px;
-    height: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.cell::after {
-    height: 1px;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.stone { 
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 5;
-}
-
-.stone-black {
-    background-color: black;
-}
-
-.stone-white {
-    background-color: white;
-}
-.gomoku-board::before,
-.gomoku-board::after,
-.gomoku-board .border-left,
-.gomoku-board .border-right {
-    content: "";
-    position: absolute;
-    background-color: #654321; 
-    z-index: 2; 
-}
-
-.gomoku-board::before {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 15px; 
-}
-
-.gomoku-board::after {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15px;
-}
-
-.gomoku-board .border-left {
-    top: 0;
-    left: 0;
-    width: 15px;
-    height: 100%;
-}
-
-.gomoku-board .border-right {
-    top: 0;
-    right: 0;
-    width: 15px;
-    height: 100%;
+    margin-top: 0; 
+    margin-bottom: 60px;
 }
 .controls {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
 }
 
 .timer-container {
@@ -151,6 +63,92 @@
     background-color: #654321;
     color: white;
 }
+.gomoku-board {
+    display: grid;
+    grid-template-columns: repeat(15, 30px);
+    grid-template-rows: repeat(15, 30px);
+    position: relative;
+    background-color: rgb(239, 219, 191);
+}
+.gomoku-board::before,
+.gomoku-board::after,
+.gomoku-board .border-left,
+.gomoku-board .border-right {
+    content: "";
+    position: absolute;
+    background-color: #654321; 
+    z-index: 2; 
+}
+.gomoku-board::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15px; 
+}
+.gomoku-board::after {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 15px;
+}
+.gomoku-board .border-left {
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 100%;
+}
+.gomoku-board .border-right {
+    top: 0;
+    right: 0;
+    width: 15px;
+    height: 100%;
+}
+.cell {
+    position: relative;
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+  
+.cell::before,
+.cell::after {
+    content: '';
+    position: absolute;
+    background-color: #654321; 
+}
+  
+.cell::before {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  
+.cell::after {
+    height: 1px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+  
+.stone { 
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 5;
+}
+  
+.stone-black {
+    background-color: black;
+}
+  
+.stone-white {
+    background-color: white;
+}
+  
 .label {
     position: absolute;
     font-size: 13px;
@@ -162,12 +160,11 @@
     left: -30px; 
     transform: translateY(-50%);
 }
-
+  
 .column-label {
     bottom: -30px;
     transform: translateX(-50%);
 }
-
 .star {
     position: absolute;
     width: 5px;

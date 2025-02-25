@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# React Gomoku Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Gomoku Game Screenshot](./amis-gomoku/src/components/img/gamestart.png)
 
-## Available Scripts
+Gomoku is a traditional board game where two players take turns placing black and white stones on a grid. The goal is to be the first to get **five stones in a row** (horizontally, vertically, or diagonally). 
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
+- **Two Players**: Play as Black or White. Black always goes first. 
+- **Timer**: Each player has a 10-minute timer. If your time runs out, your opponent wins.
+- **Win Condition**: Only **exactly five stones in a row** count as a win. Six or more in a row do not count.
+- **Responsive Design**: Play on any device (desktop, tablet, or mobile).
+- **Simple UI**: Clean and intuitive interface for easy gameplay.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation and Local Setup
 
-### `npm test`
+Follow these steps to set up the Gomoku game locally on your machine.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Steps
+1. **Clone the Repository**:
+In your terminal:
+   git clone https://github.com/amilia-n/Techtonica-Weekly-Projects.git
+   cd /Techtonica-Weekly-Projects/Week 5 React Game/amis-gomoku
+2. **Install Dependencies**: npm install
+2. **Start the Game**: npm start
 
-### `npm run build`
+### How to Play 
+1. Game Start:
+![First Stone](./amis-gomoku/src/components/img/firstmove.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Mid-Game:
+![Mid Game](./amis-gomoku/src/components/img/midgame.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Win-Condition:
+![Win](./amis-gomoku/src/components/img/win.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+4. Tie:
+![Win](./amis-gomoku/src/components/img/tie.png)
