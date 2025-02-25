@@ -23,3 +23,40 @@
     text-align: center;
     margin-top: 0;
 }
+.gomoku-board {
+    display: grid;
+    grid-template-columns: repeat(15, 30px);
+    grid-template-rows: repeat(15, 30px);
+    position: relative;
+    background-color: rgb(239, 219, 191);
+}
+
+.cell {
+    position: relative;
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell::before,
+.cell::after {
+    content: '';
+    position: absolute;
+    background-color: #654321; 
+}
+
+.cell::before {
+    width: 1px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cell::after {
+    height: 1px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
