@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 const WeatherIcon = ({ iconCode }) => {
   const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
@@ -12,10 +10,6 @@ const WeatherIcon = ({ iconCode }) => {
       height="100"
     />
   );
-};
-
-WeatherIcon.propTypes = {
-  iconCode: PropTypes.string.isRequired,
 };
 
 export default WeatherIcon; 

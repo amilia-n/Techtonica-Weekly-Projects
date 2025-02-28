@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import WeatherIcon from './WeatherIcon';
 
 const WeatherDisplay = ({ weatherData }) => {
@@ -33,25 +32,6 @@ const WeatherDisplay = ({ weatherData }) => {
       </div>
     </div>
   );
-};
-
-WeatherDisplay.propTypes = {
-  weatherData: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    main: PropTypes.shape({
-      temp: PropTypes.number.isRequired,
-      humidity: PropTypes.number.isRequired,
-    }).isRequired,
-    wind: PropTypes.shape({
-      speed: PropTypes.number.isRequired,
-    }).isRequired,
-    weather: PropTypes.arrayOf(
-      PropTypes.shape({
-        description: PropTypes.string.isRequired,
-        icon: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-  }),
 };
 
 export default WeatherDisplay; 

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
 const WeatherForm = ({ onCitySubmit }) => {
   const [city, setCity] = useState('');
@@ -27,10 +26,6 @@ const WeatherForm = ({ onCitySubmit }) => {
       </button>
     </form>
   );
-};
-
-WeatherForm.propTypes = {
-  onCitySubmit: PropTypes.func.isRequired,
 };
 
 export default WeatherForm; 
