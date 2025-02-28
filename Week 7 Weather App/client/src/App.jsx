@@ -13,16 +13,29 @@ function App() {
   const handleCitySubmit = async (city) => {
     setLoading(true)
     setError(null)
+
+    if (!city.trim()) {
+      setError('Please enter a city name')
+      setLoading(false)
+      return
+    }
+
     try {
       const response = await fetch(`http://localhost:9000/weather/${city}`)
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to fetch weather data')
-      }
       const data = await response.json()
-      setWeatherData(data)
-    } catch (err) {
-      setError(err.message)
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          setError('City not found. Please check the spelling and try again.')
+        } else {
+          setError(data.error || 'Failed to fetch weather data')
+        }
+        setWeatherData(null)
+      } else {
+        setWeatherData(data)
+      }
+    } catch {
+      setError('Unable to fetch weather data. Please try again.')
       setWeatherData(null)
     } finally {
       setLoading(false)
