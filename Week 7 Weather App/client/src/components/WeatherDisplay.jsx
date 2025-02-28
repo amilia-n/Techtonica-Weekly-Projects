@@ -10,6 +10,11 @@ const WeatherDisplay = ({ weatherData }) => {
     weather,
   } = weatherData;
 
+// func to capitalize first letter of each word
+  const capitalizeWords = (text) => {
+    return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  };
+
   return (
     <div className="weather-display">
       <h2>{name}</h2>
@@ -26,7 +31,7 @@ const WeatherDisplay = ({ weatherData }) => {
             <span className="label">Wind Speed:</span> {speed} m/s
           </p>
           <p className="description">
-            <span className="label">Condition:</span> {weather[0].description}
+            <span className="label">Condition:</span> {capitalizeWords(weather[0].description)}
           </p>
         </div>
       </div>

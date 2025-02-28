@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import WeatherForm from './components/WeatherForm'
 import WeatherDisplay from './components/WeatherDisplay'
+import RainyBackground from './components/RainyBackground'
+import DynamicFavicon from './components/DynamicFavicon'
 import './App.css'
 
 function App() {
@@ -27,18 +29,31 @@ function App() {
     }
   }
 
+  // fetch weather code for the favicon
+  const weatherCode = weatherData?.weather?.[0]?.id;
+
   return (
-    <div className="app">
-      <header>
-        <h1>Weather App</h1>
-      </header>
-      <main>
-        <WeatherForm onCitySubmit={handleCitySubmit} />
-        {loading && <p className="loading">Loading weather data...</p>}
-        {error && <p className="error">{error}</p>}
-        {weatherData && <WeatherDisplay weatherData={weatherData} />}
-      </main>
-    </div>
+    <>
+      {/* DynamicFavicon component */}
+      {weatherCode && <DynamicFavicon weatherCode={weatherCode} />}
+      
+      <div className="app">
+        <header>
+          <RainyBackground />
+          <h1 id="ami">Ami's</h1>
+          <div id="name">
+            <span>Weather</span>
+            <span>App</span>
+          </div>
+        </header>
+        <main>
+          <WeatherForm onCitySubmit={handleCitySubmit} />
+          {loading && <p className="loading">Loading weather data...</p>}
+          {error && <p className="error">{error}</p>}
+          {weatherData && <WeatherDisplay weatherData={weatherData} />}
+        </main>
+      </div>
+    </>
   )
 }
 
