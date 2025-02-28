@@ -169,10 +169,25 @@ main {
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 8px;
+  font-size: 1rem;
+}
+
+.client-error {
   background: rgba(255, 0, 0, 0.1);
   color: #d32f2f;
-  font-size: 1rem;
   border: 1px solid rgba(211, 47, 47, 0.3);
+}
+
+.server-error {
+  background: rgba(255, 152, 0, 0.1);
+  color: #ef6c00;
+  border: 1px solid rgba(239, 108, 0, 0.3);
+}
+
+.timeout-error {
+  background: rgba(63, 81, 181, 0.1);
+  color: #3f51b5;
+  border: 1px solid rgba(63, 81, 181, 0.3);
 }
 
 .rainyDay {
