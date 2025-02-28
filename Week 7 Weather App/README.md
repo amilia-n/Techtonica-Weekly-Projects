@@ -121,5 +121,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Acknowledgments 🙏
 
 - Weather data provided by OpenWeatherMap
-- Icons from OpenWeatherMap's weather icon set
+- Rainy day component inspired by [@lenasta92579651](https://codepen.io/lenasta92579651/pen/yLgxvvz)
+- Tab Icons provided by [Icons8 Forma Light](https://icons8.com/icons/forma-light)
 - Built with React and Vite 
