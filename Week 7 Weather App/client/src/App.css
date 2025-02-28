@@ -1,8 +1,20 @@
-/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  z-index: 0; 
+  pointer-events: none;
+  overflow: hidden;
 }
 
 .app {
@@ -13,22 +25,56 @@
   padding: 2rem;
   background-color: thistle;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  z-index: 1;
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 100%;
   text-align: center;
-  padding: 50px;
-  margin-top: 10%;
+  padding: 90px 50px 50px 50px;
   color: white;
-  font-size: 2rem;
+  position: relative;
+  margin-top: 50px;
+}
+
+#ami {
+  margin-bottom: 10px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 3;
+  font-size: 3.5rem;
+  font-weight: normal;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#name {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+  font-size: 3.5rem;
+  font-weight: normal;
+  font-family: 'Pacifico', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 main {
   max-width: 600px;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding:50px;
-  background-color: #333;
+  margin: -50px auto 0;
+  padding: 50px 25px;
+  background-color: rgba(51, 51, 51, 0.519);
+  border-radius: 12px;
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 2;
 }
 
 .weather-form {
@@ -38,7 +84,7 @@ main {
 }
 
 .city-input {
-  flex: 1;
+  flex: 3;
   padding: 0.8rem;
   border: none;
   border-radius: 8px;
@@ -47,8 +93,9 @@ main {
 }
 
 .submit-button {
+  flex: 1;
   padding: 0.8rem 1.5rem;
-  background-color: #4CAF50;
+  background-color: rgb(235, 194, 201);
   color: white;
   border: none;
   border-radius: 8px;
@@ -58,20 +105,23 @@ main {
 }
 
 .submit-button:hover {
-  background-color: #45a049;
+  background-color: rgb(219, 194, 219);
 }
 
 .weather-display {
-  background: rgba(255, 255, 255, 0.9);
+  background: #FFF0F5; 
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .weather-display h2 {
-  color: #333;
+  color: #555555;
   margin-bottom: 1rem;
   text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  font-weight: normal;
 }
 
 .weather-info {
@@ -86,13 +136,13 @@ main {
 
 .weather-details p {
   margin: 0.5rem 0;
-  color: #444;
+  color: #565656; 
   font-size: 1.1rem;
 }
 
 .label {
   font-weight: bold;
-  color: #333;
+  color: #4a4a4a; 
 }
 
 .weather-icon {
@@ -118,17 +168,199 @@ main {
   color: #d32f2f;
 }
 
+.rainyDay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 0;
+}
+
+.umbrella {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  z-index: 2;
+  transform-origin: center top;
+}
+
+.panel {
+  position: absolute;
+  background-color: #333; 
+  width: 5px;
+  height: 120px;
+  top: -50px;
+  z-index: 3;
+}
+
+.panel:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: -97px;
+  width: 200px;
+  height: 350px;
+  background-color: transparent; 
+  opacity: 0.1;
+  transition: .2s ease;
+}
+
+.panel:after {
+  content: "";
+  position: absolute;
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  border-radius: 100px 100px 0 0;
+  background-color: #F5E6E3; 
+  box-shadow: inset 0 -10px #D8C3C1, inset 50px -10px #E8D3D1, inset -50px -10px #E8D3D1;
+  top: -75px;
+  left: -97px;
+  transition: .2s ease;
+  transform-origin: top;
+}
+
+input#panel {
+  display: none;
+}
+
+#panel:checked ~ .panel:after {
+  transform: scaleX(0.2) scaleY(1.5);
+}
+
+#panel:checked + .panel:before {
+  transform: scaleX(0.000001);
+  opacity: 0;
+}
+
+.stick {
+  position: absolute;
+  background-color: #333;
+  width: 5px;
+  height: 20px;
+  border-radius: 20px 20px 0 0;
+  top: -143px;
+  left: 0.5;
+  z-index: 5;
+}
+
+.stick:before {
+  content: "";
+  position: absolute;
+  border-right: 7px solid #b1a7a6;
+  border-bottom: 7px solid #b1a7a6;
+  border-left: 7px solid transparent;
+  border-top: 7px solid transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  top: 190px;
+  left: -1px;
+  transform: rotate(45deg);
+}
+
+.stick:after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 15px;
+  background-color: #b1a7a6;
+  top: 195px;
+  left: -1px;
+}
+
+.rain {
+  position: fixed; 
+  width: 100%;
+  height: 100vh; 
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.dropletOne,
+.dropletTwo,
+.dropletThree,
+.dropletFour,
+.dropletFive {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 80% 0 55% 50% / 55% 0 80% 50%;
+  background-color: #979dac;
+  transform: rotate(-45deg);
+  box-shadow: -80px -100px #979dac, 80px 150px #979dac, 200px 100px #979dac, -200px 50px #979dac;
+  animation: rain 3s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.dropletOne {
+  top: -50px;
+  left: 15%;
+  animation: rain 3.2s linear infinite 0.1s;
+}
+
+.dropletTwo {
+  top: -85px;
+  left: 35%;
+  animation: rain 2.9s linear infinite 0.7s;
+}
+
+.dropletThree {
+  top: -40px;
+  left: 67%;
+  animation: rain 3.4s linear infinite 0.3s;
+}
+
+.dropletFour {
+  top: -95px;
+  left: 82%;
+  animation: rain 3.1s linear infinite 1.2s;
+}
+
+.dropletFive {
+  top: -30px;
+  left: 8%;
+  animation: rain 3.7s linear infinite 0.5s;
+}
+
+@keyframes rain {
+  0% {
+    transform: translate3d(2px, -100px, 0) rotate(-45deg);
+  }
+  100% {
+    transform: translate3d(-5px, 100vh, 0) rotate(-45deg);
+  }
+}
+
 @media (max-width: 600px) {
   .app {
     padding: 1rem;
   }
 
-  header h1 {
-    font-size: 2rem;
+  header {
+    padding: 80px 20px 30px 20px;
+  }
+
+  #ami {
+    font-size: 3.5rem;
+  }
+
+  #name {
+    font-size: 3.5rem;
+    gap: 10px;
   }
 
   .weather-form {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .weather-info {
@@ -138,5 +370,26 @@ main {
 
   .weather-details p {
     font-size: 1rem;
+  }
+
+  .umbrella {
+    top: 180px;
+  }
+}
+
+@media (min-width: 601px) {
+  #ami {
+    font-size: 3.5rem;
+  }
+
+  #name {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .umbrella {
+    transform: translateX(-50%) scale(calc(0.6 + (0.4 * (100vw / 1000px))));
+    top: calc(150px + (20px * (1 - 100vw / 1000px))); /* Shifts down as screen gets smaller */
   }
 }

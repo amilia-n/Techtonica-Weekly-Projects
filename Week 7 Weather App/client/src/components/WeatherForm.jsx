@@ -22,7 +22,7 @@ const WeatherForm = ({ onCitySubmit }) => {
         required
       />
       <button type="submit" className="submit-button">
-        Get Weather
+        Search
       </button>
     </form>
   );
