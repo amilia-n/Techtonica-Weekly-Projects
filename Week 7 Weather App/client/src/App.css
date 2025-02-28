@@ -1,0 +1,143 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #00b4db, #0083b0);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  color: white;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Weather Form styles */
+.weather-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.city-input {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+  padding: 0.8rem 1.5rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+/* Weather Display styles */
+.weather-display {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-display h2 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.weather-details {
+  flex: 1;
+}
+
+.weather-details p {
+  margin: 0.5rem 0;
+  color: #444;
+  font-size: 1.1rem;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.weather-icon {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+/* Status messages */
+.loading, .error {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.loading {
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+}
+
+.error {
+  background: rgba(255, 0, 0, 0.1);
+  color: #d32f2f;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .app {
+    padding: 1rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .weather-form {
+    flex-direction: column;
+  }
+
+  .weather-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .weather-details p {
+    font-size: 1rem;
+  }
+}

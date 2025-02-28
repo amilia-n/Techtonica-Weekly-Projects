@@ -22,7 +22,9 @@ Follow these steps to set up the Gomoku game locally on your machine.
 ### Steps
 1. **Clone the Repository**:
 In your terminal:
+
    git clone https://github.com/amilia-n/Techtonica-Weekly-Projects.git
+   
    cd /Techtonica-Weekly-Projects/Week 5 React Game/amis-gomoku
 2. **Install Dependencies**: npm install
 2. **Start the Game**: npm start
