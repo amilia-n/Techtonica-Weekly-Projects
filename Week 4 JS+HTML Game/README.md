@@ -36,13 +36,16 @@ The goal is to climb as high as possible without falling to collect coins to buy
 Each coin collected will count as one point, and high score will be determined by the amount of coins collected in a give game. 
 
 ## Controls
-Arrow Left to Move the rat left
-Arrow Right to Move the rat right
-Arrow up to jump
-Hint: Jump while moving left and right.
+| Key | Action |
+|-----|--------|
+| ← (Left Arrow) | Move the rat left |
+| → (Right Arrow) | Move the rat right |
+| ↑ (Up Arrow) | Jump |
 
-## Try it out for yourself @ 
-https://github.com/amilia-n/Techtonica-Weekly-Projects
+**Pro Tip:** Jump while moving left and right for better control!
+
+## Play Online
+Try it out for yourself @ https://github.com/amilia-n/Techtonica-Weekly-Projects
 
 ## Enjoy the game and happy climbing!
 
