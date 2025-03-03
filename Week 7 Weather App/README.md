@@ -1,126 +1,81 @@
-# Ami's Weather App 🌤️
+# Weather Application
 
-A beautiful and responsive weather application built with React that displays current weather conditions with a charming animated rainy background.
+A full-stack weather application with a React frontend and Node.js backend.
 
-## Features ✨
+## Features
+- Real-time weather data
+- Location-based weather information
+- Weather forecasts
+- Interactive UI
+- Backend API integration
 
-- Real-time weather data from OpenWeatherMap API
-- Animated rain effect with interactive umbrella
-- Responsive design that works on desktop and mobile
-- Clean and intuitive user interface
-- Dynamic weather icons based on current conditions
-- Display of temperature, humidity, wind speed, and weather conditions
+## Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
+- Weather API key (from your chosen weather service)
 
-## Prerequisites 📋
+## Installation
 
-Before you begin, ensure you have the following installed:
-- Node.js (v14.0.0 or higher)
-- npm (v6.0.0 or higher)
-
-## Installation 🚀
-
-1. Clone the repository:
-   ```bash
-   git clone [your-repository-url]
-   ```
-
-2. Navigate to the project directory:
-   ```bash
-   cd weather-app
-   ```
-
-3. Install dependencies for both client and server:
-   ```bash
-   # Install client dependencies
-   cd client
-   npm install
-
-   # Install server dependencies
-   cd ../server
-   npm install
-   ```
-
-4. Create a `.env` file in the server directory:
-   ```bash
-   cd server
-   touch .env
-   ```
-
-5. Add your OpenWeatherMap API key to the `.env` file:
-   ```
-   API_KEY=your_api_key_here
-   ```
-
-## Running the Application 🏃‍♀️
-
-1. Start the server:
-   ```bash
-   cd server
-   npm run dev
-   ```
-
-2. In a new terminal, start the client:
+### Client Setup
+1. Navigate to the client directory:
    ```bash
    cd client
-   npm run dev
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Create a `.env` file and add necessary environment variables
+
+4. Start the client:
+   ```bash
+   npm start
+   # or
+   yarn start
    ```
 
-3. Open your browser and navigate to:
+### Server Setup
+1. Navigate to the server directory:
+   ```bash
+   cd server
    ```
-   http://localhost:5173
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Set up environment variables:
+   - Create a `.env` file
+   - Add your Weather API key
+   - Add other necessary environment variables
+
+4. Start the server:
+   ```bash
+   npm start
+   # or
+   yarn start
    ```
 
-## How to Use 📱
+## Usage
+- Access the application at `http://localhost:3000`
+- Enter a location to get weather information
+- View current weather conditions
+- Check weather forecasts
+- Toggle between different weather views
 
-1. When the app loads, you'll see a beautiful interface with an animated rainy background and an interactive umbrella.
+## Development
+Built using:
+- React (Frontend)
+- Node.js (Backend)
+- Express.js
+- Weather API integration
+- Environment variables for secure configuration
 
-2. Enter a city name in the search bar and click the "Search" button or press Enter.
-
-3. The app will display:
-   - City name
-   - Current temperature in Celsius
-   - Humidity percentage
-   - Wind speed in meters per second
-   - Weather condition with a corresponding icon
-
-4. The umbrella in the background is interactive - try clicking it!
-
-## Technologies Used 💻
-
-- Frontend:
-  - React
-  - Vite
-  - CSS3 Animations
-  - OpenWeatherMap API Integration
-
-- Backend:
-  - Node.js
-  - Express
-  - CORS
-  - dotenv
-
-## Troubleshooting 🔧
-
-- If you see a "Failed to fetch weather data" error, check that:
-  - Your API key is correctly set in the `.env` file
-  - The server is running on port 9000
-  - The city name is spelled correctly
-
-- If the animations aren't smooth:
-  - Check that your browser is up to date
-  - Ensure hardware acceleration is enabled in your browser
-
-## Contributing 🤝
-
-Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
-
-## License 📄
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments 🙏
-
-- Weather data provided by OpenWeatherMap
-- Rainy day component inspired by [@lenasta92579651](https://codepen.io/lenasta92579651/pen/yLgxvvz)
-- Tab Icons provided by [Icons8 Forma Light](https://icons8.com/icons/forma-light)
-- Built with React and Vite 
+## API Integration
+- Weather data is fetched from a third-party weather service
+- API key required for weather data access
+- Backend proxies requests to weather service
+- Rate limiting and error handling implemented 
