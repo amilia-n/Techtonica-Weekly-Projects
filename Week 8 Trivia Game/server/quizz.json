@@ -1,0 +1,2163 @@
+{
+    "quiz": {
+      "title": "JavaScript, CSS, HTML, React, Testing, Node.js, and JavaScript Methods Quiz",
+      "levels": {
+        "javascript": {
+          "easy": [
+            {
+              "question": "What is the output of console.log(1 + 1);?",
+              "options": ["1", "11", "2", "undefined"],
+              "answer": "2"
+            },
+            {
+              "question": "How do you declare a variable in JavaScript?",
+              "options": ["var x;", "x = 10;", "let 10;", "variable x;"],
+              "answer": "var x;"
+            },
+            {
+              "question": "Which method is used to add an element at the end of an array?",
+              "options": ["push()", "pop()", "shift()", "unshift()"],
+              "answer": "push()"
+            },
+            {
+              "question": "Which of the following is a valid JavaScript function?",
+              "options": ["function myFunction()", "myFunction()", "function: myFunction", "function myFunction[]"],
+              "answer": "function myFunction()"
+            },
+            {
+              "question": "How do you write a single-line comment in JavaScript?",
+              "options": ["<!-- comment -->", "# comment", "/* comment */", "// comment"],
+              "answer": "// comment"
+            },
+            {
+              "question": "What is the result of typeof(5)?",
+              "options": ["object", "number", "string", "undefined"],
+              "answer": "number"
+            },
+            {
+              "question": "How do you check if a number is an integer in JavaScript?",
+              "options": ["isInteger()", "Number.isInteger()", "parseInt()", "integer()"],
+              "answer": "Number.isInteger()"
+            },
+            {
+              "question": "Which symbol is used for strict equality comparison in JavaScript?",
+              "options": ["==", "===", "!=", "!=="],
+              "answer": "==="
+            },
+            {
+              "question": "How do you define an array in JavaScript?",
+              "options": ["var arr = (1, 2, 3);", "arr = [1, 2, 3];", "array = {1, 2, 3};", "let arr = \"1,2,3\";"],
+              "answer": "arr = [1, 2, 3];"
+            },
+            {
+              "question": "What does the console.log() function do?",
+              "options": ["Logs the error", "Logs a variable's type", "Outputs data to the console", "Stops the program"],
+              "answer": "Outputs data to the console"
+            },
+            {
+              "question": "Which method is used to remove the first element of an array in JavaScript?",
+              "options": ["pop()", "shift()", "push()", "unshift()"],
+              "answer": "shift()"
+            },
+            {
+              "question": "How do you define an object in JavaScript?",
+              "options": ["var obj = {}", "let obj = []", "var obj = () {}", "const obj = ''"],
+              "answer": "var obj = {}"
+            },
+            {
+              "question": "What is the result of console.log(5 + '5') in JavaScript?",
+              "options": ["55", "10", "NaN", "undefined"],
+              "answer": "55"
+            },
+            {
+              "question": "What does the parseInt() function do?",
+              "options": ["Converts a string to an integer", "Converts a string to a float", "Converts an integer to a string", "Converts an array to a string"],
+              "answer": "Converts a string to an integer"
+            },
+            {
+              "question": "What does the typeof operator do?",
+              "options": ["Returns the type of a variable", "Converts a variable to a type", "Declares a variable type", "None of the above"],
+              "answer": "Returns the type of a variable"
+            },
+            {
+              "question": "What is the output of console.log(2 == '2')?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "true"
+            },
+            {
+              "question": "How do you add a comment that spans multiple lines in JavaScript?",
+              "options": ["/* comment */", "<!-- comment -->", "// comment //", "# comment"],
+              "answer": "/* comment */"
+            },
+            {
+              "question": "Which method is used to combine two arrays in JavaScript?",
+              "options": ["merge()", "join()", "concat()", "push()"],
+              "answer": "concat()"
+            },
+            {
+              "question": "How do you create a constant in JavaScript?",
+              "options": ["var x = 10;", "let x = 10;", "constant x = 10;", "const x = 10;"],
+              "answer": "const x = 10;"
+            },
+            {
+              "question": "What is the result of console.log(0 == false)?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "true"
+            }
+          ],
+          "medium": [
+            {
+              "question": "What does the this keyword refer to in JavaScript?",
+              "options": ["The global object", "The function itself", "The parent object", "The current object"],
+              "answer": "The current object"
+            },
+            {
+              "question": "How do you create an anonymous function in JavaScript?",
+              "options": ["function() {}", "function name() {}", "function(name) {}", "anonymous() => {}"],
+              "answer": "function() {}"
+            },
+            {
+              "question": "What is the output of console.log([] == false);?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "true"
+            },
+            {
+              "question": "What does JSON.stringify() do in JavaScript?",
+              "options": ["Converts a JSON string to an object", "Converts an object to a JSON string", "Converts a string to JSON", "Converts JSON to an array"],
+              "answer": "Converts an object to a JSON string"
+            },
+            {
+              "question": "How do you check if an array includes a value in JavaScript?",
+              "options": ["array.includes(value)", "array.contains(value)", "array.has(value)", "array.in(value)"],
+              "answer": "array.includes(value)"
+            },
+            {
+              "question": "What is the difference between null and undefined in JavaScript?",
+              "options": ["null is a primitive value, and undefined is an object", "null represents an uninitialized variable, and undefined represents an unknown object", "null represents the absence of a value, while undefined represents an uninitialized variable", "There is no difference"],
+              "answer": "null represents the absence of a value, while undefined represents an uninitialized variable"
+            },
+            {
+              "question": "How do you convert a string to an integer in JavaScript?",
+              "options": ["Number(string)", "parseInt(string)", "parseFloat(string)", "Both a and b"],
+              "answer": "Both a and b"
+            },
+            {
+              "question": "Which of the following is NOT a JavaScript loop?",
+              "options": ["for", "while", "loop", "do...while"],
+              "answer": "loop"
+            },
+            {
+              "question": "What does the slice() method do in JavaScript?",
+              "options": ["Removes an element from the beginning of an array", "Adds an element at the beginning of an array", "Extracts a section of an array", "Reverses the elements of an array"],
+              "answer": "Extracts a section of an array"
+            },
+            {
+              "question": "How do you handle errors in JavaScript?",
+              "options": ["try/catch", "throw/catch", "catch/throw", "error/catch"],
+              "answer": "try/catch"
+            },
+            {
+              "question": "What is the output of console.log([1] == true)?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "true"
+            },
+            {
+              "question": "What is the purpose of setTimeout() in JavaScript?",
+              "options": ["Executes a function after a delay", "Sets a timer for a loop", "Sets a delay for an array", "None of the above"],
+              "answer": "Executes a function after a delay"
+            },
+            {
+              "question": "What does the call() method do in JavaScript?",
+              "options": ["Executes a function with a specified this value", "Calls a function after a delay", "Calls a function repeatedly", "None of the above"],
+              "answer": "Executes a function with a specified this value"
+            },
+            {
+              "question": "What is the output of console.log(1 + '1') in JavaScript?",
+              "options": ["11", "2", "1", "NaN"],
+              "answer": "11"
+            },
+            {
+              "question": "What is the purpose of the map() method in JavaScript?",
+              "options": ["It creates a new array with the results of applying a function to each element", "It filters an array", "It reduces an array to a single value", "It adds an element to an array"],
+              "answer": "It creates a new array with the results of applying a function to each element"
+            },
+            {
+              "question": "Which of the following methods is used to add a new element at the start of an array?",
+              "options": ["push()", "unshift()", "shift()", "pop()"],
+              "answer": "unshift()"
+            },
+            {
+              "question": "How do you create a promise in JavaScript?",
+              "options": ["new Promise()", "Promise.create()", "promise = new", "createPromise()"],
+              "answer": "new Promise()"
+            },
+            {
+              "question": "What is the purpose of Object.freeze() in JavaScript?",
+              "options": ["Makes an object immutable", "Converts an object to a string", "Deletes an object", "Creates a shallow copy of an object"],
+              "answer": "Makes an object immutable"
+            },
+            {
+              "question": "How do you define a function that returns a promise in JavaScript?",
+              "options": ["async function name() {}", "function async name() {}", "name() = async function {}", "async function {}"],
+              "answer": "async function name() {}"
+            },
+            {
+              "question": "What is the output of console.log([] == false) in JavaScript?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "true"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What is a closure in JavaScript?",
+              "options": ["A function that runs immediately after being declared", "A function that retains access to its lexical scope even when invoked outside that scope", "A function used to create objects", "A type of loop"],
+              "answer": "A function that retains access to its lexical scope even when invoked outside that scope"
+            },
+            {
+              "question": "What is the output of console.log(3 > 2 > 1)?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "false"
+            },
+            {
+              "question": "What is the result of console.log(1 + true) in JavaScript?",
+              "options": ["2", "NaN", "1true", "undefined"],
+              "answer": "2"
+            },
+            {
+              "question": "What does the bind() method do in JavaScript?",
+              "options": ["Binds a function to a specific context", "Binds an event listener to an element", "Binds a value to a function", "Binds a property to a variable"],
+              "answer": "Binds a function to a specific context"
+            },
+            {
+              "question": "How do you handle asynchronous code in JavaScript?",
+              "options": ["Using setTimeout()", "Using promises and async/await", "Using try/catch", "None of the above"],
+              "answer": "Using promises and async/await"
+            },
+            {
+              "question": "What is the difference between == and === in JavaScript?",
+              "options": ["== checks for equality of values, === checks for both value and type equality", "== checks for strict equality, === is for loose equality", "== is for string comparisons, === is for number comparisons", "There is no difference"],
+              "answer": "== checks for equality of values, === checks for both value and type equality"
+            },
+            {
+              "question": "How do you declare a generator function in JavaScript?",
+              "options": ["function* name() {}", "generator function name() {}", "function name*() {}", "name() = function* {}"],
+              "answer": "function* name() {}"
+            },
+            {
+              "question": "What does the setInterval() method do in JavaScript?",
+              "options": ["Sets a time limit for a function", "Repeats a function call at specified intervals", "Delays the execution of a function", "Sets a timeout for a function"],
+              "answer": "Repeats a function call at specified intervals"
+            },
+            {
+              "question": "What is the purpose of Promise.all() in JavaScript?",
+              "options": ["Executes all promises sequentially", "Executes all promises simultaneously", "Returns the result of the first promise", "None of the above"],
+              "answer": "Executes all promises simultaneously"
+            },
+            {
+              "question": "What is the result of console.log([1] == [1])?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "false"
+            },
+            {
+              "question": "What is the output of console.log([] + [])?",
+              "options": ["\"\" (empty string)", "[]", "NaN", "undefined"],
+              "answer": "\"\" (empty string)"
+            },
+            {
+              "question": "What does eval() do in JavaScript?",
+              "options": ["Executes JavaScript code represented as a string", "Evaluates a mathematical expression", "Evaluates a function", "None of the above"],
+              "answer": "Executes JavaScript code represented as a string"
+            },
+            {
+              "question": "How can you create a deep copy of an object in JavaScript?",
+              "options": ["Object.assign()", "JSON.parse(JSON.stringify())", "Object.clone()", "Array.slice()"],
+              "answer": "JSON.parse(JSON.stringify())"
+            },
+            {
+              "question": "What is the difference between let and var in JavaScript?",
+              "options": ["let is block-scoped, var is function-scoped", "let allows redeclaration, var does not", "let is hoisted, var is not", "There is no difference"],
+              "answer": "let is block-scoped, var is function-scoped"
+            },
+            {
+              "question": "How do you create an immutable object in JavaScript?",
+              "options": ["Use Object.freeze()", "Use const", "Use const and Object.preventExtensions()", "Both a and c"],
+              "answer": "Both a and c"
+            },
+            {
+              "question": "What is the output of console.log(typeof NaN)?",
+              "options": ["number", "NaN", "undefined", "object"],
+              "answer": "number"
+            },
+            {
+              "question": "What is the result of console.log([2] == [2]) in JavaScript?",
+              "options": ["true", "false", "undefined", "NaN"],
+              "answer": "false"
+            },
+            {
+              "question": "What is the purpose of Promise.race() in JavaScript?",
+              "options": ["Executes promises in order", "Returns the result of the first promise to resolve", "Returns the first promise to reject", "None of the above"],
+              "answer": "Returns the result of the first promise to resolve"
+            },
+            {
+              "question": "What is the result of console.log(!!'false') in JavaScript?",
+              "options": ["false", "true", "undefined", "NaN"],
+              "answer": "true"
+            },
+            {
+              "question": "What is the purpose of new in JavaScript?",
+              "options": ["Creates a new instance of an object", "Creates a new array", "Declares a variable", "None of the above"],
+              "answer": "Creates a new instance of an object"
+            }
+          ]
+        },
+        "css": {
+          "easy": [
+            {
+              "question": "What does CSS stand for?",
+              "options": ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"],
+              "answer": "Cascading Style Sheets"
+            },
+            {
+              "question": "How do you define a CSS rule?",
+              "options": ["selector {property: value;}", "property: value {selector;}", "value: property {selector;}", "selector: value {property;}"],
+              "answer": "selector {property: value;}"
+            },
+            {
+              "question": "Which of the following is used to apply CSS styles to an HTML element?",
+              "options": ["class", "id", "style", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "Which CSS property is used to change the text color of an element?",
+              "options": ["color", "text-color", "font-color", "text-style"],
+              "answer": "color"
+            },
+            {
+              "question": "What does the padding property do in CSS?",
+              "options": ["Adds space inside an element", "Adds space outside an element", "Changes the border color", "Changes the text color"],
+              "answer": "Adds space inside an element"
+            },
+            {
+              "question": "How can you center an element horizontally in CSS?",
+              "options": ["margin: 0 auto;", "text-align: center;", "align: center;", "center: auto;"],
+              "answer": "margin: 0 auto;"
+            },
+            {
+              "question": "Which property is used to change the background color of an element in CSS?",
+              "options": ["color", "bgcolor", "background-color", "bgcolor-color"],
+              "answer": "background-color"
+            },
+            {
+              "question": "How do you select all <p> elements in a CSS file?",
+              "options": ["p {}", ".p {}", "#p {}", "p[]"],
+              "answer": "p {}"
+            },
+            {
+              "question": "Which of the following is the correct way to add a CSS comment?",
+              "options": ["// This is a comment", "<!-- This is a comment -->", "/* This is a comment */", "# This is a comment"],
+              "answer": "/* This is a comment */"
+            },
+            {
+              "question": "How do you make a font bold using CSS?",
+              "options": ["font-weight: bold;", "font-style: bold;", "text-weight: bold;", "text-style: bold;"],
+              "answer": "font-weight: bold;"
+            },
+            {
+              "question": "Which property is used to change the font of an element?",
+              "options": ["font-family", "font-style", "font-size", "font-weight"],
+              "answer": "font-family"
+            },
+            {
+              "question": "Which CSS property is used to add space between the content and the border of an element?",
+              "options": ["margin", "padding", "border-spacing", "gap"],
+              "answer": "padding"
+            },
+            {
+              "question": "What does the display: block; property do?",
+              "options": ["Makes an element appear in its own line", "Makes an element inline", "Hides an element", "Makes the element a flex container"],
+              "answer": "Makes an element appear in its own line"
+            },
+            {
+              "question": "How do you change the width of an element in CSS?",
+              "options": ["width: 100px;", "size: 100px;", "element-width: 100px;", "length: 100px;"],
+              "answer": "width: 100px;"
+            },
+            {
+              "question": "How can you add a border to an element in CSS?",
+              "options": ["border: solid 1px black;", "border-style: solid;", "border-width: 1px;", "box-border: solid;"],
+              "answer": "border: solid 1px black;"
+            },
+            {
+              "question": "Which of the following is used to add space between the elements in a flex container?",
+              "options": ["space-between", "gap", "padding", "margin"],
+              "answer": "gap"
+            },
+            {
+              "question": "How do you apply a background image in CSS?",
+              "options": ["background: url('image.jpg');", "background-image: url('image.jpg');", "image-background: url('image.jpg');", "background-color: url('image.jpg');"],
+              "answer": "background-image: url('image.jpg');"
+            },
+            {
+              "question": "How can you make a hyperlink bold using CSS?",
+              "options": ["a {font-weight: bold;}", "a {text-weight: bold;}", "a {font-style: bold;}", "a {text-decoration: bold;}"],
+              "answer": "a {font-weight: bold;}"
+            },
+            {
+              "question": "How do you apply styles to an element with an id of \"header\"?",
+              "options": ["#header {}", ".header {}", "header {}", "[id=\"header\"] {}"],
+              "answer": "#header {}"
+            },
+            {
+              "question": "What is the correct CSS syntax to select an element with a class of \"container\"?",
+              "options": [".container {}", "#container {}", "container {}", "[class=\"container\"] {}"],
+              "answer": ".container {}"
+            }
+          ],
+          "medium": [
+            {
+              "question": "How do you center a block element vertically in CSS?",
+              "options": ["margin: 0 auto;", "vertical-align: middle;", "display: flex; align-items: center;", "text-align: center;"],
+              "answer": "display: flex; align-items: center;"
+            },
+            {
+              "question": "What is the purpose of the z-index property in CSS?",
+              "options": ["Controls the stacking order of elements", "Controls the transparency of an element", "Defines the border of an element", "Changes the position of an element"],
+              "answer": "Controls the stacking order of elements"
+            },
+            {
+              "question": "How do you hide an element in CSS?",
+              "options": ["display: none;", "visibility: hidden;", "opacity: 0;", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What does the box-sizing property do in CSS?",
+              "options": ["Defines the size of the content box", "Defines the size of the padding", "Includes padding and border in the element's total width and height", "Adds a border to the element"],
+              "answer": "Includes padding and border in the element's total width and height"
+            },
+            {
+              "question": "What is the difference between inline and block elements in CSS?",
+              "options": ["Block elements take up the full width, inline elements take up only as much width as needed", "Inline elements can have padding, block elements cannot", "Block elements cannot have margins, inline elements can", "There is no difference"],
+              "answer": "Block elements take up the full width, inline elements take up only as much width as needed"
+            },
+            {
+              "question": "How do you apply a CSS transition to an element?",
+              "options": ["transition: all 0.5s ease;", "transition-effect: 0.5s ease;", "animate: all 0.5s ease;", "effect: 0.5s ease;"],
+              "answer": "transition: all 0.5s ease;"
+            },
+            {
+              "question": "How do you set the height of an element to be equal to the viewport height?",
+              "options": ["height: 100vh;", "height: 100%;", "height: auto;", "height: 100px;"],
+              "answer": "height: 100vh;"
+            },
+            {
+              "question": "How can you create a flex container in CSS?",
+              "options": ["display: flex;", "display: grid;", "display: inline-block;", "display: table;"],
+              "answer": "display: flex;"
+            },
+            {
+              "question": "What is the @media rule used for in CSS?",
+              "options": ["To apply CSS rules based on conditions like screen size or device type", "To create a media player", "To create animations", "To embed audio and video"],
+              "answer": "To apply CSS rules based on conditions like screen size or device type"
+            },
+            {
+              "question": "Which of the following is the correct way to make a flex container's items wrap?",
+              "options": ["flex-wrap: wrap;", "wrap: flex;", "wrap-items: true;", "flex-items: wrap;"],
+              "answer": "flex-wrap: wrap;"
+            },
+            {
+              "question": "What is the CSS property used to define the space between columns in a grid layout?",
+              "options": ["column-gap", "grid-gap", "gap", "space-between"],
+              "answer": "gap"
+            },
+            {
+              "question": "How can you create a circular shape with CSS?",
+              "options": ["border-radius: 50%;", "border-radius: 100%;", "shape: circle;", "border: solid 50%"],
+              "answer": "border-radius: 50%;"
+            },
+            {
+              "question": "How do you create a sticky navbar in CSS?",
+              "options": ["position: sticky; top: 0;", "position: fixed; top: 0;", "position: absolute; top: 0;", "position: relative; top: 0;"],
+              "answer": "position: sticky; top: 0;"
+            },
+            {
+              "question": "What is the CSS property used to create shadow effects on text?",
+              "options": ["text-shadow", "shadow-effect", "box-shadow", "element-shadow"],
+              "answer": "text-shadow"
+            },
+            {
+              "question": "What is the purpose of the flex-direction property in CSS?",
+              "options": ["Determines the direction of flex items in a container", "Defines the size of flex items", "Aligns items vertically", "Sets the alignment of the container itself"],
+              "answer": "Determines the direction of flex items in a container"
+            },
+            {
+              "question": "How do you add a background image that covers the entire element?",
+              "options": ["background-size: cover;", "background-repeat: no-repeat;", "background-size: 100%;", "background-position: center;"],
+              "answer": "background-size: cover;"
+            },
+            {
+              "question": "What is the default value of position property in CSS?",
+              "options": ["absolute", "relative", "static", "fixed"],
+              "answer": "static"
+            },
+            {
+              "question": "How do you create a CSS grid layout with three equal columns?",
+              "options": ["grid-template-columns: repeat(3, 1fr);", "grid-template-columns: 33% 33% 33%;", "grid-template-columns: 1fr 1fr 1fr;", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of overflow property in CSS?",
+              "options": ["Controls the visibility of content that overflows its container", "Controls the width of a container", "Controls the flow of text inside an element", "None of the above"],
+              "answer": "Controls the visibility of content that overflows its container"
+            },
+            {
+              "question": "How do you align an item to the center of a flex container?",
+              "options": ["justify-content: center; align-items: center;", "text-align: center;", "align-content: center;", "margin: auto;"],
+              "answer": "justify-content: center; align-items: center;"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What is the difference between position: absolute; and position: fixed; in CSS?",
+              "options": ["absolute is relative to its nearest positioned ancestor, while fixed is relative to the viewport", "absolute is relative to the viewport, while fixed is relative to the parent element", "absolute makes the element visible, while fixed hides it", "There is no difference"],
+              "answer": "absolute is relative to its nearest positioned ancestor, while fixed is relative to the viewport"
+            },
+            {
+              "question": "How do you implement a CSS animation with keyframes?",
+              "options": ["@keyframes animation {}", "@animation keyframes {}", "@keyframe animation {}", "@animation {}"],
+              "answer": "@keyframes animation {}"
+            },
+            {
+              "question": "What is the transform property used for in CSS?",
+              "options": ["To scale, rotate, or translate elements", "To set the background of an element", "To add padding and margin", "To align elements"],
+              "answer": "To scale, rotate, or translate elements"
+            },
+            {
+              "question": "How do you specify that an element should be a flex container with items aligned both horizontally and vertically in the center?",
+              "options": ["display: flex; justify-content: center; align-items: center;", "display: grid; justify-items: center; align-items: center;", "display: flex; align-content: center; justify-content: space-between;", "display: block; text-align: center; vertical-align: middle;"],
+              "answer": "display: flex; justify-content: center; align-items: center;"
+            },
+            {
+              "question": "What is the difference between rem and em units in CSS?",
+              "options": ["rem is relative to the root font size, em is relative to the parent element's font size", "rem is relative to the parent element, em is relative to the root font size", "rem and em are the same", "There is no difference"],
+              "answer": "rem is relative to the root font size, em is relative to the parent element's font size"
+            },
+            {
+              "question": "How do you achieve a fluid layout using CSS?",
+              "options": ["By using percentage-based widths and max-width", "By setting fixed pixel widths", "By using display: flex; only", "By applying margin: auto; to all elements"],
+              "answer": "By using percentage-based widths and max-width"
+            },
+            {
+              "question": "What is the effect of using @import in CSS?",
+              "options": ["It imports external stylesheets into the current stylesheet", "It defines a new CSS rule", "It imports JavaScript into CSS", "It creates an animation"],
+              "answer": "It imports external stylesheets into the current stylesheet"
+            },
+            {
+              "question": "How do you create a responsive design for multiple screen sizes in CSS?",
+              "options": ["Using @media queries", "Using flexbox", "Using viewport units", "Both a and c"],
+              "answer": "Both a and c"
+            },
+            {
+              "question": "How do you make an element responsive to different screen sizes using CSS Grid?",
+              "options": ["By using grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));", "By using grid-template-columns: 100px;", "By using display: block;", "By using max-width: 100%;"],
+              "answer": "By using grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));"
+            },
+            {
+              "question": "How do you prevent text from overflowing its container in CSS?",
+              "options": ["overflow: hidden; text-overflow: ellipsis;", "overflow: auto; text-overflow: ellipsis;", "white-space: nowrap;", "max-width: 100%;"],
+              "answer": "overflow: hidden; text-overflow: ellipsis;"
+            },
+            {
+              "question": "How do you create a parallax scrolling effect using CSS?",
+              "options": ["By using background-attachment: fixed;", "By using transform: translateY();", "By using scroll-behavior: smooth;", "By using position: absolute;"],
+              "answer": "By using background-attachment: fixed;"
+            },
+            {
+              "question": "How do you make a grid layout with equal rows in CSS?",
+              "options": ["grid-template-rows: repeat(3, 1fr);", "grid-template-rows: 100px;", "grid-template-columns: 1fr;", "grid-template: 1fr 1fr 1fr;"],
+              "answer": "grid-template-rows: repeat(3, 1fr);"
+            },
+            {
+              "question": "What is the effect of using opacity: 0; on an element in CSS?",
+              "options": ["It hides the element, but it remains clickable", "It makes the element visible with no effect", "It removes the element completely from the document", "It changes the element's visibility to none"],
+              "answer": "It hides the element, but it remains clickable"
+            },
+            {
+              "question": "What is a container query in CSS used for?",
+              "options": ["To apply styles based on the size of a parent element", "To create responsive typography", "To add animations to an element", "To hide elements on large screens"],
+              "answer": "To apply styles based on the size of a parent element"
+            },
+            {
+              "question": "How do you change the color of a link when it is clicked in CSS?",
+              "options": ["a:active { color: red; }", "a:clicked { color: red; }", "a:hover { color: red; }", "a:focus { color: red; }"],
+              "answer": "a:active { color: red; }"
+            },
+            {
+              "question": "What is the effect of using visibility: hidden; on an element in CSS?",
+              "options": ["The element becomes invisible but still occupies space in the layout", "The element is removed from the layout entirely", "The element becomes invisible and occupies no space", "The element becomes opaque"],
+              "answer": "The element becomes invisible but still occupies space in the layout"
+            },
+            {
+              "question": "How do you animate a CSS property?",
+              "options": ["@keyframes with animation property", "@animate with transition property", "@keyframes with transition property", "@transition with animation property"],
+              "answer": "@keyframes with animation property"
+            },
+            {
+              "question": "How do you make an image responsive in CSS?",
+              "options": ["img { width: 100%; height: auto; }", "img { max-width: 100%; }", "img { width: 100%; }", "Both a and b"],
+              "answer": "Both a and b"
+            },
+            {
+              "question": "What is the purpose of object-fit: cover; in CSS?",
+              "options": ["It scales the image to cover the element's box while maintaining its aspect ratio", "It stretches the image to fit the element's box", "It makes the image transparent", "It removes the background of the image"],
+              "answer": "It scales the image to cover the element's box while maintaining its aspect ratio"
+            },
+            {
+              "question": "How do you use the clamp() function in CSS?",
+              "options": ["To set a value that adjusts between a defined minimum and maximum range based on viewport size", "To limit the height of an element", "To set fixed font sizes", "To control the width of a container"],
+              "answer": "To set a value that adjusts between a defined minimum and maximum range based on viewport size"
+            }
+          ]
+        },
+        "html": {
+          "easy": [
+            {
+              "question": "What does HTML stand for?",
+              "options": ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "None of the above"],
+              "answer": "Hyper Text Markup Language"
+            },
+            {
+              "question": "Which HTML tag is used to define an unordered list?",
+              "options": ["<ul>", "<ol>", "<li>", "<list>"],
+              "answer": "<ul>"
+            },
+            {
+              "question": "Which tag is used to create a hyperlink in HTML?",
+              "options": ["<a>", "<link>", "<href>", "<hyperlink>"],
+              "answer": "<a>"
+            },
+            {
+              "question": "What is the correct HTML element for inserting an image?",
+              "options": ["<image>", "<img>", "<src>", "<picture>"],
+              "answer": "<img>"
+            },
+            {
+              "question": "What is the purpose of the <title> tag in HTML?",
+              "options": ["Defines the title of a document in the browser's title bar or tab", "Sets the text for an element", "Creates a heading", "Defines a tooltip"],
+              "answer": "Defines the title of a document in the browser's title bar or tab"
+            },
+            {
+              "question": "Which tag is used to create a line break in HTML?",
+              "options": ["<br>", "<hr>", "<break>", "<lb>"],
+              "answer": "<br>"
+            },
+            {
+              "question": "Which attribute is used to specify the source of an image in HTML?",
+              "options": ["source", "href", "src", "img-source"],
+              "answer": "src"
+            },
+            {
+              "question": "How do you create a table in HTML?",
+              "options": ["<table>", "<tabular>", "<tbl>", "<grid>"],
+              "answer": "<table>"
+            },
+            {
+              "question": "What does the <p> tag represent in HTML?",
+              "options": ["Paragraph", "Parent element", "Pointer", "Page link"],
+              "answer": "Paragraph"
+            },
+            {
+              "question": "Which element is used to define the main content of an HTML page?",
+              "options": ["<header>", "<main>", "<footer>", "<section>"],
+              "answer": "<main>"
+            },
+            {
+              "question": "How can you make text bold in HTML?",
+              "options": ["<bold>", "<strong>", "<b>", "Both b and c"],
+              "answer": "Both b and c"
+            },
+            {
+              "question": "Which tag is used to define a link in HTML?",
+              "options": ["<a>", "<link>", "<href>", "<url>"],
+              "answer": "<a>"
+            },
+            {
+              "question": "How do you create an ordered list in HTML?",
+              "options": ["<ol>", "<ul>", "<li>", "<list>"],
+              "answer": "<ol>"
+            },
+            {
+              "question": "Which tag is used for creating a form in HTML?",
+              "options": ["<form>", "<input>", "<button>", "<field>"],
+              "answer": "<form>"
+            },
+            {
+              "question": "How do you make a comment in HTML?",
+              "options": ["<!-- comment -->", "// comment", "/* comment */", "# comment"],
+              "answer": "<!-- comment -->"
+            },
+            {
+              "question": "Which of the following is used to create a drop-down list in HTML?",
+              "options": ["<input>", "<select>", "<dropdown>", "<option>"],
+              "answer": "<select>"
+            },
+            {
+              "question": "Which tag is used to define a header in HTML?",
+              "options": ["<h1>", "<head>", "<header>", "<heading>"],
+              "answer": "<h1>"
+            },
+            {
+              "question": "What does the alt attribute do for images in HTML?",
+              "options": ["Provides a description of the image for accessibility", "Changes the color of the image", "Alters the size of the image", "None of the above"],
+              "answer": "Provides a description of the image for accessibility"
+            },
+            {
+              "question": "How do you create a hyperlink that opens in a new tab?",
+              "options": ["<a href=\"url\" target=\"_blank\">", "<a href=\"url\" new-window=\"true\">", "<a href=\"url\" open=\"true\">", "<a href=\"url\" window=\"new\">"],
+              "answer": "<a href=\"url\" target=\"_blank\">"
+            },
+            {
+              "question": "Which tag is used to add a video in HTML?",
+              "options": ["<video>", "<media>", "<video-source>", "<movie>"],
+              "answer": "<video>"
+            }
+          ],
+          "medium": [
+            {
+              "question": "What is the difference between the <div> and <span> tags?",
+              "options": ["<div> is a block-level element, while <span> is an inline element", "<span> is a block-level element, while <div> is an inline element", "They are the same", "None of the above"],
+              "answer": "<div> is a block-level element, while <span> is an inline element"
+            },
+            {
+              "question": "How do you add a background color to a webpage in HTML?",
+              "options": ["<background-color>", "<body style=\"background-color: color;\">", "<style=\"background-color: color;\">", "<color background=\"color\">"],
+              "answer": "<body style=\"background-color: color;\">"
+            },
+            {
+              "question": "Which tag is used to define a container for navigation links in HTML?",
+              "options": ["<nav>", "<links>", "<navigation>", "<header>"],
+              "answer": "<nav>"
+            },
+            {
+              "question": "How do you link an external CSS file in HTML?",
+              "options": ["<css href=\"styles.css\">", "<style href=\"styles.css\">", "<link rel=\"stylesheet\" href=\"styles.css\">", "<stylesheet src=\"styles.css\">"],
+              "answer": "<link rel=\"stylesheet\" href=\"styles.css\">"
+            },
+            {
+              "question": "What does the target=\"_self\" attribute do in a link?",
+              "options": ["Opens the link in the same tab", "Opens the link in a new window", "Does not open the link", "Forces the link to open in the background"],
+              "answer": "Opens the link in the same tab"
+            },
+            {
+              "question": "What is the purpose of the <meta> tag in HTML?",
+              "options": ["Defines the metadata for an HTML document", "Creates a navigation menu", "Defines the main content", "None of the above"],
+              "answer": "Defines the metadata for an HTML document"
+            },
+            {
+              "question": "How do you group multiple form elements in HTML?",
+              "options": ["<fieldset>", "<form-group>", "<elements>", "<section>"],
+              "answer": "<fieldset>"
+            },
+            {
+              "question": "Which HTML tag is used to display a list of options in a drop-down menu?",
+              "options": ["<list>", "<option>", "<select>", "<dropdown>"],
+              "answer": "<select>"
+            },
+            {
+              "question": "How do you define the font size in HTML?",
+              "options": ["<font size=\"14px\">", "<style=\"font-size: 14px;\">", "<font-size: 14px>", "CSS property font-size"],
+              "answer": "CSS property font-size"
+            },
+            {
+              "question": "Which tag is used to create a table row in HTML?",
+              "options": ["<row>", "<tr>", "<td>", "<table-row>"],
+              "answer": "<tr>"
+            },
+            {
+              "question": "What attribute is used to specify the URL for an anchor (<a>) tag?",
+              "options": ["url", "href", "link", "src"],
+              "answer": "href"
+            },
+            {
+              "question": "What is the correct HTML tag for inserting a line break?",
+              "options": ["<br>", "<lb>", "<break>", "<line>"],
+              "answer": "<br>"
+            },
+            {
+              "question": "How do you insert an unordered list in HTML?",
+              "options": ["<list>", "<ol>", "<ul>", "<ulist>"],
+              "answer": "<ul>"
+            },
+            {
+              "question": "What attribute is used to specify a target for an anchor link?",
+              "options": ["src", "href", "target", "action"],
+              "answer": "target"
+            },
+            {
+              "question": "How do you define a text input field in a form?",
+              "options": ["<input type=\"text\">", "<text>", "<input type=\"textfield\">", "<textarea>"],
+              "answer": "<input type=\"text\">"
+            },
+            {
+              "question": "What is the purpose of the <footer> tag in HTML?",
+              "options": ["Contains the footer content of the webpage", "Defines the header of the webpage", "Used for form fields", "Defines the body section of a webpage"],
+              "answer": "Contains the footer content of the webpage"
+            },
+            {
+              "question": "How can you define a description list in HTML?",
+              "options": ["<dl>", "<ol>", "<ul>", "<list>"],
+              "answer": "<dl>"
+            },
+            {
+              "question": "Which tag is used to define a form input element that allows users to select a file?",
+              "options": ["<input type=\"file\">", "<file-upload>", "<select-file>", "<input type=\"button\">"],
+              "answer": "<input type=\"file\">"
+            },
+            {
+              "question": "How can you link a JavaScript file to an HTML document?",
+              "options": ["<script src=\"script.js\">", "<link href=\"script.js\">", "<js src=\"script.js\">", "<javascript src=\"script.js\">"],
+              "answer": "<script src=\"script.js\">"
+            },
+            {
+              "question": "What is the purpose of the <link> tag in HTML?",
+              "options": ["Links an external file to the HTML document", "Defines the main content of the page", "Defines a clickable link", "Defines a table link"],
+              "answer": "Links an external file to the HTML document"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What is the default value of the position property in HTML?",
+              "options": ["absolute", "relative", "static", "fixed"],
+              "answer": "static"
+            },
+            {
+              "question": "What is the use of the content property in CSS?",
+              "options": ["It sets the content of an element", "It specifies additional content for an element before or after its content", "It changes the background color", "It positions elements"],
+              "answer": "It specifies additional content for an element before or after its content"
+            },
+            {
+              "question": "What is the difference between <section> and <div> in HTML?",
+              "options": ["<section> is used for grouping content, <div> is used for structuring content", "<section> is a block-level element, <div> is inline", "<section> is used for semantic meaning, <div> is generic", "They are identical"],
+              "answer": "<section> is used for semantic meaning, <div> is generic"
+            },
+            {
+              "question": "How do you create a hidden form field in HTML?",
+              "options": ["<input type=\"hidden\">", "<input type=\"invisible\">", "<input type=\"hidden-field\">", "<input type=\"display:none\">"],
+              "answer": "<input type=\"hidden\">"
+            },
+            {
+              "question": "How do you specify an HTML document to use UTF-8 encoding?",
+              "options": ["<meta charset=\"UTF-8\">", "<charset=\"UTF-8\">", "<meta encoding=\"UTF-8\">", "<encoding=\"UTF-8\">"],
+              "answer": "<meta charset=\"UTF-8\">"
+            },
+            {
+              "question": "How do you specify the language of an HTML document?",
+              "options": ["<html lang=\"en\">", "<html language=\"en\">", "<language=\"en\">", "<document lang=\"en\">"],
+              "answer": "<html lang=\"en\">"
+            },
+            {
+              "question": "What does the async attribute do in the <script> tag?",
+              "options": ["It specifies that the script should be executed asynchronously", "It loads the script synchronously", "It prevents the script from running", "It forces the script to execute immediately"],
+              "answer": "It specifies that the script should be executed asynchronously"
+            },
+            {
+              "question": "What is the correct syntax for adding a comment in HTML?",
+              "options": ["/* comment */", "// comment", "<!-- comment -->", "# comment"],
+              "answer": "<!-- comment -->"
+            },
+            {
+              "question": "How do you create a hyperlink to an anchor on the same page in HTML?",
+              "options": ["<a href=\"#anchor\">", "<a href=\"anchor\">", "<a name=\"anchor\">", "<link href=\"#anchor\">"],
+              "answer": "<a href=\"#anchor\">"
+            },
+            {
+              "question": "What is the colspan attribute used for in HTML?",
+              "options": ["To merge two or more columns in a table", "To define the number of rows in a table", "To add a background color to a cell", "To align text within a column"],
+              "answer": "To merge two or more columns in a table"
+            },
+            {
+              "question": "How can you make a table cell span multiple rows in HTML?",
+              "options": ["rowspan attribute", "colspan attribute", "span attribute", "columnspan attribute"],
+              "answer": "rowspan attribute"
+            },
+            {
+              "question": "What does the <base> tag in HTML do?",
+              "options": ["Specifies the base URL for relative links", "Specifies the background color of a webpage", "Defines the main content of the page", "Defines the default font"],
+              "answer": "Specifies the base URL for relative links"
+            },
+            {
+              "question": "How do you specify the action to be taken when a form is submitted in HTML?",
+              "options": ["method attribute", "action attribute", "submit attribute", "type attribute"],
+              "answer": "action attribute"
+            },
+            {
+              "question": "What does the defer attribute do in the <script> tag?",
+              "options": ["Delays the script execution until the HTML parsing is complete", "Makes the script execute immediately", "Prevents the script from running", "Runs the script before HTML parsing"],
+              "answer": "Delays the script execution until the HTML parsing is complete"
+            },
+            {
+              "question": "What does the <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> tag do?",
+              "options": ["Defines the initial zoom level and width of the page", "Sets the character encoding for the page", "Specifies the background color", "Defines the content-type of the page"],
+              "answer": "Defines the initial zoom level and width of the page"
+            },
+            {
+              "question": "How do you create a tooltip in HTML?",
+              "options": ["<title>", "hover event", "data-tooltip attribute", "alt attribute"],
+              "answer": "<title>"
+            },
+            {
+              "question": "What is the aria-label attribute used for?",
+              "options": ["Defines an accessible label for screen readers", "Defines the color of the text", "Specifies an element’s class", "Sets the size of an element"],
+              "answer": "Defines an accessible label for screen readers"
+            },
+            {
+              "question": "How can you specify the size of a canvas in HTML?",
+              "options": ["width and height attributes", "size attribute", "dimension attributes", "canvas-size attribute"],
+              "answer": "width and height attributes"
+            },
+            {
+              "question": "How can you create a responsive table in HTML?",
+              "options": ["By using <table-responsive> class", "By using @media queries", "By using max-width on table elements", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What does the rel=\"noopener noreferrer\" attribute do in a link?",
+              "options": ["It protects against potential malicious activities in links", "It disables the link from opening in a new tab", "It specifies that the link should open in the same tab", "It prevents the link from being followed"],
+              "answer": "It protects against potential malicious activities in links"
+            }
+          ]
+        },
+        "react": {
+          "easy": [
+            {
+              "question": "What is React?",
+              "options": ["A JavaScript framework", "A JavaScript library", "A programming language", "A database management system"],
+              "answer": "A JavaScript library"
+            },
+            {
+              "question": "What is JSX?",
+              "options": ["A templating language used in React", "A new version of JavaScript", "A type of CSS", "A data management system"],
+              "answer": "A templating language used in React"
+            },
+            {
+              "question": "Which of the following is used to create a React component?",
+              "options": ["createReactComponent()", "<Component></Component>", "class Component extends React.Component", "React.Component.create()"],
+              "answer": "class Component extends React.Component"
+            },
+            {
+              "question": "What function is used to render a React component to the DOM?",
+              "options": ["React.render()", "renderComponent()", "ReactDOM.render()", "component.render()"],
+              "answer": "ReactDOM.render()"
+            },
+            {
+              "question": "In React, what is the purpose of the render() method?",
+              "options": ["To define how the component’s output should look", "To initialize component states", "To fetch data", "To define component styles"],
+              "answer": "To define how the component’s output should look"
+            },
+            {
+              "question": "What is the correct syntax to define a functional component in React?",
+              "options": ["function MyComponent() { return <div></div>; }", "React.Component MyComponent() { return <div></div>; }", "const MyComponent = () => <div></div>;", "ReactFunction MyComponent() { return <div></div>; }"],
+              "answer": "const MyComponent = () => <div></div>;"
+            },
+            {
+              "question": "Which hook is used to handle side effects in React?",
+              "options": ["useEffect()", "useState()", "useContext()", "useRef()"],
+              "answer": "useEffect()"
+            },
+            {
+              "question": "How do you pass props to a React component?",
+              "options": ["Using this.props", "Using this.state", "Using <Component name=\"value\" />", "Using props() function"],
+              "answer": "Using <Component name=\"value\" />"
+            },
+            {
+              "question": "How do you update the state of a React component?",
+              "options": ["this.state = newState", "this.updateState(newState)", "this.setState(newState)", "setState(newState)"],
+              "answer": "this.setState(newState)"
+            },
+            {
+              "question": "What does the key prop do in React?",
+              "options": ["It uniquely identifies elements in a list for efficient rendering", "It defines the order of elements", "It links props to the state", "It specifies the default value for props"],
+              "answer": "It uniquely identifies elements in a list for efficient rendering"
+            },
+            {
+              "question": "What is a React Hook?",
+              "options": ["A function that allows you to hook into React state and lifecycle features", "A component that allows data binding", "A method to define styles in a component", "A feature for asynchronous operations"],
+              "answer": "A function that allows you to hook into React state and lifecycle features"
+            },
+            {
+              "question": "How do you handle user input in React?",
+              "options": ["Using useState() to manage input value", "Using handleEvent()", "Using inputValue state", "Using this.inputField reference"],
+              "answer": "Using useState() to manage input value"
+            },
+            {
+              "question": "Which function is used to handle events in React?",
+              "options": ["handleEvent()", "this.onClick()", "onEvent()", "onClick()"],
+              "answer": "onClick()"
+            },
+            {
+              "question": "What is a controlled component in React?",
+              "options": ["A component where the state is managed by the parent", "A component with no props", "A component that does not render anything", "A component that uses the useEffect hook"],
+              "answer": "A component where the state is managed by the parent"
+            },
+            {
+              "question": "How do you create a class component in React?",
+              "options": ["class Component extends React.Component {}", "React.createClass(Component) {}", "class ReactComponent {}", "React.createComponent()"],
+              "answer": "class Component extends React.Component {}"
+            },
+            {
+              "question": "Which function do you use to manage state in a functional React component?",
+              "options": ["useEffect()", "useState()", "state()", "this.setState()"],
+              "answer": "useState()"
+            },
+            {
+              "question": "How do you conditionally render elements in React?",
+              "options": ["Using if statements", "Using the && operator or ternary operator", "Using for loops", "Using return only"],
+              "answer": "Using the && operator or ternary operator"
+            },
+            {
+              "question": "Which of the following hooks allows you to refer to elements or values in a React component?",
+              "options": ["useRef()", "useContext()", "useEffect()", "useState()"],
+              "answer": "useRef()"
+            },
+            {
+              "question": "How do you create an event handler in React?",
+              "options": ["By defining a method within the component class", "By passing a function as a prop", "By adding event listeners manually in the DOM", "By importing event handlers from a library"],
+              "answer": "By defining a method within the component class"
+            },
+            {
+              "question": "What is the main benefit of React’s Virtual DOM?",
+              "options": ["Faster updates by minimizing direct manipulation of the real DOM", "Allows for server-side rendering", "Easier styling of components", "Automatic data binding"],
+              "answer": "Faster updates by minimizing direct manipulation of the real DOM"
+            }
+          ],
+          "medium": [
+            {
+              "question": "What is the difference between useState() and useEffect() hooks?",
+              "options": ["useState() manages state, useEffect() manages side effects", "useState() manages side effects, useEffect() manages state", "useState() is for functional components only, useEffect() is for class components only", "Both hooks manage side effects"],
+              "answer": "useState() manages state, useEffect() manages side effects"
+            },
+            {
+              "question": "How can you pass state between components in React?",
+              "options": ["Using props", "Using the context API", "Using a global store like Redux", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What does the useEffect() hook do in React?",
+              "options": ["It runs a side effect after every render", "It runs only once after the initial render", "It manages state updates", "It runs before the component is rendered"],
+              "answer": "It runs a side effect after every render"
+            },
+            {
+              "question": "Which of the following is a correct way to call a function inside JSX?",
+              "options": ["{functionName()}", "functionName[]", "<functionName>", "functionName{}"],
+              "answer": "{functionName()}"
+            },
+            {
+              "question": "How do you update an object inside the state using setState() in React?",
+              "options": ["this.setState({ objectName: newObject })", "this.state = newObject", "this.updateState({ objectName: newObject })", "this.setState(newObject)"],
+              "answer": "this.setState({ objectName: newObject })"
+            },
+            {
+              "question": "What is the purpose of the React.Fragment component?",
+              "options": ["To group multiple elements without adding extra nodes to the DOM", "To manage the state of components", "To define reusable components", "To manage CSS styles for components"],
+              "answer": "To group multiple elements without adding extra nodes to the DOM"
+            },
+            {
+              "question": "How do you handle form submissions in React?",
+              "options": ["By using onSubmit() event handler", "By using handleSubmit() function", "By using preventDefault() in event handler", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is React Router used for?",
+              "options": ["Managing component rendering based on the URL", "Styling components", "Handling data fetching", "Managing state of components"],
+              "answer": "Managing component rendering based on the URL"
+            },
+            {
+              "question": "What does the useContext() hook do in React?",
+              "options": ["Provides access to the closest value of a context", "Allows a component to subscribe to the state", "Manages component events", "Manages data fetching in components"],
+              "answer": "Provides access to the closest value of a context"
+            },
+            {
+              "question": "How do you handle multiple events in React?",
+              "options": ["By using a single handler for each event type", "By using event delegation", "By binding multiple functions to the component", "By using the onClick property multiple times"],
+              "answer": "By using a single handler for each event type"
+            },
+            {
+              "question": "What is the purpose of React.memo() in React?",
+              "options": ["To memoize a component and prevent unnecessary re-renders", "To manage local state", "To allow components to fetch data", "To manage animations"],
+              "answer": "To memoize a component and prevent unnecessary re-renders"
+            },
+            {
+              "question": "What does the useReducer() hook do in React?",
+              "options": ["Manages complex state logic in a functional component", "Updates the component’s state asynchronously", "Handles component lifecycle methods", "Maps the state to props"],
+              "answer": "Manages complex state logic in a functional component"
+            },
+            {
+              "question": "What is the difference between controlled and uncontrolled components in React?",
+              "options": ["Controlled components manage their state with React, uncontrolled components manage their state outside React", "Controlled components are always faster", "Uncontrolled components don’t accept any input", "There is no difference"],
+              "answer": "Controlled components manage their state with React, uncontrolled components manage their state outside React"
+            },
+            {
+              "question": "How can you prevent a form from refreshing the page in React?",
+              "options": ["By using event.preventDefault()", "By using this.preventRefresh()", "By using the no-refresh attribute", "By using return false;"],
+              "answer": "By using event.preventDefault()"
+            },
+            {
+              "question": "What is a higher-order component in React?",
+              "options": ["A component that takes another component as an argument and returns a new component", "A component that renders only once", "A component that is rendered within another component", "A component that manages state"],
+              "answer": "A component that takes another component as an argument and returns a new component"
+            },
+            {
+              "question": "How do you pass functions as props in React?",
+              "options": ["By declaring the function in the parent and passing it to the child component", "By calling the function inside the child component", "By using this keyword", "By using React.Component methods"],
+              "answer": "By declaring the function in the parent and passing it to the child component"
+            },
+            {
+              "question": "How do you dynamically add classes to a React element?",
+              "options": ["By using classNames library", "By passing a dynamic string in className", "By using style attribute", "Both a and b"],
+              "answer": "Both a and b"
+            },
+            {
+              "question": "How do you fetch data from an API in React?",
+              "options": ["Using the fetch() API inside useEffect()", "Using the axios library inside componentDidMount()", "Using the fetch() API inside componentDidMount()", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "How do you handle conditional rendering in React?",
+              "options": ["Using if/else statements", "Using ternary operators or &&", "Using useState() hook", "Using useEffect() hook"],
+              "answer": "Using ternary operators or &&"
+            },
+            {
+              "question": "What is the default state of useState()?",
+              "options": ["null", "false", "undefined", "setState"],
+              "answer": "undefined"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What is the difference between useEffect() with an empty dependency array and one with specific dependencies?",
+              "options": ["An empty array runs once, dependencies run on specific changes", "They both run on every render", "An empty array runs on every render, dependencies run only on the first render", "They are identical"],
+              "answer": "An empty array runs once, dependencies run on specific changes"
+            },
+            {
+              "question": "How do you prevent a component from re-rendering in React?",
+              "options": ["By using shouldComponentUpdate() in class components", "By using React.memo() in functional components", "By using PureComponent in class components", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What does the useLayoutEffect() hook do in React?",
+              "options": ["It runs synchronously after all DOM mutations", "It runs asynchronously before rendering", "It fetches data before the component renders", "It does not exist in React"],
+              "answer": "It runs synchronously after all DOM mutations"
+            },
+            {
+              "question": "How do you pass data between sibling components in React?",
+              "options": ["Using context", "Using props via a common parent component", "Using Redux or other state management libraries", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of getDerivedStateFromProps() in React?",
+              "options": ["To update state based on props before every render", "To initialize state from props", "To avoid using componentDidUpdate()", "To fetch new props for a component"],
+              "answer": "To update state based on props before every render"
+            },
+            {
+              "question": "How does React handle event binding in class components?",
+              "options": ["By automatically binding event handlers to this", "By using bind() method", "By using handleEvent() method", "By binding events inside componentDidMount()"],
+              "answer": "By using bind() method"
+            },
+            {
+              "question": "How do you define a default prop in React?",
+              "options": ["By using defaultProps", "By using this.props.default", "By using props={default: value}", "By using useEffect()"],
+              "answer": "By using defaultProps"
+            },
+            {
+              "question": "What is contextType used for in React?",
+              "options": ["To consume context inside class components", "To provide context inside functional components", "To prevent context updates", "To manage global state"],
+              "answer": "To consume context inside class components"
+            },
+            {
+              "question": "What are \"render props\" in React?",
+              "options": ["A pattern for sharing code between components using a function that returns a component", "A pattern for managing component lifecycle", "A way of styling components", "A technique for passing state between components"],
+              "answer": "A pattern for sharing code between components using a function that returns a component"
+            },
+            {
+              "question": "How do you implement code splitting in React?",
+              "options": ["By using React.lazy() and Suspense", "By importing all components dynamically", "By using useEffect() with dynamic imports", "By using webpack configuration"],
+              "answer": "By using React.lazy() and Suspense"
+            },
+            {
+              "question": "How do you avoid prop drilling in React?",
+              "options": ["By using context API", "By using Redux", "By passing props through multiple components", "Both a and b"],
+              "answer": "Both a and b"
+            },
+            {
+              "question": "How do you manage global state in React without Redux?",
+              "options": ["By using React's context API", "By using useState() hook globally", "By passing state through props", "By using componentDidUpdate()"],
+              "answer": "By using React's context API"
+            },
+            {
+              "question": "How does React handle async rendering?",
+              "options": ["By using React.lazy()", "By using Suspense for async components", "By suspending rendering until data is fetched", "Both b and c"],
+              "answer": "Both b and c"
+            },
+            {
+              "question": "How do you create custom hooks in React?",
+              "options": ["By using useState() and useEffect() together in a function", "By using this.customHook() method", "By creating new React components", "By extending React.Component"],
+              "answer": "By using useState() and useEffect() together in a function"
+            },
+            {
+              "question": "What is the difference between componentWillUnmount() and useEffect() cleanup in React?",
+              "options": ["componentWillUnmount() is used in class components, while cleanup is used in useEffect()", "componentWillUnmount() is synchronous, while cleanup is asynchronous", "They are identical", "useEffect() cleanup is used only in functional components"],
+              "answer": "componentWillUnmount() is used in class components, while cleanup is used in useEffect()"
+            },
+            {
+              "question": "What does React.StrictMode do in React?",
+              "options": ["It highlights potential problems in the application without affecting the production build", "It prevents code from being minified", "It optimizes the rendering process", "It disables lifecycle methods"],
+              "answer": "It highlights potential problems in the application without affecting the production build"
+            },
+            {
+              "question": "How do you optimize performance in React?",
+              "options": ["By using React.memo() and PureComponent", "By lazy loading components with React.lazy()", "By minimizing re-renders and using memoization techniques", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of useImperativeHandle() in React?",
+              "options": ["To expose a component’s instance methods to its parent", "To pass props to a component", "To create a custom hook", "To avoid re-rendering"],
+              "answer": "To expose a component’s instance methods to its parent"
+            },
+            {
+              "question": "What is the difference between a \"function component\" and \"class component\" in React?",
+              "options": ["Function components are simpler and don’t require lifecycle methods", "Class components use hooks, while function components don’t", "Class components can’t have state", "Function components are less performant than class components"],
+              "answer": "Function components are simpler and don’t require lifecycle methods"
+            },
+            {
+              "question": "How do you handle errors in React using Error Boundaries?",
+              "options": ["By creating a class component that implements componentDidCatch()", "By using try-catch blocks around JSX", "By using useErrorBoundary() hook", "By wrapping the component in React.Fragment"],
+              "answer": "By creating a class component that implements componentDidCatch()"
+            }
+          ]
+        },
+        "testing": {
+          "easy": [
+            {
+              "question": "What is Jest primarily used for?",
+              "options": ["Styling web pages", "Testing JavaScript code", "Managing databases", "Building websites"],
+              "answer": "Testing JavaScript code"
+            },
+            {
+              "question": "Which command is used to run tests in Jest?",
+              "options": ["npm run test", "npm test", "jest run", "test run"],
+              "answer": "npm test"
+            },
+            {
+              "question": "What does Mocha help developers with?",
+              "options": ["Database management", "Writing JavaScript applications", "Running unit and integration tests", "Styling web applications"],
+              "answer": "Running unit and integration tests"
+            },
+            {
+              "question": "Which of the following is the correct way to describe a test case in Jest?",
+              "options": ["test('Description', () => {})", "describe('Description', () => {})", "assert('Description', () => {})", "check('Description', () => {})"],
+              "answer": "test('Description', () => {})"
+            },
+            {
+              "question": "What is a unit test?",
+              "options": ["Testing a database", "Testing the entire application", "Testing a single function or unit of code", "Testing user interfaces"],
+              "answer": "Testing a single function or unit of code"
+            },
+            {
+              "question": "Which function is used to make assertions in Jest tests?",
+              "options": ["assert()", "expect()", "verify()", "check()"],
+              "answer": "expect()"
+            },
+            {
+              "question": "In Mocha, which function is used to define a test?",
+              "options": ["test()", "expect()", "it()", "describe()"],
+              "answer": "it()"
+            },
+            {
+              "question": "How do you install Jest in a project?",
+              "options": ["npm install jest", "npm add jest", "npm install mocha", "npm install test"],
+              "answer": "npm install jest"
+            },
+            {
+              "question": "What is integration testing?",
+              "options": ["Testing individual components in isolation", "Testing the integration of multiple components", "Testing the style of a webpage", "Testing database performance"],
+              "answer": "Testing the integration of multiple components"
+            },
+            {
+              "question": "Which of the following is a common testing method for API endpoints?",
+              "options": ["Unit testing", "Smoke testing", "Integration testing", "End-to-end testing"],
+              "answer": "Integration testing"
+            },
+            {
+              "question": "In Jest, what is the function beforeEach() used for?",
+              "options": ["Setting up tests before each test runs", "Cleaning up after each test runs", "Skipping the current test", "Running the test multiple times"],
+              "answer": "Setting up tests before each test runs"
+            },
+            {
+              "question": "In Mocha, what is the function before() used for?",
+              "options": ["It runs once before all tests", "It runs after each test", "It runs before each test", "It runs after all tests"],
+              "answer": "It runs once before all tests"
+            },
+            {
+              "question": "What is the function describe() used for in Jest or Mocha?",
+              "options": ["To set up the testing environment", "To group related tests together", "To make assertions", "To clean up after tests"],
+              "answer": "To group related tests together"
+            },
+            {
+              "question": "How do you test asynchronous code in Jest?",
+              "options": ["Using done()", "Using await and async", "Using setTimeout()", "Using setInterval()"],
+              "answer": "Using await and async"
+            },
+            {
+              "question": "Which assertion is correct in Jest to check if a value equals another value?",
+              "options": ["expect(value).toEqual(value)", "expect(value).toBe(value)", "assert(value).equals(value)", "expect(value).equals(value)"],
+              "answer": "expect(value).toEqual(value)"
+            },
+            {
+              "question": "In Mocha, how do you handle asynchronous tests?",
+              "options": ["By using the async/await pattern", "By passing a done callback to the test function", "By returning a Promise", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "Which of the following is an example of a \"mock\" in Jest?",
+              "options": ["jest.fn()", "jest.spyOn()", "jest.mock()", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of afterEach() in Jest?",
+              "options": ["It runs once after each test case", "It runs before each test case", "It resets test data", "It initializes variables before tests"],
+              "answer": "It runs once after each test case"
+            },
+            {
+              "question": "What is the correct syntax to skip a test in Jest?",
+              "options": ["test.skip()", "it.skip()", "describe.skip()", "test.skip('description', () => {})"],
+              "answer": "test.skip('description', () => {})"
+            },
+            {
+              "question": "How can you test an error thrown by a function in Jest?",
+              "options": ["By using expect(function).toThrow()", "By using assert.error()", "By using it.raises()", "By using assert.throws()"],
+              "answer": "By using expect(function).toThrow()"
+            }
+          ],
+          "medium": [
+            {
+              "question": "What is the difference between unit tests and integration tests?",
+              "options": ["Unit tests check the entire system, while integration tests check individual units", "Unit tests check individual units of code, while integration tests check interactions between units", "Unit tests use mocks, while integration tests use real systems", "There is no difference between the two"],
+              "answer": "Unit tests check individual units of code, while integration tests check interactions between units"
+            },
+            {
+              "question": "How do you test a function that involves promises in Jest?",
+              "options": ["expect(asyncFunction).toBeResolved()", "expect(asyncFunction).toHaveReturned()", "expect(asyncFunction).resolves.toBe(value)", "expect(asyncFunction).toBePending()"],
+              "answer": "expect(asyncFunction).resolves.toBe(value)"
+            },
+            {
+              "question": "What is a \"spy\" in Jest?",
+              "options": ["A function that executes asynchronously", "A function used to replace an existing function with a mocked version", "A function that checks for errors", "A function used for data logging"],
+              "answer": "A function used to replace an existing function with a mocked version"
+            },
+            {
+              "question": "What is the done callback used for in Mocha?",
+              "options": ["To finish the test asynchronously", "To stop a test from running", "To declare the test as passed", "To simulate network requests"],
+              "answer": "To finish the test asynchronously"
+            },
+            {
+              "question": "What is the difference between expect().toBe() and expect().toEqual() in Jest?",
+              "options": ["toBe() checks strict equality, while toEqual() checks deep equality", "toEqual() checks strict equality, while toBe() checks deep equality", "There is no difference between the two", "toBe() is used for asynchronous tests"],
+              "answer": "toBe() checks strict equality, while toEqual() checks deep equality"
+            },
+            {
+              "question": "How do you mock a module in Jest?",
+              "options": ["jest.mock('module-name')", "jest.mockModule('module-name')", "mock('module-name')", "jest.importMock('module-name')"],
+              "answer": "jest.mock('module-name')"
+            },
+            {
+              "question": "What is the purpose of the assert module in Node.js testing?",
+              "options": ["To execute asynchronous tests", "To write a report for the tests", "To perform assertions for testing conditions", "To run the tests"],
+              "answer": "To perform assertions for testing conditions"
+            },
+            {
+              "question": "In Mocha, how do you run a specific test or test suite?",
+              "options": ["mocha path-to-test", "mocha test() {}", "mocha -run test", "mocha --only path-to-test"],
+              "answer": "mocha --only path-to-test"
+            },
+            {
+              "question": "How can you make sure that a mock function is called a certain number of times in Jest?",
+              "options": ["expect(mockFunction).toHaveBeenCalledTimes(3)", "expect(mockFunction).toHaveBeenCalledOnce()", "expect(mockFunction).toHaveTimes(3)", "expect(mockFunction).toHaveCallCount(3)"],
+              "answer": "expect(mockFunction).toHaveBeenCalledTimes(3)"
+            },
+            {
+              "question": "What is the syntax for testing HTTP requests using Jest and Supertest?",
+              "options": ["request(app).get('/path').expect(200)", "request('/path').get(app).expect(200)", "app.get('/path').request().expect(200)", "expect(request(app).get('/path')).toEqual(200)"],
+              "answer": "request(app).get('/path').expect(200)"
+            },
+            {
+              "question": "How do you handle exceptions in Jest tests?",
+              "options": ["expect(function).toThrowError()", "expect(function).toThrow()", "expect(function).toBeThrown()", "expect(function).toThrowException()"],
+              "answer": "expect(function).toThrow()"
+            },
+            {
+              "question": "In Jest, how do you test the value returned by a Promise?",
+              "options": ["expect(promise).resolves.toEqual(value)", "expect(promise).toEqual(value)", "expect(promise).resolves.equal(value)", "expect(promise).toResolve(value)"],
+              "answer": "expect(promise).resolves.toEqual(value)"
+            },
+            {
+              "question": "Which of the following testing types uses the actual components of a system working together?",
+              "options": ["Unit testing", "Integration testing", "Smoke testing", "Functional testing"],
+              "answer": "Integration testing"
+            },
+            {
+              "question": "How do you run tests on multiple conditions in Jest?",
+              "options": ["Using test.each()", "Using describe.each()", "Using test.parallel()", "Using runTests()"],
+              "answer": "Using test.each()"
+            },
+            {
+              "question": "In Mocha, which of these methods is used for defining a test suite?",
+              "options": ["describe()", "suite()", "it()", "testSuite()"],
+              "answer": "describe()"
+            },
+            {
+              "question": "What is the correct syntax to test async code with Jest using async/await?",
+              "options": ["expect(await asyncFunction()).resolves.toBe(value)", "expect(asyncFunction()).toBe(value)", "expect(asyncFunction).toResolve(value)", "expect(await asyncFunction).toEqual(value)"],
+              "answer": "expect(await asyncFunction()).resolves.toBe(value)"
+            },
+            {
+              "question": "What is the main difference between integration tests and functional tests?",
+              "options": ["Integration tests test entire systems, while functional tests test individual functions", "Integration tests test interaction between system components, while functional tests test a function's behavior", "Integration tests run on the server side, while functional tests run on the client side", "There is no difference"],
+              "answer": "Integration tests test interaction between system components, while functional tests test a function's behavior"
+            },
+            {
+              "question": "How do you perform assertions on a JSON response in Jest?",
+              "options": ["expect(response).toHaveJson(value)", "expect(response.json()).toEqual(value)", "expect(response).toEqualJson(value)", "expect(response).json(value)"],
+              "answer": "expect(response.json()).toEqual(value)"
+            },
+            {
+              "question": "How do you test that a function is not called in Jest?",
+              "options": ["expect(mockFunction).toHaveBeenCalled()", "expect(mockFunction).not.toHaveBeenCalled()", "expect(mockFunction).toNotHaveBeenCalled()", "expect(mockFunction).never.toHaveBeenCalled()"],
+              "answer": "expect(mockFunction).not.toHaveBeenCalled()"
+            },
+            {
+              "question": "What does the after() function do in Mocha?",
+              "options": ["It runs after each individual test", "It runs before each test", "It runs once after all tests in a suite have completed", "It runs after each test suite completes"],
+              "answer": "It runs once after all tests in a suite have completed"
+            }
+          ],
+          "hard": [
+            {
+              "question": "How do you test multiple assertions on the same mock function in Jest?",
+              "options": ["expect(mockFunction).toHaveBeenCalledTimes(2).toHaveBeenCalledWith(arg)", "expect(mockFunction).toCall(2).toCallWith(arg)", "expect(mockFunction).toHaveBeenCalledAtLeast(2).toHaveBeenCalledWith(arg)", "expect(mockFunction).toHaveTimes(2)"],
+              "answer": "expect(mockFunction).toHaveBeenCalledTimes(2).toHaveBeenCalledWith(arg)"
+            },
+            {
+              "question": "How can you handle time-dependent tests in Jest?",
+              "options": ["Using jest.runAllTimers()", "Using jest.advanceTimersByTime()", "Using jest.useFakeTimers()", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of jest.fn()?",
+              "options": ["To create a mock function", "To spy on function calls", "To replace a function with a mock version", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "How do you test the HTTP request and response in Mocha using Supertest?",
+              "options": ["request(app).get('/path').expect(200).then(response => {...})", "app.request().get('/path').expect(200).send(response => {...})", "request(app).post('/path').expect(200)", "request().expect(response).toHaveStatus(200)"],
+              "answer": "request(app).get('/path').expect(200).then(response => {...})"
+            },
+            {
+              "question": "In Jest, what does mockImplementationOnce() do?",
+              "options": ["Mocks a function only once with a specified implementation", "Mocks a function with multiple implementations", "Mocks a function forever", "Replaces a function's implementation completely"],
+              "answer": "Mocks a function only once with a specified implementation"
+            },
+            {
+              "question": "How can you simulate an HTTP request failure in Jest tests?",
+              "options": ["By using jest.mock() to simulate the failure", "By mocking an API with mockRejectedValue()", "By using throwError()", "By setting up a test that triggers a network error"],
+              "answer": "By mocking an API with mockRejectedValue()"
+            },
+            {
+              "question": "What is the purpose of using jest.clearAllMocks()?",
+              "options": ["To reset all mocks between tests", "To clear test results", "To stop mocking specific functions", "To remove all test files"],
+              "answer": "To reset all mocks between tests"
+            },
+            {
+              "question": "How do you define a custom matcher in Jest?",
+              "options": ["expect.extend({ toBeMock: () => {} })", "expect.custom({ toBeMock: () => {} })", "jest.defineCustomMatcher({ toBeMock: () => {} })", "expect.addMatcher({ toBeMock: () => {} })"],
+              "answer": "expect.extend({ toBeMock: () => {} })"
+            },
+            {
+              "question": "How do you handle a function that takes a callback in Mocha?",
+              "options": ["By using done callback to signal completion", "By using async/await pattern", "By returning a Promise", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the default test behavior when using jest --coverage?",
+              "options": ["It tests only code covered by tests", "It tests the entire codebase regardless of test coverage", "It skips over untested code", "It adds extra code for testing"],
+              "answer": "It tests the entire codebase regardless of test coverage"
+            },
+            {
+              "question": "How do you run tests asynchronously in Mocha?",
+              "options": ["By using Promises", "By passing a done callback", "By using async/await", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the difference between beforeEach() and before() in Mocha?",
+              "options": ["beforeEach() runs before each test case, while before() runs once before the test suite", "Both run before each test case", "beforeEach() runs after each test case, while before() runs once before the test suite", "There is no difference"],
+              "answer": "beforeEach() runs before each test case, while before() runs once before the test suite"
+            },
+            {
+              "question": "How can you skip a specific test in Jest?",
+              "options": ["test.skip('Description', () => {})", "test.ignore('Description', () => {})", "describe.skip('Description')", "skipTest('Description', () => {})"],
+              "answer": "test.skip('Description', () => {})"
+            },
+            {
+              "question": "What is the function of jest.resetAllMocks()?",
+              "options": ["To reset the implementation of all mocks", "To reset the state of all mocks to their initial values", "To reset all tests", "To mock all functions in the test"],
+              "answer": "To reset the state of all mocks to their initial values"
+            },
+            {
+              "question": "In Mocha, which function is used for cleaning up after tests?",
+              "options": ["afterEach()", "beforeEach()", "after()", "before()"],
+              "answer": "afterEach()"
+            },
+            {
+              "question": "How can you mock a specific module in Jest?",
+              "options": ["jest.mock('./moduleName')", "mock('./moduleName')", "jest.spyOn('./moduleName')", "jest.fake('./moduleName')"],
+              "answer": "jest.mock('./moduleName')"
+            },
+            {
+              "question": "What is the purpose of jest.clearAllTimers()?",
+              "options": ["To reset all mock timers", "To clear all test case results", "To stop any ongoing async operations", "To cancel test execution"],
+              "answer": "To reset all mock timers"
+            },
+            {
+              "question": "How do you handle performance testing with Jest?",
+              "options": ["Jest doesn't handle performance testing", "By using jest.runPerformanceTests()", "By using jest.measure()", "By setting up custom performance tests"],
+              "answer": "Jest doesn't handle performance testing"
+            },
+            {
+              "question": "How do you ensure a mock function is called with specific arguments in Jest?",
+              "options": ["expect(mockFunction).toHaveBeenCalledWith(arg1, arg2)", "expect(mockFunction).toCallWith(arg1, arg2)", "expect(mockFunction).toEqualWith(arg1, arg2)", "expect(mockFunction).toHaveArguments(arg1, arg2)"],
+              "answer": "expect(mockFunction).toHaveBeenCalledWith(arg1, arg2)"
+            },
+            {
+              "question": "How do you assert that a mock function was called after a specific time in Jest?",
+              "options": ["expect(mockFunction).toHaveBeenCalledAfter(time)", "expect(mockFunction).toHaveBeenCalledWithin(time)", "expect(mockFunction).toHaveBeenCalledTimesAtLeast(time)", "expect(mockFunction).toHaveBeenCalledTimesAfter(time)"],
+              "answer": "expect(mockFunction).toHaveBeenCalledWithin(time)"
+            }
+          ]
+        },
+        "express_nodejs": {
+          "easy": [
+            {
+              "question": "What is Node.js primarily used for?",
+              "options": ["Building databases", "Building interactive websites", "Running JavaScript on the server", "Running JavaScript in the browser"],
+              "answer": "Running JavaScript on the server"
+            },
+            {
+              "question": "What is Express.js?",
+              "options": ["A database management system", "A JavaScript runtime environment", "A web application framework for Node.js", "A CSS framework"],
+              "answer": "A web application framework for Node.js"
+            },
+            {
+              "question": "How do you install Express in a Node.js project?",
+              "options": ["npm install express", "npm add express", "npm express install", "node install express"],
+              "answer": "npm install express"
+            },
+            {
+              "question": "What is the default HTTP port that an Express app listens to?",
+              "options": ["8080", "3000", "5000", "8088"],
+              "answer": "3000"
+            },
+            {
+              "question": "In Express, which method is used to create a simple HTTP server?",
+              "options": ["app.listen()", "app.start()", "server.create()", "app.run()"],
+              "answer": "app.listen()"
+            },
+            {
+              "question": "Which of the following is a valid Express route?",
+              "options": ["app.get('/home', function(req, res) {...})", "app.home('/home', function(req, res) {...})", "app.route('/home', function(req, res) {...})", "app.create('/home', function(req, res) {...})"],
+              "answer": "app.get('/home', function(req, res) {...})"
+            },
+            {
+              "question": "What is req in Express?",
+              "options": ["The request object", "The response object", "The router object", "The middleware object"],
+              "answer": "The request object"
+            },
+            {
+              "question": "How do you handle HTTP POST requests in Express?",
+              "options": ["app.get()", "app.post()", "app.put()", "app.delete()"],
+              "answer": "app.post()"
+            },
+            {
+              "question": "How do you serve static files in Express?",
+              "options": ["app.use(express.static('public'))", "app.static('public')", "app.serve('public')", "app.set('static', 'public')"],
+              "answer": "app.use(express.static('public'))"
+            },
+            {
+              "question": "What is middleware in Express?",
+              "options": ["A function that handles HTTP requests", "A function that handles data storage", "A function that manages routes", "A function that runs before sending a response"],
+              "answer": "A function that handles HTTP requests"
+            },
+            {
+              "question": "In Express, which function is used to send a JSON response?",
+              "options": ["res.json()", "res.sendJSON()", "res.response()", "res.data()"],
+              "answer": "res.json()"
+            },
+            {
+              "question": "What is Node.js?",
+              "options": ["A database management system", "A web server", "A JavaScript runtime built on Chrome’s V8 engine", "A task automation tool"],
+              "answer": "A JavaScript runtime built on Chrome’s V8 engine"
+            },
+            {
+              "question": "How do you require a module in Node.js?",
+              "options": ["require('module')", "import module from 'module'", "include module", "load module()"],
+              "answer": "require('module')"
+            },
+            {
+              "question": "What is the role of package.json in Node.js?",
+              "options": ["To store database credentials", "To configure the Node.js runtime environment", "To define metadata about a project, including dependencies", "To store environment variables"],
+              "answer": "To define metadata about a project, including dependencies"
+            },
+            {
+              "question": "How do you install dependencies in a Node.js project?",
+              "options": ["npm add", "npm install", "node install", "npm fetch"],
+              "answer": "npm install"
+            },
+            {
+              "question": "Which Node.js module is used to work with the file system?",
+              "options": ["fs", "file", "directory", "storage"],
+              "answer": "fs"
+            },
+            {
+              "question": "What is a callback in Node.js?",
+              "options": ["A function that is executed asynchronously after a task is completed", "A function that handles database queries", "A function that starts the application", "A function that triggers events"],
+              "answer": "A function that is executed asynchronously after a task is completed"
+            },
+            {
+              "question": "How do you create an HTTP server in Node.js?",
+              "options": ["http.createServer()", "server.create()", "http.server()", "server.listen()"],
+              "answer": "http.createServer()"
+            },
+            {
+              "question": "Which of the following is used to parse incoming request bodies in Express?",
+              "options": ["express.bodyParser()", "express.json()", "express.urlencoded()", "express.requestParser()"],
+              "answer": "express.json()"
+            },
+            {
+              "question": "How do you define a route to handle a GET request in Express?",
+              "options": ["app.get('/path', function(req, res) {...})", "app.post('/path', function(req, res) {...})", "app.route('/path', function(req, res) {...})", "app.use('/path', function(req, res) {...})"],
+              "answer": "app.get('/path', function(req, res) {...})"
+            }
+          ],
+          "medium": [
+            {
+              "question": "What is the purpose of next() in Express middleware?",
+              "options": ["To continue to the next middleware or route handler", "To stop the current request", "To send a response to the client", "To restart the server"],
+              "answer": "To continue to the next middleware or route handler"
+            },
+            {
+              "question": "What does res.status(200) do in an Express route handler?",
+              "options": ["Sets the HTTP status code to 200 (OK)", "Sets the response content type", "Sets the response body", "Sends a JSON response"],
+              "answer": "Sets the HTTP status code to 200 (OK)"
+            },
+            {
+              "question": "What is the difference between app.get() and app.post() in Express?",
+              "options": ["app.get() is used for GET requests, app.post() is used for POST requests", "app.get() is used for server-side rendering, app.post() is for API calls", "app.get() handles data submission, app.post() handles data retrieval", "There is no difference"],
+              "answer": "app.get() is used for GET requests, app.post() is used for POST requests"
+            },
+            {
+              "question": "How do you define a route parameter in Express?",
+              "options": ["app.get('/user/:id', function(req, res) {...})", "app.get('/user{id}', function(req, res) {...})", "app.get('/user(/id)', function(req, res) {...})", "app.get('/user/*id', function(req, res) {...})"],
+              "answer": "app.get('/user/:id', function(req, res) {...})"
+            },
+            {
+              "question": "In Node.js, what is the require() function used for?",
+              "options": ["To define a new module", "To import a built-in or external module", "To invoke an external API", "To export a module"],
+              "answer": "To import a built-in or external module"
+            },
+            {
+              "question": "Which Node.js function is used to read a file asynchronously?",
+              "options": ["fs.readFile()", "fs.read()", "fs.openFile()", "fs.getFile()"],
+              "answer": "fs.readFile()"
+            },
+            {
+              "question": "How do you handle errors in Express middleware?",
+              "options": ["By passing the error to the next middleware with next(error)", "By throwing an error and stopping the server", "By logging the error only", "By returning an error message in the response"],
+              "answer": "By passing the error to the next middleware with next(error)"
+            },
+            {
+              "question": "How can you handle different HTTP methods on the same route in Express?",
+              "options": ["Use app.all()", "Use app.method()", "Use app.route()", "Use app.use()"],
+              "answer": "Use app.route()"
+            },
+            {
+              "question": "What is the role of the express.Router() in Express?",
+              "options": ["To define routes and handle requests", "To create a database connection", "To manage HTTP status codes", "To define global middleware"],
+              "answer": "To define routes and handle requests"
+            },
+            {
+              "question": "Which method is used to send data to a client using JSON in Express?",
+              "options": ["res.sendJSON()", "res.send()", "res.json()", "res.output()"],
+              "answer": "res.json()"
+            },
+            {
+              "question": "What is the purpose of the app.use() method in Express?",
+              "options": ["To define a middleware function for all routes", "To define a custom route handler", "To send a response to the client", "To parse incoming request bodies"],
+              "answer": "To define a middleware function for all routes"
+            },
+            {
+              "question": "How do you create a REST API in Express?",
+              "options": ["By defining routes and handling HTTP requests for specific resources", "By creating a database schema", "By generating static HTML pages", "By setting up authentication middleware"],
+              "answer": "By defining routes and handling HTTP requests for specific resources"
+            },
+            {
+              "question": "What is a promise in Node.js?",
+              "options": ["A callback function", "An object that represents the eventual completion or failure of an asynchronous operation", "A type of data structure", "A process for handling errors"],
+              "answer": "An object that represents the eventual completion or failure of an asynchronous operation"
+            },
+            {
+              "question": "How do you handle authentication in Express?",
+              "options": ["Using JSON Web Tokens (JWT)", "Using middleware functions", "Using sessions", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is express.json() used for in Express?",
+              "options": ["To parse JSON request bodies", "To send JSON data to the client", "To validate JSON schema", "To log incoming JSON data"],
+              "answer": "To parse JSON request bodies"
+            },
+            {
+              "question": "How do you handle query parameters in Express?",
+              "options": ["req.query", "req.body", "req.params", "req.headers"],
+              "answer": "req.query"
+            },
+            {
+              "question": "What is CORS, and why is it important in Node.js?",
+              "options": ["Cross-Origin Request Sharing, allows servers to specify who can access their resources", "Cross-Origin Request Service, helps in authentication", "Content Oriented Response System, helps in routing", "Centralized Origin Routing System, used for managing routes"],
+              "answer": "Cross-Origin Request Sharing, allows servers to specify who can access their resources"
+            },
+            {
+              "question": "What does app.set('view engine', 'ejs') do in an Express app?",
+              "options": ["Sets the template engine to EJS", "Sets the routing behavior", "Defines the database type", "Configures middleware"],
+              "answer": "Sets the template engine to EJS"
+            },
+            {
+              "question": "How do you handle URL-encoded data in Express?",
+              "options": ["express.urlencoded()", "express.bodyParser()", "express.json()", "express.dataParser()"],
+              "answer": "express.urlencoded()"
+            },
+            {
+              "question": "How do you set up a route that accepts both GET and POST methods in Express?",
+              "options": ["app.all('/path', ...)", "app.route('/path').get().post()", "app.any('/path', ...)", "app.use('/path', ...)"],
+              "answer": "app.route('/path').get().post()"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What is the purpose of app.param() in Express?",
+              "options": ["To define parameters for specific routes", "To handle route parameters in a middleware", "To extract query parameters", "To modify the request body"],
+              "answer": "To handle route parameters in a middleware"
+            },
+            {
+              "question": "What is the difference between req.body and req.query in Express?",
+              "options": ["req.body contains form data, req.query contains query parameters", "req.body contains JSON data, req.query contains cookies", "req.body is used for URL parameters, req.query is used for POST data", "There is no difference"],
+              "answer": "req.body contains form data, req.query contains query parameters"
+            },
+            {
+              "question": "How do you enable cookie parsing in Express?",
+              "options": ["app.use(cookieParser())", "app.use(cookieParse())", "app.use(parseCookies())", "app.use(parseCookieData())"],
+              "answer": "app.use(cookieParser())"
+            },
+            {
+              "question": "How do you integrate MongoDB with an Express application?",
+              "options": ["By using the mongoose library", "By using the mongodb module", "By writing raw SQL queries", "By setting up a NoSQL database server"],
+              "answer": "By using the mongoose library"
+            },
+            {
+              "question": "How can you prevent route hijacking in Express?",
+              "options": ["By using proper authorization and authentication middleware", "By restricting access to specific IP addresses", "By checking request methods", "By encoding all route parameters"],
+              "answer": "By using proper authorization and authentication middleware"
+            },
+            {
+              "question": "What is the role of cluster module in Node.js?",
+              "options": ["To create child processes for better CPU utilization", "To manage database connections", "To handle web server routing", "To parse incoming requests"],
+              "answer": "To create child processes for better CPU utilization"
+            },
+            {
+              "question": "What does the app.listen() method do in Express?",
+              "options": ["Starts the Express server and listens on a specific port", "Defines the route to handle HTTP requests", "Sets up middleware for all requests", "Handles static file serving"],
+              "answer": "Starts the Express server and listens on a specific port"
+            },
+            {
+              "question": "How do you handle rate limiting in Express?",
+              "options": ["By using third-party middleware like express-rate-limit", "By manually setting timeouts", "By using HTTP status codes", "By logging failed attempts"],
+              "answer": "By using third-party middleware like express-rate-limit"
+            },
+            {
+              "question": "How do you send an error response with status code 500 in Express?",
+              "options": ["res.status(500).send('Internal Server Error')", "res.sendError(500)", "res.error(500)", "res.status(500).json({ error: 'Internal Error' })"],
+              "answer": "res.status(500).send('Internal Server Error')"
+            },
+            {
+              "question": "How do you protect your Express app from SQL injection attacks?",
+              "options": ["By using parameterized queries with libraries like mongoose", "By encoding all inputs", "By using GET requests only", "By sanitizing all outputs"],
+              "answer": "By using parameterized queries with libraries like mongoose"
+            },
+            {
+              "question": "How do you handle file uploads in Express?",
+              "options": ["By using middleware like multer", "By writing custom file handling functions", "By using fs to handle uploads", "By sending files as base64 strings"],
+              "answer": "By using middleware like multer"
+            },
+            {
+              "question": "What is the purpose of async and await in Node.js/Express?",
+              "options": ["To handle asynchronous operations in a synchronous manner", "To make synchronous code asynchronous", "To handle HTTP requests asynchronously", "To parse query parameters"],
+              "answer": "To handle asynchronous operations in a synchronous manner"
+            },
+            {
+              "question": "How do you handle multiple sub-routes in an Express app?",
+              "options": ["By using express.Router()", "By creating separate Express instances", "By defining multiple app.use() calls", "By chaining route handlers"],
+              "answer": "By using express.Router()"
+            },
+            {
+              "question": "How do you prevent security vulnerabilities like Cross-Site Scripting (XSS) in Express?",
+              "options": ["By sanitizing user inputs", "By using HTTPS", "By limiting allowed request methods", "By logging all input"],
+              "answer": "By sanitizing user inputs"
+            },
+            {
+              "question": "What does mongoose.connect() do in an Express app?",
+              "options": ["Establishes a connection to a MongoDB database", "Creates a new database", "Configures the Express server", "Creates a new model schema"],
+              "answer": "Establishes a connection to a MongoDB database"
+            },
+            {
+              "question": "How do you configure error handling in Express?",
+              "options": ["By creating an error-handling middleware with next(err)", "By using a catch block", "By defining a global try/catch function", "By writing a custom error() function"],
+              "answer": "By creating an error-handling middleware with next(err)"
+            },
+            {
+              "question": "How do you integrate JWT authentication in an Express application?",
+              "options": ["By using the jsonwebtoken library to sign and verify tokens", "By using cookies for storing session information", "By defining user routes for login and registration", "By using the express-session middleware"],
+              "answer": "By using the jsonwebtoken library to sign and verify tokens"
+            },
+            {
+              "question": "How do you implement WebSockets in a Node.js application with Express?",
+              "options": ["By using the ws library", "By using socket.io", "By using HTTP Upgrade header", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "How do you implement caching in Express for API responses?",
+              "options": ["By using express-redis-cache or similar middleware", "By manually caching in memory", "By using the cache-control header", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "What is the purpose of app.set('env', 'production') in Express?",
+              "options": ["To set the application environment to production", "To configure production-level error handling", "To enable certain optimizations for production", "All of the above"],
+              "answer": "All of the above"
+            }
+          ]
+        },
+        "javascript_methods": {
+          "easy": [
+            {
+              "question": "What does the toUpperCase() method do in JavaScript?",
+              "options": ["Converts a string to lowercase", "Converts a string to uppercase", "Reverses the string", "Trims the string"],
+              "answer": "Converts a string to uppercase"
+            },
+            {
+              "question": "Which method is used to add one or more elements to the end of an array?",
+              "options": ["push()", "pop()", "shift()", "unshift()"],
+              "answer": "push()"
+            },
+            {
+              "question": "What does the indexOf() method do in JavaScript?",
+              "options": ["Searches for an element and returns its index", "Finds the last element of an array", "Adds a new element to the array", "Removes an element from the array"],
+              "answer": "Searches for an element and returns its index"
+            },
+            {
+              "question": "Which method is used to remove the first element of an array?",
+              "options": ["shift()", "unshift()", "push()", "pop()"],
+              "answer": "shift()"
+            },
+            {
+              "question": "What does the split() method do in JavaScript?",
+              "options": ["Joins an array into a string", "Splits a string into an array", "Converts an array into an object", "Converts a string to uppercase"],
+              "answer": "Splits a string into an array"
+            },
+            {
+              "question": "Which of the following methods is used to sort an array alphabetically?",
+              "options": ["sort()", "reverse()", "join()", "concat()"],
+              "answer": "sort()"
+            },
+            {
+              "question": "How do you create a new object in JavaScript?",
+              "options": ["let obj = new Object()", "let obj = {}", "let obj = Object.create()", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "Which method is used to find the length of a string in JavaScript?",
+              "options": ["string.length()", "string.size()", "string.length", "string.count()"],
+              "answer": "string.length"
+            },
+            {
+              "question": "How can you access the last element of an array in JavaScript?",
+              "options": ["arr[0]", "arr[arr.length - 1]", "arr[1]", "arr.end()"],
+              "answer": "arr[arr.length - 1]"
+            },
+            {
+              "question": "What does the concat() method do?",
+              "options": ["Combines two or more strings", "Merges two arrays", "Adds an element to the beginning of an array", "All of the above"],
+              "answer": "All of the above"
+            },
+            {
+              "question": "Which method can be used to determine if a string contains a certain substring?",
+              "options": ["contains()", "has()", "includes()", "find()"],
+              "answer": "includes()"
+            },
+            {
+              "question": "What does the join() method do in an array?",
+              "options": ["Joins two arrays together", "Joins all array elements into a string", "Removes the last array element", "Removes the first array element"],
+              "answer": "Joins all array elements into a string"
+            },
+            {
+              "question": "Which method is used to remove the last element of an array?",
+              "options": ["shift()", "pop()", "unshift()", "push()"],
+              "answer": "pop()"
+            },
+            {
+              "question": "How do you replace a character in a string in JavaScript?",
+              "options": ["replace()", "substring()", "slice()", "split()"],
+              "answer": "replace()"
+            },
+            {
+              "question": "What does the slice() method do on an array?",
+              "options": ["Adds an element to the array", "Returns a shallow copy of a portion of the array", "Merges two arrays", "Sorts the array in ascending order"],
+              "answer": "Returns a shallow copy of a portion of the array"
+            },
+            {
+              "question": "Which method is used to test whether a string matches a regular expression?",
+              "options": ["test()", "match()", "search()", "find()"],
+              "answer": "match()"
+            },
+            {
+              "question": "Which method is used to remove all white space from both ends of a string?",
+              "options": ["trim()", "replace()", "strip()", "clean()"],
+              "answer": "trim()"
+            },
+            {
+              "question": "How can you check if an element is an array in JavaScript?",
+              "options": ["Array.isArray()", "Array.check()", "isArray()", "array.is()"],
+              "answer": "Array.isArray()"
+            },
+            {
+              "question": "Which method is used to round a number to the nearest integer?",
+              "options": ["round()", "ceil()", "floor()", "parse()"],
+              "answer": "round()"
+            },
+            {
+              "question": "What is the correct way to convert a string to a number in JavaScript?",
+              "options": ["parseInt()", "toInt()", "parseNumber()", "convertToNumber()"],
+              "answer": "parseInt()"
+            }
+          ],
+          "medium": [
+            {
+              "question": "How do you check if an object has a property in JavaScript?",
+              "options": ["obj.hasOwnProperty()", "obj.isProperty()", "obj.propertyExists()", "obj.containsProperty()"],
+              "answer": "obj.hasOwnProperty()"
+            },
+            {
+              "question": "What does the map() method do in JavaScript?",
+              "options": ["Creates a new array with the results of calling a function for every element in the array", "Modifies the original array", "Filters elements from the array", "Adds elements to the array"],
+              "answer": "Creates a new array with the results of calling a function for every element in the array"
+            },
+            {
+              "question": "Which of the following methods removes empty elements from an array in JavaScript?",
+              "options": ["compact()", "filter()", "clear()", "flush()"],
+              "answer": "filter()"
+            },
+            {
+              "question": "What does the reduce() method do in JavaScript?",
+              "options": ["Reduces an array to a single value", "Filters out elements", "Adds elements to an array", "Finds the minimum element"],
+              "answer": "Reduces an array to a single value"
+            },
+            {
+              "question": "How do you check if a string starts with a specific substring?",
+              "options": ["startsWith()", "beginWith()", "containsStart()", "stringStart()"],
+              "answer": "startsWith()"
+            },
+            {
+              "question": "Which method can you use to find the index of a specific value in an array?",
+              "options": ["indexOf()", "searchIndex()", "findIndex()", "positionOf()"],
+              "answer": "findIndex()"
+            },
+            {
+              "question": "What does the filter() method do in JavaScript?",
+              "options": ["Returns a new array with elements that pass a test", "Sorts the array elements", "Finds the maximum value", "Reverses the array"],
+              "answer": "Returns a new array with elements that pass a test"
+            },
+            {
+              "question": "Which method can you use to convert a string into an array in JavaScript?",
+              "options": ["toArray()", "split()", "arrayify()", "toList()"],
+              "answer": "split()"
+            },
+            {
+              "question": "How do you check if a string ends with a specific substring in JavaScript?",
+              "options": ["endsWith()", "endsWithSubstring()", "stringEnds()", "matchEnd()"],
+              "answer": "endsWith()"
+            },
+            {
+              "question": "Which method is used to execute a function for each element in an array in JavaScript?",
+              "options": ["forEach()", "each()", "map()", "loop()"],
+              "answer": "forEach()"
+            },
+            {
+              "question": "What does the some() method do in JavaScript?",
+              "options": ["Tests whether at least one element in the array passes the provided test", "Iterates through every element", "Finds the first matching element", "Sorts the array elements"],
+              "answer": "Tests whether at least one element in the array passes the provided test"
+            },
+            {
+              "question": "Which method is used to remove elements from an array without changing the array’s length?",
+              "options": ["splice()", "shift()", "pop()", "slice()"],
+              "answer": "splice()"
+            },
+            {
+              "question": "What does the find() method do in JavaScript?",
+              "options": ["Finds the first element that matches a condition", "Searches the entire array", "Filters out elements", "Returns an array of matching elements"],
+              "answer": "Finds the first element that matches a condition"
+            },
+            {
+              "question": "How do you convert an array to a string in JavaScript?",
+              "options": ["array.toString()", "array.toStringify()", "array.convert()", "array.join()"],
+              "answer": "array.join()"
+            },
+            {
+              "question": "What does the every() method do in JavaScript?",
+              "options": ["Tests whether all elements in the array pass the provided test", "Finds the first element", "Iterates through every element", "Reduces the array"],
+              "answer": "Tests whether all elements in the array pass the provided test"
+            },
+            {
+              "question": "Which method is used to return the first element of an array that satisfies a given condition?",
+              "options": ["find()", "first()", "search()", "get()"],
+              "answer": "find()"
+            },
+            {
+              "question": "How do you create a shallow copy of an array in JavaScript?",
+              "options": ["Array.slice()", "Array.copy()", "Array.clone()", "Array.duplicate()"],
+              "answer": "Array.slice()"
+            },
+            {
+              "question": "What does the flat() method do in JavaScript?",
+              "options": ["Flattens an array to a specified depth", "Merges two arrays into one", "Filters an array", "Removes duplicate values from an array"],
+              "answer": "Flattens an array to a specified depth"
+            },
+            {
+              "question": "How can you check if a variable is an array in JavaScript?",
+              "options": ["Array.isArray()", "Array.isObject()", "Object.isArray()", "arrayCheck()"],
+              "answer": "Array.isArray()"
+            },
+            {
+              "question": "What does the toLocaleString() method do?",
+              "options": ["Returns a localized string representation of an object", "Converts an object to a string", "Formats an object", "Changes the string's locale"],
+              "answer": "Returns a localized string representation of an object"
+            }
+          ],
+          "hard": [
+            {
+              "question": "What does the Object.keys() method return?",
+              "options": ["The keys of an object as an array", "The values of an object", "A string representation of the object", "An array of the object’s methods"],
+              "answer": "The keys of an object as an array"
+            },
+            {
+              "question": "What does the Object.assign() method do in JavaScript?",
+              "options": ["Copies all enumerable own properties from one or more source objects to a target object", "Creates a new object", "Sets default values to an object", "Merges two objects into a new object"],
+              "answer": "Copies all enumerable own properties from one or more source objects to a target object"
+            },
+            {
+              "question": "How do you access the prototype of an object in JavaScript?",
+              "options": ["Object.getPrototypeOf()", "Object.prototype()", "Object.prototypeOf()", "object.getPrototype()"],
+              "answer": "Object.getPrototypeOf()"
+            },
+            {
+              "question": "Which method is used to freeze an object, preventing modification of its properties?",
+              "options": ["Object.freeze()", "Object.lock()", "Object.prevent()", "Object.seal()"],
+              "answer": "Object.freeze()"
+            },
+            {
+              "question": "What does the call() method do in JavaScript?",
+              "options": ["Invokes a function with a specified this value and arguments", "Calls a function asynchronously", "Registers a function as a callback", "Executes a function at a later time"],
+              "answer": "Invokes a function with a specified this value and arguments"
+            },
+            {
+              "question": "What is the purpose of Array.from()?",
+              "options": ["Converts an array-like object to an array", "Creates a new array with specified elements", "Converts an array into a string", "Converts a string into an array"],
+              "answer": "Converts an array-like object to an array"
+            },
+            {
+              "question": "What does Function.prototype.bind() do in JavaScript?",
+              "options": ["Returns a new function that is bound to a specific this context", "Binds an object to the function", "Reverses a function’s arguments", "Wraps a function in a promise"],
+              "answer": "Returns a new function that is bound to a specific this context"
+            },
+            {
+              "question": "How do you define a method on an object in JavaScript?",
+              "options": ["object.method = function() {}", "object: method() {}", "object.method() {}", "object.method => {}"],
+              "answer": "object.method = function() {}"
+            },
+            {
+              "question": "How can you convert a number to a string in JavaScript?",
+              "options": ["String()", "toString()", "parseString()", "toStr()"],
+              "answer": "toString()"
+            },
+            {
+              "question": "How do you check if an object is empty in JavaScript?",
+              "options": ["Object.keys(obj).length === 0", "obj.isEmpty()", "Object.isEmpty(obj)", "Object.hasOwn(obj)"],
+              "answer": "Object.keys(obj).length === 0"
+            },
+            {
+              "question": "What is the purpose of the new keyword in JavaScript?",
+              "options": ["Creates a new instance of a class or constructor function", "Declares a new variable", "Creates a new object from a prototype", "Instantiates an array"],
+              "answer": "Creates a new instance of a class or constructor function"
+            },
+            {
+              "question": "What does the reduceRight() method do in JavaScript?",
+              "options": ["Reduces an array from right to left", "Iterates through an array from right to left", "Filters out elements from right to left", "Sorts an array in reverse order"],
+              "answer": "Reduces an array from right to left"
+            },
+            {
+              "question": "How do you get the property descriptor of an object in JavaScript?",
+              "options": ["Object.getOwnPropertyDescriptor()", "Object.getProperty()", "Object.getPropertyDescriptor()", "Object.propertyDescriptor()"],
+              "answer": "Object.getOwnPropertyDescriptor()"
+            },
+            {
+              "question": "What does the setInterval() method do?",
+              "options": ["Repeatedly calls a function with a fixed time delay between each call", "Sets a one-time delay for a function", "Calls a function asynchronously", "Executes a function only once after a delay"],
+              "answer": "Repeatedly calls a function with a fixed time delay between each call"
+            },
+            {
+              "question": "What is the difference between map() and forEach() in JavaScript?",
+              "options": ["map() returns a new array, while forEach() does not", "map() modifies the original array", "forEach() creates a new array", "There is no difference"],
+              "answer": "map() returns a new array, while forEach() does not"
+            },
+            {
+              "question": "What does Object.getOwnPropertyNames() return?",
+              "options": ["All the property names of an object", "All the method names of an object", "All the values of an object", "The prototype of an object"],
+              "answer": "All the property names of an object"
+            },
+            {
+              "question": "How do you remove a property from an object in JavaScript?",
+              "options": ["delete obj.propertyName", "obj.remove(propertyName)", "obj.removeProperty()", "obj.delete(propertyName)"],
+              "answer": "delete obj.propertyName"
+            },
+            {
+              "question": "What does String.prototype.substring() do in JavaScript?",
+              "options": ["Returns a portion of a string between two specified indices", "Converts a string into an array", "Trims white space from a string", "Joins two strings together"],
+              "answer": "Returns a portion of a string between two specified indices"
+            },
+            {
+              "question": "What is the purpose of setTimeout() in JavaScript?",
+              "options": ["Executes a function after a specified delay", "Executes a function repeatedly", "Calls a function asynchronously", "Sets a timeout for a function"],
+              "answer": "Executes a function after a specified delay"
+            },
+            {
+              "question": "How do you sort an array of numbers in descending order in JavaScript?",
+              "options": ["arr.sort((a, b) => b - a)", "arr.reverse()", "arr.sort((a, b) => a - b)", "arr.orderByDesc()"],
+              "answer": "arr.sort((a, b) => b - a)"
+            }
+          ]
+        }
+      }
+    }
+  }
