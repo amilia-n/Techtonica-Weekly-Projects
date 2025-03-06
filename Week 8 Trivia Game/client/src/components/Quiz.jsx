@@ -17,5 +17,51 @@ const Quiz = () => {
   const [timerId, setTimerId] = useState(null);
   const [totalQuestions, setTotalQuestions] = useState(0);
 
+  const fetchQuestions = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`http://localhost:3000/api/questions?difficulty=${difficulty}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch questions');
+      }
+      const data = await response.json();
+      setQuestions(data);
+      setTotalQuestions(data.length);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  const startGame = () => {
+    setGameStarted(true);
+    fetchQuestions();
+  };
+
+  return (
+    <div className="quiz-container">
+      {!gameStarted ? (
+        <div className="start-screen">
+          <h1>Welcome to the Quiz Game!</h1>
+          <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button onClick={startGame}>Start Quiz</button>
+        </div>
+      ) : loading ? (
+        <div>Loading questions...</div>
+      ) : error ? (
+        <div>Error: {error}</div>
+      ) : (
+        <div>
+          {/* ... existing JSX ... */}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Quiz; 
