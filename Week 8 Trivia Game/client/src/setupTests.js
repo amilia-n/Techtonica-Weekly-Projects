@@ -1,4 +1,14 @@
 import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
+import fetch, { Response, Request, Headers } from 'node-fetch';
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+global.fetch = fetch;
+global.Response = Response;
+global.Request = Request;
+global.Headers = Headers;
+
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { cleanup } from '@testing-library/react';
