@@ -1,4 +1,4 @@
-# Trivia Game
+# Ami's Trivia Game
 
 A modern web-based trivia game built with React and Node.js that lets you test your knowledge across various categories.
 
@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
+git clone https://github.com/amilia-n/Techtonica-Weekly-Projects.git
 cd Week\ 8\ Trivia\ Game
 ```
 
@@ -56,13 +56,15 @@ npm install
 
 ## Running the Application
 
-1. Start the server (from the server directory):
+1. Start the server in a terminal:
 ```bash
+cd server
 npm start
 ```
 
-2. In a new terminal, start the client (from the client directory):
+2. In a new terminal, start the client:
 ```bash
+cd client
 npm run dev
 ```
 
@@ -73,16 +75,6 @@ The application should now be running at `http://localhost:5173`
 To run tests (in the client directory):
 ```bash
 npm test
-```
-
-To run tests in watch mode:
-```bash
-npm run test:watch
-```
-
-To generate test coverage report:
-```bash
-npm run test:coverage
 ```
 
 ## How to Play
@@ -107,7 +99,7 @@ npm run test:coverage
 
 - Frontend: React, Vite
 - Backend: Node.js, Express
-- Testing: Jest, React Testing Library, MSW
+- Testing: Jest, React Testing Library
 - API: Open Trivia Database (OpenTDB)
 
 ## Contributing
