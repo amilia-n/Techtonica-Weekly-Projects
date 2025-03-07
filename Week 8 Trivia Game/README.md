@@ -10,6 +10,24 @@ A modern web-based trivia game built with React and Node.js that lets you test y
 - Real-time scoring
 - Interactive user interface
 
+## Game Screenshots
+
+### Starting Screen
+![Start Screen](client/src/components/asset/start.png)
+
+### Category Selection
+![Category Selection](client/src/components/asset/selection.png)
+
+### Question Types
+Multiple Choice Questions            |  True/False Questions
+:-------------------------:|:-------------------------:
+![Multiple Choice](client/src/components/asset/multiplechoice.png)  |  ![True/False](client/src/components/asset/truefalse.png)
+
+### Game Results
+Win Screen (≥65% correct)            |  Lose Screen (<65% correct)
+:-------------------------:|:-------------------------:
+![Win Screen](client/src/components/asset/win.png)  |  ![Lose Screen](client/src/components/asset/lose.png)
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -81,8 +99,8 @@ npm run test:coverage
    - Track your score as you progress
 
 3. **Game End**
-   - View your final score
-   - See which questions you answered correctly and incorrectly
+   - Win condition: Score 65% or higher of total questions
+   - Lose condition: Score below 65% of total questions
    - Option to start a new game with different settings
 
 ## Technologies Used
