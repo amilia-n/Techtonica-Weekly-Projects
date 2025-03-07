@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
+/**
+ * Utility function to decode HTML entities in text received from OpenTDB API
+ * OpenTDB returns questions and answers with HTML entities (e.g., &quot;, &amp;)
+ * This function converts them to their actual characters
+ */
 function decodeHTMLEntities(text) {
   const textarea = document.createElement('textarea');
   textarea.innerHTML = text;
@@ -73,6 +78,30 @@ const Question = ({ question, options, correctAnswer, onAnswer }) => {
   );
 };
 
+/**
+ * QuizPage Component - Handles the main quiz logic and API integration
+ * 
+ * OpenTDB API Integration:
+ * - Uses category 31 for Japanese Anime & Manga questions
+ * - Supports both multiple choice and boolean (true/false) questions
+ * - Implements session token to prevent duplicate questions
+ * - Handles rate limiting with automatic retries
+ * 
+ * API Response Codes:
+ * 0: Success
+ * 1: No Results
+ * 2: Invalid Parameter
+ * 3: Token Not Found
+ * 4: Token Empty (all questions for token have been used)
+ * 5: Rate Limit Exceeded
+ * 
+ * @param {Object} props
+ * @param {Array} props.selectedTopics - Array of selected question categories
+ * @param {string} props.questionCount - Number of questions to fetch
+ * @param {string} props.difficulty - Difficulty level (easy, medium, hard)
+ * @param {string} props.questionType - Question type (multiple choice or true/false)
+ * @param {Function} props.onReturnToStart - Callback to return to start screen
+ */
 function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onReturnToStart }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]); 
@@ -84,6 +113,11 @@ function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onR
   const [sessionToken, setSessionToken] = useState(null);
   const [lastFetchTime, setLastFetchTime] = useState(0);
 
+  /**
+   * Fetches a session token from OpenTDB API
+   * Session tokens help prevent duplicate questions and manage rate limiting
+   * Tokens expire after 6 hours of non-use
+   */
   const getSessionToken = async () => {
     try {
       const response = await fetch('https://opentdb.com/api_token.php?command=request');
@@ -98,6 +132,20 @@ function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onR
     }
   };
 
+  /**
+   * Main question fetching logic
+   * Handles both OpenTDB API for Japanese Anime and local API for other topics
+   * Implements rate limiting protection and automatic retries
+   * 
+   * OpenTDB API URL format:
+   * https://opentdb.com/api.php?amount=X&category=31&type=Y&token=Z
+   * where:
+   * - X is the number of questions
+   * - Y is either 'multiple' or 'boolean'
+   * - Z is the optional session token
+   * 
+   * @param {number} retryCount - Number of retry attempts made
+   */
   const fetchQuestions = async (retryCount = 0) => {
     try {
       console.log('Fetching questions...');
