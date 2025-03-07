@@ -13,10 +13,10 @@ A modern web-based trivia game built with React and Node.js that lets you test y
 ## Game Screenshots
 
 ### Starting Screen
-![Start Screen](client/src/components/asset/start.png)
+<img src="client/src/components/asset/start.png" width="600" alt="Start Screen">
 
 ### Category Selection
-![Category Selection](client/src/components/asset/selection.png)
+<img src="client/src/components/asset/selection.png" width="600" alt="Category Selection">
 
 ### Question Types
 Multiple Choice Questions            |  True/False Questions
