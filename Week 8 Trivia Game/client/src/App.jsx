@@ -1,14 +1,26 @@
+/**
+ * Main App Component
+ * Handles the game setup and configuration interface
+ * Manages topic selection, difficulty, and question type
+ */
+
 import React, { useState } from 'react';
 import './App.css';
 import QuizPage from './components/QuizPage';
 
 function App() {
+  // Game configuration state
   const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [questionCount, setQuestionCount] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
 
+  /**
+   * Handles topic selection/deselection
+   * Toggles topic in the selectedTopics array
+   * topic: The topic to toggle
+   */
   const handleTopicSelect = (topic) => {
     setSelectedTopics(prevTopics => {
       if (prevTopics.includes(topic)) {
@@ -19,14 +31,29 @@ function App() {
     });
   };
 
+  /**
+   * Handles difficulty level selection
+   * Toggles between difficulty levels or deselects if same difficulty clicked
+   * @param {string} difficulty - The difficulty level to set
+   */
   const handleDifficultySelect = (difficulty) => {
     setSelectedDifficulty(difficulty === selectedDifficulty ? null : difficulty);
   };
 
+  /**
+   * Handles question type selection
+   * Toggles between question types or deselects if same type clicked
+   * type (str): The question type to set
+   */
   const handleTypeSelect = (type) => {
     setSelectedType(type === selectedType ? null : type);
   };
 
+  /**
+   * Validates and processes question count input
+   * Ensures count is between 1 and 50
+   * e: Input change event
+   */
   const handleQuestionCountChange = (e) => {
     const value = e.target.value;
     if (value === '' || (Number(value) >= 1 && Number(value) <= 50)) {
@@ -34,6 +61,10 @@ function App() {
     }
   };
 
+  /**
+   * Validates game configuration and starts the quiz
+   * Ensures all required options are selected
+   */
   const handleStartQuiz = () => {
     if (selectedTopics.length > 0 && selectedDifficulty && selectedType && questionCount) {
       setIsQuizStarted(true);
@@ -42,6 +73,10 @@ function App() {
     }
   };
 
+  /**
+   * Resets game configuration to initial state
+   * Called when returning to start screen
+   */
   const handleReturnToStart = () => {
     setIsQuizStarted(false);
     setSelectedTopics([]);
@@ -50,6 +85,7 @@ function App() {
     setSelectedType(null);
   };
 
+  // Render quiz page if game is started
   if (isQuizStarted) {
     return (
       <QuizPage
@@ -62,13 +98,14 @@ function App() {
     );
   }
 
+  // Render game setup interface
   return (
     <div className="app">
       <div className="main-box">
         <h1 className="title">Super Fun Trivia Game</h1>
         <h3 className="header">Select your categories:</h3>
         
-        {/* First row of topic buttons */}
+        {/* Topic selection buttons - first row */}
         <div className="button-row">
           <button 
             className={`topic-button ${selectedTopics.includes('JavaScript') ? 'selected' : ''}`}
@@ -90,7 +127,7 @@ function App() {
           </button>
         </div>
 
-        {/* Second row of topic buttons */}
+        {/* Topic selection buttons - second row */}
         <div className="button-row">
           <button 
             className={`topic-button ${selectedTopics.includes('React') ? 'selected' : ''}`}
@@ -112,7 +149,7 @@ function App() {
           </button>
         </div>
 
-        {/* Japanese Anime button */}
+        {/* Special category button */}
         <button 
           className={`single-button ${selectedTopics.includes('Japanese Anime') ? 'selected' : ''}`}
           onClick={() => handleTopicSelect('Japanese Anime')}
@@ -120,7 +157,7 @@ function App() {
           Japanese Anime
         </button>
 
-        {/* Number of questions input */}
+        {/* Question count input */}
         <div className="input-container">
           <label htmlFor="questions">Number of Questions:</label>
           <input 
@@ -134,7 +171,7 @@ function App() {
           />
         </div>
 
-        {/* Difficulty buttons */}
+        {/* Difficulty selection buttons */}
         <div className="button-row">
           <button 
             className={`topic-button ${selectedDifficulty === 'Easy' ? 'selected' : ''}`}
@@ -156,7 +193,7 @@ function App() {
           </button>
         </div>
 
-        {/* Question type buttons */}
+        {/* Question type selection */}
         <div className="button-row">
           <button 
             className={`topic-button ${selectedType === 'Multiple Choice' ? 'selected' : ''}`}
@@ -172,7 +209,7 @@ function App() {
           </button>
         </div>
 
-        {/* Start quiz button */}
+        {/* Start game button */}
         <button 
           className="start-button"
           onClick={handleStartQuiz}

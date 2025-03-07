@@ -1,10 +1,17 @@
+/**
+ * QuizPage Component
+ * Handles the main quiz game logic:
+ * - Question fetching and display
+ * - Answer processing
+ * - Score tracking
+ * - Game completion
+ */
+
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 
 /**
- * Utility function to decode HTML entities in text received from OpenTDB API
- * OpenTDB returns questions and answers with HTML entities (e.g., &quot;, &amp;)
- * This function converts them to their actual characters
+ * ensures that all text is displayed properly
  */
 function decodeHTMLEntities(text) {
   const textarea = document.createElement('textarea');
@@ -12,25 +19,47 @@ function decodeHTMLEntities(text) {
   return textarea.value;
 }
 
+/**
+ * Question Component
+ * Displays individual questions and handles answer selection
+ * Object: props
+ * string: props.question - The question text
+ * Array: props.options - Array of possible answers
+ * string: props.correctAnswer - The correct answer
+ * Function: props.onAnswer - Callback for answer selection
+ */
 const Question = ({ question, options, correctAnswer, onAnswer }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
+  /**
+   * Processes answer selection and triggers feedback
+   * option string - Selected answer option
+   */
   const handleOptionClick = (option) => {
     if (showResult) return;
     
     setSelectedAnswer(option);
     setShowResult(true);
     
+    // Delay to show feedback before moving to next question
     setTimeout(() => {
       onAnswer(option === correctAnswer);
     }, 1000);
   };
 
+  /**
+   * Generates option label (A, B, C, D)
+   * index - Option index
+   * returns Option label str
+   */
   const getOptionLabel = (index) => {
     return String.fromCharCode(65 + index) + ')';
   };
 
+  /*
+  Determines CSS class for answer options
+   */
   const getOptionClass = (option) => {
     if (!showResult) {
       return selectedAnswer === option ? 'selected' : '';
@@ -47,12 +76,12 @@ const Question = ({ question, options, correctAnswer, onAnswer }) => {
     return '';
   };
 
-  // Extract just the question part from the full text
+  // Extract question text from full text
   const questionText = question.split('\n').find(line => line.startsWith('Question:'))?.split(':')[1]?.trim() || question;
 
   return (
     <div className="question-container">
-      <div className="question-text">
+      <div className="question-text" style={{ whiteSpace: 'pre-line' }}>
         {questionText}
       </div>
       <div className="options-container">
@@ -79,30 +108,15 @@ const Question = ({ question, options, correctAnswer, onAnswer }) => {
 };
 
 /**
- * QuizPage Component - Handles the main quiz logic and API integration
- * 
- * OpenTDB API Integration:
- * - Uses category 31 for Japanese Anime & Manga questions
- * - Supports both multiple choice and boolean (true/false) questions
- * - Implements session token to prevent duplicate questions
- * - Handles rate limiting with automatic retries
- * 
- * API Response Codes:
- * 0: Success
- * 1: No Results
- * 2: Invalid Parameter
- * 3: Token Not Found
- * 4: Token Empty (all questions for token have been used)
- * 5: Rate Limit Exceeded
- * 
- * @param {Object} props
- * @param {Array} props.selectedTopics - Array of selected question categories
- * @param {string} props.questionCount - Number of questions to fetch
- * @param {string} props.difficulty - Difficulty level (easy, medium, hard)
- * @param {string} props.questionType - Question type (multiple choice or true/false)
- * @param {Function} props.onReturnToStart - Callback to return to start screen
+ * QuizPage Component
+ * Main quiz game component that manages:
+ * - Question fetching from API
+ * - Game state and progression
+ * - Score tracking
+ * - Game completion
  */
 function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onReturnToStart }) {
+  // Game state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]); 
   const [score, setScore] = useState(0);
@@ -114,9 +128,8 @@ function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onR
   const [lastFetchTime, setLastFetchTime] = useState(0);
 
   /**
-   * Fetches a session token from OpenTDB API
-   * Session tokens help prevent duplicate questions and manage rate limiting
-   * Tokens expire after 6 hours of non-use
+   * Fetches session token from OpenTDB API
+   * Used to prevent duplicate questions
    */
   const getSessionToken = async () => {
     try {
@@ -134,17 +147,9 @@ function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onR
 
   /**
    * Main question fetching logic
-   * Handles both OpenTDB API for Japanese Anime and local API for other topics
-   * Implements rate limiting protection and automatic retries
-   * 
-   * OpenTDB API URL format:
-   * https://opentdb.com/api.php?amount=X&category=31&type=Y&token=Z
-   * where:
-   * - X is the number of questions
-   * - Y is either 'multiple' or 'boolean'
-   * - Z is the optional session token
-   * 
-   * @param {number} retryCount - Number of retry attempts made
+   * Handles both local and OpenTDB API requests
+   * Implements rate limiting and retry logic
+   * retryCount - Number of retry attempts
    */
   const fetchQuestions = async (retryCount = 0) => {
     try {
@@ -161,7 +166,7 @@ function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onR
       
       // Special handling for Japanese Anime topic
       if (selectedTopics.includes('Japanese Anime')) {
-        // Rate limiting: Wait at least 5 seconds between requests
+        // Wait at least 5 seconds between requests
         const now = Date.now();
         const timeSinceLastFetch = now - lastFetchTime;
         if (timeSinceLastFetch < 5000) {
