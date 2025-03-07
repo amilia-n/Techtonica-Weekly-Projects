@@ -1,0 +1,15 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFE4E1; 
+}
+
+.transparent-box {
+  width: 500px;
+  height: 700px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+} 

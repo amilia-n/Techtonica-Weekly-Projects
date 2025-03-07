@@ -37,7 +37,7 @@ const Quiz = () => {
     setSelectedCategories(newSelected);
   };
 
-  const fetchQuestions = async () => {
+  const fetchQuestions = async (retryCount = 0) => {
     try {
       console.log('Fetching questions...');
       setLoading(true);
@@ -53,7 +53,14 @@ const Quiz = () => {
 
       console.log('Fetching from URL:', url.toString());
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+      
       console.log('Response status:', response.status);
       
       if (!response.ok) {
@@ -74,7 +81,18 @@ const Quiz = () => {
       setLoading(false);
     } catch (err) {
       console.error('Error fetching questions:', err);
-      setError(err.message);
+      
+      // If it's a connection error and we haven't retried too many times
+      if (err.message === 'Failed to fetch' && retryCount < 3) {
+        console.log(`Retrying... Attempt ${retryCount + 1}`);
+        setTimeout(() => fetchQuestions(retryCount + 1), 1000);
+        return;
+      }
+      
+      setError(err.message === 'Failed to fetch' 
+        ? 'Unable to connect to the server. Please make sure the server is running and try again.' 
+        : err.message
+      );
       setLoading(false);
       setGameStarted(false);
     }
@@ -106,13 +124,14 @@ const Quiz = () => {
       setScore(score + 1);
     }
 
+    // Wait for the feedback animation to complete before moving to next question
     setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        setCurrentQuestionIndex(prevIndex => prevIndex + 1);
       } else {
         setGameFinished(true);
       }
-    }, 1500);
+    }, 1000); // Match this with the delay in Question component
   };
 
   const resetGame = () => {
@@ -209,27 +228,54 @@ const Quiz = () => {
         gameFinished ? (
           <div className="game-finished">
             <h2>Game Over!</h2>
-            <p>Your Score: {score}/{questions.length}</p>
+            <div className="final-score">
+              <p>Your Score: {score}/{questions.length}</p>
+              <p className="score-percentage">
+                ({Math.round((score / questions.length) * 100)}%)
+              </p>
+            </div>
             <button onClick={resetGame}>Play Again</button>
           </div>
         ) : (
           <div className="game-screen">
             <div className="question-card">
-              <div className="progress">
-                Question {currentQuestionIndex + 1} of {questions.length}
+              <div className="progress-bar">
+                <div 
+                  className="progress-fill"
+                  style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+                />
               </div>
-              <div className="score">
-                Score: {score}
+              <div className="game-header">
+                <div className="progress">
+                  Question {currentQuestionIndex + 1} of {questions.length}
+                </div>
+                <div className="score">
+                  Score: {score}
+                </div>
               </div>
-              <Question
-                question={questions[currentQuestionIndex].question}
-                options={questionType === 'boolean' ? ['True', 'False'] : questions[currentQuestionIndex].options}
-                correctAnswer={questionType === 'boolean' ? 
-                  questions[currentQuestionIndex].answer === 'True' ? 'True' : 'False' :
-                  questions[currentQuestionIndex].answer}
-                onAnswer={handleAnswer}
-                questionType={questionType}
-              />
+              {(() => {
+                if (questionType === 'boolean') {
+                  return (
+                    <Question
+                      key={currentQuestionIndex}
+                      question={`Question: ${questions[currentQuestionIndex].question}`}
+                      options={['True', 'False']}
+                      correctAnswer={questions[currentQuestionIndex].answer}
+                      onAnswer={handleAnswer}
+                    />
+                  );
+                } else {
+                  return (
+                    <Question
+                      key={currentQuestionIndex}
+                      question={questions[currentQuestionIndex].question}
+                      options={questions[currentQuestionIndex].options}
+                      correctAnswer={questions[currentQuestionIndex].answer}
+                      onAnswer={handleAnswer}
+                    />
+                  );
+                }
+              })()}
             </div>
           </div>
         )

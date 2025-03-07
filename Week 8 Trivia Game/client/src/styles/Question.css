@@ -1,62 +1,107 @@
 .question-container {
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  padding: 20px;
+  align-items: center;
 }
 
 .question-text {
-  font-size: 1.2em;
-  color: white;
+  width: 100%;
+  font-size: 1.4em;
+  color: #000000;
   text-align: center;
-  margin-bottom: 20px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .options-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .option-button {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  background: transparent;
-  color: white;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: left;
+  font-size: 1.1em;
 }
 
 .option-button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 1);
+  transform: translateX(10px);
 }
 
 .option-button.selected {
-  background: rgba(107, 70, 193, 0.3);
-  border-color: #6b46c1;
+  background: rgba(107, 70, 193, 0.9);
 }
 
 .option-button.correct {
-  background: rgba(72, 187, 120, 0.2);
-  border-color: #48bb78;
+  background: rgba(72, 187, 120, 0.9);
 }
 
 .option-button.incorrect {
-  background: rgba(245, 101, 101, 0.2);
-  border-color: #f56565;
+  background: rgba(245, 101, 101, 0.9);
 }
 
 .option-label {
   font-weight: bold;
-  margin-right: 15px;
-  color: #805ad5;
+  margin-right: 20px;
+  color: #6b46c1;
+  font-size: 1.2em;
+  min-width: 30px;
 }
 
 .option-text {
   flex: 1;
+  line-height: 1.4;
+  color: #000000;
+}
+
+.feedback-icon {
+  margin-left: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.feedback-icon {
+  color: white;
+}
+
+.feedback-message {
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  margin-top: 20px;
+}
+
+.option-button:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* Add hover effect only for non-disabled buttons */
+.option-button:not(:disabled):hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 1);
 } 

@@ -1,7 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,11 +56,14 @@ app.get('/api/questions', (req, res) => {
         
         // Convert questions to T/F if boolean type is selected
         if (questionType === 'boolean') {
-          questions = questions.map(q => ({
-            ...q,
+          questions = questions.map(q => {
+            let randomOption = q.options[Math.floor(Math.random() * q.options.length)];
+            return{
+            question: q.question + `\n Answer: ${randomOption}`,
             options: ['True', 'False'],
-            answer: Math.random() < 0.5 ? 'True' : 'False'
-          }));
+            answer: randomOption === q.answer ? 'True' : 'False'
+          }
+        });
         }
         
         allQuestions = allQuestions.concat(questions);
@@ -66,9 +73,11 @@ app.get('/api/questions', (req, res) => {
     });
 
     console.log(`Total questions gathered: ${allQuestions.length}`);
-// randomize
+
+    // Shuffle the questions
     allQuestions = allQuestions.sort(() => Math.random() - 0.5);
 
+    // Limit to requested number of questions
     const selectedQuestions = allQuestions.slice(0, amount);
 
     if (selectedQuestions.length === 0) {
