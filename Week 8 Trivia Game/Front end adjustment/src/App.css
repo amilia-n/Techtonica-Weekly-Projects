@@ -6,7 +6,7 @@
   background-color: #FFE4E1; 
 }
 
-.transparent-box {
+.main-box {
   width: 500px;
   height: 700px;
   background-color: rgba(255, 255, 255, 0.5);

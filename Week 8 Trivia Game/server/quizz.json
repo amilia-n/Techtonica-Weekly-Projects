@@ -75,11 +75,6 @@
               "answer": "Converts a string to an integer"
             },
             {
-              "question": "What does the typeof operator do?",
-              "options": ["Returns the type of a variable", "Converts a variable to a type", "Declares a variable type", "None of the above"],
-              "answer": "Returns the type of a variable"
-            },
-            {
               "question": "What is the output of console.log(2 == '2')?",
               "options": ["true", "false", "undefined", "NaN"],
               "answer": "true"
@@ -137,11 +132,6 @@
               "answer": "null represents the absence of a value, while undefined represents an uninitialized variable"
             },
             {
-              "question": "How do you convert a string to an integer in JavaScript?",
-              "options": ["Number(string)", "parseInt(string)", "parseFloat(string)", "Both a and b"],
-              "answer": "Both a and b"
-            },
-            {
               "question": "Which of the following is NOT a JavaScript loop?",
               "options": ["for", "while", "loop", "do...while"],
               "answer": "loop"
@@ -160,16 +150,6 @@
               "question": "What is the output of console.log([1] == true)?",
               "options": ["true", "false", "undefined", "NaN"],
               "answer": "true"
-            },
-            {
-              "question": "What is the purpose of setTimeout() in JavaScript?",
-              "options": ["Executes a function after a delay", "Sets a timer for a loop", "Sets a delay for an array", "None of the above"],
-              "answer": "Executes a function after a delay"
-            },
-            {
-              "question": "What does the call() method do in JavaScript?",
-              "options": ["Executes a function with a specified this value", "Calls a function after a delay", "Calls a function repeatedly", "None of the above"],
-              "answer": "Executes a function with a specified this value"
             },
             {
               "question": "What is the output of console.log(1 + '1') in JavaScript?",
@@ -229,11 +209,6 @@
               "answer": "Binds a function to a specific context"
             },
             {
-              "question": "How do you handle asynchronous code in JavaScript?",
-              "options": ["Using setTimeout()", "Using promises and async/await", "Using try/catch", "None of the above"],
-              "answer": "Using promises and async/await"
-            },
-            {
               "question": "What is the difference between == and === in JavaScript?",
               "options": ["== checks for equality of values, === checks for both value and type equality", "== checks for strict equality, === is for loose equality", "== is for string comparisons, === is for number comparisons", "There is no difference"],
               "answer": "== checks for equality of values, === checks for both value and type equality"
@@ -249,11 +224,6 @@
               "answer": "Repeats a function call at specified intervals"
             },
             {
-              "question": "What is the purpose of Promise.all() in JavaScript?",
-              "options": ["Executes all promises sequentially", "Executes all promises simultaneously", "Returns the result of the first promise", "None of the above"],
-              "answer": "Executes all promises simultaneously"
-            },
-            {
               "question": "What is the result of console.log([1] == [1])?",
               "options": ["true", "false", "undefined", "NaN"],
               "answer": "false"
@@ -262,11 +232,6 @@
               "question": "What is the output of console.log([] + [])?",
               "options": ["\"\" (empty string)", "[]", "NaN", "undefined"],
               "answer": "\"\" (empty string)"
-            },
-            {
-              "question": "What does eval() do in JavaScript?",
-              "options": ["Executes JavaScript code represented as a string", "Evaluates a mathematical expression", "Evaluates a function", "None of the above"],
-              "answer": "Executes JavaScript code represented as a string"
             },
             {
               "question": "How can you create a deep copy of an object in JavaScript?",
@@ -279,11 +244,6 @@
               "answer": "let is block-scoped, var is function-scoped"
             },
             {
-              "question": "How do you create an immutable object in JavaScript?",
-              "options": ["Use Object.freeze()", "Use const", "Use const and Object.preventExtensions()", "Both a and c"],
-              "answer": "Both a and c"
-            },
-            {
               "question": "What is the output of console.log(typeof NaN)?",
               "options": ["number", "NaN", "undefined", "object"],
               "answer": "number"
@@ -294,19 +254,9 @@
               "answer": "false"
             },
             {
-              "question": "What is the purpose of Promise.race() in JavaScript?",
-              "options": ["Executes promises in order", "Returns the result of the first promise to resolve", "Returns the first promise to reject", "None of the above"],
-              "answer": "Returns the result of the first promise to resolve"
-            },
-            {
               "question": "What is the result of console.log(!!'false') in JavaScript?",
               "options": ["false", "true", "undefined", "NaN"],
               "answer": "true"
-            },
-            {
-              "question": "What is the purpose of new in JavaScript?",
-              "options": ["Creates a new instance of an object", "Creates a new array", "Declares a variable", "None of the above"],
-              "answer": "Creates a new instance of an object"
             }
           ]
         },
@@ -321,11 +271,6 @@
               "question": "How do you define a CSS rule?",
               "options": ["selector {property: value;}", "property: value {selector;}", "value: property {selector;}", "selector: value {property;}"],
               "answer": "selector {property: value;}"
-            },
-            {
-              "question": "Which of the following is used to apply CSS styles to an HTML element?",
-              "options": ["class", "id", "style", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "Which CSS property is used to change the text color of an element?",
@@ -425,11 +370,6 @@
               "answer": "Controls the stacking order of elements"
             },
             {
-              "question": "How do you hide an element in CSS?",
-              "options": ["display: none;", "visibility: hidden;", "opacity: 0;", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "What does the box-sizing property do in CSS?",
               "options": ["Defines the size of the content box", "Defines the size of the padding", "Includes padding and border in the element's total width and height", "Adds a border to the element"],
               "answer": "Includes padding and border in the element's total width and height"
@@ -500,16 +440,6 @@
               "answer": "static"
             },
             {
-              "question": "How do you create a CSS grid layout with three equal columns?",
-              "options": ["grid-template-columns: repeat(3, 1fr);", "grid-template-columns: 33% 33% 33%;", "grid-template-columns: 1fr 1fr 1fr;", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
-              "question": "What is the purpose of overflow property in CSS?",
-              "options": ["Controls the visibility of content that overflows its container", "Controls the width of a container", "Controls the flow of text inside an element", "None of the above"],
-              "answer": "Controls the visibility of content that overflows its container"
-            },
-            {
               "question": "How do you align an item to the center of a flex container?",
               "options": ["justify-content: center; align-items: center;", "text-align: center;", "align-content: center;", "margin: auto;"],
               "answer": "justify-content: center; align-items: center;"
@@ -550,11 +480,6 @@
               "question": "What is the effect of using @import in CSS?",
               "options": ["It imports external stylesheets into the current stylesheet", "It defines a new CSS rule", "It imports JavaScript into CSS", "It creates an animation"],
               "answer": "It imports external stylesheets into the current stylesheet"
-            },
-            {
-              "question": "How do you create a responsive design for multiple screen sizes in CSS?",
-              "options": ["Using @media queries", "Using flexbox", "Using viewport units", "Both a and c"],
-              "answer": "Both a and c"
             },
             {
               "question": "How do you make an element responsive to different screen sizes using CSS Grid?",
@@ -602,11 +527,6 @@
               "answer": "@keyframes with animation property"
             },
             {
-              "question": "How do you make an image responsive in CSS?",
-              "options": ["img { width: 100%; height: auto; }", "img { max-width: 100%; }", "img { width: 100%; }", "Both a and b"],
-              "answer": "Both a and b"
-            },
-            {
               "question": "What is the purpose of object-fit: cover; in CSS?",
               "options": ["It scales the image to cover the element's box while maintaining its aspect ratio", "It stretches the image to fit the element's box", "It makes the image transparent", "It removes the background of the image"],
               "answer": "It scales the image to cover the element's box while maintaining its aspect ratio"
@@ -620,11 +540,6 @@
         },
         "html": {
           "easy": [
-            {
-              "question": "What does HTML stand for?",
-              "options": ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "None of the above"],
-              "answer": "Hyper Text Markup Language"
-            },
             {
               "question": "Which HTML tag is used to define an unordered list?",
               "options": ["<ul>", "<ol>", "<li>", "<list>"],
@@ -671,11 +586,6 @@
               "answer": "<main>"
             },
             {
-              "question": "How can you make text bold in HTML?",
-              "options": ["<bold>", "<strong>", "<b>", "Both b and c"],
-              "answer": "Both b and c"
-            },
-            {
               "question": "Which tag is used to define a link in HTML?",
               "options": ["<a>", "<link>", "<href>", "<url>"],
               "answer": "<a>"
@@ -706,11 +616,6 @@
               "answer": "<h1>"
             },
             {
-              "question": "What does the alt attribute do for images in HTML?",
-              "options": ["Provides a description of the image for accessibility", "Changes the color of the image", "Alters the size of the image", "None of the above"],
-              "answer": "Provides a description of the image for accessibility"
-            },
-            {
               "question": "How do you create a hyperlink that opens in a new tab?",
               "options": ["<a href=\"url\" target=\"_blank\">", "<a href=\"url\" new-window=\"true\">", "<a href=\"url\" open=\"true\">", "<a href=\"url\" window=\"new\">"],
               "answer": "<a href=\"url\" target=\"_blank\">"
@@ -722,11 +627,6 @@
             }
           ],
           "medium": [
-            {
-              "question": "What is the difference between the <div> and <span> tags?",
-              "options": ["<div> is a block-level element, while <span> is an inline element", "<span> is a block-level element, while <div> is an inline element", "They are the same", "None of the above"],
-              "answer": "<div> is a block-level element, while <span> is an inline element"
-            },
             {
               "question": "How do you add a background color to a webpage in HTML?",
               "options": ["<background-color>", "<body style=\"background-color: color;\">", "<style=\"background-color: color;\">", "<color background=\"color\">"],
@@ -746,11 +646,6 @@
               "question": "What does the target=\"_self\" attribute do in a link?",
               "options": ["Opens the link in the same tab", "Opens the link in a new window", "Does not open the link", "Forces the link to open in the background"],
               "answer": "Opens the link in the same tab"
-            },
-            {
-              "question": "What is the purpose of the <meta> tag in HTML?",
-              "options": ["Defines the metadata for an HTML document", "Creates a navigation menu", "Defines the main content", "None of the above"],
-              "answer": "Defines the metadata for an HTML document"
             },
             {
               "question": "How do you group multiple form elements in HTML?",
@@ -915,11 +810,6 @@
               "answer": "width and height attributes"
             },
             {
-              "question": "How can you create a responsive table in HTML?",
-              "options": ["By using <table-responsive> class", "By using @media queries", "By using max-width on table elements", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "What does the rel=\"noopener noreferrer\" attribute do in a link?",
               "options": ["It protects against potential malicious activities in links", "It disables the link from opening in a new tab", "It specifies that the link should open in the same tab", "It prevents the link from being followed"],
               "answer": "It protects against potential malicious activities in links"
@@ -1036,11 +926,6 @@
               "answer": "useState() manages state, useEffect() manages side effects"
             },
             {
-              "question": "How can you pass state between components in React?",
-              "options": ["Using props", "Using the context API", "Using a global store like Redux", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "What does the useEffect() hook do in React?",
               "options": ["It runs a side effect after every render", "It runs only once after the initial render", "It manages state updates", "It runs before the component is rendered"],
               "answer": "It runs a side effect after every render"
@@ -1059,11 +944,6 @@
               "question": "What is the purpose of the React.Fragment component?",
               "options": ["To group multiple elements without adding extra nodes to the DOM", "To manage the state of components", "To define reusable components", "To manage CSS styles for components"],
               "answer": "To group multiple elements without adding extra nodes to the DOM"
-            },
-            {
-              "question": "How do you handle form submissions in React?",
-              "options": ["By using onSubmit() event handler", "By using handleSubmit() function", "By using preventDefault() in event handler", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "What is React Router used for?",
@@ -1111,16 +991,6 @@
               "answer": "By declaring the function in the parent and passing it to the child component"
             },
             {
-              "question": "How do you dynamically add classes to a React element?",
-              "options": ["By using classNames library", "By passing a dynamic string in className", "By using style attribute", "Both a and b"],
-              "answer": "Both a and b"
-            },
-            {
-              "question": "How do you fetch data from an API in React?",
-              "options": ["Using the fetch() API inside useEffect()", "Using the axios library inside componentDidMount()", "Using the fetch() API inside componentDidMount()", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "How do you handle conditional rendering in React?",
               "options": ["Using if/else statements", "Using ternary operators or &&", "Using useState() hook", "Using useEffect() hook"],
               "answer": "Using ternary operators or &&"
@@ -1138,19 +1008,9 @@
               "answer": "An empty array runs once, dependencies run on specific changes"
             },
             {
-              "question": "How do you prevent a component from re-rendering in React?",
-              "options": ["By using shouldComponentUpdate() in class components", "By using React.memo() in functional components", "By using PureComponent in class components", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "What does the useLayoutEffect() hook do in React?",
               "options": ["It runs synchronously after all DOM mutations", "It runs asynchronously before rendering", "It fetches data before the component renders", "It does not exist in React"],
               "answer": "It runs synchronously after all DOM mutations"
-            },
-            {
-              "question": "How do you pass data between sibling components in React?",
-              "options": ["Using context", "Using props via a common parent component", "Using Redux or other state management libraries", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "What is the purpose of getDerivedStateFromProps() in React?",
@@ -1183,19 +1043,9 @@
               "answer": "By using React.lazy() and Suspense"
             },
             {
-              "question": "How do you avoid prop drilling in React?",
-              "options": ["By using context API", "By using Redux", "By passing props through multiple components", "Both a and b"],
-              "answer": "Both a and b"
-            },
-            {
               "question": "How do you manage global state in React without Redux?",
               "options": ["By using React's context API", "By using useState() hook globally", "By passing state through props", "By using componentDidUpdate()"],
               "answer": "By using React's context API"
-            },
-            {
-              "question": "How does React handle async rendering?",
-              "options": ["By using React.lazy()", "By using Suspense for async components", "By suspending rendering until data is fetched", "Both b and c"],
-              "answer": "Both b and c"
             },
             {
               "question": "How do you create custom hooks in React?",
@@ -1211,11 +1061,6 @@
               "question": "What does React.StrictMode do in React?",
               "options": ["It highlights potential problems in the application without affecting the production build", "It prevents code from being minified", "It optimizes the rendering process", "It disables lifecycle methods"],
               "answer": "It highlights potential problems in the application without affecting the production build"
-            },
-            {
-              "question": "How do you optimize performance in React?",
-              "options": ["By using React.memo() and PureComponent", "By lazy loading components with React.lazy()", "By minimizing re-renders and using memoization techniques", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "What is the purpose of useImperativeHandle() in React?",
@@ -1310,16 +1155,6 @@
               "question": "Which assertion is correct in Jest to check if a value equals another value?",
               "options": ["expect(value).toEqual(value)", "expect(value).toBe(value)", "assert(value).equals(value)", "expect(value).equals(value)"],
               "answer": "expect(value).toEqual(value)"
-            },
-            {
-              "question": "In Mocha, how do you handle asynchronous tests?",
-              "options": ["By using the async/await pattern", "By passing a done callback to the test function", "By returning a Promise", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
-              "question": "Which of the following is an example of a \"mock\" in Jest?",
-              "options": ["jest.fn()", "jest.spyOn()", "jest.mock()", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "What is the purpose of afterEach() in Jest?",
@@ -1446,16 +1281,6 @@
               "answer": "expect(mockFunction).toHaveBeenCalledTimes(2).toHaveBeenCalledWith(arg)"
             },
             {
-              "question": "How can you handle time-dependent tests in Jest?",
-              "options": ["Using jest.runAllTimers()", "Using jest.advanceTimersByTime()", "Using jest.useFakeTimers()", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
-              "question": "What is the purpose of jest.fn()?",
-              "options": ["To create a mock function", "To spy on function calls", "To replace a function with a mock version", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "How do you test the HTTP request and response in Mocha using Supertest?",
               "options": ["request(app).get('/path').expect(200).then(response => {...})", "app.request().get('/path').expect(200).send(response => {...})", "request(app).post('/path').expect(200)", "request().expect(response).toHaveStatus(200)"],
               "answer": "request(app).get('/path').expect(200).then(response => {...})"
@@ -1481,19 +1306,9 @@
               "answer": "expect.extend({ toBeMock: () => {} })"
             },
             {
-              "question": "How do you handle a function that takes a callback in Mocha?",
-              "options": ["By using done callback to signal completion", "By using async/await pattern", "By returning a Promise", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "What is the default test behavior when using jest --coverage?",
               "options": ["It tests only code covered by tests", "It tests the entire codebase regardless of test coverage", "It skips over untested code", "It adds extra code for testing"],
               "answer": "It tests the entire codebase regardless of test coverage"
-            },
-            {
-              "question": "How do you run tests asynchronously in Mocha?",
-              "options": ["By using Promises", "By passing a done callback", "By using async/await", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "What is the difference between beforeEach() and before() in Mocha?",
@@ -1575,11 +1390,6 @@
               "answer": "sort()"
             },
             {
-              "question": "How do you create a new object in JavaScript?",
-              "options": ["let obj = new Object()", "let obj = {}", "let obj = Object.create()", "All of the above"],
-              "answer": "All of the above"
-            },
-            {
               "question": "Which method is used to find the length of a string in JavaScript?",
               "options": ["string.length()", "string.size()", "string.length", "string.count()"],
               "answer": "string.length"
@@ -1588,11 +1398,6 @@
               "question": "How can you access the last element of an array in JavaScript?",
               "options": ["arr[0]", "arr[arr.length - 1]", "arr[1]", "arr.end()"],
               "answer": "arr[arr.length - 1]"
-            },
-            {
-              "question": "What does the concat() method do?",
-              "options": ["Combines two or more strings", "Merges two arrays", "Adds an element to the beginning of an array", "All of the above"],
-              "answer": "All of the above"
             },
             {
               "question": "Which method can be used to determine if a string contains a certain substring?",
