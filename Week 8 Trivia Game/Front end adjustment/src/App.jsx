@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
+import QuizPage from './components/QuizPage';
 
 function App() {
+  const [isQuizStarted, setIsQuizStarted] = useState(false);
   const [selectedTopics, setSelectedTopics] = useState([]);
+  const [questionCount, setQuestionCount] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
 
@@ -24,11 +27,47 @@ function App() {
     setSelectedType(type === selectedType ? null : type);
   };
 
+  const handleQuestionCountChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || (Number(value) >= 1 && Number(value) <= 50)) {
+      setQuestionCount(value);
+    }
+  };
+
+  const handleStartQuiz = () => {
+    if (selectedTopics.length > 0 && selectedDifficulty && selectedType && questionCount) {
+      setIsQuizStarted(true);
+    } else {
+      alert('Please select at least one topic, difficulty, question type, and number of questions.');
+    }
+  };
+
+  const handleReturnToStart = () => {
+    setIsQuizStarted(false);
+    setSelectedTopics([]);
+    setQuestionCount('');
+    setSelectedDifficulty(null);
+    setSelectedType(null);
+  };
+
+  if (isQuizStarted) {
+    return (
+      <QuizPage
+        selectedTopics={selectedTopics}
+        questionCount={questionCount}
+        difficulty={selectedDifficulty}
+        questionType={selectedType}
+        onReturnToStart={handleReturnToStart}
+      />
+    );
+  }
+
   return (
     <div className="app">
       <div className="main-box">
         <h1 className="title">Super Fun Trivia Game</h1>
-        <h3 className="header">Select your catagories:</h3>
+        <h3 className="header">Select your categories:</h3>
+        
         {/* First row of topic buttons */}
         <div className="button-row">
           <button 
@@ -88,6 +127,9 @@ function App() {
             type="number" 
             id="questions" 
             min="1"
+            max="50"
+            value={questionCount}
+            onChange={handleQuestionCountChange}
             placeholder="Enter a Number"
           />
         </div>
@@ -131,7 +173,12 @@ function App() {
         </div>
 
         {/* Start quiz button */}
-        <button className="start-button">Start Quiz</button>
+        <button 
+          className="start-button"
+          onClick={handleStartQuiz}
+        >
+          Start Quiz
+        </button>
       </div>
     </div>
   );
