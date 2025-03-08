@@ -1,8 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import QuizPage from './QuizPage';
-import { http, HttpResponse } from 'msw';
-import { setupServer } from 'msw/node';
 
 describe('QuizPage Integration Tests', () => {
   const mockProps = {
@@ -13,54 +11,50 @@ describe('QuizPage Integration Tests', () => {
     onReturnToStart: vi.fn()
   };
 
-  const server = setupServer(
-    // Mock OpenTDB API
-    http.get('https://opentdb.com/api.php', () => {
-      return HttpResponse.json({
-        response_code: 0,
-        results: [
-          {
-            category: "Entertainment: Japanese Anime & Manga",
-            type: "boolean",
-            difficulty: "medium",
-            question: "In 'JoJo&#039;s Bizarre Adventure', the Stand 'Made in Heaven' is able to accelerate time.",
-            correct_answer: "True",
-            incorrect_answers: ["False"]
-          },
-          {
-            category: "Entertainment: Japanese Anime & Manga",
-            type: "boolean",
-            difficulty: "medium",
-            question: "The anime 'Lucky Star' follows the story of one girl who is unaware she is God.",
-            correct_answer: "False",
-            incorrect_answers: ["True"]
-          }
-        ]
-      });
-    }),
-
-    // Mock session token
-    http.get('https://opentdb.com/api_token.php', () => {
-      return HttpResponse.json({
-        response_code: 0,
-        token: "mock_token"
-      });
-    })
-  );
+  const mockAnimeQuestions = {
+    response_code: 0,
+    results: [
+      {
+        category: "Entertainment: Japanese Anime & Manga",
+        type: "boolean",
+        difficulty: "medium",
+        question: "In 'JoJo&#039;s Bizarre Adventure', the Stand 'Made in Heaven' is able to accelerate time.",
+        correct_answer: "True",
+        incorrect_answers: ["False"]
+      },
+      {
+        category: "Entertainment: Japanese Anime & Manga",
+        type: "boolean",
+        difficulty: "medium",
+        question: "The anime 'Lucky Star' follows the story of one girl who is unaware she is God.",
+        correct_answer: "False",
+        incorrect_answers: ["True"]
+      }
+    ]
+  };
 
   beforeEach(() => {
-    server.listen();
-  });
-
-  afterEach(() => {
-    server.resetHandlers();
-  });
-
-  afterAll(() => {
-    server.close();
+    // Reset fetch mock
+    vi.resetAllMocks();
+    
+    // Mock successful token fetch
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ response_code: 0, token: "mock_token" })
+      })
+    );
   });
 
   it('fetches and displays questions from OpenTDB', async () => {
+    // Mock questions fetch
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockAnimeQuestions)
+      })
+    );
+
     render(<QuizPage {...mockProps} />);
 
     // Check loading state
@@ -77,12 +71,11 @@ describe('QuizPage Integration Tests', () => {
   });
 
   it('handles OpenTDB API errors gracefully', async () => {
-    server.use(
-      http.get('https://opentdb.com/api.php', () => {
-        return HttpResponse.json({
-          response_code: 1,
-          results: []
-        });
+    // Mock API error
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({ response_code: 1, results: [] })
       })
     );
 
@@ -94,9 +87,11 @@ describe('QuizPage Integration Tests', () => {
   });
 
   it('handles rate limiting correctly', async () => {
-    server.use(
-      http.get('https://opentdb.com/api.php', () => {
-        return new HttpResponse(null, { status: 429 });
+    // Mock rate limit response
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 429
       })
     );
 
@@ -108,6 +103,14 @@ describe('QuizPage Integration Tests', () => {
   });
 
   it('progresses through questions correctly', async () => {
+    // Mock questions fetch
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockAnimeQuestions)
+      })
+    );
+
     render(<QuizPage {...mockProps} />);
 
     // Wait for first question
@@ -128,6 +131,14 @@ describe('QuizPage Integration Tests', () => {
   });
 
   it('shows game end screen with correct score', async () => {
+    // Mock questions fetch
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockAnimeQuestions)
+      })
+    );
+
     render(<QuizPage {...mockProps} />);
 
     // Wait for questions to load
@@ -148,31 +159,94 @@ describe('QuizPage Integration Tests', () => {
       expect(screen.getByText(/Score: 100/)).toBeInTheDocument();
     });
   });
+});
 
-  it('handles local API questions correctly', async () => {
-    const localProps = {
-      ...mockProps,
-      selectedTopics: ['Testing']
-    };
+describe('QuizPage Local API Tests', () => {
+  const mockProps = {
+    selectedTopics: ['JavaScript'],
+    questionCount: '10',
+    difficulty: 'Easy',
+    questionType: 'Multiple Choice',
+    onReturnToStart: vi.fn()
+  };
 
-    server.use(
-      http.get('/api/questions', () => {
-        return HttpResponse.json([
-          {
-            question: "What is unit testing?",
-            options: ["Testing individual components", "Testing the whole app", "No testing", "Integration testing"],
-            answer: "Testing individual components"
-          }
-        ]);
+  const mockLocalQuestions = [
+    {
+      question: "What is unit testing?",
+      options: ["Testing individual components", "Testing the whole app", "No testing", "Integration testing"],
+      answer: "Testing individual components"
+    }
+  ];
+
+  beforeEach(() => {
+    vi.resetAllMocks();
+    
+    // Mock local API response
+    global.fetch.mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockLocalQuestions)
+      })
+    );
+  });
+
+  it('fetches and displays local API questions', async () => {
+    render(<QuizPage {...mockProps} />);
+    
+    // Should show loading initially
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+
+    // Wait for question to load
+    await waitFor(() => {
+      expect(screen.getByText('What is unit testing?')).toBeInTheDocument();
+    });
+
+    // Check if options are displayed
+    expect(screen.getByText('Testing individual components')).toBeInTheDocument();
+    expect(screen.getByText('Testing the whole app')).toBeInTheDocument();
+    expect(screen.getByText('No testing')).toBeInTheDocument();
+    expect(screen.getByText('Integration testing')).toBeInTheDocument();
+  });
+
+  it('handles local API errors gracefully', async () => {
+    // Mock API error
+    global.fetch.mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 500
       })
     );
 
-    render(<QuizPage {...localProps} />);
+    render(<QuizPage {...mockProps} />);
 
     await waitFor(() => {
-      expect(screen.getByText(/What is unit testing?/)).toBeInTheDocument();
+      expect(screen.getByText(/error/i)).toBeInTheDocument();
+    });
+  });
+
+  it('tracks score correctly for local questions', async () => {
+    render(<QuizPage {...mockProps} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('What is unit testing?')).toBeInTheDocument();
     });
 
-    expect(screen.getByText('Testing individual components')).toBeInTheDocument();
+    // Answer correctly
+    fireEvent.click(screen.getByText('Testing individual components'));
+
+    await waitFor(() => {
+      expect(screen.getByText(/score: 1/i)).toBeInTheDocument();
+    });
+  });
+
+  it('allows returning to start screen', async () => {
+    render(<QuizPage {...mockProps} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('What is unit testing?')).toBeInTheDocument();
+    });
+
+    fireEvent.click(screen.getByText(/return to start/i));
+    expect(mockProps.onReturnToStart).toHaveBeenCalled();
   });
 }); 
