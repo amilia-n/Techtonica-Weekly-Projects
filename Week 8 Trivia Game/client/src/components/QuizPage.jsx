@@ -28,7 +28,7 @@ function decodeHTMLEntities(text) {
  * string: props.correctAnswer - The correct answer
  * Function: props.onAnswer - Callback for answer selection
  */
-const Question = ({ question, options, correctAnswer, onAnswer }) => {
+export const Question = ({ question, options, correctAnswer, onAnswer }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -115,7 +115,7 @@ const Question = ({ question, options, correctAnswer, onAnswer }) => {
  * - Score tracking
  * - Game completion
  */
-function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onReturnToStart }) {
+export function QuizPage({ selectedTopics, questionCount, difficulty, questionType, onReturnToStart }) {
   // Game state
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]); 
