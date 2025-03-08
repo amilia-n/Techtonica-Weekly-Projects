@@ -344,3 +344,68 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 } 
+/* Mobile devices  */
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .app {
+    padding: 10px;
+  }
+
+  .main-box {
+    width: 95%;
+    padding: 15px;
+    margin: 10px auto;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .button-row {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .topic-button, .single-button {
+    width: 100%;
+    margin: 5px 0;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .input-container {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .input-container input {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .start-button {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .question-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .question-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  .options-container {
+    gap: 10px;
+  }
+
+  .option-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+}
