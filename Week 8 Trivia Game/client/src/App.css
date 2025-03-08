@@ -350,8 +350,10 @@
     padding: 10px;
   }
 
-  .main-box {
+  .main-box, .quiz-box {
     width: 95%;
+    min-height: auto;
+    height: auto;
     padding: 15px;
     margin: 10px auto;
   }
@@ -362,21 +364,42 @@
   }
 
   .button-row {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .topic-button {
+    width: calc(50% - 5px);
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .topic-button:last-child {
     width: 100%;
   }
 
-  .topic-button, .single-button {
+  .single-button, 
+  .start-button,
+  .option-button,
+  .control-button,
+  .return-button {
     width: 100%;
     margin: 5px 0;
     padding: 12px;
     font-size: 14px;
+    min-height: auto;
+    height: auto;
   }
 
   .input-container {
     width: 100%;
     margin: 15px 0;
+    flex-direction: column;
   }
 
   .input-container input {
@@ -384,28 +407,33 @@
     padding: 10px;
   }
 
-  .start-button {
-    width: 100%;
-    margin: 15px 0;
-  }
-
   .question-container {
-    width: 95%;
-    padding: 15px;
+    width: 100%;
+    padding: 10px;
   }
 
   .question-text {
     font-size: 16px;
     margin-bottom: 15px;
+    padding: 15px;
   }
 
   .options-container {
     gap: 10px;
   }
 
-  .option-button {
-    width: 100%;
+  .control-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .game-header {
     padding: 10px;
-    font-size: 14px;
+  }
+
+  .end-box {
+    width: 95%;
+    height: auto;
+    padding: 20px;
   }
 }
