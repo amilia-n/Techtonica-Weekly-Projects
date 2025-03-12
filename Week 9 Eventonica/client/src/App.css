@@ -73,6 +73,6 @@ body {
 /* Main content area */
 main {
   margin-left: 220px;
-  padding: 2rem;
+  padding: 5rem;
   flex-grow: 1;
 }
