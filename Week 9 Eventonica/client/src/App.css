@@ -23,6 +23,7 @@ body {
   left: 0;
   top: 0;
   position: fixed;
+  z-index: 1000;
 }
 
 .header {
@@ -35,13 +36,12 @@ body {
   color: white;
   text-align: center;
   border-bottom: 1px solid #444;
-
 }
 
 .greeting {
   display: flex;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   min-width: 20vw;
   padding: 1rem 0;
   text-align: center;
@@ -81,4 +81,84 @@ main {
   min-width: fit-content;
   margin-left: 20vw;
   padding-left: 100px;
+}
+
+/* Media Query for Mobile Devices */
+@media screen and (max-width: 768px) {
+  .navbar {
+    width: 100vw;
+    height: auto;
+    min-height: fit-content;
+    position: fixed;
+    top: 0;
+  }
+
+  .header {
+    height: 60px;
+    padding: 0.5rem;
+  }
+
+  .greeting {
+    min-width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    width: 100%;
+  }
+
+  .navbar-list li {
+    width: 33.33%;
+    text-align: center;
+  }
+
+  .navbar-list a {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-list a:hover {
+    width: 100%;
+  }
+
+  /* Main content area for mobile */
+  main {
+    width: 100vw;
+    margin-left: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 180px;
+  }
+}
+
+/* Media Query for even smaler device */
+@media screen and (max-width: 480px) {
+  .navbar-list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-list li {
+    width: 100%;
+  }
+
+  .navbar-list a {
+    padding: 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-list a:hover {
+    width: 100%;
+  }
+
+  main {
+    margin-top: 250px;
+  }
 }
