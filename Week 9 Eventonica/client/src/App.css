@@ -94,13 +94,12 @@ main {
   }
 
   .header {
-    height: 60px;
+    height: 40px;
     padding: 0.5rem;
   }
 
   .greeting {
-    min-width: 100%;
-    padding: 0.5rem 0;
+    display: none;
   }
 
   .navbar-list {
@@ -109,56 +108,70 @@ main {
     justify-content: space-around;
     padding: 0;
     width: 100%;
+    height: 40px;
   }
 
   .navbar-list li {
     width: 33.33%;
+    height: 100%;
     text-align: center;
+    display: flex;
   }
 
   .navbar-list a {
-    padding: 0.75rem;
+    padding: 0;
     font-size: 0.9rem;
     width: 100%;
+    height: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navbar-list a:hover {
     width: 100%;
+    height: 100%;
   }
 
   /* Main content area for mobile */
   main {
     width: 100vw;
     margin-left: 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-top: 180px;
+    padding: 1rem;
+    margin-top: 80px;
   }
 }
 
-/* Media Query for even smaler device */
+/* Media Query for even smaller device */
 @media screen and (max-width: 480px) {
   .navbar-list {
     flex-direction: column;
     width: 100%;
+    height: auto;
   }
 
   .navbar-list li {
     width: 100%;
+    height: 35px;
   }
 
   .navbar-list a {
-    padding: 0.5rem;
+    padding: 0;
     width: 100%;
+    height: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navbar-list a:hover {
     width: 100%;
+    height: 100%;
   }
 
   main {
-    margin-top: 250px;
+    margin-top: 150px;
   }
 }
