@@ -1,0 +1,67 @@
+.heart-toggle {
+  position: relative;
+  display: inline-block;
+}
+
+.heart-toggle input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+
+.heart-toggle input[type="checkbox"]:checked + label {
+  color: #e2264d;
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
+}
+
+.heart-toggle input[type="checkbox"]:checked + label:before,
+.heart-toggle input[type="checkbox"]:checked + label:after {
+  animation: inherit;
+  animation-timing-function: ease-out;
+}
+
+.heart-toggle input[type="checkbox"]:checked + label:before {
+  will-change: transform, border-width, border-color;
+  animation-name: bubble;
+}
+
+.heart-toggle input[type="checkbox"]:checked + label:after {
+  will-change: opacity, box-shadow;
+  animation-name: particles;
+}
+
+.heart-toggle label {
+  position: relative;
+  color: #aab8c2;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.heart-toggle label:before,
+.heart-toggle label:after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  content: '';
+}
+
+.heart-toggle label:before {
+  box-sizing: border-box;
+  margin: -2.25rem;
+  border: solid 2.25rem #e2264d;
+  width: 4.5rem;
+  height: 4.5rem;
+  transform: scale(0);
+}
+
+.heart-toggle label:after {
+  margin: -0.1875rem;
+  width: 0.375rem;
+  height: 0.375rem;
+}
+
+@keyframes heart {
+  0%, 17.5% { font-size: 0; }
+}

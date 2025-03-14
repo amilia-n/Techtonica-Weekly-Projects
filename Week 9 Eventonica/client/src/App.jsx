@@ -4,6 +4,8 @@ import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
+import Calendar from "./components/Calendar"
+import Events from "./components/Events"
 import './App.css'
 
 function App() {
@@ -14,8 +16,8 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/events" element={<div>Events Page</div>} />
-            <Route path="/participants" element={<div>Participants Page</div>} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </main>
       </div>

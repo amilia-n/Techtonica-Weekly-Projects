@@ -1,0 +1,71 @@
+.calendar-container {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+}
+.calendar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.calendar-header button {
+  background: #956f8e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-header button:hover {
+  background: #f59fd1;
+}
+
+.calendar-header h2 {
+  margin-left: auto;
+  color: #333;
+}
+
+.calendar-wrapper {
+  height: 600px;
+}
+
+/* Override react-big-calendar default styles */
+.rbc-calendar {
+  background: white;
+  border-radius: 8px;
+}
+
+.rbc-toolbar {
+  display: none;
+}
+
+.rbc-event {
+  background-color: #ff007384;
+  border-radius: 4px;
+}
+
+.rbc-event.rbc-selected {
+  background-color: #b3008ca7;
+}
+
+.rbc-today {
+  background-color: #f0f9ff;
+}
+
+.rbc-header {
+  padding: 10px;
+  font-weight: bold;
+  background: #f8f9fa;
+  
+}
+
+.rbc-month-view {
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+} 
