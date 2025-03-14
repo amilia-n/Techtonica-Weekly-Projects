@@ -17,3 +17,5 @@ const Navbar = () => {
 };  
 
 export default Navbar;
+
+//are there props that are being passed to this component
