@@ -1,41 +1,9 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 import AddNewEvent from './AddNewEvent';
 import AddNewParticipant from './AddNewParticipant';
 
-const initialState = {
-  events: [],
-  participants: {},
-  selectedEvent: null,
-  searchTerm: '',
-  startDate: '',
-  endDate: '',
-  selectedCategory: ''
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'SET_EVENTS':
-      return { ...state, events: action.payload };
-    case 'SET_PARTICIPANTS':
-      return { ...state, participants: { ...state.participants, [action.eventId]: action.payload } };
-    case 'SET_SELECTED_EVENT':
-      return { ...state, selectedEvent: action.payload };
-    case 'SET_SEARCH_TERM':
-      return { ...state, searchTerm: action.payload };
-    case 'SET_START_DATE':
-      return { ...state, startDate: action.payload };
-    case 'SET_END_DATE':
-      return { ...state, endDate: action.payload };
-    case 'SET_SELECTED_CATEGORY':
-      return { ...state, selectedCategory: action.payload };
-    default:
-      return state;
-  }
-};
-
-const Events = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+const Events = ({state , fetchParticipants, dispatch}) => {
 
   const categories = [
     { value: '', label: 'All Categories' },
@@ -48,34 +16,11 @@ const Events = () => {
   ];
 
   useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  useEffect(() => {
-    if (state.selectedEvent) {
+    console.log(state)
+    if (state.selectedEvent && state.selectedEvent.id) {
       fetchParticipants(state.selectedEvent.id);
     }
-  }, [state.selectedEvent]);
-
-  const fetchEvents = async () => {
-    try {
-      const response = await fetch('http://localhost:4000/api/events');
-      const data = await response.json();
-      dispatch({ type: 'SET_EVENTS', payload: data });
-    } catch (error) {
-      console.error('Error fetching events:', error);
-    }
-  };
-
-  const fetchParticipants = async (eventId) => {
-    try {
-      const response = await fetch(`http://localhost:4000/api/events/${eventId}/participants`);
-      const data = await response.json();
-      dispatch({ type: 'SET_PARTICIPANTS', eventId, payload: data });
-    } catch (error) {
-      console.error('Error fetching participants:', error);
-    }
-  };
+  }, []);
 
   const formatDateTime = (dateTime) => {
     return moment(dateTime).format('MMMM D, YYYY h:mm A');
@@ -109,7 +54,7 @@ const Events = () => {
             className="search-input"
           />
           <select
-            value={state.selectedCategory}
+            value={state && state.selectedCategory ? state.selectedCategory : ''}
             onChange={(e) => dispatch({ type: 'SET_SELECTED_CATEGORY', payload: e.target.value })}
             className="category-select"
           >
