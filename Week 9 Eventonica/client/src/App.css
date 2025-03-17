@@ -85,6 +85,27 @@ main {
   box-sizing: border-box;
   overflow-x: hidden;
 }
+/* Home Page UI Component*/
+
+.home-container {
+  padding: 1rem;
+}
+
+.table-container {
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-container h2 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+/* Event Management Page */
+
+/* Calendar Page */
 
 /* Media Query for Mobile Devices */
 @media screen and (max-width: 768px) {
@@ -177,23 +198,6 @@ main {
   main {
     margin-top: 150px;
   }
-}
-
-/* Table Styles */
-.home-container {
-  padding: 1rem;
-}
-
-.table-container {
-  background-color: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.table-container h2 {
-  margin: 0 0 1rem 0;
-  color: #333;
 }
 
 /* Location Filter Styles */
