@@ -1,0 +1,464 @@
+[
+    {
+        "id": 1,
+        "commonName": "Amur Leopard",
+        "scientificName": "Panthera pardus orientalis",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 100
+    },
+    {
+        "id": 2,
+        "commonName": "Black Rhino",
+        "scientificName": "Diceros bicornis",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 6480
+    },
+    {
+        "id": 3,
+        "commonName": "Bornean Orangutan",
+        "scientificName": "Pongo pygmaeus",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 104700
+    },
+    {
+        "id": 4,
+        "commonName": "Cross River Gorilla",
+        "scientificName": "Gorilla gorilla diehli",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 300
+    },
+    {
+        "id": 5,
+        "commonName": "Eastern Lowland Gorilla",
+        "scientificName": "Gorilla beringei graueri",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 6800
+    },
+    {
+        "id": 6,
+        "commonName": "Hawksbill Turtle",
+        "scientificName": "Eretmochelys imbricata",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 23000
+    },
+    {
+        "id": 7,
+        "commonName": "Javan Rhino",
+        "scientificName": "Rhinoceros sondaicus",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 76
+    },
+    {
+        "id": 8,
+        "commonName": "Orangutan",
+        "scientificName": "Pongo abelii, Pongo pygmaeus",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 120000
+    },
+    {
+        "id": 9,
+        "commonName": "Sumatran Elephant",
+        "scientificName": "Elephas maximus sumatranus",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 2400
+    },
+    {
+        "id": 10,
+        "commonName": "Sumatran Orangutan",
+        "scientificName": "Pongo abelii",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 13800
+    },
+    {
+        "id": 11,
+        "commonName": "Sumatran Rhino",
+        "scientificName": "Dicerorhinus sumatrensis",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 80
+    },
+    {
+        "id": 12,
+        "commonName": "Sunda Tiger",
+        "scientificName": "Panthera tigris sondaica",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 600
+    },
+    {
+        "id": 13,
+        "commonName": "Vaquita",
+        "scientificName": "Phocoena sinus",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 10
+    },
+    {
+        "id": 14,
+        "commonName": "Western Lowland Gorilla",
+        "scientificName": "Gorilla gorilla gorilla",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 360000
+    },
+    {
+        "id": 15,
+        "commonName": "Yangtze Finless Porpoise",
+        "scientificName": "Neophocaena asiaeorientalis ssp. asiaeorientalis",
+        "conservationStatus": "Critically Endangered",
+        "wildPopulation": 1000
+    },
+    {
+        "id": 16,
+        "commonName": "African Savanna Elephant",
+        "scientificName": "Loxodonta africana africana",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 415000
+    },
+    {
+        "id": 17,
+        "commonName": "African Wild Dog",
+        "scientificName": "Lycaon pictus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 6600
+    },
+    {
+        "id": 18,
+        "commonName": "Asian Elephant",
+        "scientificName": "Elephas maximus indicus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 50000
+    },
+    {
+        "id": 19,
+        "commonName": "Black-footed Ferret",
+        "scientificName": "Mustela nigripes",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 370
+    },
+    {
+        "id": 20,
+        "commonName": "Blue Whale",
+        "scientificName": "Balaenoptera musculus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 10000
+    },
+    {
+        "id": 21,
+        "commonName": "Bonobo",
+        "scientificName": "Pan paniscus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 15000
+    },
+    {
+        "id": 22,
+        "commonName": "Bornean Elephant",
+        "scientificName": "Elephas maximus borneensis",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 1500
+    },
+    {
+        "id": 23,
+        "commonName": "Chimpanzee",
+        "scientificName": "Pan troglodytes",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 300000
+    },
+    {
+        "id": 24,
+        "commonName": "Fin Whale",
+        "scientificName": "Balaenoptera physalus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 100000
+    },
+    {
+        "id": 25,
+        "commonName": "Galápagos Penguin",
+        "scientificName": "Spheniscus mendiculus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 1200
+    },
+    {
+        "id": 26,
+        "commonName": "Ganges River Dolphin",
+        "scientificName": "Platanista gangetica gangetica",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 3500
+    },
+    {
+        "id": 27,
+        "commonName": "Green Turtle",
+        "scientificName": "Chelonia mydas",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 85000
+    },
+    {
+        "id": 28,
+        "commonName": "Hector's Dolphin",
+        "scientificName": "Cephalorhynchus hectori",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 7000
+    },
+    {
+        "id": 29,
+        "commonName": "Indian Elephant",
+        "scientificName": "Elephas maximus indicus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 30000
+    },
+    {
+        "id": 30,
+        "commonName": "Indus River Dolphin",
+        "scientificName": "Platanista minor",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 1800
+    },
+    {
+        "id": 31,
+        "commonName": "Irrawaddy Dolphin",
+        "scientificName": "Orcaella brevirostris",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 6000
+    },
+    {
+        "id": 32,
+        "commonName": "Mountain Gorilla",
+        "scientificName": "Gorilla beringei beringei",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 1063
+    },
+    {
+        "id": 33,
+        "commonName": "North Atlantic Right Whale",
+        "scientificName": "Eubalaena glacialis",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 400
+    },
+    {
+        "id": 34,
+        "commonName": "Red Panda",
+        "scientificName": "Ailurus fulgens",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 10000
+    },
+    {
+        "id": 35,
+        "commonName": "Sea Lions",
+        "scientificName": "Zalophus wollebaeki",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 50000
+    },
+    {
+        "id": 36,
+        "commonName": "Sei Whale",
+        "scientificName": "Balaenoptera borealis",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 80000
+    },
+    {
+        "id": 37,
+        "commonName": "Sri Lankan Elephant",
+        "scientificName": "Elephas maximus maximus",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 7500
+    },
+    {
+        "id": 38,
+        "commonName": "Tiger",
+        "scientificName": "Panthera tigris",
+        "conservationStatus": "Endangered",
+        "wildPopulation": 4500
+    },
+    {
+        "id": 39,
+        "commonName": "Cheetah",
+        "scientificName": "Acinonyx jubatus",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 7000
+    },
+    {
+        "id": 40,
+        "commonName": "Dugong",
+        "scientificName": "Dugong dugon",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 85000
+    },
+    {
+        "id": 41,
+        "commonName": "Giant Panda",
+        "scientificName": "Ailuropoda melanoleuca",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 1800
+    },
+    {
+        "id": 42,
+        "commonName": "Great White Shark",
+        "scientificName": "Carcharodon carcharias",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 3500
+    },
+    {
+        "id": 43,
+        "commonName": "Greater One-Horned Rhino",
+        "scientificName": "Rhinoceros unicornis",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 4000
+    },
+    {
+        "id": 44,
+        "commonName": "Hippopotamus",
+        "scientificName": "Hippopotamus amphibius",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 115000
+    },
+    {
+        "id": 45,
+        "commonName": "Leatherback Turtle",
+        "scientificName": "Dermochelys coriacea",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 34000
+    },
+    {
+        "id": 46,
+        "commonName": "Lion",
+        "scientificName": "Panthera Leo",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 20000
+    },
+    {
+        "id": 47,
+        "commonName": "Loggerhead Turtle",
+        "scientificName": "Caretta caretta",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 50000
+    },
+    {
+        "id": 48,
+        "commonName": "Marine Iguana",
+        "scientificName": "Amblyrhynchus cristatus",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 250000
+    },
+    {
+        "id": 49,
+        "commonName": "Olive Ridley Turtle",
+        "scientificName": "Lepidochelys olivacea",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 800000
+    },
+    {
+        "id": 50,
+        "commonName": "Polar Bear",
+        "scientificName": "Ursus maritimus",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 26000
+    },
+    {
+        "id": 51,
+        "commonName": "Snow Leopard",
+        "scientificName": "Panthera uncia",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 4000
+    },
+    {
+        "id": 52,
+        "commonName": "Southern Rockhopper Penguin",
+        "scientificName": "Eudyptes chrysocome",
+        "conservationStatus": "Vulnerable",
+        "wildPopulation": 1000000
+    },
+    {
+        "id": 53,
+        "commonName": "Beluga",
+        "scientificName": "Delphinapterus leucas",
+        "conservationStatus": "Near Threatened",
+        "wildPopulation": 150000
+    },
+    {
+        "id": 54,
+        "commonName": "Jaguar",
+        "scientificName": "Panthera onca",
+        "conservationStatus": "Near Threatened",
+        "wildPopulation": 173000
+    },
+    {
+        "id": 55,
+        "commonName": "Plains Bison",
+        "scientificName": "Bison bison bison",
+        "conservationStatus": "Near Threatened",
+        "wildPopulation": 20000
+    },
+    {
+        "id": 56,
+        "commonName": "White Rhino",
+        "scientificName": "Ceratotherium simum",
+        "conservationStatus": "Near Threatened",
+        "wildPopulation": 16000
+    },
+    {
+        "id": 57,
+        "commonName": "Arctic Fox",
+        "scientificName": "Vulpes lagopus",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 100000
+    },
+    {
+        "id": 58,
+        "commonName": "Arctic Wolf",
+        "scientificName": "Canis lupus arctos",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 200000
+    },
+    {
+        "id": 59,
+        "commonName": "Beaver",
+        "scientificName": "Castor canadensis",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 10000000
+    },
+    {
+        "id": 60,
+        "commonName": "Bowhead Whale",
+        "scientificName": "Balaena mysticetus",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 10000
+    },
+    {
+        "id": 61,
+        "commonName": "Brown Bear",
+        "scientificName": "Ursus arctos",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 200000
+    },
+    {
+        "id": 62,
+        "commonName": "Common Bottlenose Dolphin",
+        "scientificName": "Tursiops truncates",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 600000
+    },
+    {
+        "id": 63,
+        "commonName": "Gray Whale",
+        "scientificName": "Eschrichtius robustus",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 27000
+    },
+    {
+        "id": 64,
+        "commonName": "Narwhal",
+        "scientificName": "Monodon monoceros",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 170000
+    },
+    {
+        "id": 65,
+        "commonName": "Pronghorn",
+        "scientificName": "Antilocarpa americana",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 1000000
+    },
+    {
+        "id": 66,
+        "commonName": "Swift Fox",
+        "scientificName": "Vulpes velox",
+        "conservationStatus": "Least Concern",
+        "wildPopulation": 1000
+    }
+]
