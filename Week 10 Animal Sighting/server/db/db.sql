@@ -1,3 +1,5 @@
+DROP DATABASE endangered;
+
 -- Create the database (if it doesn't already exist)
 CREATE DATABASE endangered;
 
@@ -11,6 +13,7 @@ CREATE TABLE species (
     scientificName TEXT NOT NULL,
     conservationStatus TEXT NOT NULL,
     wildPopulation INT
+    created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- Create the individuals table
@@ -88,7 +91,7 @@ VALUES
     ('Rina', 11),
     ('Rico', 11),
     -- Sunda Tiger individuals
-    ('Tigger', 12),
+    ('Tom', 12),
     ('Tara', 12),
     -- Vaquita individuals
     ('Vicky', 13),

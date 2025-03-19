@@ -1,0 +1,1 @@
+// component to display species, individual, and sighting

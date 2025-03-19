@@ -1,3 +1,4 @@
+require('dotenv').config();
 const client = require('../db/connect');
 const fs = require('fs');
 const path = require('path');
@@ -10,15 +11,16 @@ async function loadData() {
         // Insert species data into the database
         for (const species of speciesData) {
             await client.query(`
-                INSERT INTO species (id, commonName, scientificName, conservationStatus, wildPopulation)
-                VALUES ($1, $2, $3, $4, $5)
+                INSERT INTO species (id, commonName, scientificName, conservationStatus, wildPopulation, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6)
                 ON CONFLICT (id) DO NOTHING;
             `, [
                 species.id,
                 species.commonName,
                 species.scientificName,
                 species.conservationStatus,
-                species.wildPopulation
+                species.wildPopulation,
+                species.created_at
             ]);
         }
 

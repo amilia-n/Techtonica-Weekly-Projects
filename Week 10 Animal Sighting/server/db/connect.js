@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 require('dotenv').config();
-console.log("what is", process.env)
+
 const client = new Client({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
@@ -8,7 +8,7 @@ const client = new Client({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
 });
-console.log({
+console.log("what is the problem :(", {
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
