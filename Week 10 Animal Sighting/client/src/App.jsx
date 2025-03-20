@@ -2,18 +2,221 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeTab, setActiveTab] = useState('species')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filters, setFilters] = useState({
+    conservationStatus: '',
+    minPopulation: '',
+    maxPopulation: '',
+    startDate: '',
+    endDate: ''
+  })
+
+  // Example data structure - replace with actual data 
+  const speciesData = [
+    {
+      id: 1,
+      commonName: "Amur Leopard",
+      scientificName: "Panthera pardus orientalis",
+      wildPopulation: 100,
+      conservationStatus: "CR",
+      individuals: [
+        {
+          id: 1,
+          nickname: "Leo",
+          sightings: [
+            {
+              id: 1,
+              imageUrl: "path/to/image.jpg",
+              location: "Yellowstone North Gate",
+              dateTime: "2023-10-14T15:30:00",
+              appearedHealthy: true,
+              sighterEmail: "scientist1@example.com"
+            }
+          ]
+        }
+      ]
+    }
+    // Add more species here
+  ]
 
   return (
-    <>
-    {/* single page application
-    main div holding sighting form, individual form, display tables
-    forms adds to db
-    tables have list of all species, if individual exist, 
-    drop down to open individual detail to display sighting detail. 
-    buttons to delete and edit individual + sighting in table */}
+    <div className='body'>
+      <div className='app'>
+        <div className="main-container">
+          {/* Search and Filter Section */}
+          <div className="search-section">
+            <input 
+              type="text" 
+              placeholder="Search by common name, scientific name, nickname, location, or sighter email..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            <div className="filter-container">
+              <select 
+                value={filters.conservationStatus}
+                onChange={(e) => setFilters({...filters, conservationStatus: e.target.value})}
+                className="filter-select"
+              >
+                <option value="">All Conservation Statuses</option>
+                <option value="CR">Critically Endangered</option>
+                <option value="EN">Endangered</option>
+                <option value="VU">Vulnerable</option>
+                <option value="NT">Near Threatened</option>
+                <option value="LC">Least Concern</option>
+              </select>
+              <input 
+                type="number" 
+                placeholder="Min Population"
+                value={filters.minPopulation}
+                onChange={(e) => setFilters({...filters, minPopulation: e.target.value})}
+                className="filter-input"
+              />
+              <input 
+                type="number" 
+                placeholder="Max Population"
+                value={filters.maxPopulation}
+                onChange={(e) => setFilters({...filters, maxPopulation: e.target.value})}
+                className="filter-input"
+              />
+              <input 
+                type="date" 
+                value={filters.startDate}
+                onChange={(e) => setFilters({...filters, startDate: e.target.value})}
+                className="filter-input"
+              />
+              <input 
+                type="date" 
+                value={filters.endDate}
+                onChange={(e) => setFilters({...filters, endDate: e.target.value})}
+                className="filter-input"
+              />
+            </div>
+          </div>
 
-    </>
+          {/* Tab Navigation */}
+          <div className="tab-navigation">
+            <button 
+              className={`tab-button ${activeTab === 'species' ? 'active' : ''}`}
+              onClick={() => setActiveTab('species')}
+            >
+              Species
+            </button>
+            <button 
+              className={`tab-button ${activeTab === 'individual' ? 'active' : ''}`}
+              onClick={() => setActiveTab('individual')}
+            >
+              Individual
+            </button>
+            <button 
+              className={`tab-button ${activeTab === 'sighting' ? 'active' : ''}`}
+              onClick={() => setActiveTab('sighting')}
+            >
+              Sighting
+            </button>
+          </div>
+
+          {/* Form Container */}
+          <div className="form-container">
+            {activeTab === 'species' && (
+              <form className="species-form">
+                <h2>Add New Species</h2>
+                <input type="text" placeholder="Common Name" required />
+                <input type="text" placeholder="Scientific Name" required />
+                <input type="number" placeholder="Population in Wild" required />
+                <select required>
+                  <option value="">Select Conservation Status</option>
+                  <option value="CR">Critically Endangered</option>
+                  <option value="EN">Endangered</option>
+                  <option value="VU">Vulnerable</option>
+                  <option value="NT">Near Threatened</option>
+                  <option value="LC">Least Concern</option>
+                </select>
+                <button type="submit">Add Species</button>
+              </form>
+            )}
+
+            {activeTab === 'individual' && (
+              <form className="individual-form">
+                <h2>Add New Individual</h2>
+                <input type="text" placeholder="Nickname" required />
+                <select required>
+                  <option value="">Select Species</option>
+                  {/* Species options will be populated dynamically */}
+                </select>
+                <button type="submit">Add Individual</button>
+              </form>
+            )}
+
+            {activeTab === 'sighting' && (
+              <form className="sighting-form">
+                <h2>Add New Sighting</h2>
+                <input type="file" accept="image/*" />
+                <input type="datetime-local" required />
+                <select required>
+                  <option value="">Select Individual</option>
+                  {/* Individual options will be populated dynamically */}
+                </select>
+                <input type="text" placeholder="Location" required />
+                <label>
+                  <input type="checkbox" />
+                  Animal Appeared Healthy
+                </label>
+                <input type="email" placeholder="Sighter Email" required />
+                <button type="submit">Add Sighting</button>
+              </form>
+            )}
+          </div>
+
+          {/* Data Display Section */}
+          <div className="data-container">
+            {speciesData.map(species => (
+              <div key={species.id} className="species-card">
+                <div className="species-header">
+                  <h3>{species.commonName}</h3>
+                  <div className="species-details">
+                    <p><strong>Scientific Name:</strong> {species.scientificName}</p>
+                    <p><strong>Population:</strong> {species.wildPopulation}</p>
+                    <p><strong>Status:</strong> {species.conservationStatus}</p>
+                  </div>
+                </div>
+                
+                {species.individuals && species.individuals.length > 0 && (
+                  <div className="individuals-container">
+                    {species.individuals.map(individual => (
+                      <div key={individual.id} className="individual-card">
+                        <h4>{individual.nickname}</h4>
+                        
+                        {individual.sightings && individual.sightings.length > 0 && (
+                          <div className="sightings-container">
+                            {individual.sightings.map(sighting => (
+                              <div key={sighting.id} className="sighting-card">
+                                <img 
+                                  src={sighting.imageUrl} 
+                                  alt={`Sighting of ${individual.nickname}`}
+                                  className="sighting-image"
+                                />
+                                <div className="sighting-details">
+                                  <p><strong>Location:</strong> {sighting.location}</p>
+                                  <p><strong>Date/Time:</strong> {new Date(sighting.dateTime).toLocaleString()}</p>
+                                  <p><strong>Health Status:</strong> {sighting.appearedHealthy ? 'Healthy' : 'Not Healthy'}</p>
+                                  <p><strong>Sighter:</strong> {sighting.sighterEmail}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
