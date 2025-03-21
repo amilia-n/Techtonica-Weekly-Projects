@@ -39,6 +39,8 @@
   flex-grow: 1;
   padding: 20px;
   gap: 20px;
+  height: 100%;
+  overflow: hidden;
 }
 
 /* Tab Navigation */
@@ -503,4 +505,12 @@ input[type="file"] {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 10px;
+  }
 }
