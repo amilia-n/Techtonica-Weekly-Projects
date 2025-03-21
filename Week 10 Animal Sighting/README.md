@@ -1,143 +1,247 @@
-# Full-Stack PERN Project: Animal Sighting Tracker
+# 🦁 Animal Sighting Tracker
 
-### Introduction
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 
-You've now learned how to create a full-stack app with a React frontend, Node/Express backend, and Postgres database (PERN). This project is to practice putting it all together by building a fairly simple app from start to finish.
+> A full-stack PERN (PostgreSQL, Express, React, Node.js) application for tracking endangered animal species, individuals, and sightings. Built with modern web technologies and a focus on user experience.
 
-### Instructions/Notes
+## 🌍 About Endangered Species
 
-- For this project, you can reference previous lessons and find your own resources online. This should be good practice finding resources and getting the help you need to make your code work without step-by-step instructions.
-- You must use Express, React, and Postgres. You can choose what other technologies and libraries you want to use as well as part of the project.
-- All code should be your own or _become your own_, i.e. you should understand what it's doing, even if it's a snippet from StackOverflow. If you get an idea from somewhere or someone, please add an attribution note in a comment.
-- If you're stuck on something, please post in the cohort or #tech-help channel rather than in a DM or private channel for help! That way everyone has access to the same answers.
-- **Styling/CSS is not important for this assignment**, but once the behavior is working, please feel free to make it look nice.
+An endangered species is one that is at high risk of extinction in the near future, either globally or within a specific region. Species become endangered due to factors such as habitat destruction, poaching, climate change, and invasive species. Conservation efforts, including legal protections, habitat restoration, and captive breeding programs, aim to prevent extinction.
 
-### Primary Goals
+### Conservation Status Categories
 
-1. Create multiple tables and join them
-2. Get comfortable using routes to create CRUD operations on data from DB
-3. Get comfortable using .map() to display data
-4. Get comfortable using props and callback functions to pass data from child to parent
-5. Get comfortable making forms in React and managing component state with useState
+The International Union for Conservation of Nature (IUCN) Red List is the most recognized system for assessing species' conservation status:
 
-### Requirements
+| Status | Description |
+|--------|-------------|
+| Extinct (EX) | No individuals remain |
+| Extinct in the Wild (EW) | Only survive in captivity |
+| Critically Endangered (CR) | Extremely high risk of extinction |
+| Endangered (EN) | Very high risk of extinction |
+| Vulnerable (VU) | High risk of extinction |
+| Near Threatened (NT) | Close to becoming threatened |
+| Least Concern (LC) | No immediate risk |
 
-- Decide if you want to use the [Techtonica Template created with Vite](https://github.com/Techtonica/curriculum/tree/main/projects/2023TemplateWithVite)
-- A top-level `README.md` that says how to run your app locally including all steps after cloning the repo
-- Use pg_dump or another method to create a file called `db.sql` that allows someone else to recreate your DB
-- Use SQL to add some initial data to your database. Add at least 3 animal species, 2 individuals of each species, and at least 5 animal sightings.
-- The front end should display some data from 2 tables joined with SQL
-- Commit at least 15 times and PR must be clean and only include files related to this project
-- Include an appropriate .gitignore (don't commit **node_modules**!)
-- Testing
-  - Write unit tests using Jest for at least one component. For example, how can you test the creation form?
-  - API test for your sightings API (GET, POST/PUT, DELETE)
+Over 195 countries have committed to protecting endangered species through biodiversity action plans and conservation programs.
 
-### Data
+<div align="right">
+  <em>Source: <a href="https://en.wikipedia.org/wiki/Endangered_species">Wikipedia - Endangered Species</a></em>
+</div>
 
-#### Species
+---
 
-This app will store data about different endangered species (e.g. polar bears, tigers). (Note: You can use fake data, you do not need to find the real numbers). For each species, it should be able to store:
+## ✨ Features
 
-- Integer primary key
-- the common name (e.g. tiger)
-- scientific name (e.g. _Procyon lotor_)
-- number estimated living in the wild (e.g. 3000)
-- conservation status code (e.g. CR, EN, LC)
-- Record creation timestamp
+🦊 **Species Management**
+- Track endangered species with detailed information
+- Monitor conservation status and population data
+- Scientific and common name tracking
 
-It is up to you to decide which records are optional in your database.
+🐘 **Individual Tracking**
+- Monitor specific animals within each species
+- Track individual histories and characteristics
+- Link individuals to their species data
 
-#### Individuals
+📸 **Sighting Records**
+- Record and manage animal sightings
+- Location tracking with flexible format
+- Health status monitoring
+- Image upload capabilities
 
-Scientists track some individual animals of endangered species, so we want to store data about each individual as well
+🎨 **Modern UI/UX**
+- Responsive design for all devices
+- Intuitive tabbed interface
+- Real-time form validation
+- Search and filter functionality
 
-- Integer primary key
-- Nickname (e.g. "Prickly Petunia")
-- Species
-- Record creation timestamp
+---
 
-#### Sightings
+## 🚀 Getting Started
 
-When scientists spot an individual they’re tracking, they want to store some information about the sighting in the database:
+### Prerequisites
 
-- Integer primary key
-- The date and time of the sighting (the scientist might enter the data when they get back to their lab so it could be in the past)
-- The individual that was seen
-- Location of sighting - the data type should be text so the scientist can be as specific as they want: "37.791278, -122.394680", "Yellowstone North Gate" or just "California"
-- A boolean for whether the animal appeared healthy or not (obviously this just an educated guess, but good for tracking of injuries or serious illness)
-- Email address of sighter in case researchers need more info
-- (Optional) Record creation timestamp
+Before you begin, ensure you have the following installed:
 
-### Suggested Features
+- 📦 Node.js (v14 or higher)
+- 🐘 PostgreSQL (v12 or higher)
+- 📥 npm or yarn package manager
 
-Example features:
+### Quick Start Guide
 
-- Show a list of all sightings, including the nickname of the individual sighted at each one (using a JOIN query).
-- Form to add a new sighting record
-- Form to add new individuals
+1. **Clone & Navigate** 🔄
+   ```bash
+   git clone <your-repo-url>
+   cd Week\ 10\ Animal\ Sighting
+   ```
 
-### Submission
+2. **Database Setup** 💾
+   ```bash
+   createdb animal_sighting
+   psql animal_sighting < db/db.sql
+   ```
 
-- Include a top-level `README.md` that says how to run your app locally including all steps after cloning the repo
-- Use [pg_dump](https://stackoverflow.com/questions/37984733/postgresql-database-export-to-sql-file) or another method to create a file called `db.sql` that allows someone else to recreate your DB
-  - Use SQL to add some initial data to your database. Add at least 3 animal species, 2 individuals of each species, and at least 5 animal sightings.
-- PR must be clean and only include files related to this project
-  - Include an appropriate .gitignore (don't commit **node_modules**!)
+3. **Server Configuration** ⚙️
+   ```bash
+   cd server
+   npm install
+   ```
+   Create `.env` file:
+   ```env
+   DB_USER=your_username
+   DB_PASSWORD=your_password
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=animal_sighting
+   PORT=3000
+   ```
+   Start server:
+   ```bash
+   npm start
+   ```
 
-### Implement One Bonus Feature
+4. **Client Setup** 🖥️
+   ```bash
+   cd client
+   npm install
+   npm run dev
+   ```
 
-Once you finish the core requirements, you should choose at least one of the below and implement it. If you were caught up on Eventonica, it is expected you will do more than one of these in your initial PR by the deadline.
+   🌐 Visit `http://localhost:5173` in your browser
 
-**Note: before starting any of these, create a new branch for the feature, so in case you run of time in the middle you can always go back to your completed main project**
+---
 
-#### Feature: Individual Detail Page
+## 📁 Project Structure
 
-Click on an individual to bring up its details. Add some more database columns to make the view more interesting.
+```
+📦 animal-sighting-tracker
+├── 📂 client/                # React frontend
+│   ├── 📂 src/              # Source files
+│   ├── 📂 public/           # Static files
+│   └── 📄 package.json      # Frontend dependencies
+├── 📂 server/               # Express backend
+│   ├── 📂 db/              # Database scripts
+│   ├── 📂 scripts/         # Utility scripts
+│   └── 📄 package.json     # Backend dependencies
+└── 📄 README.md            # Documentation
+```
 
-- the link to its Wikipedia page
-- representative photo URL
+## 📊 Database Schema
 
-#### Group Sightings
+The application uses PostgreSQL with three main tables to track endangered species and sightings:
 
-Especially with social species, storing which individuals were spotted together is vital for research.
+### Species Table
+```sql
+CREATE TABLE species (
+    id SERIAL PRIMARY KEY,
+    common_name VARCHAR(100) NOT NULL,
+    scientific_name VARCHAR(100) NOT NULL,
+    conservation_status VARCHAR(50) NOT NULL,
+    estimated_wild_population INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-- Be able to store a sighting where multiple individuals were spotted together. This means a sighting record needs to be able to be associated with multiple individuals. What type of data relationship is this? How do you need to change your DB schema to make this work?
+### Individuals Table
+```sql
+CREATE TABLE individuals (
+    id SERIAL PRIMARY KEY,
+    nickname VARCHAR(100) NOT NULL,
+    species_id INTEGER REFERENCES species(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-#### Filtering
+### Sightings Table
+```sql
+CREATE TABLE sightings (
+    id SERIAL PRIMARY KEY,
+    individual_id INTEGER REFERENCES individuals(id),
+    sighting_datetime TIMESTAMP NOT NULL,
+    location TEXT NOT NULL,
+    healthy BOOLEAN NOT NULL,
+    spotter_email VARCHAR(255) NOT NULL,
+    image_url TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-Add a "Healthy" filter checkbox
+### Relationships
+- Each `species` can have multiple `individuals`
+- Each `individual` belongs to one `species`
+- Each `individual` can have multiple `sightings`
+- Each `sighting` is associated with one `individual`
 
-- The list of sightings should be filtered to only show sightings where the animal is healthy
-- When unchecked, all sightings should be shown again
-- Do this using React only -- don’t change your API calls
+### Key Features
+- Timestamps for audit trails
+- Foreign key constraints for data integrity
+- Required fields marked as `NOT NULL`
+- Flexible location format using TEXT
+- Email validation for spotter contact
+- Optional image URLs for sighting documentation
 
-#### Other Features
+## 🔌 API Endpoints
 
-- Error handling
-  - Your form should use HTML input attributes to validate input and make entering data fast and easy
-  - Have your API validate the incoming data
-  - Show a user-visible error message to indicate what's wrong and how the user can fix it
-- Add API endpoints for all data so you can add it from Postman rather than SQL
-- Let users search for sightings within a certain date range
-- In the list of individuals
-  - Add a count of how many times each individual has been sighted
-  - Show the first sighting and most recent sighting date
-- Use CSS/styling libraries to make your app look good
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/species` | Retrieve all species |
+| POST | `/api/species` | Add a new species |
+| GET | `/api/individuals` | Retrieve all individuals |
+| POST | `/api/individuals` | Add a new individual |
+| GET | `/api/sightings` | Retrieve all sightings |
+| POST | `/api/sightings` | Add a new sighting |
 
-#### Extras
+## 🛠️ Tech Stack
 
-- If you have more time, keep adding enhancements. You can implement more of the above suggestions or make up your own ideas. Be creative!
+### Frontend
+- ⚛️ React
+- ⚡ Vite
+- 🎨 Modern CSS3
+- 📱 Responsive Design
 
-### I'm having trouble starting...
+### Backend
+- 🟢 Node.js
+- ⚡ Express
+- 🐘 PostgreSQL
+- 🔄 pg-promise
 
-- Do you need help with the [Techtonica Template](https://github.com/Techtonica/curriculum/tree/main/projects/Template2023Projects) running locally on your machine
-- Add a `GET` route for `/sightings` that will respond with all the records in your sightings DB table
-  - You will need to talk to the database
-  - See the [pg-promise instructions](https://expressjs.com/en/guide/database-integration.html#postgresql) for an idea of how to do that
-- Test this API with Postman
-- Once it is working, make the React app
-  - Make a simple component that will show all the sightings
-  - Use fetch to retrieve data from `/sightings`
-- Make sure this basic end-to-end flow is working. If not, get help!
-- From there add more data and functionality
+## 👏 Attributions
+
+### Icons
+- 📸 [Add img icons](https://www.flaticon.com/free-icons/picture) by Superndre - Flaticon
+- ✍️ [Edit icons](https://www.flaticon.com/free-icons/sentence) by Ranah Pixel Studio - Flaticon
+- 🔍 [Search icons](https://www.flaticon.com/free-icons/discover) by Smashicons - Flaticon
+
+### UI Components
+- 📑 Tabbed container inspired by [Rafaela Lucas's CodePen](https://codepen.io/rafaelavlucas/pen/MLKGba)
+
+## 🧪 Testing
+
+```bash
+# 🧪 Frontend tests
+cd client && npm test
+
+# 🔍 Backend tests
+cd server && npm test
+```
+
+## 🤝 Contributing
+
+1. 🔱 Fork the repository
+2. 🌿 Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
+5. 🎯 Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+<div align="center">
+  Techtonica Week 10 Project
+</div>

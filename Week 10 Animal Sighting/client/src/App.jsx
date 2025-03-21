@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import writeIcon from './assets/write.png'
 import searchIcon from './assets/search.png'
+import addIcon from './assets/add.png'
 
 function App() {
   const [activeTab, setActiveTab] = useState('species')
@@ -91,6 +92,10 @@ function App() {
     }))
   }
 
+  const handleImageChange = (e) => {
+    // Handle image change
+  }
+
   return (
     <div className='body'>
       <div className='app'>
@@ -158,19 +163,19 @@ function App() {
               className={`tab-button ${activeTab === 'species' ? 'active' : ''}`}
               onClick={() => setActiveTab('species')}
             >
-              Species
+              <p data-title="Species">Species</p>
             </button>
             <button 
               className={`tab-button ${activeTab === 'individual' ? 'active' : ''}`}
               onClick={() => setActiveTab('individual')}
             >
-              Individual
+              <p data-title="Individual">Individual</p>
             </button>
             <button 
               className={`tab-button ${activeTab === 'sighting' ? 'active' : ''}`}
               onClick={() => setActiveTab('sighting')}
             >
-              Sighting
+              <p data-title="Sighting">Sighting</p>
             </button>
           </div>
 
@@ -209,7 +214,15 @@ function App() {
             {activeTab === 'sighting' && (
               <form className="sighting-form">
                 <h2>Add New Sighting</h2>
-                <input type="file" accept="image/*" />
+                <div className="file-upload-container">
+                  <img src={addIcon} alt="Upload" className="upload-icon" />
+                  <span className="upload-text">Click to upload image</span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                  />
+                </div>
                 <input type="datetime-local" required />
                 <select required>
                   <option value="">Select Individual</option>
