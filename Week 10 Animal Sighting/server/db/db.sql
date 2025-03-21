@@ -24,6 +24,7 @@ CREATE TABLE individuals (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
+-- In the future maybe for location rename to something different, it looks like it could potentially be a keyword.
 -- Create the sightings table
 CREATE TABLE sightings (
     id SERIAL PRIMARY KEY,
