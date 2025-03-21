@@ -8,7 +8,7 @@ import addIcon from '../assets/add.png';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
-function DisplayData({ activeTab, speciesData, onDataUpdate }) {
+function DisplayData({ speciesData, onDataUpdate }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState({
     conservationStatus: '',

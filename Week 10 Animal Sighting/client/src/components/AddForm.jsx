@@ -1,5 +1,4 @@
 // Form component for adding new species, individuals, and sightings with validation
-import { useState } from 'react';
 import './AddForm.css';
 import addIcon from '../assets/add.png';
 
@@ -49,7 +48,6 @@ function AddForm({ activeTab, speciesData, onDataUpdate }) {
   const handleSightingSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const imageFile = formData.get('image');
     
     // mock URL
     const imageUrl = 'placeholder_url';
