@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0"
+  }
+}

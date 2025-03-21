@@ -12,7 +12,7 @@ CREATE TABLE species (
     commonName TEXT NOT NULL,
     scientificName TEXT NOT NULL,
     conservationStatus TEXT NOT NULL,
-    wildPopulation INT
+    wildPopulation INT,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -32,6 +32,7 @@ CREATE TABLE sightings (
     location TEXT NOT NULL,
     appeared_healthy BOOLEAN NOT NULL,
     sighter_email VARCHAR(255) NOT NULL,
+    image_url TEXT,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -104,14 +105,14 @@ VALUES
     ('Yuri', 15);
 
 -- Insert sightings data (5 sightings)
-INSERT INTO sightings (sighting_time, individual_id, location, appeared_healthy, sighter_email)
+INSERT INTO sightings (sighting_time, individual_id, location, appeared_healthy, sighter_email, image_url)
 VALUES
     -- Sightings for Leo (Amur Leopard)
-    ('2023-10-14 15:30:00', 1, 'Yellowstone North Gate', TRUE, 'scientist1@example.com'),
-    ('2023-10-15 09:45:00', 1, 'Yellowstone River Valley', FALSE, 'scientist2@example.com'),
+    ('2023-10-14 15:30:00', 1, 'Yellowstone North Gate', TRUE, 'scientist1@example.com', 'https://s3.animalia.bio/animals/photos/full/original/1620px-big-teeth-of-an-amoer-panter-3960316618jpg.webp'),
+    ('2023-10-15 09:45:00', 1, 'Yellowstone River Valley', FALSE, 'scientist2@example.com', 'https://s3.animalia.bio/animals/photos/full/original/1620px-in-blijdorp-zoo-36350046764jpg.webp'),
     -- Sightings for Rhino (Black Rhino)
-    ('2023-10-14 12:00:00', 3, 'Serengeti Plains', TRUE, 'scientist3@example.com'),
+    ('2023-10-14 12:00:00', 3, 'Serengeti Plains', TRUE, 'scientist3@example.com', 'https://s3.animalia.bio/animals/photos/full/original/black-rhino-etosha-national-park-namibia-1.webp'),
     -- Sightings for Orang (Bornean Orangutan)
-    ('2023-10-13 14:20:00', 5, 'Borneo Rainforest', TRUE, 'scientist4@example.com'),
+    ('2023-10-13 14:20:00', 5, 'Borneo Rainforest', TRUE, 'scientist4@example.com', 'https://s3.animalia.bio/animals/photos/full/original/sandakan-sabah-sepilok-orangutan-rehabilitation-centre-09jpg.webp'),
     -- Sightings for Luna (Amur Leopard)
-    ('2023-10-12 17:10:00', 2, 'Yellowstone South Gate', TRUE, 'scientist5@example.com');
+    ('2023-10-12 17:10:00', 2, 'Yellowstone South Gate', TRUE, 'scientist5@example.com', 'https://s3.animalia.bio/animals/photos/full/original/1620px-amur-panther-4584919455jpg.webp');

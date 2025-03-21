@@ -1,0 +1,466 @@
+/* Search and Filter Section */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 12px 12px 48px;
+  border: 2px solid rgba(173, 216, 230, 0.5);
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  text-indent: 25px;
+}
+
+.search-input:focus {
+  border-color: rgba(173, 216, 230, 0.8);
+  box-shadow: 0 0 5px rgba(173, 216, 230, 0.5);
+}
+
+.search-input::placeholder {
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.filter-label {
+  color: #2c3e50;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.filter-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.filter-select,
+.filter-input {
+  flex: 1;
+  width: calc(20% - 8px);
+  min-width: unset;
+  padding: 8px 12px;
+  border: 2px solid rgba(173, 216, 230, 0.5);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.filter-select:focus,
+.filter-input:focus {
+  border-color: rgba(173, 216, 230, 0.8);
+  box-shadow: 0 0 5px rgba(173, 216, 230, 0.5);
+}
+
+/* Data Display Section */
+.data-container {
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.species-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.species-card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.species-header {
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.species-header h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.species-details {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.species-details p {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.edit-button,
+.delete-button {
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid;
+  background: none;
+}
+
+.edit-button {
+  background-color: rgba(255, 182, 193, 0.5);
+  border-color: rgba(255, 182, 193, 0.8);
+}
+
+.delete-button {
+  background-color: rgba(255, 99, 71, 0.5);
+  border-color: rgba(255, 99, 71, 0.8);
+}
+
+.edit-button img,
+.delete-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: opacity(0.7);
+  transition: all 0.3s ease;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-button:hover {
+  background-color: rgba(255, 182, 193, 0.8);
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 99, 71, 0.8);
+}
+
+.edit-button:hover img,
+.delete-button:hover img {
+  filter: opacity(1);
+}
+
+/* Edit Form */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  margin-top: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 10px;
+  border: 2px solid rgba(173, 216, 230, 0.5);
+  border-radius: 10px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  border-color: rgba(173, 216, 230, 0.8);
+  box-shadow: 0 0 5px rgba(173, 216, 230, 0.5);
+}
+
+.edit-form label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2c3e50;
+}
+
+.edit-form input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-actions button {
+  padding: 8px 16px;
+  border: 2px solid;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  flex: 1;
+}
+
+.edit-actions button:first-child {
+  background-color: rgba(144, 238, 144, 0.5);
+  border-color: rgba(144, 238, 144, 0.8);
+  color: #2c3e50;
+}
+
+.edit-actions button:last-child {
+  background-color: rgba(255, 160, 122, 0.5);
+  border-color: rgba(255, 160, 122, 0.8);
+  color: #2c3e50;
+}
+
+.edit-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.edit-actions button:first-child:hover {
+  background-color: rgba(144, 238, 144, 0.8);
+}
+
+.edit-actions button:last-child:hover {
+  background-color: rgba(255, 160, 122, 0.8);
+}
+
+/* Individuals and Sightings */
+.individuals-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 20px;
+}
+
+.individual-card {
+  background-color: white;
+  border-radius: 6px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.individual-card h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.sightings-wrapper {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+}
+
+.sightings-header {
+  padding: 15px;
+  border-bottom: 1px solid #e9ecef;
+  background-color: white;
+}
+
+.sightings-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 15px;
+  padding: 15px;
+  justify-content: start;
+}
+
+.sighting-card {
+  width: 300px;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.sighting-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px 6px 0 0;
+}
+
+.sighting-details {
+  padding: 15px;
+}
+
+.sighting-details p {
+  margin: 5px 0;
+  color: #495057;
+}
+
+/* Current Image Display */
+.current-image-container {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.current-sighting-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.current-image-label {
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* No Data Message */
+.no-data-message {
+  padding: 20px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  margin: 10px 0;
+  border: 1px dashed #dee2e6;
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .filter-select,
+  .filter-input {
+    width: 100%;
+  }
+  
+  .species-details {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .species-details p {
+    flex: none;
+    width: 100%;
+  }
+  
+  .sightings-container {
+    grid-template-columns: 1fr;
+    justify-content: stretch;
+  }
+  
+  .sighting-card {
+    width: 100%;
+  }
+  
+  .sighting-image {
+    width: 100%;
+  }
+  
+  .individuals-container,
+  .sightings-container {
+    margin-left: 10px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .button-group {
+    align-self: flex-end;
+  }
+  
+  .edit-form {
+    padding: 10px;
+  }
+  
+  .edit-actions {
+    flex-direction: column;
+  }
+  
+  .edit-actions button {
+    width: 100%;
+  }
+  
+  .sightings-wrapper {
+    margin: 10px -10px 0;
+    border-radius: 0;
+  }
+}

@@ -80,8 +80,8 @@ Before you begin, ensure you have the following installed:
 
 2. **Database Setup** 💾
    ```bash
-   createdb animal_sighting
-   psql animal_sighting < db/db.sql
+   createdb endangered
+   psql endangered < server/db/db.sql
    ```
 
 3. **Server Configuration** ⚙️
@@ -136,12 +136,12 @@ The application uses PostgreSQL with three main tables to track endangered speci
 ### Species Table
 ```sql
 CREATE TABLE species (
-    id SERIAL PRIMARY KEY,
-    common_name VARCHAR(100) NOT NULL,
-    scientific_name VARCHAR(100) NOT NULL,
-    conservation_status VARCHAR(50) NOT NULL,
-    estimated_wild_population INTEGER,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id INT PRIMARY KEY,
+    commonName TEXT NOT NULL,
+    scientificName TEXT NOT NULL,
+    conservationStatus TEXT NOT NULL,
+    wildPopulation INT,
+    created_at TIMESTAMP DEFAULT NOW()
 );
 ```
 
@@ -149,9 +149,9 @@ CREATE TABLE species (
 ```sql
 CREATE TABLE individuals (
     id SERIAL PRIMARY KEY,
-    nickname VARCHAR(100) NOT NULL,
-    species_id INTEGER REFERENCES species(id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    nickname VARCHAR(255) NOT NULL,
+    species_id INT REFERENCES species(id),
+    created_at TIMESTAMP DEFAULT NOW()
 );
 ```
 
@@ -159,29 +159,29 @@ CREATE TABLE individuals (
 ```sql
 CREATE TABLE sightings (
     id SERIAL PRIMARY KEY,
-    individual_id INTEGER REFERENCES individuals(id),
-    sighting_datetime TIMESTAMP NOT NULL,
+    sighting_time TIMESTAMP NOT NULL,
+    individual_id INT REFERENCES individuals(id),
     location TEXT NOT NULL,
-    healthy BOOLEAN NOT NULL,
-    spotter_email VARCHAR(255) NOT NULL,
+    appeared_healthy BOOLEAN NOT NULL,
+    sighter_email VARCHAR(255) NOT NULL,
     image_url TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT NOW()
 );
 ```
 
-### Relationships
-- Each `species` can have multiple `individuals`
-- Each `individual` belongs to one `species`
-- Each `individual` can have multiple `sightings`
-- Each `sighting` is associated with one `individual`
+### Database Setup
+```bash
+# Create the database
+createdb endangered
 
-### Key Features
-- Timestamps for audit trails
-- Foreign key constraints for data integrity
-- Required fields marked as `NOT NULL`
-- Flexible location format using TEXT
-- Email validation for spotter contact
-- Optional image URLs for sighting documentation
+# Import the schema and initial data
+psql endangered < server/db/db.sql
+```
+
+The database includes initial data for:
+- 15 endangered species with conservation status and population data
+- 2 individuals per species (30 total)
+- 5 sample sightings with location and health status
 
 ## 🔌 API Endpoints
 
@@ -214,6 +214,10 @@ CREATE TABLE sightings (
 - 📸 [Add img icons](https://www.flaticon.com/free-icons/picture) by Superndre - Flaticon
 - ✍️ [Edit icons](https://www.flaticon.com/free-icons/sentence) by Ranah Pixel Studio - Flaticon
 - 🔍 [Search icons](https://www.flaticon.com/free-icons/discover) by Smashicons - Flaticon
+- 🗑️ [Delete icons](https://www.flaticon.com/free-icons/uninstall) by Dreamcreateicons - Flaticon
+
+### Images
+- 🦁 Animal images sourced from [Animalia.bio](https://animalia.bio/)
 
 ### UI Components
 - 📑 Tabbed container inspired by [Rafaela Lucas's CodePen](https://codepen.io/rafaelavlucas/pen/MLKGba)
