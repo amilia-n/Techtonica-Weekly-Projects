@@ -356,13 +356,6 @@ function DisplayData({ activeTab, speciesData, onDataUpdate }) {
                                   >
                                     <img src={writeIcon} alt="Edit" />
                                   </button>
-                                  <button 
-                                    className="delete-button"
-                                    onClick={() => handleDelete('sightings', individual.sightings[0]?.id)}
-                                    title="Delete"
-                                  >
-                                    <img src={deleteIcon} alt="Delete" />
-                                  </button>
                                 </div>
                               </div>
                               
@@ -374,6 +367,15 @@ function DisplayData({ activeTab, speciesData, onDataUpdate }) {
                             <div className="sightings-container">
                               {individual.sightings.map(sighting => (
                                 <div key={sighting.id} className="sighting-card">
+                                  <div className="sighting-header">
+                                    <button 
+                                      className="delete-button"
+                                      onClick={() => handleDelete('sightings', sighting.id)}
+                                      title="Delete"
+                                    >
+                                      <img src={deleteIcon} alt="Delete" />
+                                    </button>
+                                  </div>
                                   <img 
                                     src={sighting.imageUrl} 
                                     alt={`Sighting of ${individual.nickname}`}

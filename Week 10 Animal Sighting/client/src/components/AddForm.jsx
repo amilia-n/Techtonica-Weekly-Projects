@@ -51,8 +51,7 @@ function AddForm({ activeTab, speciesData, onDataUpdate }) {
     const formData = new FormData(e.target);
     const imageFile = formData.get('image');
     
-    // Here you would typically upload the image to a storage service
-    // and get back a URL. For now, we'll use a placeholder URL
+    // mock URL
     const imageUrl = 'placeholder_url';
 
     const sightingData = {

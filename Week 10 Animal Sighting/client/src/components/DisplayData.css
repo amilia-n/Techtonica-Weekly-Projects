@@ -169,17 +169,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid;
+  border: none;
   background: none;
 }
 
 .edit-button {
-  background-color: rgba(255, 182, 193, 0.5);
   border-color: rgba(255, 182, 193, 0.8);
 }
 
 .delete-button {
-  background-color: rgba(255, 99, 71, 0.5);
   border-color: rgba(255, 99, 71, 0.8);
 }
 
@@ -195,14 +193,15 @@
 .edit-button:hover,
 .delete-button:hover {
   transform: translateY(-2px);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .edit-button:hover {
-  background-color: rgba(255, 182, 193, 0.8);
+  border-color: rgba(255, 182, 193, 1);
 }
 
 .delete-button:hover {
-  background-color: rgba(255, 99, 71, 0.8);
+  border-color: rgba(255, 99, 71, 1);
 }
 
 .edit-button:hover img,
@@ -257,38 +256,26 @@
 }
 
 .edit-actions button {
-  padding: 8px 16px;
-  border: 2px solid;
-  border-radius: 10px;
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-  flex: 1;
 }
 
 .edit-actions button:first-child {
-  background-color: rgba(144, 238, 144, 0.5);
-  border-color: rgba(144, 238, 144, 0.8);
   color: #2c3e50;
 }
 
 .edit-actions button:last-child {
-  background-color: rgba(255, 160, 122, 0.5);
-  border-color: rgba(255, 160, 122, 0.8);
   color: #2c3e50;
 }
 
 .edit-actions button:hover {
   transform: translateY(-2px);
-}
-
-.edit-actions button:first-child:hover {
-  background-color: rgba(144, 238, 144, 0.8);
-}
-
-.edit-actions button:last-child:hover {
-  background-color: rgba(255, 160, 122, 0.8);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* Individuals and Sightings */
@@ -343,6 +330,30 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
+}
+
+.sighting-header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.sighting-header .delete-button {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.sighting-header .delete-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
 }
 
 .sighting-image {
