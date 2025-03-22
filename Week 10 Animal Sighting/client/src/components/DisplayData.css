@@ -34,7 +34,6 @@
   background-color: rgba(255, 255, 255, 0.335);  /* F6F1E8 with 85% opacity */
   transition: all 0.3s ease;
   text-indent: 25px;
-  color: aquamarine;
 }
 
 .search-input:focus {
