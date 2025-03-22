@@ -366,11 +366,45 @@
 
 .sighting-details {
   padding: 15px;
+  padding-top: 8px;
+  background-color: white;
+  border-radius: 0 0 6px 6px;
+}
+
+.sighting-details-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+
+.sighting-details-header .button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.sighting-details-header .edit-button {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.sighting-details-header .edit-button:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .sighting-details p {
   margin: 5px 0;
   color: #495057;
+}
+
+.sighting-details p:first-of-type {
+  margin-top: -4px;
 }
 
 /* Current Image Display */

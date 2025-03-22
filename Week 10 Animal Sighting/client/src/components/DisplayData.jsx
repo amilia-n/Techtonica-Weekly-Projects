@@ -348,20 +348,7 @@ function DisplayData({ speciesData, onDataUpdate }) {
                             <div className="sightings-header">
                               <div className="header-content">
                                 <h5>Sighting Details</h5>
-                                <div className="button-group">
-                                  <button 
-                                    className="edit-button"
-                                    onClick={() => handleEdit('sighting', individual.sightings[0]?.id)}
-                                    title={editingState.sighting === individual.sightings[0]?.id ? 'Cancel' : 'Edit'}
-                                  >
-                                    <img src={writeIcon} alt="Edit" />
-                                  </button>
-                                </div>
                               </div>
-                              
-                              {editingState.sighting === individual.sightings[0]?.id ? (
-                                renderSightingEditForm(individual.sightings[0])
-                              ) : null}
                             </div>
                             
                             <div className="sightings-container">
@@ -382,10 +369,27 @@ function DisplayData({ speciesData, onDataUpdate }) {
                                     className="sighting-image"
                                   />
                                   <div className="sighting-details">
-                                    <p><strong>Location:</strong> {sighting.location}</p>
-                                    <p><strong>Date/Time:</strong> {new Date(sighting.dateTime).toLocaleString()}</p>
-                                    <p><strong>Health Status:</strong> {sighting.appearedHealthy ? 'Healthy' : 'Not Healthy'}</p>
-                                    <p><strong>Sighter:</strong> {sighting.sighterEmail}</p>
+                                    <div className="sighting-details-header">
+                                      <div className="button-group">
+                                        <button 
+                                          className="edit-button"
+                                          onClick={() => handleEdit('sighting', sighting.id)}
+                                          title={editingState.sighting === sighting.id ? 'Cancel' : 'Edit'}
+                                        >
+                                          <img src={writeIcon} alt="Edit" />
+                                        </button>
+                                      </div>
+                                    </div>
+                                    {editingState.sighting === sighting.id ? (
+                                      renderSightingEditForm(sighting)
+                                    ) : (
+                                      <>
+                                        <p><strong>Location:</strong> {sighting.location}</p>
+                                        <p><strong>Date/Time:</strong> {new Date(sighting.dateTime).toLocaleString()}</p>
+                                        <p><strong>Health Status:</strong> {sighting.appearedHealthy ? 'Healthy' : 'Not Healthy'}</p>
+                                        <p><strong>Sighter:</strong> {sighting.sighterEmail}</p>
+                                      </>
+                                    )}
                                   </div>
                                 </div>
                               ))}
