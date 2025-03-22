@@ -52,11 +52,6 @@ Over 195 countries have committed to protecting endangered species through biodi
 - Health status monitoring
 - Image upload capabilities
 
-🎨 **Modern UI/UX**
-- Responsive design for all devices
-- Intuitive tabbed interface
-- Real-time form validation
-- Search and filter functionality
 
 ---
 
@@ -136,7 +131,7 @@ The application uses PostgreSQL with three main tables to track endangered speci
 ### Species Table
 ```sql
 CREATE TABLE species (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     commonName TEXT NOT NULL,
     scientificName TEXT NOT NULL,
     conservationStatus TEXT NOT NULL,
@@ -150,8 +145,9 @@ CREATE TABLE species (
 CREATE TABLE individuals (
     id SERIAL PRIMARY KEY,
     nickname VARCHAR(255) NOT NULL,
-    species_id INT REFERENCES species(id),
-    created_at TIMESTAMP DEFAULT NOW()
+    species_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE
 );
 ```
 
@@ -160,12 +156,13 @@ CREATE TABLE individuals (
 CREATE TABLE sightings (
     id SERIAL PRIMARY KEY,
     sighting_time TIMESTAMP NOT NULL,
-    individual_id INT REFERENCES individuals(id),
+    individual_id INT NOT NULL,
     location TEXT NOT NULL,
     appeared_healthy BOOLEAN NOT NULL,
     sighter_email VARCHAR(255) NOT NULL,
     image_url TEXT,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (individual_id) REFERENCES individuals(id) ON DELETE CASCADE
 );
 ```
 
@@ -219,12 +216,13 @@ The database includes initial data for:
 - ✍️ [Edit icons](https://www.flaticon.com/free-icons/sentence) by Ranah Pixel Studio - Flaticon
 - 🔍 [Search icons](https://www.flaticon.com/free-icons/discover) by Smashicons - Flaticon
 - 🗑️ [Delete icons](https://www.flaticon.com/free-icons/uninstall) by Dreamcreateicons - Flaticon
+- 🫥 [No icons](https://www.flaticon.com/free-icons/no) by pocike - Flaticon
 
 ### Images
 - 🦁 Animal images sourced from [Animalia.bio](https://animalia.bio/)
 
 ### UI Components
-- 📑 Tabbed container inspired by [Rafaela Lucas's CodePen](https://codepen.io/rafaelavlucas/pen/MLKGba)
+- 📑 Tabbed form container inspired by [Rafaela Lucas's CodePen](https://codepen.io/rafaelavlucas/pen/MLKGba)
 
 ## 🧪 Testing
 
