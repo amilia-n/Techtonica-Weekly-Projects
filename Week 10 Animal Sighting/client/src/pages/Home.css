@@ -6,7 +6,7 @@
 }
 
 .body {
-  background-color: #f5f5f5;
+  background-color: #f5f5f532;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -19,7 +19,7 @@
 }
 
 .app {
-  background-color: white;
+  background-color: rgba(94, 154, 113, 0.204);
   max-width: 1250px;
   width: 100%;
   min-height: 90vh;
@@ -28,7 +28,7 @@
   overflow: hidden;
   position: relative;
   border-radius: 14px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.038);
   font-size: 15px;
   font-weight: 500;
 }
@@ -49,7 +49,7 @@
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: none;
   border-radius: 2px 2px 0 0;
   margin: 0;
   position: relative;
@@ -57,8 +57,8 @@
 }
 
 .tab-button {
-  background: transparent;
-  background-image: linear-gradient(90deg, transparent 70%, rgba(255, 255, 255, 0.2) 100%);
+  /* background-color: rgba(240, 248, 255, 0); */
+  /* background-image: linear-gradient(90deg, transparent 70%, rgba(255, 255, 255, 0.2) 100%); */
   border: none;
   outline: none;
   cursor: pointer;
@@ -68,13 +68,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 16px;
+  font-size: 20px;
   font-family: inherit;
   overflow: hidden;
   transition: 0.3s ease;
   padding: 0;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
+  color: white;
+  border-radius: 30px;
 }
 
 .tab-button:focus {
@@ -86,10 +88,11 @@
   outline: none;
   box-shadow: none;
   border: none;
+
 }
 
 .tab-button:before {
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: linear-gradient(135deg, #70ad55 0%, #038101 100%);
   content: "";
   width: 100%;
   height: 0;
@@ -98,20 +101,25 @@
   left: 0;
   transition: 0.3s ease-in-out;
   z-index: 2;
+  color: none;
+  
 }
 
 .tab-button:hover:before {
   height: 100%;
   z-index: 2;
   bottom: 0;
+  color: none;
 }
 
 .tab-button.active {
-  background-color: white;
+  background-color: #ffffff;
+
   z-index: 0;
-  height: 110px;
+  /* height: 110px; */
   bottom: 0;
   overflow: hidden;
+  border-radius: 30px;
 }
 
 .tab-button.active:before {
@@ -120,6 +128,7 @@
   height: 5px;
   top: 0;
   left: 0;
+
 }
 
 .tab-button p {
@@ -131,20 +140,20 @@
   transition: 0.5s ease;
   padding: 0;
   margin: 0;
-  color: #686868;
+  color: #000000;
   backface-visibility: hidden;
   font-weight: 400;
   position: relative;
 }
 
 .tab-button:hover p {
-  color: white;
+  color: none;
   opacity: 1;
 }
 
 .tab-button.active p {
   opacity: 1;
-  background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-image: linear-gradient(135deg, #70ad55 0%, #038101 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -154,7 +163,7 @@
   position: absolute;
   height: auto;
   width: auto;
-  color: white;
+  color: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,7 +232,7 @@
   margin: -1px 20px 0;
   padding: 20px;
   border: 1px solid #ddd;
-  border-top-color: #007bff;
+  border-top-color: #87573f;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -255,7 +264,7 @@ select {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #92c360;
   color: white;
   border: none;
   border-radius: 4px;
@@ -265,7 +274,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #48a82eac;
 }
 
 /* Search and Filter Section */
@@ -288,6 +297,7 @@ button:hover {
 
 .search-input {
   flex: 1;
+  color: #70ad55;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;

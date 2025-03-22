@@ -210,8 +210,11 @@ The database includes initial data for:
 
 ## 👏 Attributions
 
+### Color Palette
+- 🎨 [Rainforest Pastels](https://www.pastelcolorpalettes.com/rainforest-pastels) from Pastel Color Palettes
+
 ### Icons
-- 🦁 [Animals icon](https://www.flaticon.com/free-icons/animals) by Chattapat - Flaticon
+- 🦁 [Animals icons](https://www.flaticon.com/free-icons/animals) by Chattapat - Flaticon
 - 📸 [Add img icons](https://www.flaticon.com/free-icons/picture) by Superndre - Flaticon
 - ✍️ [Edit icons](https://www.flaticon.com/free-icons/sentence) by Ranah Pixel Studio - Flaticon
 - 🔍 [Search icons](https://www.flaticon.com/free-icons/discover) by Smashicons - Flaticon
