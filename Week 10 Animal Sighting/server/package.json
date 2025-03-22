@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node server.js",
-    "setup-db": "psql -U postgres -d endangered -f db/db.sql",
+    "setup-db": "psql -U postgres -f db/db.sql",
     "load-data": "node scripts/loadData.js",
-    "setup": "npm run setup-db && npm run load-data",
+    "setup": "npm run setup-db",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"

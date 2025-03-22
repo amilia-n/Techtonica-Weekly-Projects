@@ -311,7 +311,7 @@ function DisplayData({ speciesData, onDataUpdate }) {
                           </button>
                           <button 
                             className="delete-button"
-                            onClick={() => handleDelete('individual', individual.id)}
+                            onClick={() => handleDelete('individuals', individual.id)}
                             title="Delete"
                           >
                             <img src={deleteIcon} alt="Delete" />
@@ -338,6 +338,10 @@ function DisplayData({ speciesData, onDataUpdate }) {
                                 species_id: parseInt(form.querySelector('#species_id').value)
                               };
                               handleSave('individuals', individual.id, updatedData);
+                              setEditingState(prev => ({
+                                ...prev,
+                                'individual': null
+                              }));
                             }}>Save</button>
                             <button onClick={() => handleCancel('individual')}>Cancel</button>
                           </div>

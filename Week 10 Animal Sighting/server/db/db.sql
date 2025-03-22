@@ -8,7 +8,7 @@ CREATE DATABASE endangered;
 
 -- Create the species table
 CREATE TABLE species (
-    id INT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     commonName TEXT NOT NULL,
     scientificName TEXT NOT NULL,
     conservationStatus TEXT NOT NULL,
@@ -20,40 +20,42 @@ CREATE TABLE species (
 CREATE TABLE individuals (
     id SERIAL PRIMARY KEY,
     nickname VARCHAR(255) NOT NULL,
-    species_id INT REFERENCES species(id),
-    created_at TIMESTAMP DEFAULT NOW()
+    species_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE
 );
 
 -- Create the sightings table
 CREATE TABLE sightings (
     id SERIAL PRIMARY KEY,
     sighting_time TIMESTAMP NOT NULL,
-    individual_id INT REFERENCES individuals(id),
+    individual_id INT NOT NULL,
     location TEXT NOT NULL,
     appeared_healthy BOOLEAN NOT NULL,
     sighter_email VARCHAR(255) NOT NULL,
     image_url TEXT,
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY (individual_id) REFERENCES individuals(id) ON DELETE CASCADE
 );
 
 -- Insert species data
-INSERT INTO species (id, commonName, scientificName, conservationStatus, wildPopulation)
+INSERT INTO species (commonName, scientificName, conservationStatus, wildPopulation)
 VALUES
-    (1, 'Amur Leopard', 'Panthera pardus orientalis', 'Critically Endangered', 100),
-    (2, 'Black Rhino', 'Diceros bicornis', 'Critically Endangered', 6480),
-    (3, 'Bornean Orangutan', 'Pongo pygmaeus', 'Critically Endangered', 104700),
-    (4, 'Cross River Gorilla', 'Gorilla gorilla diehli', 'Critically Endangered', 300),
-    (5, 'Eastern Lowland Gorilla', 'Gorilla beringei graueri', 'Critically Endangered', 6800),
-    (6, 'Hawksbill Turtle', 'Eretmochelys imbricata', 'Critically Endangered', 23000),
-    (7, 'Javan Rhino', 'Rhinoceros sondaicus', 'Critically Endangered', 76),
-    (8, 'Orangutan', 'Pongo abelii, Pongo pygmaeus', 'Critically Endangered', 120000),
-    (9, 'Sumatran Elephant', 'Elephas maximus sumatranus', 'Critically Endangered', 2400),
-    (10, 'Sumatran Orangutan', 'Pongo abelii', 'Critically Endangered', 13800),
-    (11, 'Sumatran Rhino', 'Dicerorhinus sumatrensis', 'Critically Endangered', 80),
-    (12, 'Sunda Tiger', 'Panthera tigris sondaica', 'Critically Endangered', 600),
-    (13, 'Vaquita', 'Phocoena sinus', 'Critically Endangered', 10),
-    (14, 'Western Lowland Gorilla', 'Gorilla gorilla gorilla', 'Critically Endangered', 360000),
-    (15, 'Yangtze Finless Porpoise', 'Neophocaena asiaeorientalis ssp. asiaeorientalis', 'Critically Endangered', 1000);
+    ('Amur Leopard', 'Panthera pardus orientalis', 'Critically Endangered', 100),
+    ('Black Rhino', 'Diceros bicornis', 'Critically Endangered', 6480),
+    ('Bornean Orangutan', 'Pongo pygmaeus', 'Critically Endangered', 104700),
+    ('Cross River Gorilla', 'Gorilla gorilla diehli', 'Critically Endangered', 300),
+    ('Eastern Lowland Gorilla', 'Gorilla beringei graueri', 'Critically Endangered', 6800),
+    ('Hawksbill Turtle', 'Eretmochelys imbricata', 'Critically Endangered', 23000),
+    ('Javan Rhino', 'Rhinoceros sondaicus', 'Critically Endangered', 76),
+    ('Orangutan', 'Pongo abelii, Pongo pygmaeus', 'Critically Endangered', 120000),
+    ('Sumatran Elephant', 'Elephas maximus sumatranus', 'Critically Endangered', 2400),
+    ('Sumatran Orangutan', 'Pongo abelii', 'Critically Endangered', 13800),
+    ('Sumatran Rhino', 'Dicerorhinus sumatrensis', 'Critically Endangered', 80),
+    ('Sunda Tiger', 'Panthera tigris sondaica', 'Critically Endangered', 600),
+    ('Vaquita', 'Phocoena sinus', 'Critically Endangered', 10),
+    ('Western Lowland Gorilla', 'Gorilla gorilla gorilla', 'Critically Endangered', 360000),
+    ('Yangtze Finless Porpoise', 'Neophocaena asiaeorientalis ssp. asiaeorientalis', 'Critically Endangered', 1000);
 
 -- Insert individuals data (2 individuals per species)
 INSERT INTO individuals (nickname, species_id)
