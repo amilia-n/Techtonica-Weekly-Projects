@@ -124,11 +124,5 @@ Each project has its own README with specific setup instructions. Generally, for
    cd server && npm start
    ```
 
-## 📫 Contact
-For questions or feedback about these projects, feel free to reach out:
-- GitHub: [Your GitHub Profile]
-- LinkedIn: [Your LinkedIn Profile]
-- Portfolio: [Your Portfolio Website]
-
 ## 📝 License
 This project is licensed under the MIT License - see the individual project directories for details. 
