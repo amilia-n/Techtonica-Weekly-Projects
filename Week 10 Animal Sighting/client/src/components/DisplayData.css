@@ -369,6 +369,20 @@
   border-radius: 6px 6px 0 0;
 }
 
+/* Add specific styling for no-image case */
+.sighting-image[src*="noimg"] {
+  object-fit: contain;
+  background-color: #f5f5f5;
+  width: 300px;
+  height: 200px;
+  object-position: center;
+  padding: 0;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 60px auto;
+  display: block;
+}
+
 .sighting-details {
   padding: 15px;
   padding-top: 8px;
@@ -427,6 +441,20 @@
   border-radius: 8px;
   object-fit: cover;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add specific styling for no-image case */
+.current-sighting-image[src*="noimg"] {
+  object-fit: contain;
+  background-color: #f5f5f5;
+  width: 300px;
+  height: 200px;
+  object-position: center;
+  padding: 0;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 60px auto;
+  display: block;
 }
 
 .current-image-label {

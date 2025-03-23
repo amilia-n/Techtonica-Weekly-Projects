@@ -5,6 +5,7 @@ import writeIcon from '../assets/write.png';
 import searchIcon from '../assets/search.png';
 import deleteIcon from '../assets/delete.png';
 import addIcon from '../assets/add.png';
+import noimg from '../assets/noimg.png';
 
 const API_BASE_URL = 'http://localhost:3000/api';
 
@@ -121,7 +122,7 @@ function DisplayData({ speciesData, onDataUpdate }) {
         placeholder="Sighter's Email"
         required
       />
-      {sighting.imageUrl && (
+      {sighting.imageUrl ? (
         <div className="current-image-container">
           <img 
             src={sighting.imageUrl} 
@@ -129,6 +130,15 @@ function DisplayData({ speciesData, onDataUpdate }) {
             className="current-sighting-image"
           />
           <p className="current-image-label">Current Image</p>
+        </div>
+      ) : (
+        <div className="current-image-container">
+          <img 
+            src={noimg} 
+            alt="No image available" 
+            className="current-sighting-image"
+          />
+          <p className="current-image-label">No Image Available</p>
         </div>
       )}
       <div className="file-upload-container">
@@ -368,9 +378,13 @@ function DisplayData({ speciesData, onDataUpdate }) {
                                     </button>
                                   </div>
                                   <img 
-                                    src={sighting.imageUrl} 
+                                    src={sighting.imageUrl ? sighting.imageUrl : noimg} 
                                     alt={`Sighting of ${individual.nickname}`}
                                     className="sighting-image"
+                                    onError={(e) => {
+                                      e.target.onerror = null;
+                                      e.target.src = noimg;
+                                    }}
                                   />
                                   <div className="sighting-details">
                                     <div className="sighting-details-header">
