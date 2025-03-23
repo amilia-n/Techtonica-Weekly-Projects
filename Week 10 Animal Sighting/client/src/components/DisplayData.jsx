@@ -310,7 +310,7 @@ function DisplayData({ speciesData, onDataUpdate }) {
                   {species.individuals.map(individual => (
                     <div key={individual.id} className="individual-card">
                       <div className="header-content">
-                        <h4>{individual.nickname}</h4>
+                      <h4>{individual.nickname}</h4>
                         <div className="button-group">
                           <button 
                             className="edit-button"
@@ -327,6 +327,7 @@ function DisplayData({ speciesData, onDataUpdate }) {
                             <img src={deleteIcon} alt="Delete" />
                           </button>
                         </div>
+                        
                       </div>
                       
                       {editingState.individual === individual.id ? (

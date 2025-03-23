@@ -36,11 +36,13 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  flex-shrink: 1;
+  /* flex-grow: 1; */
   padding: 20px;
   gap: 20px;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
+  width: 100%;
 }
 
 /* Tab Navigation */
