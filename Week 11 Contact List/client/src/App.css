@@ -4,11 +4,11 @@
   line-height: 1.5;
   font-weight: 400;
   color: #2c3e50;
-  --color-lightest: #F6F1E8;
-  --color-light: #F4E0D2;
-  --color-medium: #E4D0C5;
-  --color-dark: #D7BCA9;
-  --color-base: #DAD3CC;
+  --color-lightest: #edf2fb;
+  --color-light: #d7e3fc;
+  --color-medium: #ccdbfd;
+  --color-dark: #c1d3fe;
+  --color-base: #abc4ff;
 }
 
 body {
@@ -80,8 +80,8 @@ textarea {
   width: 100%;
   max-width: 500px;
   height: 95vh;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 10px;
+  border-radius: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -91,40 +91,47 @@ textarea {
 .display{
   background-color: white;
   height: 100%;
-  border-radius: 25px;
+  border-radius: 40px;
   padding: 15px 15px 0 15px;
-  margin: 10px 5px 0 5px;
+  margin: 5px;
   overflow: hidden;
 }
-/* .add-new {
-  background-color: #FFB6C1;
-  padding: 20px;
-  border-radius: 10px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+
+/* display for summary */
 
 .list-all {
+  display: none; /* temp */
   background-color: #98FB98;
-  height: 80%;
-  padding: 20px;
+  height: 98%;
+  padding: 5px;
   border-radius: 10px;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   gap: 10px;
   overflow:hidden; 
 }
-
-.search-list {
+.header{
+  background-color: #edf2fb;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+.search {
   background-color: #87CEEB;
   height: 50px;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  
+}
+.add{
+  background-color: #D7BCA9;
+  border-radius: 10px;
+  height: 50px;
+  width: 50px;
 }
 .contact-list {
   background-color: rgba(255, 255, 255, 0.759);
@@ -163,37 +170,32 @@ textarea {
   background-color: #F0E68C;
   padding: 20px;
 }
-/* .individual {
+
+
+/* display for add new form */
+.add-new {
+  display: flex;
   background-color: #DDA0DD;
+  height: 90%;
   padding: 20px;
   border-radius: 10px;
-  flex: 1.5;
+  margin-top: 10%;
+}
+.form-header{
+  display: flex;
+  width: 100%;
+  height: 45px;
+  background-color: white;
+}
+
+
+/* display for individual contact card */
+/* .individual{
+  background-color: #FFB6C1;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 } */
-
-.nav {
-  background-color: #F0E68C;
-  padding: 15px;
-  margin: 10px 0 10px 0;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 70px;
-} 
-.nav-btn{
-  height: 50px;
-  width: 50px;
-  background-color: violet;
-  margin: 5px;
-  border-radius: 10px;
-}
-.home-btn{
-  align-self: center;
-  background-color: #DDA0DD;
-  width: 50px;
-  border-radius: 50px;
-  margin-bottom: 10px;
-}

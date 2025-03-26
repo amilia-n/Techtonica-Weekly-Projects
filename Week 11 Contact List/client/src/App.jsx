@@ -8,18 +8,14 @@ function App() {
       {/* <Home /> */}
       [HOME PAGE]
       <div className='home'>
-    {/* to render Add Contact Form component, all contacts component (with search), and individual contact component */}
       <div className='main-container'>
-        Inside home is main container (phone) <br />
+        {/* Inside home is main container (phone) <br /> */}
         <div className='display'>
-        Will display nav ui on bottom like apps on iphone <br />
-
-        {/* <div className='add-new'>
-          Add Contact Form
-        </div> */}
+        {/* list all */}
         <div className='list-all'>
-          <div className='search-list'>
-          Search Bar
+          <div className='header'>
+            <div className='search'>Search</div>
+            <div className='add'>+ Btn</div>
         </div>
         <div className='contact-list'>
         All Contacts List
@@ -64,15 +60,18 @@ function App() {
           </div>
         </div>
         </div>
-        {/* <div className='individual'>
-          Individual Contact List
-        </div> */}
-        <div className='nav'>
-        {/* NAV */}
-        <div className='nav-btn'>Btn1</div><div className='nav-btn'>Btn2</div><div className='nav-btn'>Btn3</div>
+        {/* Add New Form*/}
+        <div className='add-new'> 
+        <div className='form-header'>
+          <div>Cancle Btn</div>
+          <div>New Contact</div>
+          <div>Done Btn</div>
         </div>
+        </div> 
+        {/* Individual Contact Card*/}
+        <div className='individual'> </div> 
+
         </div>
-        <div className='home-btn'>Home Btn</div>
       </div>
       </div>
       
