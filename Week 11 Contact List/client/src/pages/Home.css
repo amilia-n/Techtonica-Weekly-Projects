@@ -6,3 +6,36 @@ secondary: #FEEAE6
 background: white 
 credit: https://m2.material.io/design/color/applying-color-to-ui.html#backdrop
 */
+
+.home {
+  background-color: #d285ee80;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  background-color: #e0e0e0;
+  width: 100%;
+  max-width: 500px;
+  height: 95vh;
+  padding: 10px;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.display {
+  background-color: white;
+  height: 100%;
+  border-radius: 40px;
+  padding: 15px 15px 0 15px;
+  margin: 5px;
+  overflow: hidden;
+}
