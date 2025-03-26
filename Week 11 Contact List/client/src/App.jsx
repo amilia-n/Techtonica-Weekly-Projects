@@ -65,8 +65,26 @@ function App() {
         <div className='form-header'>
           <div>Cancle Btn</div>
           <div>New Contact</div>
-          <div>Done Btn</div>
+          <button type="submit">Done</button>
         </div>
+        <div className='add-img'>
+          IMG
+          </div>
+          {/* <label className="file-upload">
+              <img src={addIcon} alt="Upload" />
+              <span>Upload Image</span>
+              <input type="file" name="image" accept="image/*" />
+            </label> */}
+        <div className='add-btn'>Add Photo Btn</div>
+        <div className='add-detail-container'>
+          {/* Detail Container = Form for First name, last name, phone, email, notes, assign tags + */}
+          <div>FistName</div>
+          <div>LastName</div>
+          <div>+ Btn to add new #</div>
+          <div>+ Btn to add new email</div>
+          <div>+ Btn to add new tags</div>
+          <div>Notes form</div>
+          </div>
         </div> 
         {/* Individual Contact Card*/}
         <div className='individual'> </div> 
