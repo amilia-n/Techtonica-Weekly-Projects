@@ -5,12 +5,17 @@
     "start": "node server.js",
     "setup-db": "psql -U postgres -f db/db.sql",
     "load-data": "node scripts/loadData.js",
-    "setup": "npm run setup-db"
+    "setup": "npm run setup-db",
+    "test": "jest"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "axios": "^1.6.7",
+    "jest": "^29.7.0"
   }
 }
