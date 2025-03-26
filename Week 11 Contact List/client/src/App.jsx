@@ -1,5 +1,7 @@
 // Root component of the application, rendering the Home page
 import "./App.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 // import Home from './pages/Home';
 
 function App() {
@@ -15,10 +17,13 @@ function App() {
             <div className="list-all">
               <div className="header">
                 <div className="search">
+                {/* <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" style={{color: "#acadaf",}} /> */}
                   Search
                   {/* allow search by name + by tags */}
                 </div>
-                <div className="add">+ Btn</div>
+                <div className="add">
+                {/* <FontAwesomeIcon icon="fa-solid fa-user-plus" style={{color: "#442c2e",}} /> */}
+                </div>
               </div>
               <div className="contact-list">
                 All Contacts List
@@ -29,7 +34,13 @@ function App() {
                     <div className="summary-name">Name</div>
                   </div>
                   <div className="summary-details">
-                    Detail Tag <br />
+                  <div className="tags">
+                  <div className="tagFriend">Friend</div>
+                  <div className="tagWork">Work</div>
+                  <div className="tagFamily">Family</div>
+                  <div className="tagNetworking">Networking</div>
+                  <div className="tagOther">Other</div>
+                </div>
                     Number <br />
                     Email <br />
                   </div>
@@ -41,7 +52,13 @@ function App() {
                     <div className="summary-name">Name</div>
                   </div>
                   <div className="summary-details">
-                    Detail Tag <br />
+                  <div className="tags">
+                  <div className="tagFriend">Friend</div>
+                  <div className="tagWork">Work</div>
+                  <div className="tagFamily">Family</div>
+                  <div className="tagNetworking">Networking</div>
+                  <div className="tagOther">Other</div>
+                </div>
                     Number <br />
                     Email <br />
                   </div>
@@ -53,7 +70,13 @@ function App() {
                     <div className="summary-name">Name</div>
                   </div>
                   <div className="summary-details">
-                    Tag <br />
+                  <div className="tags">
+                  <div className="tagFriend">Friend</div>
+                  <div className="tagWork">Work</div>
+                  <div className="tagFamily">Family</div>
+                  <div className="tagNetworking">Networking</div>
+                  <div className="tagOther">Other</div>
+                </div>
                     Number <br />
                     Email <br />
                   </div>
@@ -68,6 +91,7 @@ function App() {
                 <button type="submit">Done</button>
               </div>
               <div className="add-img">IMG</div>
+              {/* <FontAwesomeIcon icon="fa-regular fa-image" style={{color: "#cfcfcf",}} /> */}
               {/* <label className="file-upload">
               <img src={addIcon} alt="Upload" />
               <span>Upload Image</span>
@@ -88,8 +112,14 @@ function App() {
             <div className="individual">
               <div className="individual-header">
                 {/* Header: Back to list + edit btn */}
-                <div className="return-to-list">Return</div>
-                <div className="change-detail">Edit</div>
+                <div className="return-to-list">
+                {/* <FontAwesomeIcon icon="fa-regular fa-address-card" style={{color: "#442c2e",}} /> */}
+                  Return to List
+                  </div>
+                <div className="change-detail">
+                {/* <FontAwesomeIcon icon="fa-regular fa-pen-to-square" style={{color: "#442c2e",}} /> */}
+                  Edit
+                  </div>
               </div>
               <div className="contact-img">IMG</div>
               <div className="contact-name">NAME</div>

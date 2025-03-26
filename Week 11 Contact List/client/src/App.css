@@ -100,7 +100,7 @@ textarea {
 /* display for summary */
 
 .list-all {
-  display: none; /* temp */
+  display: flex; /* temp */
   background-color: #98fb98;
   height: 98%;
   padding: 5px;
@@ -171,8 +171,8 @@ textarea {
 
 /* display for add new form */
 .add-new {
-  display: none; /* temp */
-  /* display: flex; */
+  /* display: flex;  */
+  display: none;
   background-color: #dda0dd;
   height: 90%;
   padding: 20px;
@@ -213,11 +213,13 @@ textarea {
 
 /* display for individual contact card */
 .individual {
-  display: block;
+  display: none;
+  /* display: block; */
   background-color: #ffb6c1;
   height: 98%;
   padding: 20px;
   border-radius: 10px;
+
 }
 .individual-header {
   display: flex;
@@ -252,7 +254,7 @@ textarea {
 .contact-name {
   background-color: #abc4ff;
   justify-self: center;
-  padding: 15px;
+  padding: 5px 15px 5px 15px;
   border-radius: 20px;
   font-weight: 300;
   font-size: 1.2rem;
@@ -263,7 +265,7 @@ textarea {
   background-color: #dda0dd;
   padding: 10px;
   width: 100%;
-  height: 69%;
+  height: 72%;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -273,7 +275,7 @@ textarea {
   padding: 10px;
   width: 100%;
   height: fit-content;
-  margin-bottom: 10px;
+  margin-bottom: 11px;
   flex-wrap: wrap;
   gap: 10px;
   border-radius: 20px;
@@ -316,7 +318,7 @@ textarea {
 }
 .detail-list {
   background-color: white;
-  height: 80%;
+  height: fit-content;
   padding: 15px;
   border-radius: 20px;
   overflow-y: scroll;
