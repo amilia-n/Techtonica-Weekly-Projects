@@ -63,4 +63,137 @@ textarea {
   font-size: 15px;
   font-weight: 500;
   backdrop-filter: blur(10px);
+}
+
+.home {
+  background-color: #d285ee80;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  background-color: #e0e0e0;
+  width: 100%;
+  max-width: 500px;
+  height: 95vh;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+.display{
+  background-color: white;
+  height: 100%;
+  border-radius: 25px;
+  padding: 15px 15px 0 15px;
+  margin: 10px 5px 0 5px;
+  overflow: hidden;
+}
+/* .add-new {
+  background-color: #FFB6C1;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.list-all {
+  background-color: #98FB98;
+  height: 80%;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow:hidden; 
+}
+
+.search-list {
+  background-color: #87CEEB;
+  height: 50px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contact-list {
+  background-color: rgba(255, 255, 255, 0.759);
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  overflow-y: scroll;
+}
+.summary-container{
+  background-color: white;
+  height: fit-content;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 2px 2px 10px 2px;
+}
+.summary-header{
+  display: flex;
+  gap: 20px;
+  background-color: #D7BCA9;
+  padding: 10px;
+}
+.summary-img{
+  background-color: #87CEEB;
+  border-radius: 50px;
+  height: 60px;
+  width: 60px;
+
+}
+.summary-name{
+  padding: 15px;
+  text-align: start;
+  background-color: #F6F1E8;
+  width: 80%;
+}
+.summary-details{
+  background-color: #F0E68C;
+  padding: 20px;
+}
+/* .individual {
+  background-color: #DDA0DD;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.nav {
+  background-color: #F0E68C;
+  padding: 15px;
+  margin: 10px 0 10px 0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 70px;
 } 
+.nav-btn{
+  height: 50px;
+  width: 50px;
+  background-color: violet;
+  margin: 5px;
+  border-radius: 10px;
+}
+.home-btn{
+  align-self: center;
+  background-color: #DDA0DD;
+  width: 50px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
