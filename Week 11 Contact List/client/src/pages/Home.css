@@ -18,6 +18,7 @@ credit: https://m2.material.io/design/color/applying-color-to-ui.html#backdrop
 }
 
 .main-container {
+  /* style to look like phone */
   background-color: #e0e0e0;
   width: 100%;
   max-width: 500px;
@@ -32,10 +33,50 @@ credit: https://m2.material.io/design/color/applying-color-to-ui.html#backdrop
 }
 
 .display {
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   height: 100%;
   border-radius: 40px;
   padding: 15px 15px 0 15px;
-  margin: 5px;
+  margin: 2px;
   overflow: hidden;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.overlay .add-new {
+  display: flex;
+  margin-top: 0;
+  animation: slideUp 0.3s ease-out;
+  transform: translateY(0);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
