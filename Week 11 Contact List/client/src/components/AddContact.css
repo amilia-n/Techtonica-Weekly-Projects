@@ -1,6 +1,6 @@
 .add-new {
   display: flex;
-  background-color: #dda0dd;
+  background-color: #FEDBD0;
   height: 90%;
   padding: 20px;
   border-radius: 10px 10px 0 0;
@@ -9,7 +9,7 @@
   justify-content: top;
   align-items: center;
   position: relative;
-  width: 95%;
+  width: 93.5%;
   max-width: 500px;
   will-change: transform;
   margin: 0 auto;
@@ -19,20 +19,18 @@
   display: flex;
   width: 100%;
   height: 8%;
-  background-color: rgba(125, 0, 0, 0.284);
+  /* background-color: rgba(125, 0, 0, 0.284); */
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
 }
 
-.form-header h2 {
+.newcontact-title {
   color: #442c2e;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
-.cancel-btn,
-.done-btn {
+.cancel-btn {
   padding: 8px 16px;
   border-radius: 20px;
   cursor: pointer;
@@ -40,38 +38,85 @@
 }
 
 .cancel-btn {
-  background-color: #d7bca9;
+  background-color: #d7bca9ab;
 }
 
-.done-btn {
-  background-color: #98fb98;
+.submit-new {
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.submit-new {
+  background-color: #d7bca9ab;
 }
 
-.add-img {
+.display-img {
   display: flex;
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background-color: #98fb98;
+  background-color: white;
   justify-content: center;
   align-items: center;
 }
 
-.add-btn {
-  background-color: #87ceeb;
-  padding: 10px;
+.add-img-btn {
+  background-color: #d7bca951;
+  padding: 8px 15px 8px 15px;
   border-radius: 20px;
   cursor: pointer;
-}
 
+}
 .add-detail-container {
   display: block;
   background-color: #d7bca9;
-  padding: 10px;
+  padding: 20px;
   width: 100%;
-  height: 70%;
+  height: 60%;
   border-radius: 10px;
 }
+input[id='firstName'],
+[id='lastName'],
+[id='phoneNumber'],
+[id='email']{
+  background-color: #ffffff;
+  width: 100%;
+  height: 35px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: none;
+  padding: 15px;
+
+}
+input[id='phoneNumber']::-webkit-outer-spin-button,
+input[id='phoneNumber']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[id='tags3']{
+  background-color: #91818193;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: none;
+  padding: 15px;
+}
+textarea[id='note']{
+  /* background-color: #ff0000; */
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 150px;
+  max-height: 150px;
+  border-radius: 20px;
+  border: none;
+  padding: 15px;
+  overflow-y: scroll;
+  font-size: 1rem;
+}
+/* 
+
 
 .add-detail-container > div {
   margin-bottom: 10px;
@@ -103,6 +148,19 @@
   min-height: 100px;
   resize: vertical;
 }
+
+.tags3 {
+  display: flex;
+  background-color: #d7bca9;
+  padding: 10px;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 11px;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-radius: 20px;
+} */
+
 /* 
 .tags {
   display: flex;
@@ -147,3 +205,80 @@
   margin-top: 10px;
   text-align: center;
 }
+
+.error-message {
+  color: #ff0000;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Required field indicator */
+.required-field {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.required-field::after {
+  content: "*";
+  color: #ff0000;
+  position: absolute;
+  right: 15px;
+  top: 40%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Adjust input padding to prevent text overlap with asterisk */
+.required-field input {
+  padding-right: 25px;
+}
+
+.tag-options {
+  display: flex;
+  /* scale: 0.9; */
+  justify-self: center;
+  align-self: center;
+  gap: 10px;
+  width: 100%;
+  /* padding: 5px; */
+}
+
+.tags3 {
+  display: block;
+  /* background-color: #d7bca9; */
+  border: none;
+  padding: 10px;
+  width: 100%;
+  /* height: fit-content; */
+
+  /* margin-bottom: 11px; */
+  flex-wrap: wrap;
+  /* gap: 10px; */
+  border-radius: 20px;
+}
+
+
+
+.tag3.selected,
+.tagWork.selected,
+.tagFamily.selected,
+.tagNetworking.selected,
+.tagOther.selected {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.tagFriend,
+.tagWork,
+.tagFamily,
+.tagNetworking,
+.tagOther {
+  transition: all 0.2s ease;
+}
+

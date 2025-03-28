@@ -4,6 +4,9 @@ const cors = require('cors');
 const { Pool } = require('pg');
 
 const app = express();
+const port = process.env.PORT || 3000;
+
+// Enable CORS for all routes
 app.use(cors());
 app.use(express.json());
 
@@ -11,19 +14,31 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
+// Test database connection
+pool.connect((err, client, release) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Successfully connected to the database');
+  release();
+});
+
 // Get all contacts with tags
 app.get('/contacts', async (req, res) => {
   try {
     const search = req.query.search || '';
     const result = await pool.query(
-      `SELECT c.*, 
-        COALESCE(string_agg(t.tag_name, ', '), 'No Tags') as tags
+      `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
+        COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
       FROM contacts c
-      LEFT JOIN contact_tags ct ON c.contact_id = ct.contact_id
-      LEFT JOIN tags t ON ct.tag_id = t.tag_id
-      WHERE c.contact_name ILIKE $1
-      GROUP BY c.contact_id
-      ORDER BY c.contact_name`,
+      LEFT JOIN contact_tags ct ON c.id = ct.contact_id
+      LEFT JOIN tags t ON ct.tag_id = t.id
+      WHERE c.name ILIKE $1 
+      OR c.phone ILIKE $1
+      OR t.name ILIKE $1
+      GROUP BY c.id, c.name, c.phone, c.email, c.note
+      ORDER BY c.name`,
       [`%${search}%`]
     );
     res.json(result.rows);
@@ -38,13 +53,13 @@ app.get('/contacts/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query(
-      `SELECT c.*, 
-        COALESCE(string_agg(t.tag_name, ', '), 'No Tags') as tags
+      `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
+        COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
       FROM contacts c
-      LEFT JOIN contact_tags ct ON c.contact_id = ct.contact_id
-      LEFT JOIN tags t ON ct.tag_id = t.tag_id
-      WHERE c.contact_id = $1
-      GROUP BY c.contact_id`,
+      LEFT JOIN contact_tags ct ON c.id = ct.contact_id
+      LEFT JOIN tags t ON ct.tag_id = t.id
+      WHERE c.id = $1
+      GROUP BY c.id, c.name, c.phone, c.email, c.note`,
       [id]
     );
     if (result.rows.length === 0) {
@@ -67,23 +82,23 @@ app.post('/contacts', async (req, res) => {
     
     // Insert contact
     const contactResult = await client.query(
-      `INSERT INTO contacts (contact_name, phone, email, note)
+      `INSERT INTO contacts (name, phone, email, note)
        VALUES ($1, $2, $3, $4)
-       RETURNING contact_id`,
+       RETURNING id`,
       [contact_name, phone, email, note]
     );
     
-    const contactId = contactResult.rows[0].contact_id;
+    const contactId = contactResult.rows[0].id;
     
     // Handle tags if provided
     if (tags && tags.length > 0) {
       for (const tagName of tags) {
         // Get or create tag
         const tagResult = await client.query(
-          `INSERT INTO tags (tag_name)
+          `INSERT INTO tags (name)
            VALUES ($1)
-           ON CONFLICT (tag_name) DO UPDATE SET tag_name = EXCLUDED.tag_name
-           RETURNING tag_id`,
+           ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
+           RETURNING id`,
           [tagName]
         );
         
@@ -92,7 +107,7 @@ app.post('/contacts', async (req, res) => {
           `INSERT INTO contact_tags (contact_id, tag_id)
            VALUES ($1, $2)
            ON CONFLICT DO NOTHING`,
-          [contactId, tagResult.rows[0].tag_id]
+          [contactId, tagResult.rows[0].id]
         );
       }
     }
@@ -101,13 +116,13 @@ app.post('/contacts', async (req, res) => {
     
     // Fetch the complete contact with tags
     const result = await pool.query(
-      `SELECT c.*, 
-        COALESCE(string_agg(t.tag_name, ', '), 'No Tags') as tags
+      `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
+        COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
       FROM contacts c
-      LEFT JOIN contact_tags ct ON c.contact_id = ct.contact_id
-      LEFT JOIN tags t ON ct.tag_id = t.tag_id
-      WHERE c.contact_id = $1
-      GROUP BY c.contact_id`,
+      LEFT JOIN contact_tags ct ON c.id = ct.contact_id
+      LEFT JOIN tags t ON ct.tag_id = t.id
+      WHERE c.id = $1
+      GROUP BY c.id, c.name, c.phone, c.email, c.note`,
       [contactId]
     );
     
@@ -133,8 +148,8 @@ app.put('/contacts/:id', async (req, res) => {
     // Update contact
     await client.query(
       `UPDATE contacts 
-       SET contact_name = $1, phone = $2, email = $3, note = $4
-       WHERE contact_id = $5`,
+       SET name = $1, phone = $2, email = $3, note = $4
+       WHERE id = $5`,
       [contact_name, phone, email, note, id]
     );
     
@@ -149,10 +164,10 @@ app.put('/contacts/:id', async (req, res) => {
       for (const tagName of tags) {
         // Get or create tag
         const tagResult = await client.query(
-          `INSERT INTO tags (tag_name)
+          `INSERT INTO tags (name)
            VALUES ($1)
-           ON CONFLICT (tag_name) DO UPDATE SET tag_name = EXCLUDED.tag_name
-           RETURNING tag_id`,
+           ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
+           RETURNING id`,
           [tagName]
         );
         
@@ -160,7 +175,7 @@ app.put('/contacts/:id', async (req, res) => {
         await client.query(
           `INSERT INTO contact_tags (contact_id, tag_id)
            VALUES ($1, $2)`,
-          [id, tagResult.rows[0].tag_id]
+          [id, tagResult.rows[0].id]
         );
       }
     }
@@ -169,13 +184,13 @@ app.put('/contacts/:id', async (req, res) => {
     
     // Fetch the updated contact with tags
     const result = await pool.query(
-      `SELECT c.*, 
-        COALESCE(string_agg(t.tag_name, ', '), 'No Tags') as tags
+      `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
+        COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
       FROM contacts c
-      LEFT JOIN contact_tags ct ON c.contact_id = ct.contact_id
-      LEFT JOIN tags t ON ct.tag_id = t.tag_id
-      WHERE c.contact_id = $1
-      GROUP BY c.contact_id`,
+      LEFT JOIN contact_tags ct ON c.id = ct.contact_id
+      LEFT JOIN tags t ON ct.tag_id = t.id
+      WHERE c.id = $1
+      GROUP BY c.id, c.name, c.phone, c.email, c.note`,
       [id]
     );
     
@@ -193,8 +208,62 @@ app.put('/contacts/:id', async (req, res) => {
   }
 });
 
+// DELETE contact
+app.delete('/contacts/:id', async (req, res) => {
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    
+    const { id } = req.params;
+    console.log('Delete request received for contact ID:', id);
+    
+    // First check if contact exists
+    const checkResult = await client.query(
+      'SELECT id FROM contacts WHERE id = $1',
+      [id]
+    );
+    
+    console.log('Contact check result:', checkResult.rows);
+    
+    if (checkResult.rows.length === 0) {
+      await client.query('ROLLBACK');
+      console.log('Contact not found with ID:', id);
+      return res.status(404).json({ error: 'Contact not found' });
+    }
+    
+    // Delete contact (this will cascade delete contact_tags due to ON DELETE CASCADE)
+    const result = await client.query(
+      'DELETE FROM contacts WHERE id = $1 RETURNING id',
+      [id]
+    );
+    
+    console.log('Delete result:', result.rows);
+    
+    if (result.rows.length === 0) {
+      await client.query('ROLLBACK');
+      console.log('Contact not found with ID:', id);
+      return res.status(404).json({ error: 'Contact not found' });
+    }
+    
+    await client.query('COMMIT');
+    console.log('Successfully deleted contact with ID:', id);
+    res.json({ message: 'Contact deleted successfully' });
+  } catch (err) {
+    await client.query('ROLLBACK');
+    console.error('Error deleting contact:', err);
+    res.status(500).json({ error: 'Server error while deleting contact' });
+  } finally {
+    client.release();
+  }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something broke!' });
+});
+
 // Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

@@ -1,22 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
+
 /* Global styles for the application */
 :root {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #2c3e50;
+  /* color: #2c3e50;
   --color-lightest: #edf2fb;
   --color-light: #d7e3fc;
   --color-medium: #ccdbfd;
   --color-dark: #c1d3fe;
-  --color-base: #abc4ff;
+  --color-base: #abc4ff; */
 }
 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background-color: var(--color-base);
-  background-image: url("/background.jpeg");
+  /* background-color: var(--color-base);
+  background-image: url("/background.jpeg"); */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -56,7 +58,7 @@ textarea {
 }
 
 .home {
-  background-color: #d285ee80;
+  background-color: #2a080852;
   min-height: 100vh;
   width: 100vw;
   padding: 20px;
@@ -65,248 +67,6 @@ textarea {
   align-items: center;
 }
 
-/* .main-container {
-  background-color: #e0e0e0;
-  width: 100%;
-  max-width: 500px;
-  height: 95vh;
-  padding: 10px;
-  border-radius: 50px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: space-between;
-} */
-/* .display {
-  background-color: rgb(255, 5, 5);
-  height: 100%;
-  border-radius: 40px;
-  padding: 15px 15px 0 15px;
-  margin: 5px;
-  overflow: hidden;
-} */
-
-/* display for summary */
-/* 
-.list-all {
-  display: flex;
-  background-color: #98fb98;
-  height: 98%;
-  padding: 5px;
-  border-radius: 10px;
-  flex-direction: column;
-  gap: 10px;
-  overflow: hidden;
+.header-font {
+  font-family: 'Walter Turncoat', cursive;
 }
-.header {
-  background-color: #edf2fb;
-  display: flex;
-  gap: 5px;
-  justify-content: space-between;
-}
-.search {
-  background-color: #87ceeb;
-  height: 50px;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-}
-.add {
-  background-color: #d7bca9;
-  border-radius: 10px;
-  height: 50px;
-  width: 50px;
-}
-.contact-list {
-  background-color: rgba(255, 255, 255, 0.759);
-  height: 100%;
-  border-radius: 10px;
-  padding: 10px;
-  overflow-y: scroll;
-}
-.summary-container {
-  background-color: white;
-  height: fit-content;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 2px 2px 10px 2px;
-}
-.summary-header {
-  display: flex;
-  gap: 20px;
-  background-color: #d7bca9;
-  padding: 10px;
-}
-.summary-img {
-  background-color: #87ceeb;
-  border-radius: 50px;
-  height: 60px;
-  width: 60px;
-}
-.summary-name {
-  padding: 15px;
-  text-align: start;
-  background-color: #f6f1e8;
-  width: 80%;
-}
-.summary-details {
-  background-color: #f0e68c;
-  padding: 20px;
-} */
-
-/* display for add new form */
-/* .add-new {
-  display: flex;
-  background-color: #dda0dd;
-  height: 90%;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 10%;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: top;
-  align-items: center;
-}
-.form-header {
-  display: flex;
-  width: 100%;
-  height: 8%;
-  background-color: rgba(125, 0, 0, 0.284);
-  justify-content: space-between;
-}
-.add-img {
-  display: flex;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background-color: #98fb98;
-  justify-content: center;
-}
-.add-btn {
-  background-color: #87ceeb;
-  padding: 10px;
-  border-radius: 20px;
-}
-.add-detail-container {
-  display: block;
-  background-color: #d7bca9;
-  padding: 10px;
-  width: 100%;
-  height: 70%;
-} */
-
-/* display for individual contact card */
-/* .individual {
-  display: none;
-  background-color: #ffb6c1;
-  height: 98%;
-  padding: 20px;
-  border-radius: 10px;
-
-}
-.individual-header {
-  display: flex;
-  background-color: thistle;
-  width: 100%;
-  height: fit-content;
-  justify-content: space-between;
-  text-align: center;
-}
-.return-to-list {
-  background-color: rgb(187, 187, 229);
-  width: 50px;
-  height: 50px;
-  align-content: center;
-}
-.change-detail {
-  background-color: rgb(199, 247, 182);
-  width: 50px;
-  height: 50px;
-  align-content: center;
-}
-.contact-img {
-  background-color: #98fb98;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  justify-self: center;
-  margin: 10px;
-  align-content: center;
-  text-align: center;
-}
-.contact-name {
-  background-color: #abc4ff;
-  justify-self: center;
-  padding: 5px 15px 5px 15px;
-  border-radius: 20px;
-  font-weight: 300;
-  font-size: 1.2rem;
-  margin: 10px;
-  width: fit-content;
-}
-.contact-detail {
-  background-color: #dda0dd;
-  padding: 10px;
-  width: 100%;
-  height: 72%;
-  border-radius: 20px;
-  overflow: hidden;
-}
-.tags {
-  display: flex;
-  background-color: #d7bca9;
-  padding: 10px;
-  width: 100%;
-  height: fit-content;
-  margin-bottom: 11px;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-radius: 20px;
-  justify-content: center;
-}
-.tagFriend {
-  background-color: yellow;
-  width: 77px;
-  height: 25px;
-  text-align: center;
-  border-radius: 20px;
-}
-.tagWork {
-  background-color: rgb(192, 177, 207);
-  width: 77px;
-  height: 25px;
-  text-align: center;
-  border-radius: 20px;
-}
-.tagFamily {
-  background-color: rgb(136, 225, 211);
-  width: 77px;
-  height: 25px;
-  text-align: center;
-  border-radius: 20px;
-}
-.tagNetworking {
-  background-color: rgb(247, 174, 221);
-  width: 115px;
-  height: 25px;
-  text-align: center;
-  border-radius: 20px;
-}
-.tagOther {
-  background-color: rgb(225, 209, 136);
-  width: 77px;
-  height: 25px;
-  text-align: center;
-  border-radius: 20px;
-}
-.detail-list {
-  background-color: white;
-  height: fit-content;
-  padding: 15px;
-  border-radius: 20px;
-  overflow-y: scroll;
-} */

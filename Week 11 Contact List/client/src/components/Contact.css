@@ -104,17 +104,16 @@
   display: flex;
   align-items: center;
   justify-content: center; 
-  margin: 10px 0 0 8px;
+  margin: 15px 5px 0 8px;
 }
 
 .summary-name {
   padding: 10px 0 8px 5px;
   text-align: start;
   width: fit-content;
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #442C2E;
-  /* add font style */
+  font-family: 'Walter Turncoat', cursive;
 }
 
 .summary-details {
@@ -189,83 +188,299 @@
   border-radius: 20px;
 }
 
-/* individual component */
-/* .individual {
-  display: none;
-  background-color: #ffb6c1;
+/* INDIVIDUAL CONTACT*/
+.individual {
+  display: flex;
+  background-color: #FEEAE6;
   height: 98%;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 15px;
+  border-radius: 20px;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
 }
 
 .individual-header {
   display: flex;
-  background-color: thistle;
+  /* background-color: thistle; */
   width: 100%;
   height: fit-content;
+  align-content: center;
+  align-items: end;
   justify-content: space-between;
   text-align: center;
-}
+  margin-bottom: 30px;
 
-.return-to-list, .change-detail {
+}
+.individualtitle{
+  font-size: 1.5rem;
+  
+}
+.return-to-list {
+  background-color: #d7bca9ab;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 15px 0 0 15px;
+  border: none;
 }
-
-.return-to-list svg, .change-detail svg {
+.return-to-list svg {
+  font-size: 1.2rem;
+}
+.change-detail {
+  display: flex;
+  background-color: #d7bca9ab;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin: 15px 15px 0 0;
+  border: none;
+}
+.change-detail svg {
   font-size: 1.2rem;
 }
 
 .contact-img {
-  background-color: #98fb98;
-  width: 90px;
-  height: 90px;
+  background-color: #ffffff;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   justify-self: center;
-  margin: 10px;
+  margin: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .contact-name {
-  background-color: #abc4ff;
+  /* background-color: #abc4ff; */
   justify-self: center;
+  color: #442C2E;
   padding: 5px 15px 5px 15px;
-  border-radius: 20px;
-  font-weight: 300;
-  font-size: 1.2rem;
-  margin: 10px;
+  font-size: 1.5rem;
   width: fit-content;
+  font-weight: bold;
+  /* add font style */
+}
+
+.tags2 {
+  display: flex;
+  /* background-color: #d7bca9; */
+  /* padding: 10px; */
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-radius: 20px;
+  justify-content: center;
 }
 
 .contact-detail {
-  background-color: #dda0dd;
+  /* background-color: #dda0dd; */
   padding: 10px;
   width: 100%;
   height: 72%;
   border-radius: 20px;
   overflow: hidden;
 }
-
-.tags {
-  display: flex;
-  background-color: #d7bca9;
-  padding: 10px;
-  width: 100%;
-  height: fit-content;
-  margin-bottom: 11px;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-radius: 20px;
-  justify-content: flex-start;
-}
-
 .detail-list {
   background-color: white;
   height: fit-content;
   padding: 15px;
   border-radius: 20px;
+  margin-top: 30px;
   overflow-y: scroll;
+}
+.detail-item1{
+background-color: #fedbd056;
+padding: 25px 0 15px 20px;
+border-radius: 20px 20px 0 0;
+text-align: left;
+}
+.detail-item2{
+  background-color: #fedbd056;
+  padding: 10px 0 10px 20px;
+}
+.detail-item3{
+  background-color: #fedbd056;
+  padding: 15px 0 50px 20px;
+  border-radius: 0 0 20px 20px;
+}
+.delete-btn {
+  display: flex;
+  justify-self: center;
+  margin-top: 20px;
+  background: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #442C2E;
+  transition: background-color 0.3s;
+}
+.delete-btn:hover {
+  background-color: #eb212182;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* edit form */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 20px;
+  background-color: #442c2e37;
+  border-radius: 20px;
+  margin: 10px 10px 0 10px;
+}
+
+.edit-input {
+  padding: 10px 15px;
+  border: 1px solid #d7bca9ab;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.tag-options2 {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  column-gap: 15px;
+  row-gap: 10px;
+  width: fit-content;
+ flex-wrap: wrap;
+}
+
+/* .edit-tags {
+  width: 100%;
+  border: none;
+
+  border-radius: 20px;
+
 } */
+
+
+/* 
+.tagFriend.selected,
+.tagWork.selected,
+.tagFamily.selected,
+.tagNetworking.selected,
+.tagOther.selected {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.tagFriend,
+.tagWork,
+.tagFamily,
+.tagNetworking,
+.tagOther {
+  transition: all 0.2s ease;
+}
+
+.tagFriend:hover,
+.tagWork:hover,
+.tagFamily:hover,
+.tagNetworking:hover,
+.tagOther:hover {
+  transform: scale(1.05);
+} */
+
+/* .edit-tags {
+  padding: 10px 15px;
+  border: 1px solid #d7bca9ab;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 100%;
+  min-height: 60px;
+  background-color: #d7bca9;
+} */
+
+/* .edit-tags .tag-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+} */
+/* 
+.edit-tags .tagFriend,
+.edit-tags .tagWork,
+.edit-tags .tagFamily,
+.edit-tags .tagNetworking,
+.edit-tags .tagOther {
+  transition: all 0.2s ease;
+}
+
+.edit-tags .tagFriend:hover,
+.edit-tags .tagWork:hover,
+.edit-tags .tagFamily:hover,
+.edit-tags .tagNetworking:hover,
+.edit-tags .tagOther:hover {
+  transform: scale(1.05);
+}
+
+.edit-tags .tagFriend.selected,
+.edit-tags .tagWork.selected,
+.edit-tags .tagFamily.selected,
+.edit-tags .tagNetworking.selected,
+.edit-tags .tagOther.selected {
+  opacity: 0.7;
+  transform: scale(0.95);
+} */
+
+.edit-textarea {
+  padding: 15px;
+  border: 1px solid #d7bca9ab;
+  border-radius: 25px;
+  font-size: 16px;
+  width: 100%;
+  min-height: 150px;
+  max-height: 150px;
+  overflow-y: scroll;
+  resize: vertical;
+}
+
+.edit-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-edit-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #e2e2e2;
+  color: #442C2E;
+  transition: background-color 0.3s;
+}
+.save-edit-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  background-color: #bfecc0;
+  color: #442C2E;
+}
+
+.cancel-edit-btn:hover {
+  background-color: #f0dfd3b2;
+}
+
+.save-edit-btn:hover {
+  background-color: #f0dfd3b2;
+}
+
+

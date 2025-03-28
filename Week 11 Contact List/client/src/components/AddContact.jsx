@@ -24,20 +24,25 @@ function AddContact({ contact, isEditing = false, onCancel }) {
     }));
   };
 
-  const handleTagChange = (e) => {
-    const { value, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      tags: checked 
-        ? [...prev.tags, value]
-        : prev.tags.filter(tag => tag !== value)
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+
+    // Validate required fields
+    if (!formData.firstName.trim()) {
+      setError('First Name is required');
+      return;
+    }
+    if (!formData.lastName.trim()) {
+      setError('Last Name is required');
+      return;
+    }
+    if (!formData.phone.trim()) {
+      setError('Phone number is required');
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const url = isEditing 
@@ -55,7 +60,8 @@ function AddContact({ contact, isEditing = false, onCancel }) {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to save contact');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save contact');
       }
 
       onCancel();
@@ -70,9 +76,9 @@ function AddContact({ contact, isEditing = false, onCancel }) {
     <div className="add-new">
       <div className="form-header">
         <div className="cancel-btn" onClick={onCancel}>Cancel</div>
-        <div>{isEditing ? 'Edit Contact' : 'New Contact'}</div>
+        <div className='newcontact-title header-font'>Add New Contact</div>
         <div 
-          className="done-btn" 
+          className="submit-new" 
           onClick={handleSubmit}
           style={{ opacity: loading ? 0.5 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
         >
@@ -80,20 +86,101 @@ function AddContact({ contact, isEditing = false, onCancel }) {
         </div>
       </div>
 
-      <div className="add-img">
-        <FontAwesomeIcon icon={faImage} style={{color: "#442c2e", fontSize: "2rem"}} />
+      <div className="display-img">
+        <FontAwesomeIcon icon={faImage} style={{color: "#442c2e", fontSize: "3rem"}} />
       </div>
 
-      <div className="add-btn">Add Photo Btn</div>
+      <div className="add-img-btn">Add Photo</div>
+      <div className='tags3'>
+          <div className="tag-options">
+            {['Friend', 'Work', 'Family', 'Networking', 'Other'].map((tag) => (
+              <span
+                key={tag}
+                className={`tag${tag} ${formData.tags.includes(tag) ? '' : 'selected' }`}
+                onClick={() => {
+                  setFormData(prev => ({
+                    ...prev,
+                    tags: prev.tags.includes(tag)
+                      ? prev.tags.filter(t => t !== tag)
+                      : [...prev.tags, tag]
+                  }));
+                }}
+                style={{ cursor: 'pointer' }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <input
+            type="text"
+            placeholder="Space for Tag Selection"
+            id="tags3"
+            name="tags"
+            value={formData.tags.join(", ")}
+            onChange={(e) => setFormData(prev => ({
+              ...prev,
+              tags: e.target.value.split(", ").filter(tag => tag.trim() !== "")
+            }))}
+            style={{ display: 'none' }}
+          />
+        </div>
+      <form className="add-detail-container" onSubmit={handleSubmit}>
+        {error && <div className="error-message">{error}</div>}
+        <div className="required-field">
+          <input
+            type="text"
+            placeholder="First Name"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="required-field">
+          <input
+            type="text"
+            placeholder="Last Name"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="required-field">
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            id="phoneNumber"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div className="add-detail-container">
-        <div>FistName</div>
-        <div>LastName</div>
-        <div>+ Btn to add new #</div>
-        <div>+ Btn to add new email</div>
-        <div>+ Btn to add new tags</div>
-        <div>Notes form</div>
-      </div>
+        <div>
+          <textarea
+            id="note"
+            placeholder="Enter Notes"
+            name="note"
+            value={formData.note}
+            onChange={handleChange}
+            rows="4"
+          />
+        </div>
+      </form>
     </div>
   );
 }

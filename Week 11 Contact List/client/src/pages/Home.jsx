@@ -5,7 +5,7 @@ import "./Home.css";
 import Contact from "../components/Contact";
 import AddContact from "../components/AddContact";
 
-function Home({ onAddContact, onEditContact }) {
+function Home() {
   const [showAddContact, setShowAddContact] = useState(false);
   const [editingContact, setEditingContact] = useState(null);
 

@@ -1,17 +1,27 @@
 // Component for displaying contact
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { faImage, faAddressCard, faPenToSquare, faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { faAddressCard, faPenToSquare, faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import "./Contact.css";
 
-function Contact({ onAddContact, onEditContact }) {
+function Contact({ onAddContact }) {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedContact, setSelectedContact] = useState(null);
   const [showIndividual, setShowIndividual] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editFormData, setEditFormData] = useState(null);
+
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      setSearchQuery(query);
+      fetchContacts();
+    }, 300),
+    []
+  );
 
   useEffect(() => {
     fetchContacts();
@@ -33,18 +43,112 @@ function Contact({ onAddContact, onEditContact }) {
   };
 
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-    fetchContacts();
+    const query = e.target.value;
+    debouncedSearch(query);
   };
 
   const handleContactClick = (contact) => {
     setSelectedContact(contact);
     setShowIndividual(true);
+    setIsEditing(false);
+    setEditFormData(null);
   };
 
   const handleReturnToList = () => {
     setShowIndividual(false);
     setSelectedContact(null);
+    setIsEditing(false);
+    setEditFormData(null);
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+    setEditFormData({
+      contact_name: selectedContact.contact_name,
+      phone: selectedContact.phone,
+      email: selectedContact.email || "",
+      note: selectedContact.note || "",
+      tags: selectedContact.tags !== 'No Tags' ? selectedContact.tags.split(", ") : []
+    });
+  };
+
+  const handleEditChange = (e) => {
+    const { name, value } = e.target;
+    setEditFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleEditSubmit = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/contacts/${selectedContact.contact_id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editFormData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update contact');
+      }
+
+      // Fetch updated contacts first
+      await fetchContacts();
+      
+      // Then update the selected contact with the latest data
+      const updatedContact = await fetch(`http://localhost:3000/contacts/${selectedContact.contact_id}`).then(res => res.json());
+      setSelectedContact(updatedContact);
+      
+      // Finally switch back to display mode
+      setIsEditing(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!window.confirm('Are you sure you want to delete this contact?')) {
+      return;
+    }
+
+    try {
+      console.log('Selected contact:', selectedContact);
+      console.log('Attempting to delete contact with ID:', selectedContact.contact_id);
+      const url = `http://localhost:3000/contacts/${selectedContact.contact_id}`;
+      console.log('Delete URL:', url);
+      
+      const response = await fetch(url, {
+        method: 'DELETE',
+      });
+
+      console.log('Delete response status:', response.status);
+      
+      if (!response.ok) {
+        let errorMessage;
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || response.statusText;
+          console.log('Error response data:', errorData);
+        } catch (e) {
+          errorMessage = `Server error (${response.status})`;
+          console.log('Error parsing response:', e);
+        }
+        console.error('Delete failed:', errorMessage);
+        throw new Error(`Failed to delete contact: ${errorMessage}`);
+      }
+
+      const result = await response.json();
+      console.log('Delete successful:', result);
+      
+      setShowIndividual(false);
+      setSelectedContact(null);
+      fetchContacts(); // Refresh the contacts list
+    } catch (err) {
+      console.error('Delete error:', err);
+      setError(err.message);
+    }
   };
 
   if (loading) return <div className="loading">Loading contacts...</div>;
@@ -60,7 +164,6 @@ function Contact({ onAddContact, onEditContact }) {
               type="text" 
               placeholder="Search" 
               className="search-input"
-              value={searchQuery}
               onChange={handleSearch}
             />
           </div>
@@ -69,7 +172,7 @@ function Contact({ onAddContact, onEditContact }) {
           </button>
         </div>
         <div className="contact-list">
-          <div className="listallheader">All Contacts</div>
+          <div className="listallheader header-font">All Contacts</div>
           {contacts.length === 0 ? (
             <div className="no-contacts">No contacts found</div>
           ) : (
@@ -85,17 +188,16 @@ function Contact({ onAddContact, onEditContact }) {
                     <FontAwesomeIcon icon={faCircleUser} style={{color: "#442c2e", fontSize: "2.5rem"}} />
                   </div>
                   <div>
-                  <div className="summary-name">{contact.contact_name}</div>
-                  <div className="tags">
-                    {contact.tags !== 'No Tags' && contact.tags.split(', ').map((tag, index) => (
-                      <span key={index} className={`tag${tag}`}>{tag}</span>
-                    ))}
-                  </div>
+                    <div className="summary-name">{contact.contact_name}</div>
+                    <div className="tags">
+                      {contact.tags !== 'No Tags' && contact.tags.split(', ').map((tag, index) => (
+                        <span key={index} className={`tag${tag}`}>{tag}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 
                 <div className="summary-details">
-                  
                   <div className="contact-info">
                     <div className="number">📱 {contact.phone}</div>
                     {contact.email && <div className="email">✉️ {contact.email}</div>}
@@ -109,46 +211,142 @@ function Contact({ onAddContact, onEditContact }) {
 
       <div className="individual" style={{ display: showIndividual ? 'block' : 'none' }}>
         <div className="individual-header">
-          <button className="return-to-list" onClick={handleReturnToList}>
-            <FontAwesomeIcon icon={faAddressCard} style={{color: "#442c2e"}} />
-          </button>
-          <h2>Contact Details</h2>
-          <button className="change-detail" onClick={() => onEditContact(selectedContact)}>
+          <button className="return-to-list" onClick={handleReturnToList}> 
+            <FontAwesomeIcon icon={faAddressCard} style={{color: "#442c2e"}} />  
+          </button> 
+          <div className="individualtitle header-font">Contact Details</div>
+          <button className="change-detail" onClick={handleEditClick}>
             <FontAwesomeIcon icon={faPenToSquare} style={{color: "#442c2e"}} />
           </button>
         </div>
         {selectedContact && (
           <>
             <div className="contact-img">
-              <FontAwesomeIcon icon={faCircleUser} style={{color: "#442c2e", fontSize: "3rem"}} />
+              <FontAwesomeIcon icon={faCircleUser} style={{color: "#442c2e", fontSize: "4rem"}} />
             </div>
-            <div className="contact-name">{selectedContact.contact_name}</div>
-            <div className="contact-detail">
-              <div className="tags">
-                {selectedContact.tags !== 'No Tags' && selectedContact.tags.split(', ').map((tag, index) => (
-                  <span key={index} className={`tag${tag}`}>{tag}</span>
-                ))}
+            {isEditing ? (
+              <div className="edit-form">
+                <div className="tag-options2">
+                  {['Friend', 'Work', 'Family', 'Networking', 'Other'].map((tag) => (
+                    <span
+                      key={tag}
+                      className={`tag${tag} ${editFormData.tags.includes(tag) ? '' : 'selected'}`}
+                      onClick={() => {
+                        setEditFormData(prev => ({
+                          ...prev,
+                          tags: prev.tags.includes(tag)
+                            ? prev.tags.filter(t => t !== tag)
+                            : [...prev.tags, tag]
+                        }));
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <input
+                  type="text"
+                  name="tags"
+                  value={editFormData.tags.join(", ")}
+                  onChange={(e) => setEditFormData(prev => ({
+                    ...prev,
+                    tags: e.target.value.split(", ").filter(tag => tag.trim() !== "")
+                  }))}
+                  style={{ display: 'none' }}
+                />
+                <div className="required-field">
+                  <input
+                    type="text"
+                    name="contact_name"
+                    placeholder="Contact Name"
+                    value={editFormData.contact_name}
+                    onChange={handleEditChange}
+                    className="edit-input"
+                    required
+                  />
+                </div>
+                <div className="required-field">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                    value={editFormData.phone}
+                    onChange={handleEditChange}
+                    className="edit-input"
+                    required
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={editFormData.email}
+                    onChange={handleEditChange}
+                    className="edit-input"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    name="note"
+                    placeholder="Add Notes"
+                    value={editFormData.note}
+                    onChange={handleEditChange}
+                    className="edit-textarea"
+                  />
+                </div>
+                <div className="edit-actions">
+                  <button onClick={() => setIsEditing(false)} className="cancel-edit-btn">
+                    Cancel
+                  </button>
+                  <button onClick={handleEditSubmit} className="save-edit-btn">
+                    Save
+                  </button>
+                </div>
               </div>
-              <div className="detail-list">
-                <div className="detail-item">
-                  <label>Phone Number:</label>
-                  <p>{selectedContact.phone}</p>
+            ) : (
+              <>
+                <div className="contact-name header-font">{selectedContact.contact_name}</div>
+                <div className="contact-detail">
+                  <div className="tags2">
+                    {selectedContact.tags !== 'No Tags' && selectedContact.tags.split(', ').map((tag, index) => (
+                      <span key={index} className={`tag${tag}`}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="detail-list">
+                    <div className="detail-item1">
+                      <label>Phone Number: {selectedContact.phone}</label>
+                    </div>
+                    <div className="detail-item2">
+                      <label>Email: {selectedContact.email || 'No email provided'}</label>
+                    </div>
+                    <div className="detail-item3">
+                      <label>Notes: {selectedContact.note || 'No notes provided'}</label>
+                    </div>
+                  </div>
+                  <button className="delete-btn" onClick={handleDelete}>Delete Contact</button>
                 </div>
-                <div className="detail-item">
-                  <label>Email:</label>
-                  <p>{selectedContact.email || 'No email provided'}</p>
-                </div>
-                <div className="detail-item">
-                  <label>Notes:</label>
-                  <p>{selectedContact.note || 'No notes provided'}</p>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </>
         )}
       </div>
     </>
   );
+}
+
+// Debounce utility function
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 export default Contact;
