@@ -1,12 +1,3 @@
-/* color code: 
-primary: #FEDBD0
-dark: 442C2E
-secondary: #FEEAE6
-  R: 68 G: 44 B: 46
-background: white 
-credit: https://m2.material.io/design/color/applying-color-to-ui.html#backdrop
-*/
-
 .home {
   min-height: 100vh;
   width: 100vw;

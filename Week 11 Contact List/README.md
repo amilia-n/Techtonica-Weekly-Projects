@@ -255,6 +255,9 @@ The application implements comprehensive error handling:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Author
 
-- Amilia N. - [GitHub](https://github.com/amilia-n)
+## Attributions
+
+- Color palette and UI guidelines: [Material Design](https://m2.material.io/design/color/applying-color-to-ui.html#backdrop)
+- Contact icons: [Freepik](https://www.flaticon.com/free-icons/contacts) on Flaticon
+- UI icons: [Font Awesome](https://fontawesome.com/)
