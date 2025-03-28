@@ -9,7 +9,6 @@ const pool = new Pool({
     port: process.env.DB_PORT || 5432,
 });
 
-// Test the connection
 pool.query('SELECT NOW()', (err, res) => {
     if (err) {
         console.error('Database connection error:', err);

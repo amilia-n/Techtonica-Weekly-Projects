@@ -42,7 +42,7 @@ const Leaderboard = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="leaderboard-modal">
+    <div className="leaderboard-container">
       <div className="leaderboard-content">
         <button className="close-button" onClick={onClose}>×</button>
         <h2>Leaderboard</h2>

@@ -67,26 +67,33 @@ const GomokuBoard = () => {
     setWinner(player);
     shootConfetti();
 
-    const playerName = prompt('Enter name to be added to the leaderboard:');
-    if (!playerName) return;
+    // Wait for win message to be displayed
+    setTimeout(async () => {
+      // Prompt for player name
+      const playerName = prompt('Enter your name to be added to the leaderboard (or cancel to skip):');
+      if (!playerName) return;
 
-    try {
-      const response = await axios.get(`http://localhost:5001/api/players/leaderboard`);
-      const existingPlayer = response.data.find(p => p.name.toLowerCase() === playerName.toLowerCase());
+      try {
+        // Check if player exists
+        const response = await axios.get(`http://localhost:5001/api/players/leaderboard`);
+        const existingPlayer = response.data.find(p => p.name.toLowerCase() === playerName.toLowerCase());
 
-      if (existingPlayer) {
-        await axios.put(`http://localhost:5001/api/players/${existingPlayer.id}`, {
-          score: existingPlayer.score + 1
-        });
-      } else {
-        await axios.post('http://localhost:5001/api/players', {
-          name: playerName,
-          score: 1
-        });
+        if (existingPlayer) {
+          // Update existing player's score
+          await axios.put(`http://localhost:5001/api/players/${existingPlayer.id}`, {
+            score: existingPlayer.score + 1
+          });
+        } else {
+          // Create new player with initial score of 1
+          await axios.post('http://localhost:5001/api/players', {
+            name: playerName,
+            score: 1
+          });
+        }
+      } catch (error) {
+        console.error('Error updating leaderboard:', error);
       }
-    } catch (error) {
-      console.error('Error updating leaderboard:', error);
-    }
+    }, 1000); // Wait 1 second after win message appears
   };
 
   const handleCellClick = (row, col) => {

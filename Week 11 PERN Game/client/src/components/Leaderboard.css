@@ -1,4 +1,4 @@
-.leaderboard-modal {
+.leaderboard-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
 
 .leaderboard-content {
   background-color: #FDF1D9;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 10px;
   position: relative;
   min-width: 300px;
@@ -23,7 +23,7 @@
 
 .close-button {
   position: absolute;
-  top: 10px;
+  top: 15px;
   right: 10px;
   background: none;
   border: none;

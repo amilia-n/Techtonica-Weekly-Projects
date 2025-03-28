@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-// Test route
 router.get('/test', (req, res) => {
     res.json({ message: 'Players API is working' });
 });
 
-// Get top 10 players (leaderboard)
 router.get('/leaderboard', async (req, res) => {
     try {
         console.log('Fetching leaderboard...');
@@ -22,13 +20,12 @@ router.get('/leaderboard', async (req, res) => {
     }
 });
 
-// Create a new player
 router.post('/', async (req, res) => {
-    const { name } = req.body;
+    const { name, score } = req.body;
     try {
         const result = await pool.query(
-            'INSERT INTO players (name) VALUES ($1) RETURNING *',
-            [name]
+            'INSERT INTO players (name, score) VALUES ($1, $2) RETURNING *',
+            [name, score]
         );
         res.status(201).json(result.rows[0]);
     } catch (err) {
@@ -36,7 +33,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Update player's score
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { score } = req.body;
@@ -54,7 +50,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete a player
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
