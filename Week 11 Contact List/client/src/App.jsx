@@ -1,4 +1,3 @@
-// Root component of the application, rendering the Home page
 import { useState } from "react";
 import Home from './pages/Home';
 import Contact from "./components/Contact";

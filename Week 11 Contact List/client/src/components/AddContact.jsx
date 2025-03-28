@@ -7,7 +7,8 @@ import "./AddContact.css";
 
 function AddContact({ contact, isEditing = false, onCancel }) {
   const [formData, setFormData] = useState({
-    contact_name: contact?.contact_name || "",
+    firstName: contact?.firstName || "",
+    lastName: contact?.lastName || "",
     phone: contact?.phone || "",
     email: contact?.email || "",
     note: contact?.note || "",
@@ -28,7 +29,6 @@ function AddContact({ contact, isEditing = false, onCancel }) {
     e.preventDefault();
     setError(null);
 
-    // Validate required fields
     if (!formData.firstName.trim()) {
       setError('First Name is required');
       return;
@@ -72,31 +72,36 @@ function AddContact({ contact, isEditing = false, onCancel }) {
     }
   };
 
+  const closeError = () => {
+    setError(null);
+  };
+
   return (
-    <div className="add-new">
-      <div className="form-header">
-        <div className="cancel-btn" onClick={onCancel}>Cancel</div>
-        <div className='newcontact-title header-font'>Add New Contact</div>
-        <div 
-          className="submit-new" 
-          onClick={handleSubmit}
-          style={{ opacity: loading ? 0.5 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
-        >
-          {loading ? 'Saving...' : (isEditing ? 'Update' : 'Done')}
+    <>
+      <div className="add-new">
+        <div className="form-header">
+          <div className="cancel-btn" onClick={onCancel}>Cancel</div>
+          <div className='newcontact-title header-font'>Add New Contact</div>
+          <div 
+            className="submit-new" 
+            onClick={handleSubmit}
+            style={{ opacity: loading ? 0.5 : 1, cursor: loading ? 'not-allowed' : 'pointer' }}
+          >
+            {loading ? 'Saving...' : (isEditing ? 'Update' : 'Done')}
+          </div>
         </div>
-      </div>
 
-      <div className="display-img">
-        <FontAwesomeIcon icon={faImage} style={{color: "#442c2e", fontSize: "3rem"}} />
-      </div>
+        <div className="display-img">
+          <FontAwesomeIcon icon={faImage} style={{color: "#442c2e", fontSize: "3rem"}} />
+        </div>
 
-      <div className="add-img-btn">Add Photo</div>
-      <div className='tags3'>
+        <div className="add-img-btn">Add Photo</div>
+        <div className='tags3'>
           <div className="tag-options">
             {['Friend', 'Work', 'Family', 'Networking', 'Other'].map((tag) => (
               <span
                 key={tag}
-                className={`tag${tag} ${formData.tags.includes(tag) ? '' : 'selected' }`}
+                className={`tag${tag} ${formData.tags.includes(tag) ? 'selected' : ''  }`}
                 onClick={() => {
                   setFormData(prev => ({
                     ...prev,
@@ -124,64 +129,73 @@ function AddContact({ contact, isEditing = false, onCancel }) {
             style={{ display: 'none' }}
           />
         </div>
-      <form className="add-detail-container" onSubmit={handleSubmit}>
-        {error && <div className="error-message">{error}</div>}
-        <div className="required-field">
-          <input
-            type="text"
-            placeholder="First Name"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="required-field">
-          <input
-            type="text"
-            placeholder="Last Name"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="required-field">
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            id="phoneNumber"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            placeholder="Email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
+        <form className="add-detail-container" onSubmit={handleSubmit}>
+          <div className="required-field">
+            <input
+              type="text"
+              placeholder="First Name"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="required-field">
+            <input
+              type="text"
+              placeholder="Last Name"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="required-field">
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              id="phoneNumber"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <textarea
+              id="note"
+              placeholder="Enter Notes"
+              name="note"
+              value={formData.note}
+              onChange={handleChange}
+              rows="4"
+            />
+          </div>
+        </form>
+      </div>
 
-        <div>
-          <textarea
-            id="note"
-            placeholder="Enter Notes"
-            name="note"
-            value={formData.note}
-            onChange={handleChange}
-            rows="4"
-          />
-        </div>
-      </form>
-    </div>
+      {error && (
+        <>
+          <div className="error-popup-overlay" onClick={closeError} />
+          <div className="error-popup">
+            <div className="error-popup-message">{error}</div>
+            <button className="error-popup-button" onClick={closeError}>OK</button>
+          </div>
+        </>
+      )}
+    </>
   );
 }
 

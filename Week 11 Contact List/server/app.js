@@ -74,18 +74,23 @@ app.get('/contacts/:id', async (req, res) => {
 
 // POST new contact
 app.post('/contacts', async (req, res) => {
+  const { contact_name, phone, email, note, tags } = req.body;
+  
+  // Validate required fields
+  if (!contact_name?.trim() || !phone?.trim()) {
+    return res.status(400).json({ error: 'Contact name and phone number are required' });
+  }
+
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     
-    const { contact_name, phone, email, note, tags } = req.body;
-    
-    // Insert contact
+    // Insert contact with trimmed values
     const contactResult = await client.query(
       `INSERT INTO contacts (name, phone, email, note)
        VALUES ($1, $2, $3, $4)
        RETURNING id`,
-      [contact_name, phone, email, note]
+      [contact_name.trim(), phone.trim(), email || null, note || null]
     );
     
     const contactId = contactResult.rows[0].id;
@@ -138,19 +143,24 @@ app.post('/contacts', async (req, res) => {
 
 // PUT update contact
 app.put('/contacts/:id', async (req, res) => {
+  const { id } = req.params;
+  const { contact_name, phone, email, note, tags } = req.body;
+  
+  // Validate required fields
+  if (!contact_name?.trim() || !phone?.trim()) {
+    return res.status(400).json({ error: 'Contact name and phone number are required' });
+  }
+
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
     
-    const { id } = req.params;
-    const { contact_name, phone, email, note, tags } = req.body;
-    
-    // Update contact
+    // Update contact with trimmed values
     await client.query(
       `UPDATE contacts 
        SET name = $1, phone = $2, email = $3, note = $4
        WHERE id = $5`,
-      [contact_name, phone, email, note, id]
+      [contact_name.trim(), phone.trim(), email || null, note || null, id]
     );
     
     // Remove existing tag relationships

@@ -1,9 +1,20 @@
-// Component for displaying contact
 import { useState, useEffect, useCallback } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faAddressCard, faPenToSquare, faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import "./Contact.css";
+
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 function Contact({ onAddContact }) {
   const [contacts, setContacts] = useState([]);
@@ -15,21 +26,14 @@ function Contact({ onAddContact }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editFormData, setEditFormData] = useState(null);
 
-  const debouncedSearch = useCallback(
-    debounce((query) => {
-      setSearchQuery(query);
-      fetchContacts();
-    }, 300),
-    []
-  );
+  const closeError = () => {
+    setError(null);
+  };
 
-  useEffect(() => {
-    fetchContacts();
-  }, []);
-
-  const fetchContacts = async () => {
+  const fetchContacts = useCallback(async (query = searchQuery) => {
     try {
-      const response = await fetch(`http://localhost:3000/contacts?search=${searchQuery}`);
+      const encodedQuery = encodeURIComponent(query);
+      const response = await fetch(`http://localhost:3000/contacts?search=${encodedQuery}`);
       if (!response.ok) {
         throw new Error('Failed to fetch contacts');
       }
@@ -40,7 +44,19 @@ function Contact({ onAddContact }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      setSearchQuery(query);
+      fetchContacts(query);
+    }, 300),
+    [fetchContacts]
+  );
+
+  useEffect(() => {
+    fetchContacts();
+  }, []); 
 
   const handleSearch = (e) => {
     const query = e.target.value;
@@ -81,6 +97,16 @@ function Contact({ onAddContact }) {
   };
 
   const handleEditSubmit = async () => {
+    // Validate required fields
+    if (!editFormData.contact_name?.trim()) {
+      setError('Contact name is required');
+      return;
+    }
+    if (!editFormData.phone?.trim()) {
+      setError('Phone number is required');
+      return;
+    }
+
     try {
       const response = await fetch(`http://localhost:3000/contacts/${selectedContact.contact_id}`, {
         method: 'PUT',
@@ -152,22 +178,29 @@ function Contact({ onAddContact }) {
   };
 
   if (loading) return <div className="loading">Loading contacts...</div>;
-  if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <>
+      {error && (
+        <div className="error-popup-overlay" onClick={closeError}>
+          <div className="error-popup" onClick={e => e.stopPropagation()}>
+            <div className="error-popup-message">{error}</div>
+            <button className="error-popup-button" onClick={closeError}>OK</button>
+          </div>
+        </div>
+      )}
       <div className="list-all" style={{ display: showIndividual ? 'none' : 'flex' }}>
         <div className="header">
           <div className="search">
             <FontAwesomeIcon icon={faMagnifyingGlass} style={{color: "#acadaf"}} />
             <input 
               type="text" 
-              placeholder="Search" 
+              placeholder="Search by name, phone, or tag" 
               className="search-input"
               onChange={handleSearch}
             />
           </div>
-          <button className="add" onClick={onAddContact}>
+          <button className="add" onClick={onAddContact} data-testid="add-button">
             <FontAwesomeIcon icon={faUserPlus} style={{color: "#442c2e"}} />
           </button>
         </div>
@@ -215,7 +248,7 @@ function Contact({ onAddContact }) {
             <FontAwesomeIcon icon={faAddressCard} style={{color: "#442c2e"}} />  
           </button> 
           <div className="individualtitle header-font">Contact Details</div>
-          <button className="change-detail" onClick={handleEditClick}>
+          <button className="change-detail" data-testid="edit-button" onClick={handleEditClick}>
             <FontAwesomeIcon icon={faPenToSquare} style={{color: "#442c2e"}} />
           </button>
         </div>
@@ -334,19 +367,6 @@ function Contact({ onAddContact }) {
       </div>
     </>
   );
-}
-
-// Debounce utility function
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
 }
 
 export default Contact;

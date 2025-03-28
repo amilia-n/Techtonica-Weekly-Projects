@@ -1,4 +1,3 @@
-/* list all contacts */
 .list-all {
   display: flex;
   background-color: #ffffff;
@@ -13,7 +12,6 @@
 .listallheader {
   margin: 10px 0 10px 10px;
   font-size: 1.5rem;
-  /* add font */
 }
 .header {
   display: flex;
@@ -48,7 +46,6 @@
 
 .search-input::placeholder {
   color: #685b51;
-  /* add font */
 }
 
 .search-input:focus {
@@ -137,58 +134,80 @@
   
 .tags {
   display: flex;
-  /* background-color: #d7bca9ab; */
-  /* padding: 10px; */
   width: 100%;
   height: fit-content;
   margin-bottom: 11px;
   flex-wrap: wrap;
   gap: 10px;
   border-radius: 20px;
-  /* justify-content: flex-start; */
+}
+
+.tagFriend,
+.tagWork,
+.tagFamily,
+.tagNetworking,
+.tagOther {
+  text-align: center;
+  border-radius: 20px;
+  cursor: default;
 }
 
 .tagFriend {
   background-color: yellow;
   width: 77px;
   height: 25px;
-  text-align: center;
-  border-radius: 20px;
 }
 
 .tagWork {
   background-color: rgb(192, 177, 207);
   width: 77px;
   height: 25px;
-  text-align: center;
-  border-radius: 20px;
 }
 
 .tagFamily {
   background-color: rgb(136, 225, 211);
   width: 77px;
   height: 25px;
-  text-align: center;
-  border-radius: 20px;
 }
 
 .tagNetworking {
   background-color: rgb(247, 174, 221);
   width: 115px;
   height: 25px;
-  text-align: center;
-  border-radius: 20px;
 }
 
 .tagOther {
   background-color: rgb(225, 209, 136);
   width: 77px;
   height: 25px;
-  text-align: center;
-  border-radius: 20px;
 }
 
-/* INDIVIDUAL CONTACT*/
+.edit-form .tagFriend,
+.edit-form .tagWork,
+.edit-form .tagFamily,
+.edit-form .tagNetworking,
+.edit-form .tagOther {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-form .tagFriend:hover,
+.edit-form .tagWork:hover,
+.edit-form .tagFamily:hover,
+.edit-form .tagNetworking:hover,
+.edit-form .tagOther:hover {
+  transform: scale(1.05);
+}
+
+.edit-form .tagFriend.selected,
+.edit-form .tagWork.selected,
+.edit-form .tagFamily.selected,
+.edit-form .tagNetworking.selected,
+.edit-form .tagOther.selected {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
 .individual {
   display: flex;
   background-color: #FEEAE6;
@@ -202,7 +221,6 @@
 
 .individual-header {
   display: flex;
-  /* background-color: thistle; */
   width: 100%;
   height: fit-content;
   align-content: center;
@@ -258,20 +276,16 @@
 }
 
 .contact-name {
-  /* background-color: #abc4ff; */
   justify-self: center;
   color: #442C2E;
   padding: 5px 15px 5px 15px;
   font-size: 1.5rem;
   width: fit-content;
   font-weight: bold;
-  /* add font style */
 }
 
 .tags2 {
   display: flex;
-  /* background-color: #d7bca9; */
-  /* padding: 10px; */
   width: 100%;
   height: fit-content;
   margin-bottom: 15px;
@@ -282,7 +296,6 @@
 }
 
 .contact-detail {
-  /* background-color: #dda0dd; */
   padding: 10px;
   width: 100%;
   height: 72%;
@@ -331,7 +344,7 @@ text-align: left;
   font-weight: bold;
 }
 
-/* edit form */
+
 .edit-form {
   display: flex;
   flex-direction: column;
@@ -360,82 +373,6 @@ text-align: left;
  flex-wrap: wrap;
 }
 
-/* .edit-tags {
-  width: 100%;
-  border: none;
-
-  border-radius: 20px;
-
-} */
-
-
-/* 
-.tagFriend.selected,
-.tagWork.selected,
-.tagFamily.selected,
-.tagNetworking.selected,
-.tagOther.selected {
-  opacity: 0.7;
-  transform: scale(0.95);
-}
-
-.tagFriend,
-.tagWork,
-.tagFamily,
-.tagNetworking,
-.tagOther {
-  transition: all 0.2s ease;
-}
-
-.tagFriend:hover,
-.tagWork:hover,
-.tagFamily:hover,
-.tagNetworking:hover,
-.tagOther:hover {
-  transform: scale(1.05);
-} */
-
-/* .edit-tags {
-  padding: 10px 15px;
-  border: 1px solid #d7bca9ab;
-  border-radius: 25px;
-  font-size: 16px;
-  width: 100%;
-  min-height: 60px;
-  background-color: #d7bca9;
-} */
-
-/* .edit-tags .tag-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-} */
-/* 
-.edit-tags .tagFriend,
-.edit-tags .tagWork,
-.edit-tags .tagFamily,
-.edit-tags .tagNetworking,
-.edit-tags .tagOther {
-  transition: all 0.2s ease;
-}
-
-.edit-tags .tagFriend:hover,
-.edit-tags .tagWork:hover,
-.edit-tags .tagFamily:hover,
-.edit-tags .tagNetworking:hover,
-.edit-tags .tagOther:hover {
-  transform: scale(1.05);
-}
-
-.edit-tags .tagFriend.selected,
-.edit-tags .tagWork.selected,
-.edit-tags .tagFamily.selected,
-.edit-tags .tagNetworking.selected,
-.edit-tags .tagOther.selected {
-  opacity: 0.7;
-  transform: scale(0.95);
-} */
 
 .edit-textarea {
   padding: 15px;
@@ -481,6 +418,63 @@ text-align: left;
 
 .save-edit-btn:hover {
   background-color: #f0dfd3b2;
+}
+
+/* Error Popup Styles */
+.error-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-popup-message {
+  color: #dc3545;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-popup-button {
+  background-color: #442c2e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.error-popup-button:hover {
+  background-color: #2a1b1d;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 

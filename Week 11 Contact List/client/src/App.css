@@ -1,24 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
-/* Global styles for the application */
 :root {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  /* color: #2c3e50;
-  --color-lightest: #edf2fb;
-  --color-light: #d7e3fc;
-  --color-medium: #ccdbfd;
-  --color-dark: #c1d3fe;
-  --color-base: #abc4ff; */
 }
 
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* background-color: var(--color-base);
-  background-image: url("/background.jpeg"); */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -42,7 +33,7 @@ textarea {
 }
 
 .app {
-  background-color: rgba(246, 241, 232, 0.85); /* F6F1E8 with 85% opacity */
+  background-color: rgba(246, 241, 232, 0.85);
   max-width: 1250px;
   width: 100%;
   min-height: 90vh;
