@@ -144,13 +144,18 @@ CREATE TABLE players (
 
 1. The game is played on a 15x15 grid
 ![](./images/homepage.png)
+
 2. Black plays first
+
 3. Players take turns placing their stones
 ![](/images/gameplay.png)
+
 4. First player to get 5 stones in a row (horizontally, vertically, or diagonally) wins
 ![](/images/winner.png)
+
 5. Each player has 10 minutes to make their moves
 ![](/images/leaderboard.png)
+
 6. If a player runs out of time, their opponent wins
 
 ## Contributing
