@@ -1,7 +1,5 @@
-# Gomoku Game
+# Revisiting Week 5 Gomoku Game: PERN stack with a leaderboard system. 
 
-A full-stack web application featuring a Gomoku (Five in a Row) game with a leaderboard system. 
-Built using the PERN stack (PostgreSQL, Express, React, Node.js).
 
 ## Features
 
@@ -10,7 +8,20 @@ Built using the PERN stack (PostgreSQL, Express, React, Node.js).
 - 10-minute timer per player
 - Win detection in all directions (horizontal, vertical, diagonal)
 - Player leaderboard system
-- Confetti animation on game win
+
+## Game Visuals
+
+### Starting a New Game
+![Game Start](./client/public/start.png)
+
+### Game Board Layout
+![Game Board](./client/public/pregame.png)
+
+### Winning the Game
+![Winning Move](./client/public/onwin.png)
+
+### Updated Leaderboard
+![Leaderboard Update](./client/public/updatedscore.png)
 
 ## Tech Stack
 
