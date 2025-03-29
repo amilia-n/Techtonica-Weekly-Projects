@@ -1,29 +1,19 @@
-// Form component for adding new contact
-
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import "./AddContact.css";
 
-function AddContact({ contact, isEditing = false, onCancel }) {
+function AddContact({ contact, isEditing = false, onCancel, onSuccess }) {
   const [formData, setFormData] = useState({
     firstName: contact?.firstName || "",
     lastName: contact?.lastName || "",
     phone: contact?.phone || "",
     email: contact?.email || "",
     note: contact?.note || "",
-    tags: contact?.tags?.split(", ") || []
+    tags: [] 
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,12 +41,21 @@ function AddContact({ contact, isEditing = false, onCancel }) {
       
       const method = isEditing ? 'PUT' : 'POST';
 
+      const requestData = {
+        ...formData,
+        contact_name: `${formData.firstName} ${formData.lastName}`.trim(),
+        tags: formData.tags.map(tag => tag.trim()) 
+      };
+      
+      delete requestData.firstName;
+      delete requestData.lastName;
+
       const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(requestData),
       });
 
       if (!response.ok) {
@@ -64,6 +63,9 @@ function AddContact({ contact, isEditing = false, onCancel }) {
         throw new Error(errorData.error || 'Failed to save contact');
       }
 
+      if (onSuccess) {
+        onSuccess();
+      }
       onCancel();
     } catch (err) {
       setError(err.message);
@@ -101,7 +103,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
             {['Friend', 'Work', 'Family', 'Networking', 'Other'].map((tag) => (
               <span
                 key={tag}
-                className={`tag${tag} ${formData.tags.includes(tag) ? 'selected' : ''  }`}
+                className={`tag${tag} ${formData.tags.includes(tag) ? 'selected' : 'unselected'}`}
                 onClick={() => {
                   setFormData(prev => ({
                     ...prev,
@@ -116,18 +118,6 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               </span>
             ))}
           </div>
-          <input
-            type="text"
-            placeholder="Space for Tag Selection"
-            id="tags3"
-            name="tags"
-            value={formData.tags.join(", ")}
-            onChange={(e) => setFormData(prev => ({
-              ...prev,
-              tags: e.target.value.split(", ").filter(tag => tag.trim() !== "")
-            }))}
-            style={{ display: 'none' }}
-          />
         </div>
         <form className="add-detail-container" onSubmit={handleSubmit}>
           <div className="required-field">
@@ -137,7 +127,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               id="firstName"
               name="firstName"
               value={formData.firstName}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
               required
             />
           </div>
@@ -148,7 +138,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               id="lastName"
               name="lastName"
               value={formData.lastName}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
               required
             />
           </div>
@@ -159,7 +149,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               id="phoneNumber"
               name="phone"
               value={formData.phone}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               required
             />
           </div>
@@ -170,7 +160,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               id="email"
               name="email"
               value={formData.email}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
           </div>
           <div>
@@ -179,7 +169,7 @@ function AddContact({ contact, isEditing = false, onCancel }) {
               placeholder="Enter Notes"
               name="note"
               value={formData.note}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, note: e.target.value })}
               rows="4"
             />
           </div>

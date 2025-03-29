@@ -1,4 +1,3 @@
-// Database connection configuration using PostgreSQL pool with environment variables
 require('dotenv').config();
 const { Pool } = require('pg');
 
@@ -10,7 +9,6 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// Test the connection
 pool.query('SELECT NOW()', (err, res) => {
     if (err) {
         console.error('Error connecting to the database:', err);

@@ -5,7 +5,6 @@ const BASE_URL = 'http://localhost:3000';
 describe('Contacts API', () => {
   let testContactId;
 
-  // Test data
   const testContact = {
     contact_name: 'Test Contact',
     phone: '123-456-7890',
@@ -14,7 +13,6 @@ describe('Contacts API', () => {
     tags: ['Test']
   };
 
-  // Clean up after all tests
   afterAll(async () => {
     if (testContactId) {
       try {
@@ -32,7 +30,6 @@ describe('Contacts API', () => {
     expect(Array.isArray(response.data)).toBe(true);
     expect(response.data.length).toBeGreaterThan(0);
     
-    // Check the structure of the first contact
     const firstContact = response.data[0];
     expect(firstContact).toHaveProperty('contact_id');
     expect(firstContact).toHaveProperty('contact_name');
@@ -49,7 +46,6 @@ describe('Contacts API', () => {
     expect(response.status).toBe(200);
     expect(Array.isArray(response.data)).toBe(true);
     
-    // Check if the returned contacts match the search query
     response.data.forEach(contact => {
       expect(contact.contact_name.toLowerCase()).toContain(searchQuery.toLowerCase());
     });
@@ -81,7 +77,6 @@ describe('Contacts API', () => {
     expect(response.data.note).toBe(testContact.note);
     expect(response.data.tags).toBe(testContact.tags.join(', '));
     
-    // Store the contact ID for later tests
     testContactId = response.data.contact_id;
   });
 
@@ -145,7 +140,6 @@ describe('Contacts API', () => {
     expect(response.status).toBe(200);
     expect(response.data.message).toBe('Contact deleted successfully');
 
-    // Verify the contact is deleted
     try {
       await axios.get(`${BASE_URL}/contacts/${testContactId}`);
       fail('Contact should not exist');

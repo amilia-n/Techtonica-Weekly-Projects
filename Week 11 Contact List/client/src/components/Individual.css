@@ -1,0 +1,334 @@
+.individual {
+    display: flex;
+    background-color: #FEEAE6;
+    height: 98%;
+    padding: 15px;
+    border-radius: 20px;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    position: relative;
+}
+  
+.individual .individual-header {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    align-content: center;
+    align-items: end;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 30px;
+}
+  
+.individual .individualtitle {
+    font-size: 1.5rem;
+}
+  
+.individual .return-to-list {
+    background-color: #d7bca9ab;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px 0 0 15px;
+    border: none;
+}
+  
+.individual .return-to-list svg {
+    font-size: 1.2rem;
+}
+  
+.individual .change-detail {
+    display: flex;
+    background-color: #d7bca9ab;
+    border-radius: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px 15px 0 0;
+    border: none;
+}
+  
+.individual .change-detail svg {
+    font-size: 1.2rem;
+}
+  
+.individual .contact-img {
+    background-color: #ffffff;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: center;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+}
+  
+.individual .contact-img svg {
+    color: #442c2e;
+}
+  
+.individual .contact-name {
+    justify-self: center;
+    color: #442C2E;
+    padding: 5px 15px 5px 15px;
+    font-size: 1.5rem;
+    width: fit-content;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+}
+  
+.individual .tags2 {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-radius: 20px;
+    justify-content: center;
+}
+  
+.individual .contact-detail {
+    padding: 10px;
+    width: 100%;
+    height: 72%;
+    border-radius: 20px;
+    overflow: hidden;
+}
+  
+.individual .detail-list {
+    background-color: white;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 30px;
+    overflow-y: scroll;
+}
+  
+.individual .detail-item1 {
+    background-color: #fedbd056;
+    padding: 25px 0 15px 20px;
+    border-radius: 20px 20px 0 0;
+    text-align: left;
+}
+  
+.individual .detail-item2 {
+    background-color: #fedbd056;
+    padding: 10px 0 10px 20px;
+}
+  
+.individual .detail-item3 {
+    background-color: #fedbd056;
+    padding: 15px 0 50px 20px;
+    border-radius: 0 0 20px 20px;
+}
+  
+.individual .delete-btn {
+    display: flex;
+    justify-self: center;
+    margin-top: 20px;
+    background: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #442C2E;
+    transition: background-color 0.3s;
+}
+  
+.individual .delete-btn:hover {
+    background-color: #eb212182;
+    color: #ffffff;
+    font-weight: bold;
+}
+  
+.individual .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 20px;
+    background-color: #442c2e37;
+    border-radius: 20px;
+    margin: 10px 10px 0 10px;
+}
+  
+.individual .edit-input {
+    padding: 10px 15px;
+    border: 1px solid #d7bca9ab;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 100%;
+}
+  
+.individual .tag-options2 {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    column-gap: 15px;
+    row-gap: 10px;
+    width: fit-content;
+    flex-wrap: wrap;
+}
+  
+.individual .edit-textarea {
+    padding: 15px;
+    border: 1px solid #d7bca9ab;
+    border-radius: 25px;
+    font-size: 16px;
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    overflow-y: scroll;
+    resize: vertical;
+}
+  
+.individual .edit-actions {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.individual .cancel-edit-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #e2e2e2;
+    color: #442C2E;
+    transition: background-color 0.3s;
+}
+  
+.individual .save-edit-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    background-color: #bfecc0;
+    color: #442C2E;
+}
+  
+.individual .cancel-edit-btn:hover {
+    background-color: #f0dfd3b2;
+}
+  
+.individual .save-edit-btn:hover {
+    background-color: #f0dfd3b2;
+}
+
+.individual .error-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+  
+.individual .error-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.3s ease-in-out;
+}
+  
+.individual .error-popup-message {
+    color: #dc3545;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+  
+.individual .error-popup-button {
+    background-color: #442c2e;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+  
+.individual .error-popup-button:hover {
+    background-color: #2a1b1d;
+}
+  
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  
+.tagFriend,
+.tagWork,
+.tagFamily,
+.tagNetworking,
+.tagOther {
+  text-align: center;
+  border-radius: 20px;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0 10px;
+  opacity: 1;
+}
+
+.tagFriend {
+  background-color: yellow;
+  width: 77px;
+  height: 25px;
+}
+
+.tagWork {
+  background-color: rgb(192, 177, 207);
+  width: 77px;
+  height: 25px;
+}
+
+.tagFamily {
+  background-color: rgb(136, 225, 211);
+  width: 77px;
+  height: 25px;
+}
+
+.tagNetworking {
+  background-color: rgb(247, 174, 221);
+  width: 115px;
+  height: 25px;
+}
+
+.tagOther {
+  background-color: rgb(225, 209, 136);
+  width: 77px;
+  height: 25px;
+}
+  
+  
+  

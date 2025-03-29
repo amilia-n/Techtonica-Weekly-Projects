@@ -6,7 +6,6 @@ const { Pool } = require('pg');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Enable CORS for all routes
 app.use(cors());
 app.use(express.json());
 
@@ -14,7 +13,6 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-// Test database connection
 pool.connect((err, client, release) => {
   if (err) {
     console.error('Error connecting to the database:', err);
@@ -24,7 +22,6 @@ pool.connect((err, client, release) => {
   release();
 });
 
-// Get all contacts with tags
 app.get('/contacts', async (req, res) => {
   try {
     const search = req.query.search || '';
@@ -48,7 +45,6 @@ app.get('/contacts', async (req, res) => {
   }
 });
 
-// GET single contact by ID
 app.get('/contacts/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -72,11 +68,9 @@ app.get('/contacts/:id', async (req, res) => {
   }
 });
 
-// POST new contact
 app.post('/contacts', async (req, res) => {
   const { contact_name, phone, email, note, tags } = req.body;
   
-  // Validate required fields
   if (!contact_name?.trim() || !phone?.trim()) {
     return res.status(400).json({ error: 'Contact name and phone number are required' });
   }
@@ -85,7 +79,6 @@ app.post('/contacts', async (req, res) => {
   try {
     await client.query('BEGIN');
     
-    // Insert contact with trimmed values
     const contactResult = await client.query(
       `INSERT INTO contacts (name, phone, email, note)
        VALUES ($1, $2, $3, $4)
@@ -95,10 +88,9 @@ app.post('/contacts', async (req, res) => {
     
     const contactId = contactResult.rows[0].id;
     
-    // Handle tags if provided
     if (tags && tags.length > 0) {
       for (const tagName of tags) {
-        // Get or create tag
+
         const tagResult = await client.query(
           `INSERT INTO tags (name)
            VALUES ($1)
@@ -107,7 +99,6 @@ app.post('/contacts', async (req, res) => {
           [tagName]
         );
         
-        // Create contact-tag relationship
         await client.query(
           `INSERT INTO contact_tags (contact_id, tag_id)
            VALUES ($1, $2)
@@ -119,7 +110,6 @@ app.post('/contacts', async (req, res) => {
     
     await client.query('COMMIT');
     
-    // Fetch the complete contact with tags
     const result = await pool.query(
       `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
         COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
@@ -141,12 +131,10 @@ app.post('/contacts', async (req, res) => {
   }
 });
 
-// PUT update contact
 app.put('/contacts/:id', async (req, res) => {
   const { id } = req.params;
   const { contact_name, phone, email, note, tags } = req.body;
   
-  // Validate required fields
   if (!contact_name?.trim() || !phone?.trim()) {
     return res.status(400).json({ error: 'Contact name and phone number are required' });
   }
@@ -154,8 +142,7 @@ app.put('/contacts/:id', async (req, res) => {
   const client = await pool.connect();
   try {
     await client.query('BEGIN');
-    
-    // Update contact with trimmed values
+
     await client.query(
       `UPDATE contacts 
        SET name = $1, phone = $2, email = $3, note = $4
@@ -163,16 +150,14 @@ app.put('/contacts/:id', async (req, res) => {
       [contact_name.trim(), phone.trim(), email || null, note || null, id]
     );
     
-    // Remove existing tag relationships
     await client.query(
       'DELETE FROM contact_tags WHERE contact_id = $1',
       [id]
     );
     
-    // Add new tag relationships if provided
     if (tags && tags.length > 0) {
       for (const tagName of tags) {
-        // Get or create tag
+
         const tagResult = await client.query(
           `INSERT INTO tags (name)
            VALUES ($1)
@@ -181,7 +166,6 @@ app.put('/contacts/:id', async (req, res) => {
           [tagName]
         );
         
-        // Create contact-tag relationship
         await client.query(
           `INSERT INTO contact_tags (contact_id, tag_id)
            VALUES ($1, $2)`,
@@ -192,7 +176,6 @@ app.put('/contacts/:id', async (req, res) => {
     
     await client.query('COMMIT');
     
-    // Fetch the updated contact with tags
     const result = await pool.query(
       `SELECT c.id as contact_id, c.name as contact_name, c.phone, c.email, c.note,
         COALESCE(string_agg(t.name, ', '), 'No Tags') as tags
@@ -218,7 +201,6 @@ app.put('/contacts/:id', async (req, res) => {
   }
 });
 
-// DELETE contact
 app.delete('/contacts/:id', async (req, res) => {
   const client = await pool.connect();
   try {
@@ -227,7 +209,6 @@ app.delete('/contacts/:id', async (req, res) => {
     const { id } = req.params;
     console.log('Delete request received for contact ID:', id);
     
-    // First check if contact exists
     const checkResult = await client.query(
       'SELECT id FROM contacts WHERE id = $1',
       [id]
@@ -241,7 +222,6 @@ app.delete('/contacts/:id', async (req, res) => {
       return res.status(404).json({ error: 'Contact not found' });
     }
     
-    // Delete contact (this will cascade delete contact_tags due to ON DELETE CASCADE)
     const result = await client.query(
       'DELETE FROM contacts WHERE id = $1 RETURNING id',
       [id]
@@ -267,13 +247,11 @@ app.delete('/contacts/:id', async (req, res) => {
   }
 });
 
-// Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something broke!' });
 });
 
-// Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

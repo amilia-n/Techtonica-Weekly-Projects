@@ -152,30 +152,59 @@ textarea[id='note']{
   border-radius: 20px;
 }
 
-.tagFriend,
-.tagWork,
-.tagFamily,
-.tagNetworking,
-.tagOther {
-  transition: all 0.2s ease;
+.add-new .tagFriend,
+.add-new .tagWork,
+.add-new .tagFamily,
+.add-new .tagNetworking,
+.add-new .tagOther {
+  text-align: center;
+  border-radius: 20px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  padding: 0 10px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
 }
 
-.tagFriend:hover,
-.tagWork:hover,
-.tagFamily:hover,
-.tagNetworking:hover,
-.tagOther:hover {
-  transform: scale(1.05);
+.add-new .tagFriend.selected,
+.add-new .tagWork.selected,
+.add-new .tagFamily.selected,
+.add-new .tagNetworking.selected,
+.add-new .tagOther.selected {
+  opacity: 1;
 }
 
-.tagFriend.selected,
-.tagWork.selected,
-.tagFamily.selected,
-.tagNetworking.selected,
-.tagOther.selected {
-  opacity: 0.7;
-  transform: scale(0.95);
+.add-new .tagFriend {
+  background-color: yellow;
+  width: 77px;
+  height: 25px;
+}
+
+.add-new .tagWork {
+  background-color: rgb(192, 177, 207);
+  width: 77px;
+  height: 25px;
+}
+
+.add-new .tagFamily {
+  background-color: rgb(136, 225, 211);
+  width: 77px;
+  height: 25px;
+}
+
+.add-new .tagNetworking {
+  background-color: rgb(247, 174, 221);
+  width: 115px;
+  height: 25px;
+}
+
+.add-new .tagOther {
+  background-color: rgb(225, 209, 136);
+  width: 77px;
+  height: 25px;
 }
 
 .error-popup {
