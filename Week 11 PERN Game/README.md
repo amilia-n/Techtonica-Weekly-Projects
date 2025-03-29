@@ -1,4 +1,5 @@
-# Revisiting Week 5 Gomoku Game: PERN stack with a leaderboard system. 
+# Revisiting Week 5 Gomoku Game: 
+PERN stack with a leaderboard system. 
 
 
 ## Features
@@ -8,20 +9,6 @@
 - 10-minute timer per player
 - Win detection in all directions (horizontal, vertical, diagonal)
 - Player leaderboard system
-
-## Game Visuals
-
-### Starting a New Game
-![Game Start](./client/public/start.png)
-
-### Game Board Layout
-![Game Board](./client/public/pregame.png)
-
-### Winning the Game
-![Winning Move](./client/public/onwin.png)
-
-### Updated Leaderboard
-![Leaderboard Update](./client/public/updatedscore.png)
 
 ## Tech Stack
 
@@ -151,7 +138,6 @@ CREATE TABLE players (
 );
 ```
 
-
 ## Game Rules
 
 1. The game is played on a 15x15 grid
@@ -160,6 +146,21 @@ CREATE TABLE players (
 4. First player to get 5 stones in a row (horizontally, vertically, or diagonally) wins
 5. Each player has 10 minutes to make their moves
 6. If a player runs out of time, their opponent wins
+
+## Game Visuals
+
+### Starting a New Game
+![Game Start](./client/public/start.png)
+
+### Game Board Layout
+![Game Board](./client/public/pregame.png)
+
+### Winning the Game
+![Winning Move](./client/public/onwin.png)
+
+### Updated Leaderboard
+![Leaderboard Update](./client/public/updatedscore.png)
+
 
 ## Contributing
 
