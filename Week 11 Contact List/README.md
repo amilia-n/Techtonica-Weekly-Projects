@@ -2,17 +2,15 @@
 
 A full-stack PERN (PostgreSQL, Express, React, Node.js) application for managing contacts with features like tagging, searching, and CRUD operations.
 
-[![GitHub](https://img.shields.io/badge/GitHub-View%20on%20GitHub-blue)](https://github.com/amilia-n/Techtonica-Weekly-Projects/tree/main/Week%2011%20Contact%20List)
 
 ## Features
 
-- 📱 View all contacts in a clean, organized list
+- 📱 View summary of all contacts
 - ➕ Add new contacts with required and optional fields
 - ✏️ Edit existing contact information
 - 🗑️ Delete contacts
 - 🔍 Search contacts by name
-- 🏷️ Tag contacts for better organization
-- 📱 Responsive design for all screen sizes
+- 🏷️ Tags for organization
 - ✅ Form validation and error handling
 - 🧪 Comprehensive test coverage
 
