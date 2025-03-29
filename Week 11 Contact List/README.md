@@ -259,3 +259,21 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Color palette and UI guidelines: [Material Design](https://m2.material.io/design/color/applying-color-to-ui.html#backdrop)
 - Contact icons: [Freepik](https://www.flaticon.com/free-icons/contacts) on Flaticon
 - UI icons: [Font Awesome](https://fontawesome.com/)
+
+## Application Screenshots
+
+### Contact List View
+![Contact List](client/src/assets/contactlist.png)
+*Main view showing all contacts with search functionality and quick access to contact details*
+
+### Individual Contact View
+![Individual Contact](client/src/assets/individual.png)
+*Detailed view of a single contact showing all information and options to edit or delete*
+
+### Edit Contact View
+![Edit Contact](client/src/assets/editindividual.png)
+*Interface for editing existing contact information with tag selection*
+
+### Add New Contact View
+![Add New Contact](client/src/assets/addnew.png)
+*Form for adding a new contact with fields for all necessary information*
