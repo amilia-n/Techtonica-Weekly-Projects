@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "mime-type": "^5.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test jest --detectOpenHandles"
+  }
+}
