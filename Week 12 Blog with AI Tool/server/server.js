@@ -290,22 +290,69 @@ app.post('/process-match-data', async (req, res) => {
 });
 
 app.post('/save-match', async (req, res) => {
+  const { map, result, duration, match_date, all_players_data } = req.body;
+  
   try {
-    const { map, result, duration, match_date, all_players_data } = req.body;
-    console.log('Saving new match...');
-
-    const queryResult = await pool.query(
-      `INSERT INTO matches (map, result, duration, match_date, all_players_data)
-       VALUES ($1, $2, $3, $4, $5)
-       RETURNING *`,
-      [map, result, duration, match_date, all_players_data]
-    );
-
-    console.log('Match saved successfully');
-    res.json(queryResult.rows[0]);
-  } catch (err) {
-    console.error('Error saving match:', err);
-    res.status(500).json({ error: err.message });
+    // Start a transaction
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      
+      // Insert match data
+      const matchResult = await client.query(
+        `INSERT INTO matches (map, result, duration, match_date, all_players_data)
+         VALUES ($1, $2, $3, $4, $5)
+         RETURNING *`,
+        [map, result, duration, match_date, all_players_data]
+      );
+      
+      const matchId = matchResult.rows[0].match_id;
+      
+      // Find the user's data from all_players_data
+      const userData = all_players_data.teamA.find(player => player.is_user) || 
+                      all_players_data.teamB.find(player => player.is_user);
+      
+      if (userData) {
+        // Determine which team the user is on
+        const team = all_players_data.teamA.find(player => player.is_user) ? 'yourTeam' : 'opponentTeam';
+        
+        // Insert user stats
+        await client.query(
+          `INSERT INTO user_stats (
+            match_id, player_id, agent, rank, acs, kills, deaths, assists,
+            kda, damage_delta, adr, hs_percent, first_kills, first_deaths, team
+          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
+          [
+            matchId,
+            userData.player_id,
+            userData.agent,
+            userData.rank,
+            userData.acs,
+            userData.kills,
+            userData.deaths,
+            userData.assists,
+            userData.kda,
+            userData.damage_delta,
+            userData.adr,
+            userData.hs_percent,
+            userData.first_kills,
+            userData.first_deaths,
+            team
+          ]
+        );
+      }
+      
+      await client.query('COMMIT');
+      res.json(matchResult.rows[0]);
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+  } catch (error) {
+    console.error('Error saving match:', error);
+    res.status(500).json({ error: error.message });
   }
 });
 
@@ -384,6 +431,10 @@ app.post('/save-match-analysis', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

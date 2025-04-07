@@ -36,7 +36,6 @@ CREATE TABLE IF NOT EXISTS user_stats (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- AI Analysis Table 
 CREATE TABLE IF NOT EXISTS match_analysis (
     analysis_id SERIAL PRIMARY KEY,
     match_id INTEGER REFERENCES matches(match_id) ON DELETE CASCADE,
