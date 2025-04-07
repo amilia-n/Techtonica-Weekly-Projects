@@ -1,12 +1,13 @@
--- Create the database
+DROP TABLE IF EXISTS match_analysis CASCADE;
+DROP TABLE IF EXISTS user_stats CASCADE;
+DROP TABLE IF EXISTS matches CASCADE;
+
 CREATE DATABASE valorant_tracker;
 
--- Switch to database
 \c valorant_tracker;
 
--- Matches Table 
-CREATE TABLE matches (
-    match_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+CREATE TABLE IF NOT EXISTS matches (
+    match_id SERIAL PRIMARY KEY,
     map VARCHAR(50) NOT NULL,
     result VARCHAR(10) NOT NULL CHECK (result IN ('Victory', 'Defeat')),
     match_date TIMESTAMP NOT NULL,
@@ -15,10 +16,10 @@ CREATE TABLE matches (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- User Stats Table
-CREATE TABLE user_stats (
-    stat_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    match_id UUID REFERENCES matches(match_id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS user_stats (
+    stat_id SERIAL PRIMARY KEY,
+    match_id INTEGER REFERENCES matches(match_id) ON DELETE CASCADE,
+    player_id VARCHAR(50) NOT NULL,
     agent VARCHAR(20) NOT NULL,
     rank VARCHAR(20) NOT NULL,
     acs INTEGER NOT NULL,
@@ -36,10 +37,9 @@ CREATE TABLE user_stats (
 );
 
 -- AI Analysis Table 
-CREATE TABLE match_analysis (
-    analysis_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    match_id UUID REFERENCES matches(match_id) ON DELETE CASCADE,
-    analysis_type VARCHAR(20) NOT NULL CHECK (analysis_type IN ('match_summary', 'user_focus')),
+CREATE TABLE IF NOT EXISTS match_analysis (
+    analysis_id SERIAL PRIMARY KEY,
+    match_id INTEGER REFERENCES matches(match_id) ON DELETE CASCADE,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
