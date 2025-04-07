@@ -293,12 +293,10 @@ app.post('/save-match', async (req, res) => {
   const { map, result, duration, match_date, all_players_data } = req.body;
   
   try {
-    // Start a transaction
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
       
-      // Insert match data
       const matchResult = await client.query(
         `INSERT INTO matches (map, result, duration, match_date, all_players_data)
          VALUES ($1, $2, $3, $4, $5)
@@ -308,36 +306,56 @@ app.post('/save-match', async (req, res) => {
       
       const matchId = matchResult.rows[0].match_id;
       
-      // Find the user's data from all_players_data
       const userData = all_players_data.teamA.find(player => player.is_user) || 
                       all_players_data.teamB.find(player => player.is_user);
       
       if (userData) {
-        // Determine which team the user is on
         const team = all_players_data.teamA.find(player => player.is_user) ? 'yourTeam' : 'opponentTeam';
         
-        // Insert user stats
+        const formattedUserData = {
+          match_id: matchId,
+          player_id: userData.player_id,
+          agent: userData.agent,
+          rank: userData.rank,
+          acs: Math.round(userData.acs),
+          kills: Math.round(userData.kills),
+          deaths: Math.round(userData.deaths),
+          assists: Math.round(userData.assists),
+          kda: userData.kda,
+          damage_delta: userData.damage_delta || userData.ddDelta,
+          adr: Math.round(userData.adr),
+          hs_percent: userData.hs_percent || userData.hsPercentage,
+          first_kills: Math.round(userData.first_kills || userData.fk),
+          first_deaths: Math.round(userData.first_deaths || userData.fd),
+          team: team
+        };
+
+        const kdaRegex = /^\d+\/\d+\/\d+$/;
+        if (!kdaRegex.test(formattedUserData.kda)) {
+          throw new Error('Invalid KDA format. Expected format: "kills/deaths/assists"');
+        }
+
         await client.query(
           `INSERT INTO user_stats (
             match_id, player_id, agent, rank, acs, kills, deaths, assists,
             kda, damage_delta, adr, hs_percent, first_kills, first_deaths, team
           ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
           [
-            matchId,
-            userData.player_id,
-            userData.agent,
-            userData.rank,
-            userData.acs,
-            userData.kills,
-            userData.deaths,
-            userData.assists,
-            userData.kda,
-            userData.damage_delta,
-            userData.adr,
-            userData.hs_percent,
-            userData.first_kills,
-            userData.first_deaths,
-            team
+            formattedUserData.match_id,
+            formattedUserData.player_id,
+            formattedUserData.agent,
+            formattedUserData.rank,
+            formattedUserData.acs,
+            formattedUserData.kills,
+            formattedUserData.deaths,
+            formattedUserData.assists,
+            formattedUserData.kda,
+            formattedUserData.damage_delta,
+            formattedUserData.adr,
+            formattedUserData.hs_percent,
+            formattedUserData.first_kills,
+            formattedUserData.first_deaths,
+            formattedUserData.team
           ]
         );
       }
@@ -379,7 +397,13 @@ app.post('/analyze-match', async (req, res) => {
         {
           role: "user",
           parts: [
-            {text: "You are a professional Valorant coach with extensive experience in both game strategy and performance analysis.\nEvaluate the match information, team statistics, and individual player performance metrics.\nOutput a comprehensive analysis under 150 words to help the User improve. Omit the use of player_id in the analysis.\nHere is a sample of ${matchInfo.all_players_data}:\n{\n  \"matchInfo\": {\n    \"date\": \"3/26/25, 10:05 PM\",\n    \"duration\": \"21m 11s\",\n    \"map\": \"Icebox\",\n    \"result\": \"Defeat\"\n  },\n  \"teamA\": [\n    {\n      \"acs\": 567.0,\n      \"adr\": 367.3,\n      \"agent\": \"Reyna\",\n      \"ddDelta\": \"+258\",\n      \"fd\": 0.0,\n      \"fk\": 2.0,\n      \"hsPercentage\": \"32%\",\n      \"is_user\": false,\n      \"kda\": \"32/4/5\",\n      \"player_id\": \"Porchiewhippa69#AK10\",\n      \"rank\": \"Unranked\"\n    },\n    {\n      \"acs\": 303.0,\n      \"adr\": 218.9,\n      \"agent\": \"Phoenix\",\n      \"ddDelta\": \"+78\",\n      \"fd\": 2.0,\n      \"fk\": 1.0,\n      \"hsPercentage\": \"23%\",\n      \"is_user\": false,\n      \"kda\": \"15/8/7\",\n      \"player_id\": \"Deathonic#NA1\",\n      \"rank\": \"Silver 2\"\n    },\n    {\n      \"acs\": 208.0,\n      \"adr\": 151.4,\n      \"agent\": \"Omen\",\n      \"ddDelta\": \"+37\",\n      \"fd\": 1.0,\n      \"fk\": 1.0,\n      \"hsPercentage\": \"32%\",\n      \"is_user\": false,\n      \"kda\": \"12/9/5\",\n      \"player_id\": \"AGEBEEB#BBMFC\",\n      \"rank\": \"Silver 3\"\n    },\n    {\n      \"acs\": 205.0,\n      \"adr\": 128.1,\n      \"agent\": \"Chamber\",\n      \"ddDelta\": \"+6\",\n      \"fd\": 2.0,\n      \"fk\": 5.0,\n      \"hsPercentage\": \"33%\",\n      \"is_user\": false,\n      \"kda\": \"13/10/1\",\n      \"player_id\": \"Zawazawa#5518\",\n      \"rank\": \"Silver 1\"\n    },\n    {\n      \"acs\": 46.0,\n      \"adr\": 43.3,\n      \"agent\": \"Killjoy\",\n      \"ddDelta\": \"-49\",\n      \"fd\": 1.0,\n      \"fk\": 0.0,\n      \"hsPercentage\": \"12%\",\n      \"is_user\": false,\n      \"kda\": \"1/8/5\",\n      \"player_id\": \"venus#jaz\",\n      \"rank\": \"Silver 1\"\n    }\n  ],\n  \"teamB\": [\n    {\n      \"acs\": 289.0,\n      \"adr\": 185.5,\n      \"agent\": \"Clove\",\n      \"ddDelta\": \"-10\",\n      \"fd\": 0.0,\n      \"fk\": 0.0,\n      \"hsPercentage\": \"16%\",\n      \"is_user\": true,\n      \"kda\": \"15/15/3\",\n      \"player_id\": \"Ilikebread#888\",\n      \"rank\": \"Silver 2\"\n    },\n    {\n      \"acs\": 205.0,\n      \"adr\": 134.9,\n      \"agent\": \"Iso\",\n      \"ddDelta\": \"-54\",\n      \"fd\": 3.0,\n      \"fk\": 2.0,\n      \"hsPercentage\": \"12%\",\n      \"is_user\": false,\n      \"kda\": \"9/15/4\",\n      \"player_id\": \"SATCHEL OUT#2722\",\n      \"rank\": \"Silver 1\"\n    },\n    {\n      \"acs\": 126.0,\n      \"adr\": 110.5,\n      \"agent\": \"Reyna\",\n      \"ddDelta\": \"-72\",\n      \"fd\": 0.0,\n      \"fk\": 1.0,\n      \"hsPercentage\": \"13%\",\n      \"is_user\": false,\n      \"kda\": \"4/14/4\",\n      \"player_id\": \"Hubby#foyou\",\n      \"rank\": \"Gold 2\"\n    },\n    {\n      \"acs\": 109.0,\n      \"adr\": 79.1,\n      \"agent\": \"Killjoy\",\n      \"ddDelta\": \"-93\",\n      \"fd\": 0.0,\n      \"fk\": 1.0,\n      \"hsPercentage\": \"5%\",\n      \"is_user\": false,\n      \"kda\": \"5/14/3\",\n      \"player_id\": \"MikeLiterus#264\",\n      \"rank\": \"Bronze 3\"\n    },\n    {\n      \"acs\": 106.0,\n      \"adr\": 69.1,\n      \"agent\": \"Chamber\",\n      \"ddDelta\": \"-101\",\n      \"fd\": 6.0,\n      \"fk\": 2.0,\n      \"hsPercentage\": \"0%\",\n      \"is_user\": false,\n      \"kda\": \"5/15/2\",\n      \"player_id\": \"Devil#NBG5\",\n      \"rank\": \"Bronze 3\"\n    }\n  ]\n}"},
+            {text: `You are a professional Valorant coach with extensive experience in both game strategy and performance analysis.
+Evaluate the match information, team statistics, and individual player performance metrics.
+Output a comprehensive analysis under 150 words to help the User improve. Omit the use of player_id in the analysis.
+
+Here is the match data:
+${matchInfo}
+${all_players_data}`},
           ],
         },
         {

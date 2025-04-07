@@ -26,9 +26,8 @@ function GenerateTable() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState('');
   const pasteBoxRef = useRef(null);
-  const [aiAnalysis, setAiAnalysis] = useState('');
+  const [selectedUser, setSelectedUser] = useState({ team: null, rowIndex: null });
 
-  // Add loading animation styles
   const loadingGunStyle = {
     width: '60px',
     height: '60px',
@@ -108,7 +107,6 @@ function GenerateTable() {
         throw new Error(responseData.error || responseData.details || 'Failed to process match data');
       }
 
-      // Update match info
       setMatchInfo({
         date: responseData.matchInfo?.date || '',
         map: responseData.matchInfo?.map || '',
@@ -116,13 +114,11 @@ function GenerateTable() {
         duration: responseData.matchInfo?.duration || ''
       });
 
-      // Update table data
       const newTableData = {
         yourTeam: Array(5).fill().map(() => Array(9).fill('')),
         opponentTeam: Array(5).fill().map(() => Array(9).fill(''))
       };
 
-      // Fill your team data
       if (Array.isArray(responseData.yourTeam)) {
         responseData.yourTeam.forEach((player, index) => {
           if (index < 5) {
@@ -141,7 +137,6 @@ function GenerateTable() {
         });
       }
 
-      // Fill opponent team data
       if (Array.isArray(responseData.opponentTeam)) {
         responseData.opponentTeam.forEach((player, index) => {
           if (index < 5) {
@@ -169,13 +164,60 @@ function GenerateTable() {
     }
   };
 
+  const handleCellClick = (team, rowIndex, colIndex) => {
+    if (colIndex === 0) { 
+      setSelectedUser({ team, rowIndex });
+      setAgentInput(tableData[team][rowIndex][0]); 
+    }
+  };
+
+  const renderEditableCell = (team, rowIndex, colIndex, value) => {
+    const isSelected = selectedUser.team === team && selectedUser.rowIndex === rowIndex;
+    const isAgentCell = colIndex === 0;
+
+    if (isAgentCell) {
+      return (
+        <td 
+          key={`${team}-${rowIndex}-${colIndex}`} 
+          className={`px-1 py-0.5 border text-center cursor-pointer ${
+            isSelected ? 'bg-blue-100' : 'hover:bg-gray-50'
+          }`}
+          onClick={() => handleCellClick(team, rowIndex, colIndex)}
+        >
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
+            className="w-full h-full text-center"
+            placeholder="Agent name"
+          />
+        </td>
+      );
+    }
+
+    return (
+      <td 
+        key={`${team}-${rowIndex}-${colIndex}`} 
+        className={`px-1 py-0.5 border text-center ${
+          isSelected ? 'bg-blue-50' : ''
+        }`}
+      >
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
+          className="w-full h-full text-center"
+        />
+      </td>
+    );
+  };
+
   const handleSubmitTable = async () => {
     setIsAnalyzing(true);
     setError('');
 
     try {
-      // Convert table data to the format expected by the server
-      const yourTeam = tableData.yourTeam.map(row => ({
+      const yourTeam = tableData.yourTeam.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -185,10 +227,10 @@ function GenerateTable() {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        playerId: row[0] === agentInput ? agentInput : null // Set player ID for matching agent
+        is_user: selectedUser.team === 'yourTeam' && selectedUser.rowIndex === index
       }));
 
-      const opponentTeam = tableData.opponentTeam.map(row => ({
+      const opponentTeam = tableData.opponentTeam.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -198,25 +240,23 @@ function GenerateTable() {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        playerId: null // Opponent team players don't have IDs
+        is_user: selectedUser.team === 'opponentTeam' && selectedUser.rowIndex === index
       }));
 
-      // First, save the match data
       const saveResponse = await fetch('http://localhost:3000/save-match', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          matchInfo: {
-            map: matchInfo.map,
-            result: matchInfo.result,
-            date: matchInfo.date,
-            duration: matchInfo.duration || '00:00'
-          },
-          yourTeam,
-          opponentTeam,
-          playerId: agentInput
+          map: matchInfo.map,
+          result: matchInfo.result,
+          duration: matchInfo.duration || '00:00',
+          match_date: matchInfo.date,
+          all_players_data: {
+            teamA: yourTeam,
+            teamB: opponentTeam
+          }
         }),
       });
 
@@ -226,9 +266,8 @@ function GenerateTable() {
       }
 
       const saveResult = await saveResponse.json();
-      const matchId = saveResult.matchId;
+      const matchId = saveResult.match_id;
 
-      // Then, get AI analysis
       const analysisResponse = await fetch('http://localhost:3000/analyze-match', {
         method: 'POST',
         headers: {
@@ -236,12 +275,16 @@ function GenerateTable() {
         },
         body: JSON.stringify({
           matchInfo: {
-            ...matchInfo,
             matchId,
+            map: matchInfo.map,
+            result: matchInfo.result,
+            date: matchInfo.date,
             duration: matchInfo.duration || '00:00'
           },
-          yourTeam,
-          opponentTeam
+          all_players_data: {
+            teamA: yourTeam,
+            teamB: opponentTeam
+          }
         }),
       });
 
@@ -249,7 +292,6 @@ function GenerateTable() {
         const errorData = await analysisResponse.json();
         throw new Error(errorData.error || 'Failed to get AI analysis');
       }
-
 
       const savedMatchesResponse = await fetch('http://localhost:3000/matches');
       if (savedMatchesResponse.ok) {
@@ -264,32 +306,6 @@ function GenerateTable() {
     } finally {
       setIsAnalyzing(false);
     }
-  };
-
-  const renderEditableCell = (team, rowIndex, colIndex, value) => {
-    if (colIndex === 0) {
-      return (
-        <td key={`${team}-${rowIndex}-${colIndex}`} className="px-1 py-0.5 border text-center">
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
-            className="w-full h-full text-center"
-            placeholder="Agent name"
-          />
-        </td>
-      );
-    }
-    return (
-      <td key={`${team}-${rowIndex}-${colIndex}`} className="px-1 py-0.5 border text-center">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
-          className="w-full h-full text-center"
-        />
-      </td>
-    );
   };
 
   return (
@@ -313,7 +329,7 @@ function GenerateTable() {
           />
           {suggestions.length > 0 && (
             <div className="agent-suggestions">
-              {suggestions.map((agent, index) => (
+              {suggestions.map((agent) => (
                 <div
                   key={agent}
                   className="agent-suggestion"
@@ -387,7 +403,7 @@ function GenerateTable() {
 
           {error && <div className="text-red-500 mb-2">{error}</div>}
 
-          {/* Team 1 Table (Self Team) */}
+          {/* Team 1 Table (Own Team) */}
           <div className="mb-4">
             <h3 className="text-xs font-semibold mb-1">Your Team</h3>
             <div className="overflow-x-auto">
