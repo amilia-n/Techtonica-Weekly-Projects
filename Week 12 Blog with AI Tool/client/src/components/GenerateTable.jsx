@@ -412,13 +412,13 @@ function GenerateTable({ onAnalysisComplete }) {
             result: (
               <div className="flex justify-center gap-2">
                 <button
-                  className={`px-3 py-1 rounded ${matchResult === 'Victory' ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                  className={`px-3 py-1 rounded ${matchResult === 'Victory' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-300'}`}
                   onClick={() => setMatchResult('Victory')}
                 >
                   Victory
                 </button>
                 <button
-                  className={`px-3 py-1 rounded ${matchResult === 'Defeat' ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                  className={`px-3 py-1 rounded ${matchResult === 'Defeat' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-300'}`}
                   onClick={() => setMatchResult('Defeat')}
                 >
                   Defeat

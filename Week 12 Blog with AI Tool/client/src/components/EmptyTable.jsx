@@ -40,7 +40,15 @@ const EmptyTable = ({
         <div className="mb-2 p-2 bg-gray-100 rounded text-xs">
           <div className="flex justify-between items-center">
             <div className="font-semibold">Map: {matchInfo?.map}</div>
-            <div className={`font-semibold ${matchInfo?.result === 'Victory' ? 'text-green-600' : 'text-red-600'}`}>
+            <div className={`font-semibold ${
+              typeof matchInfo?.result === 'string' 
+                ? matchInfo.result === 'Victory' 
+                  ? 'text-green-600' 
+                  : matchInfo.result === 'Defeat'
+                  ? 'text-red-600'
+                  : 'text-gray-300'
+                : 'text-gray-300'
+            }`}>
               {matchInfo?.result}
             </div>
             <div className="font-semibold">Duration: {matchInfo?.duration}</div>

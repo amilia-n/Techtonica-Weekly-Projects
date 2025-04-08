@@ -125,7 +125,7 @@ function ListAll() {
           const isExpanded = expandedMatches.has(match.match_id);
 
           return (
-            <div key={match.match_id} className="border rounded-lg p-4">
+            <div key={match.match_id} className="match-container">
               <div 
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => toggleMatchExpansion(match.match_id)}

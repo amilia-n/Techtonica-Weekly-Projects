@@ -1,16 +1,24 @@
 
 .list-all {
+  background-color: #f8fafc;
   padding: 1rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 20px;
+  border-radius: 10px;
 }
-
+.match-container {
+  background-color: #f5b1e11f;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+/* 
 .list-all-match-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background-color: #f8fafc;
+
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -19,12 +27,7 @@
   background-color: #f1f5f9;
 }
 
-.list-all-match-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  flex-grow: 1;
-}
+
 
 .list-all-match-toggle {
   font-size: 1.2rem;
@@ -58,7 +61,7 @@
 .list-all-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #ffffff;
+  background-color: #ff0000;
   border-radius: 6px;
   overflow: hidden;
 }
@@ -151,13 +154,13 @@
   padding: 1rem;
   background-color: #f9fafb;
   border-radius: 0.25rem;
-}
-
+} */
+/* 
 .list-all-match-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
+} */
 
 .delete-button {
   background-color: #dc3545;

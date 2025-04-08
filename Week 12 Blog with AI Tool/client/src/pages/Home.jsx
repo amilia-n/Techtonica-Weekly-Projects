@@ -13,30 +13,29 @@ const Home = () => {
       <div className="instructions">
         Instructions:
         <ul>
-          <li>1) In the browser below, enter your player ID and #.</li>
+          <li>1) In the browser below, enter your player ID and #. Mine is Ilikebread#888</li>
           <li>
             2) Once loaded, select "Matches" in the header. Scroll down to view
             all matches.
           </li>
           <li>3) Select the match you'd like to analyze.</li>
           <li>
-            4) Copy the entire table onto clipboard and paste under in the empty
-            textbox.
+            4) Scroll down to the bottom of the table and copy all texts and paste inside the empty textbox.
           </li>
           <li>
-            5) Enter your agent and press Convert! This should render this data
+            5) Select your agent and press Convert! This should render this data
             into the table on the right.
           </li>
           <li>
             6) Double check the information, if correct, select Analyze to
-            process a game analysis.{" "}
+            save and process the game analysis.{" "}
           </li>
           <li>
-            7) Hang tight while it runs! The most recent analysis will always be
-            rendered underneath.
+            7) Hang tight while it runs! The analysis will always be
+            rendered.
           </li>
           <li>
-            Below our most recent analysis will be a list of all past matches!
+            At the very bottom, you will see a list of all previouslyanalyzed matches. 
           </li>
         </ul>
       </div>
