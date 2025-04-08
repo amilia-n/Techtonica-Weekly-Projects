@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS user_stats (
     hs_percent VARCHAR(20) NOT NULL,
     first_kills INTEGER NOT NULL,
     first_deaths INTEGER NOT NULL,
-    team VARCHAR(10) NOT NULL CHECK (team IN ('yourTeam', 'opponentTeam')),
+    team VARCHAR(10) NOT NULL CHECK (team IN ('teamA', 'teamB')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

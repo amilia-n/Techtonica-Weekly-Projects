@@ -1,26 +1,19 @@
 import React, { useState } from "react";
-import "./RecentAnalysis.css";
+import EmptyTable from "./EmptyTable";
 import GenerateTable from "./GenerateTable";
+import "./RecentAnalysis.css";
+
 
 function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState("");
   const [analysis, setAnalysis] = useState(initialAnalysis);
 
-  const loadingGunStyle = {
-    width: "60px",
-    height: "60px",
-    marginTop: "5px",
-    marginLeft: "-8px",
-    verticalAlign: "start",
-  };
-
   const handleAnalysis = async (matchData) => {
     setIsAnalyzing(true);
     setError("");
 
     try {
-      // First, save the match data
       const saveResponse = await fetch("http://localhost:3000/save-match", {
         method: "POST",
         headers: {
@@ -39,7 +32,9 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
       const saveResult = await saveResponse.json();
       const matchId = saveResult.match_id;
 
-      // Then, get AI analysis
+      const userAgent = matchData.all_players_data[matchData.all_players_data.userTeam]
+        .find(player => player.is_user)?.agent;
+
       const analysisResponse = await fetch(
         "http://localhost:3000/analyze-match",
         {
@@ -57,12 +52,13 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
               date: matchData.match_date,
               duration: matchData.duration,
             },
-            all_players_data: matchData.all_players_data,
-            agentName:
-              matchData.all_players_data.teamA.find((player) => player.is_user)
-                ?.agent ||
-              matchData.all_players_data.teamB.find((player) => player.is_user)
-                ?.agent,
+            all_players_data: {
+              teamA: matchData.all_players_data.teamA,
+              teamB: matchData.all_players_data.teamB,
+              userTeam: matchData.all_players_data.userTeam,
+              matchResult: matchData.all_players_data.matchResult
+            },
+            agentName: userAgent,
           }),
         }
       );
@@ -74,7 +70,6 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
 
       const analysisResult = await analysisResponse.json();
 
-      // Update saved matches list
       const savedMatchesResponse = await fetch(
         "http://localhost:3000/matches",
         {
@@ -91,7 +86,6 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
       const savedMatchesData = await savedMatchesResponse.json();
       localStorage.setItem("savedMatches", JSON.stringify(savedMatchesData));
 
-      // Update the analysis state with the new data
       setAnalysis({
         ...matchData,
         match_id: matchId,
@@ -110,191 +104,66 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
   const processSavedMatchData = (data) => {
     if (!data) {
       console.error("No data provided to processSavedMatchData");
-      return { yourTeam: [], opponentTeam: [] };
+      return { teamA: [], teamB: [] };
     }
 
     if (!data.all_players_data) {
       console.error("Invalid data structure:", data);
-      return { yourTeam: [], opponentTeam: [] };
+      return { teamA: [], teamB: [] };
     }
 
-    const yourTeam = data.all_players_data.teamA.map((player) => [
-      player.agent || "",
-      player.rank || "",
-      player.acs || "",
-      player.kda || "",
-      player.damage_delta || player.ddDelta || "",
-      player.adr || "",
-      player.hs_percent || player.hsPercentage || "",
-      player.first_kills || player.fk || "",
-      player.first_deaths || player.fd || "",
-    ]);
+    const formatTeam = (team) =>
+      team.map((player) => [
+        player.agent || "",
+        player.rank || "",
+        player.acs || "",
+        player.kda || "",
+        player.damage_delta || player.ddDelta || "",
+        player.adr || "",
+        player.hs_percent || player.hsPercentage || "",
+        player.first_kills || player.fk || "",
+        player.first_deaths || player.fd || "",
+      ]);
 
-    const opponentTeam = data.all_players_data.teamB.map((player) => [
-      player.agent || "",
-      player.rank || "",
-      player.acs || "",
-      player.kda || "",
-      player.damage_delta || player.ddDelta || "",
-      player.adr || "",
-      player.hs_percent || player.hsPercentage || "",
-      player.first_kills || player.fk || "",
-      player.first_deaths || player.fd || "",
-    ]);
-
-    return { yourTeam, opponentTeam };
+    return {
+      teamA: formatTeam(data.all_players_data.teamA),
+      teamB: formatTeam(data.all_players_data.teamB),
+    };
   };
 
   if (!analysis) {
     return (
-      <>
-        <div className="generate-table-container">
-          <GenerateTable onAnalysisComplete={handleAnalysis} />
-        </div>
-        <div className="recent-analysis-container">
-          <div className="recent-analysis">
-            <h2 className="text-lg font-bold mb-4">Recent Analysis</h2>
-            <div className="text-gray-500 bg-gray-50 p-4 rounded-md">
-              No recent analysis available. Analyze a match to see your
-              performance breakdown.
-            </div>
+
+          <div className="analysis-container" >
+            Enter match data to get started.
           </div>
-        </div>
-      </>
+
     );
   }
 
-  const { yourTeam, opponentTeam } = processSavedMatchData(analysis);
+  const { teamA, teamB } = processSavedMatchData(analysis);
 
   return (
-    <>
-      <div className="generate-table-container">
-        <GenerateTable onAnalysisComplete={handleAnalysis} />
+    <div className="analysis-container">
+      <div className="analysis-table-container">
+        <EmptyTable 
+          tableData={{ teamA, teamB }}
+          matchInfo={{
+            map: analysis.map,
+            result: analysis.result,
+            duration: analysis.duration,
+            date: analysis.match_date
+          }}
+          isSavedData={true}
+        />
       </div>
-      <div className="recent-analysis-container">
-        <div className="recent-analysis">
-          <h2 className="text-lg font-bold mb-4">Recent Analysis</h2>
-          <div className="match-info mb-4">
-            <div className="font-semibold">Map: {analysis.map}</div>
-            <div
-              className={`font-semibold ${
-                analysis.result === "Victory"
-                  ? "text-green-600"
-                  : "text-red-600"
-              }`}
-            >
-              {analysis.result}
-            </div>
-            <div className="font-semibold">Duration: {analysis.duration}</div>
-            <div className="font-semibold">
-              Match Date:{" "}
-              {new Date(analysis.match_date).toLocaleString("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-              })}
-            </div>
-          </div>
-
-          {/* Your Team Table */}
-          <div className="table-container mb-8">
-            <h3 className="text-md font-semibold mb-2">Your Team</h3>
-            <div className="table-wrapper">
-              <table className="w-full">
-                <thead>
-                  <tr>
-                    <th>Agent</th>
-                    <th>Rank</th>
-                    <th>ACS</th>
-                    <th>K/D/A</th>
-                    <th>DDΔ</th>
-                    <th>ADR</th>
-                    <th>HS%</th>
-                    <th>FK</th>
-                    <th>FD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yourTeam.map((row, rowIndex) => {
-                    const isUser =
-                      analysis.all_players_data.teamA[rowIndex]?.is_user;
-                    return (
-                      <tr
-                        key={rowIndex}
-                        className={`${isUser ? "bg-blue-100" : ""}`}
-                      >
-                        {row.map((cell, colIndex) => (
-                          <td
-                            key={`${rowIndex}-${colIndex}`}
-                            className="px-1 py-0.5 border text-center"
-                          >
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Opponent Team Table */}
-          <div className="table-container mb-8">
-            <h3 className="text-md font-semibold mb-2">Opponent Team</h3>
-            <div className="table-wrapper">
-              <table className="w-full">
-                <thead>
-                  <tr>
-                    <th>Agent</th>
-                    <th>Rank</th>
-                    <th>ACS</th>
-                    <th>K/D/A</th>
-                    <th>DDΔ</th>
-                    <th>ADR</th>
-                    <th>HS%</th>
-                    <th>FK</th>
-                    <th>FD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {opponentTeam.map((row, rowIndex) => {
-                    const isUser =
-                      analysis.all_players_data.teamB[rowIndex]?.is_user;
-                    return (
-                      <tr
-                        key={rowIndex}
-                        className={`${isUser ? "bg-blue-100" : ""}`}
-                      >
-                        {row.map((cell, colIndex) => (
-                          <td
-                            key={`${rowIndex}-${colIndex}`}
-                            className="px-1 py-0.5 border text-center"
-                          >
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* AI Analysis Section */}
-          <div className="analysis-container">
-            <h3 className="text-md font-semibold mb-2">Match Analysis</h3>
-            <div className="analysis-content">
-              {analysis.analysis || "No analysis available"}
-            </div>
-          </div>
+      <div className="recent-analysis">
+        <h2 className="text-lg font-bold mb-4">Recent Analysis</h2>
+        <div className="bg-white p-4 rounded-md shadow">
+          {analysis.analysis}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

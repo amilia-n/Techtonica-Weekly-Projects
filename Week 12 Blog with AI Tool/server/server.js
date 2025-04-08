@@ -320,15 +320,11 @@ app.post("/save-match", async (req, res) => {
 
       const matchId = matchResult.rows[0].match_id;
 
-      const userData =
-        all_players_data.teamA.find((player) => player.is_user) ||
-        all_players_data.teamB.find((player) => player.is_user);
+      // Find which team the user is on using the userTeam metadata
+      const userTeam = all_players_data.userTeam; // 'teamA' or 'teamB'
+      const userData = all_players_data[userTeam].find(player => player.is_user);
 
       if (userData) {
-        const team = all_players_data.teamA.find((player) => player.is_user)
-          ? "yourTeam"
-          : "opponentTeam";
-
         const formattedUserData = {
           match_id: matchId,
           player_id: userData.player_id,
@@ -344,7 +340,7 @@ app.post("/save-match", async (req, res) => {
           hs_percent: userData.hs_percent || userData.hsPercentage,
           first_kills: Math.round(userData.first_kills || userData.fk),
           first_deaths: Math.round(userData.first_deaths || userData.fd),
-          team: team,
+          team: userTeam // Store the actual team (teamA or teamB)
         };
 
         const kdaRegex = /^\d+\/\d+\/\d+$/;
@@ -415,31 +411,30 @@ app.post("/analyze-match", async (req, res) => {
   const { matchInfo, all_players_data, agentName } = req.body;
 
   try {
-    // Find which team contains the user's agent
-    const userTeam = all_players_data.teamA.find(
-      (player) => player.agent === agentName
-    )
-      ? "teamA"
-      : "teamB";
+    // Use the metadata to determine user's team and match result
+    const userTeam = all_players_data.userTeam;
+    const matchResult = all_players_data.matchResult;
+    const isUserTeamA = userTeam === 'teamA';
 
+    // Structure data for analysis with clear team identification
     const processedData = {
       ...all_players_data,
       teamA: all_players_data.teamA.map((player) => ({
         ...player,
-        is_user: userTeam === "teamA" && player.agent === agentName,
+        team_type: isUserTeamA ? 'your team' : 'opponent team'
       })),
       teamB: all_players_data.teamB.map((player) => ({
         ...player,
-        is_user: userTeam === "teamB" && player.agent === agentName,
-      })),
+        team_type: isUserTeamA ? 'opponent team' : 'your team'
+      }))
     };
 
     const promptText = `You are a professional Valorant coach with extensive experience in both game strategy and performance analysis.
 Evaluate the match information, team statistics, and individual player performance metrics.
+Focus your analysis on the user who played as ${agentName} in the ${userTeam === 'teamA' ? 'first' : 'second'} team, which ${matchResult === 'Victory' ? 'won' : 'lost'} the match.
 Output a comprehensive analysis under 150 words to help the User improve. Omit the use of player_id in the analysis.
 
 Here is the match data:
-${matchInfo}
 ${JSON.stringify(processedData)}`;
 
     const prompt = {

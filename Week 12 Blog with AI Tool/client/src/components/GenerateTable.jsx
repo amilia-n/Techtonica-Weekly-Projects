@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import EmptyTable from './EmptyTable';
 import './GenerateTable.css';
 
 const VALORANT_AGENTS = [
@@ -22,6 +23,7 @@ function GenerateTable({ onAnalysisComplete }) {
     result: '',
     duration: ''
   });
+  const [matchResult, setMatchResult] = useState('Victory');
   const [isLoading, setIsLoading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState('');
@@ -64,7 +66,6 @@ function GenerateTable({ onAnalysisComplete }) {
     );
     setSuggestions(filtered);
 
-    // Only find matching agent in selected team
     if (selectedTeam) {
       const teamData = selectedTeam === 'teamA' ? tableData.teamA : tableData.teamB;
       const matchIndex = teamData.findIndex(row => 
@@ -107,7 +108,6 @@ function GenerateTable({ onAnalysisComplete }) {
       return newData;
     });
 
-    // If editing agent name and it matches the input and is in selected team, select this row
     if (colIndex === 0 && value.toLowerCase() === agentInput.toLowerCase()) {
       const currentTeam = team === 'teamA' ? 'teamA' : 'teamB';
       if (currentTeam === selectedTeam) {
@@ -274,7 +274,15 @@ function GenerateTable({ onAnalysisComplete }) {
         return;
       }
 
-      const teamA = tableData.teamA.map((row, index) => ({
+      // Determine which team won based on match result and selected team
+      const isUserTeamA = selectedUser.team === 'teamA';
+      const isUserWinner = matchResult === 'Victory';
+      
+      // Create team data with proper structure
+      const teamAData = isUserTeamA ? tableData[selectedUser.team] : tableData[selectedUser.team === 'teamA' ? 'teamB' : 'teamA'];
+      const teamBData = isUserTeamA ? tableData[selectedUser.team === 'teamA' ? 'teamB' : 'teamA'] : tableData[selectedUser.team];
+
+      const teamA = teamAData.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -284,10 +292,10 @@ function GenerateTable({ onAnalysisComplete }) {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        is_user: selectedUser.team === 'teamA' && selectedUser.rowIndex === index
+        is_user: isUserTeamA && selectedUser.rowIndex === index
       }));
 
-      const teamB = tableData.teamB.map((row, index) => ({
+      const teamB = teamBData.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -297,24 +305,30 @@ function GenerateTable({ onAnalysisComplete }) {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        is_user: selectedUser.team === 'teamB' && selectedUser.rowIndex === index
+        is_user: !isUserTeamA && selectedUser.rowIndex === index
       }));
 
       const matchData = {
         map: matchInfo.map,
-        result: matchInfo.result,
+        result: matchResult,
         duration: matchInfo.duration || '00:00',
         match_date: matchInfo.date,
         all_players_data: {
           teamA,
-          teamB: teamB
+          teamB,
+          // Add metadata to help with analysis
+          userTeam: isUserTeamA ? 'teamA' : 'teamB',
+          matchResult
         }
       };
 
-      onAnalysisComplete(matchData);
+      setIsAnalyzing(true);
+      await onAnalysisComplete(matchData);
     } catch (err) {
       console.error('Error preparing match data:', err);
       setError(err.message || 'Failed to prepare match data. Please try again.');
+    } finally {
+      setIsAnalyzing(false);
     }
   };
 
@@ -391,110 +405,35 @@ function GenerateTable({ onAnalysisComplete }) {
       </label>
 
       <div className='table-render'>
-        <div className='table-display'>
-          {/* Match Header */}
-          <div className="mb-2 p-2 bg-gray-100 rounded text-xs">
-            <div className="flex justify-between items-center">
-              <div className="font-semibold">Map: {matchInfo.map}</div>
-              <div className={`font-semibold ${matchInfo.result === 'Victory' ? 'text-green-600' : 'text-red-600'}`}>
-                {matchInfo.result}
+        <EmptyTable 
+          tableData={tableData}
+          matchInfo={{
+            map: matchInfo.map,
+            result: (
+              <div className="flex justify-center gap-2">
+                <button
+                  className={`px-3 py-1 rounded ${matchResult === 'Victory' ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                  onClick={() => setMatchResult('Victory')}
+                >
+                  Victory
+                </button>
+                <button
+                  className={`px-3 py-1 rounded ${matchResult === 'Defeat' ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500'}`}
+                  onClick={() => setMatchResult('Defeat')}
+                >
+                  Defeat
+                </button>
               </div>
-              <div className="font-semibold">Duration: {matchInfo.duration}</div>
-              <div className="font-semibold">Match Date: {matchInfo.date ? new Date(matchInfo.date).toLocaleString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-              }) : ''}</div>
-            </div>
-          </div>
-
-          {error && <div className="text-red-500 mb-2">{error}</div>}
-
-          {/* Team A Table */}
-          <div className="mb-4">
-            <button
-              className={`inline-block mb-2 px-4 py-2 rounded ${
-                selectedTeam === 'teamA' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => handleTeamSelect('teamA')}
-            >
-              Team A
-            </button>
-            <div className="overflow-x-auto">
-              <table className="w-full table-auto border-collapse text-xs">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="px-1 py-0.5 border">Agent</th>
-                    <th className="px-1 py-0.5 border">Rank</th>
-                    <th className="px-1 py-0.5 border">ACS</th>
-                    <th className="px-1 py-0.5 border">K/D/A</th>
-                    <th className="px-1 py-0.5 border">DDΔ</th>
-                    <th className="px-1 py-0.5 border">ADR</th>
-                    <th className="px-1 py-0.5 border">HS%</th>
-                    <th className="px-1 py-0.5 border">FK</th>
-                    <th className="px-1 py-0.5 border">FD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableData.teamA.map((row, rowIndex) => (
-                    <tr 
-                      key={rowIndex} 
-                      className={`hover:bg-gray-50 ${
-                        selectedUser.team === 'teamA' && selectedUser.rowIndex === rowIndex ? 'bg-blue-100' : ''
-                      }`}
-                    >
-                      {row.map((cell, colIndex) => renderEditableCell('teamA', rowIndex, colIndex, cell))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Team B Table */}
-          <div>
-            <button
-              className={`inline-block mb-2 px-4 py-2 rounded ${
-                selectedTeam === 'teamB' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-              }`}
-              onClick={() => handleTeamSelect('teamB')}
-            >
-              Team B
-            </button>
-            <div className="overflow-x-auto">
-              <table className="w-full table-auto border-collapse text-xs">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="px-1 py-0.5 border">Agent</th>
-                    <th className="px-1 py-0.5 border">Rank</th>
-                    <th className="px-1 py-0.5 border">ACS</th>
-                    <th className="px-1 py-0.5 border">K/D/A</th>
-                    <th className="px-1 py-0.5 border">DDΔ</th>
-                    <th className="px-1 py-0.5 border">ADR</th>
-                    <th className="px-1 py-0.5 border">HS%</th>
-                    <th className="px-1 py-0.5 border">FK</th>
-                    <th className="px-1 py-0.5 border">FD</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableData.teamB.map((row, rowIndex) => (
-                    <tr 
-                      key={rowIndex} 
-                      className={`hover:bg-gray-50 ${
-                        selectedUser.team === 'teamB' && selectedUser.rowIndex === rowIndex ? 'bg-blue-100' : ''
-                      }`}
-                    >
-                      {row.map((cell, colIndex) => renderEditableCell('teamB', rowIndex, colIndex, cell))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+            ),
+            duration: matchInfo.duration,
+            date: matchInfo.date
+          }}
+          selectedUser={selectedUser}
+          selectedTeam={selectedTeam}
+          handleCellEdit={handleCellEdit}
+          handleTeamSelect={handleTeamSelect}
+          error={error}
+        />
         <button 
           className='analyze'
           onClick={handleSubmitTable}
