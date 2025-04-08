@@ -19,17 +19,8 @@
   margin: 20px 0 20px 0;
 }
 
-.instructions {
-  background-color: rgb(238, 255, 0);
+.instructions, h1 {
+  /* background-color: rgb(238, 255, 0); */
   margin: 20px;
+  justify-self: center;
 }
-/* 
-.ai-response {
-  display: block;
-  padding: 20px;
-}
-
-.p-4 {
-  padding: 1rem;
-}
-   */
