@@ -13,26 +13,15 @@ function ListAll() {
 
   const fetchSavedMatches = async () => {
     try {
-      console.log('Fetching matches from server...');
-      
-      // Now fetch matches
+      setLoading(true);
       const response = await fetch('http://localhost:3000/matches');
-      console.log('Response status:', response.status);
       
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Server response not OK:', response.status, errorText);
-        throw new Error(`Server error: ${response.status} - ${errorText}`);
+        throw new Error(`Server error: ${response.status}`);
       }
       
       const data = await response.json();
-      console.log('Received matches:', data);
-      
-      if (!Array.isArray(data)) {
-        console.error('Received invalid data format:', data);
-        throw new Error('Invalid data format received from server');
-      }
-      
+      console.log(data);
       setSavedMatches(data);
     } catch (err) {
       console.error('Error fetching matches:', err);
@@ -42,68 +31,7 @@ function ListAll() {
     }
   };
 
-  const handleDeleteMatch = async (matchId) => {
-    console.log('Attempting to delete match:', matchId);
-    
-    if (!window.confirm('Are you sure you want to delete this match?')) {
-      console.log('Delete operation cancelled by user');
-      return;
-    }
-
-    try {
-      console.log('Sending DELETE request to:', `http://localhost:3000/matches/${matchId}`);
-      const response = await fetch(`http://localhost:3000/matches/${matchId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      console.log('Delete response status:', response.status);
-      
-      if (!response.ok) {
-        let errorMessage = 'Failed to delete match';
-        try {
-          const errorData = await response.json();
-          errorMessage = errorData.error || errorMessage;
-        } catch (e) {
-          // If we can't parse the error response as JSON, use the status text
-          errorMessage = response.statusText || errorMessage;
-        }
-        console.error('Delete request failed:', errorMessage);
-        throw new Error(errorMessage);
-      }
-
-      // Try to parse the response as JSON
-      let responseData;
-      try {
-        responseData = await response.json();
-      } catch (e) {
-        console.log('Response was not JSON, continuing with UI update');
-        responseData = { success: true };
-      }
-
-      console.log('Delete successful, updating UI state');
-      // Remove the deleted match from the state
-      setSavedMatches(prev => {
-        const newMatches = prev.filter(match => match.match_id !== matchId);
-        console.log('Updated matches count:', newMatches.length);
-        return newMatches;
-      });
-      
-      // If the match was expanded, remove it from expanded matches
-      setExpandedMatches(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(matchId);
-        return newSet;
-      });
-    } catch (err) {
-      console.error('Error deleting match:', err);
-      alert(err.message || 'Failed to delete match');
-    }
-  };
-
-  const toggleMatch = (matchId) => {
+  const toggleMatchExpansion = (matchId) => {
     setExpandedMatches(prev => {
       const newSet = new Set(prev);
       if (newSet.has(matchId)) {
@@ -115,58 +43,73 @@ function ListAll() {
     });
   };
 
-  const processSavedMatchData = (match) => {
-    if (!match || !match.all_players_data || !match.all_players_data.teams) {
-      console.error('Invalid match data:', match);
-      return { yourTeam: [], opponentTeam: [] };
+  const handleDeleteMatch = async (matchId) => {
+    if (!window.confirm('Are you sure you want to delete this match?')) {
+      return;
     }
-    
-    const yourTeam = [];
-    const opponentTeam = [];
-    
-    match.all_players_data.teams.forEach(team => {
-      team.players.forEach(player => {
-        const playerData = [
-          player.agent || '',
-          player.rank || '',
-          player.acs || '',
-          player.kda || '',
-          player.ddDelta || '',
-          player.adr || '',
-          player.hsPercentage || '',
-          player.fk || '',
-          player.fd || ''
-        ];
-        
-        if (team.team === 'yourTeam') {
-          yourTeam.push(playerData);
-        } else if (team.team === 'opponentTeam') {
-          opponentTeam.push(playerData);
-        }
+
+    try {
+      const response = await fetch(`http://localhost:3000/matches/${matchId}`, {
+        method: 'DELETE',
       });
-    });
-    
-    while (yourTeam.length < 5) {
-      yourTeam.push(Array(9).fill(''));
+
+      if (!response.ok) {
+        throw new Error('Failed to delete match');
+      }
+
+      // Remove the deleted match from the state
+      setSavedMatches(prev => prev.filter(match => match.match_id !== matchId));
+      
+      // If the match was expanded, remove it from expanded matches
+      setExpandedMatches(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(matchId);
+        return newSet;
+      });
+    } catch (err) {
+      console.error('Error deleting match:', err);
+      alert('Failed to delete match');
     }
-    
-    while (opponentTeam.length < 5) {
-      opponentTeam.push(Array(9).fill(''));
-    }
-    
-    return { yourTeam, opponentTeam };
   };
 
-  const renderMatchCell = (value, rowIndex, colIndex) => {
-    return <td key={`${rowIndex}-${colIndex}`} className="list-all-table-cell">{value}</td>;
+  const processMatchData = (match) => {
+    if (!match.all_players_data) return { yourTeam: [], opponentTeam: [] };
+
+    const yourTeam = match.all_players_data.teamA.map(player => ({
+      agent: player.agent || '',
+      rank: player.rank || '',
+      acs: player.acs || '',
+      kda: player.kda || '',
+      ddDelta: player.ddDelta || '',
+      adr: player.adr || '',
+      hsPercentage: player.hsPercentage || '',
+      fk: player.fk || '',
+      fd: player.fd || '',
+      is_user: player.is_user || false
+    }));
+
+    const opponentTeam = match.all_players_data.teamB.map(player => ({
+      agent: player.agent || '',
+      rank: player.rank || '',
+      acs: player.acs || '',
+      kda: player.kda || '',
+      ddDelta: player.ddDelta || '',
+      adr: player.adr || '',
+      hsPercentage: player.hsPercentage || '',
+      fk: player.fk || '',
+      fd: player.fd || '',
+      is_user: player.is_user || false
+    }));
+
+    return { yourTeam, opponentTeam };
   };
 
   if (loading) {
     return (
       <div className="list-all">
-        <h2 className="text-lg font-bold mb-4">Match History</h2>
+        <h2 className="text-lg font-bold mb-4">Saved Matches</h2>
         <div className="text-gray-500 bg-gray-50 p-4 rounded-md">
-          Loading match history...
+          Loading matches...
         </div>
       </div>
     );
@@ -175,7 +118,10 @@ function ListAll() {
   if (error) {
     return (
       <div className="list-all">
-        <h2 className="text-lg font-bold mb-4">Match History</h2>
+        <h2 className="text-lg font-bold mb-4">Saved Matches</h2>
+        <div className="text-red-500 bg-red-50 p-4 rounded-md">
+          {error}
+        </div>
       </div>
     );
   }
@@ -183,127 +129,148 @@ function ListAll() {
   if (savedMatches.length === 0) {
     return (
       <div className="list-all">
-        <h2 className="text-lg font-bold mb-4">Match History</h2>
+        <h2 className="text-lg font-bold mb-4">Saved Matches</h2>
+        <div className="text-gray-500 bg-gray-50 p-4 rounded-md">
+          No saved matches found.
+        </div>
       </div>
     );
   }
 
   return (
     <div className="list-all">
-      <h2 className="text-lg font-bold mb-4">Match History</h2>
-      {savedMatches.map((match) => {
-        const { yourTeam, opponentTeam } = processSavedMatchData(match);
-        const isExpanded = expandedMatches.has(match.match_id);
+      <h2 className="text-lg font-bold mb-4">Saved Matches</h2>
+      <div className="space-y-4">
+        {savedMatches.map(match => {
+          const { yourTeam, opponentTeam } = processMatchData(match);
+          const isExpanded = expandedMatches.has(match.match_id);
 
-        return (
-          <div key={match.match_id} className="list-all-match-container">
-            <div 
-              className="list-all-match-header"
-              onClick={() => toggleMatch(match.match_id)}
-            >
-              <div className="list-all-match-info">
-                <div className="font-semibold">Map: {match.map}</div>
-                <div className={`font-semibold ${match.result === 'Victory' ? 'text-green-600' : 'text-red-600'}`}>
-                  {match.result}
+          return (
+            <div key={match.match_id} className="border rounded-lg p-4">
+              <div 
+                className="flex justify-between items-center cursor-pointer"
+                onClick={() => toggleMatchExpansion(match.match_id)}
+              >
+                <div>
+                  <span className="font-semibold">{match.map}</span>
+                  <span className={`ml-2 ${match.result === 'Victory' ? 'text-green-600' : 'text-red-600'}`}>
+                    {match.result}
+                  </span>
                 </div>
-                <div className="font-semibold">Duration: {match.duration}</div>
-                <div className="font-semibold">Match Date: {new Date(match.match_date).toLocaleString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: '2-digit',
-                  hour12: true
-                })}</div>
-              </div>
-              <div className="list-all-match-actions">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteMatch(match.match_id);
-                  }}
-                  className="delete-button"
-                >
-                  Delete
-                </button>
-                <div className="list-all-match-toggle">
-                  {isExpanded ? '-' : '+'}
+                <div className="flex items-center gap-4">
+                  <div className="text-sm text-gray-500">
+                    {new Date(match.match_date).toLocaleString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: '2-digit',
+                      hour12: true
+                    })}
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteMatch(match.match_id);
+                    }}
+                    className="text-red-600 hover:text-red-800 px-2 py-1 rounded hover:bg-red-50"
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
+
+              {isExpanded && (
+                <div className="mt-4 space-y-4">
+                  {/* Your Team */}
+                  <div>
+                    <h3 className="text-md font-semibold mb-2">Your Team</h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr>
+                            <th>Agent</th>
+                            <th>Rank</th>
+                            <th>ACS</th>
+                            <th>K/D/A</th>
+                            <th>DDΔ</th>
+                            <th>ADR</th>
+                            <th>HS%</th>
+                            <th>FK</th>
+                            <th>FD</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {yourTeam.map((player, index) => (
+                            <tr key={index} className={player.is_user ? 'bg-blue-50' : ''}>
+                              <td>{player.agent}</td>
+                              <td>{player.rank}</td>
+                              <td>{player.acs}</td>
+                              <td>{player.kda}</td>
+                              <td>{player.ddDelta}</td>
+                              <td>{player.adr}</td>
+                              <td>{player.hsPercentage}</td>
+                              <td>{player.fk}</td>
+                              <td>{player.fd}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Opponent Team */}
+                  <div>
+                    <h3 className="text-md font-semibold mb-2">Opponent Team</h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr>
+                            <th>Agent</th>
+                            <th>Rank</th>
+                            <th>ACS</th>
+                            <th>K/D/A</th>
+                            <th>DDΔ</th>
+                            <th>ADR</th>
+                            <th>HS%</th>
+                            <th>FK</th>
+                            <th>FD</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {opponentTeam.map((player, index) => (
+                            <tr key={index} className={player.is_user ? 'bg-blue-50' : ''}>
+                              <td>{player.agent}</td>
+                              <td>{player.rank}</td>
+                              <td>{player.acs}</td>
+                              <td>{player.kda}</td>
+                              <td>{player.ddDelta}</td>
+                              <td>{player.adr}</td>
+                              <td>{player.hsPercentage}</td>
+                              <td>{player.fk}</td>
+                              <td>{player.fd}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* Match Analysis */}
+                  {match.analysis && (
+                    <div>
+                      <h3 className="text-md font-semibold mb-2">Match Analysis</h3>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        {match.analysis}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-
-            {isExpanded && (
-              <div className="list-all-match-content">
-                {/* Your Team Table */}
-                <div className="list-all-table-container">
-                  <h3 className="list-all-table-title">Your Team</h3>
-                  <div className="list-all-table-wrapper">
-                    <table className="list-all-table">
-                      <thead>
-                        <tr>
-                          <th>Agent</th>
-                          <th>Rank</th>
-                          <th>ACS</th>
-                          <th>K/D/A</th>
-                          <th>DDΔ</th>
-                          <th>ADR</th>
-                          <th>HS%</th>
-                          <th>FK</th>
-                          <th>FD</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {yourTeam.map((row, rowIndex) => (
-                          <tr key={rowIndex}>
-                            {row.map((cell, colIndex) => renderMatchCell(cell, rowIndex, colIndex))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                {/* Opponent Team Table */}
-                <div className="list-all-table-container">
-                  <h3 className="list-all-table-title">Opponent Team</h3>
-                  <div className="list-all-table-wrapper">
-                    <table className="list-all-table">
-                      <thead>
-                        <tr>
-                          <th>Agent</th>
-                          <th>Rank</th>
-                          <th>ACS</th>
-                          <th>K/D/A</th>
-                          <th>DDΔ</th>
-                          <th>ADR</th>
-                          <th>HS%</th>
-                          <th>FK</th>
-                          <th>FD</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {opponentTeam.map((row, rowIndex) => (
-                          <tr key={rowIndex}>
-                            {row.map((cell, colIndex) => renderMatchCell(cell, rowIndex, colIndex))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-
-                {/* AI Analysis Section */}
-                <div className="list-all-analysis-container">
-                  <h3 className="text-md font-semibold mb-2">Match Analysis</h3>
-                  <div className="analysis-content">
-                    {match.analysis || 'No analysis available'}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
