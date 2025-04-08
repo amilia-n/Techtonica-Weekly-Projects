@@ -191,16 +191,14 @@ const Home = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          matchInfo: {
-            map: matchInfo.map,
-            result: matchInfo.result,
-            date: matchInfo.date,
-            duration: matchInfo.duration || '00:00'
-          },
-          teams: [
-            { team: 'yourTeam', players: yourTeam },
-            { team: 'opponentTeam', players: opponentTeam }
-          ]
+          map: matchInfo.map,
+          result: matchInfo.result,
+          duration: matchInfo.duration || '00:00',
+          match_date: matchInfo.date,
+          all_players_data: {
+            teamA: yourTeam,
+            teamB: opponentTeam
+          }
         }),
       });
 
@@ -224,10 +222,11 @@ const Home = () => {
             matchId,
             duration: matchInfo.duration || '00:00'
           },
-          teams: [
-            { team: 'yourTeam', players: yourTeam },
-            { team: 'opponentTeam', players: opponentTeam }
-          ]
+          all_players_data: {
+            teamA: yourTeam,
+            teamB: opponentTeam
+          },
+          agentName: agentInput
         }),
       });
 

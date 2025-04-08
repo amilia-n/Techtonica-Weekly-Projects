@@ -8,10 +8,10 @@ const VALORANT_AGENTS = [
   'Skye', 'Sova', 'Viper', 'Yoru', 'Tejo', 'Waylay'
 ];
 
-function GenerateTable() {
+function GenerateTable({ onAnalysisComplete }) {
   const [tableData, setTableData] = useState({
-    yourTeam: Array(5).fill().map(() => Array(9).fill('')),
-    opponentTeam: Array(5).fill().map(() => Array(9).fill(''))
+    teamA: Array(5).fill().map(() => Array(9).fill('')),
+    teamB: Array(5).fill().map(() => Array(9).fill(''))
   });
   const [agentInput, setAgentInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -26,6 +26,7 @@ function GenerateTable() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState('');
   const pasteBoxRef = useRef(null);
+  const [selectedTeam, setSelectedTeam] = useState(null); // 'teamA' or 'teamB'
   const [selectedUser, setSelectedUser] = useState({ team: null, rowIndex: null });
 
   const loadingGunStyle = {
@@ -43,6 +44,12 @@ function GenerateTable() {
     verticalAlign: 'start'
   };
 
+  const handleTeamSelect = (team) => {
+    setSelectedTeam(team);
+    // Reset selected user when team changes
+    setSelectedUser({ team: null, rowIndex: null });
+  };
+
   const handleAgentInputChange = (e) => {
     const value = e.target.value;
     setAgentInput(value);
@@ -56,11 +63,41 @@ function GenerateTable() {
       agent.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(filtered);
+
+    // Only find matching agent in selected team
+    if (selectedTeam) {
+      const teamData = selectedTeam === 'teamA' ? tableData.teamA : tableData.teamB;
+      const matchIndex = teamData.findIndex(row => 
+        row[0].toLowerCase() === value.toLowerCase()
+      );
+
+      if (matchIndex !== -1) {
+        setSelectedUser({ 
+          team: selectedTeam === 'teamA' ? 'teamA' : 'teamB', 
+          rowIndex: matchIndex 
+        });
+      }
+    }
   };
 
   const handleAgentSelect = (agent) => {
     setAgentInput(agent);
     setSuggestions([]);
+
+    // Only find matching agent in selected team
+    if (selectedTeam) {
+      const teamData = selectedTeam === 'teamA' ? tableData.teamA : tableData.teamB;
+      const matchIndex = teamData.findIndex(row => 
+        row[0].toLowerCase() === agent.toLowerCase()
+      );
+
+      if (matchIndex !== -1) {
+        setSelectedUser({ 
+          team: selectedTeam === 'teamA' ? 'teamA' : 'teamB', 
+          rowIndex: matchIndex 
+        });
+      }
+    }
   };
 
   const handleCellEdit = (team, rowIndex, colIndex, value) => {
@@ -69,6 +106,14 @@ function GenerateTable() {
       newData[team][rowIndex][colIndex] = value;
       return newData;
     });
+
+    // If editing agent name and it matches the input and is in selected team, select this row
+    if (colIndex === 0 && value.toLowerCase() === agentInput.toLowerCase()) {
+      const currentTeam = team === 'teamA' ? 'teamA' : 'teamB';
+      if (currentTeam === selectedTeam) {
+        setSelectedUser({ team, rowIndex });
+      }
+    }
   };
 
   const handlePasteChange = (e) => {
@@ -94,7 +139,9 @@ function GenerateTable() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify({
           pastedData,
           agentName: agentInput
@@ -102,6 +149,7 @@ function GenerateTable() {
       });
 
       const responseData = await response.json();
+      console.log("RESPONSE DATA", JSON.stringify(responseData));
 
       if (!response.ok) {
         throw new Error(responseData.error || responseData.details || 'Failed to process match data');
@@ -115,14 +163,14 @@ function GenerateTable() {
       });
 
       const newTableData = {
-        yourTeam: Array(5).fill().map(() => Array(9).fill('')),
-        opponentTeam: Array(5).fill().map(() => Array(9).fill(''))
+        teamA: Array(5).fill().map(() => Array(9).fill('')),
+        teamB: Array(5).fill().map(() => Array(9).fill(''))
       };
 
-      if (Array.isArray(responseData.yourTeam)) {
-        responseData.yourTeam.forEach((player, index) => {
+      if (Array.isArray(responseData.all_players_data?.teamA)) {
+        responseData.all_players_data.teamA.forEach((player, index) => {
           if (index < 5) {
-            newTableData.yourTeam[index] = [
+            newTableData.teamA[index] = [
               player.agent || '',
               player.rank || '',
               player.acs || '',
@@ -137,10 +185,10 @@ function GenerateTable() {
         });
       }
 
-      if (Array.isArray(responseData.opponentTeam)) {
-        responseData.opponentTeam.forEach((player, index) => {
+      if (Array.isArray(responseData.all_players_data?.teamB)) {
+        responseData.all_players_data.teamB.forEach((player, index) => {
           if (index < 5) {
-            newTableData.opponentTeam[index] = [
+            newTableData.teamB[index] = [
               player.agent || '',
               player.rank || '',
               player.acs || '',
@@ -166,6 +214,8 @@ function GenerateTable() {
 
   const handleCellClick = (team, rowIndex, colIndex) => {
     if (colIndex === 0) { 
+      const currentTeam = team === 'teamA' ? 'teamA' : 'teamB';
+      setSelectedTeam(currentTeam);
       setSelectedUser({ team, rowIndex });
       setAgentInput(tableData[team][rowIndex][0]); 
     }
@@ -213,11 +263,18 @@ function GenerateTable() {
   };
 
   const handleSubmitTable = async () => {
-    setIsAnalyzing(true);
-    setError('');
-
     try {
-      const yourTeam = tableData.yourTeam.map((row, index) => ({
+      if (!selectedTeam) {
+        setError('Please select your team first');
+        return;
+      }
+
+      if (!selectedUser.team) {
+        setError('Please select your row or enter your agent name');
+        return;
+      }
+
+      const teamA = tableData.teamA.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -227,10 +284,10 @@ function GenerateTable() {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        is_user: selectedUser.team === 'yourTeam' && selectedUser.rowIndex === index
+        is_user: selectedUser.team === 'teamA' && selectedUser.rowIndex === index
       }));
 
-      const opponentTeam = tableData.opponentTeam.map((row, index) => ({
+      const teamB = tableData.teamB.map((row, index) => ({
         agent: row[0],
         rank: row[1],
         acs: parseInt(row[2]) || 0,
@@ -240,71 +297,24 @@ function GenerateTable() {
         hsPercentage: row[6],
         fk: parseInt(row[7]) || 0,
         fd: parseInt(row[8]) || 0,
-        is_user: selectedUser.team === 'opponentTeam' && selectedUser.rowIndex === index
+        is_user: selectedUser.team === 'teamB' && selectedUser.rowIndex === index
       }));
 
-      const saveResponse = await fetch('http://localhost:3000/save-match', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          map: matchInfo.map,
-          result: matchInfo.result,
-          duration: matchInfo.duration || '00:00',
-          match_date: matchInfo.date,
-          all_players_data: {
-            teamA: yourTeam,
-            teamB: opponentTeam
-          }
-        }),
-      });
+      const matchData = {
+        map: matchInfo.map,
+        result: matchInfo.result,
+        duration: matchInfo.duration || '00:00',
+        match_date: matchInfo.date,
+        all_players_data: {
+          teamA,
+          teamB: teamB
+        }
+      };
 
-      if (!saveResponse.ok) {
-        const errorData = await saveResponse.json();
-        throw new Error(errorData.error || 'Failed to save match data');
-      }
-
-      const saveResult = await saveResponse.json();
-      const matchId = saveResult.match_id;
-
-      const analysisResponse = await fetch('http://localhost:3000/analyze-match', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          matchInfo: {
-            matchId,
-            map: matchInfo.map,
-            result: matchInfo.result,
-            date: matchInfo.date,
-            duration: matchInfo.duration || '00:00'
-          },
-          all_players_data: {
-            teamA: yourTeam,
-            teamB: opponentTeam
-          }
-        }),
-      });
-
-      if (!analysisResponse.ok) {
-        const errorData = await analysisResponse.json();
-        throw new Error(errorData.error || 'Failed to get AI analysis');
-      }
-
-      const savedMatchesResponse = await fetch('http://localhost:3000/matches');
-      if (savedMatchesResponse.ok) {
-        const savedMatchesData = await savedMatchesResponse.json();
-        localStorage.setItem('savedMatches', JSON.stringify(savedMatchesData));
-      }
-      
-      alert('Match data saved and analyzed successfully!');
+      onAnalysisComplete(matchData);
     } catch (err) {
-      console.error('Error processing match data:', err);
-      setError(err.message || 'Failed to process match data. Please try again.');
-    } finally {
-      setIsAnalyzing(false);
+      console.error('Error preparing match data:', err);
+      setError(err.message || 'Failed to prepare match data. Please try again.');
     }
   };
 
@@ -403,9 +413,16 @@ function GenerateTable() {
 
           {error && <div className="text-red-500 mb-2">{error}</div>}
 
-          {/* Team 1 Table (Own Team) */}
+          {/* Team A Table */}
           <div className="mb-4">
-            <h3 className="text-xs font-semibold mb-1">Your Team</h3>
+            <button
+              className={`inline-block mb-2 px-4 py-2 rounded ${
+                selectedTeam === 'teamA' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => handleTeamSelect('teamA')}
+            >
+              Team A
+            </button>
             <div className="overflow-x-auto">
               <table className="w-full table-auto border-collapse text-xs">
                 <thead>
@@ -422,9 +439,14 @@ function GenerateTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {tableData.yourTeam.map((row, rowIndex) => (
-                    <tr key={rowIndex} className={`hover:bg-gray-50 ${rowIndex === 0 ? 'bg-green-50' : ''}`}>
-                      {row.map((cell, colIndex) => renderEditableCell('yourTeam', rowIndex, colIndex, cell))}
+                  {tableData.teamA.map((row, rowIndex) => (
+                    <tr 
+                      key={rowIndex} 
+                      className={`hover:bg-gray-50 ${
+                        selectedUser.team === 'teamA' && selectedUser.rowIndex === rowIndex ? 'bg-blue-100' : ''
+                      }`}
+                    >
+                      {row.map((cell, colIndex) => renderEditableCell('teamA', rowIndex, colIndex, cell))}
                     </tr>
                   ))}
                 </tbody>
@@ -432,9 +454,16 @@ function GenerateTable() {
             </div>
           </div>
 
-          {/* Team 2 Table (Opponent Team) */}
+          {/* Team B Table */}
           <div>
-            <h3 className="text-xs font-semibold mb-1">Opponent Team</h3>
+            <button
+              className={`inline-block mb-2 px-4 py-2 rounded ${
+                selectedTeam === 'teamB' ? 'bg-blue-500 text-white' : 'bg-gray-200'
+              }`}
+              onClick={() => handleTeamSelect('teamB')}
+            >
+              Team B
+            </button>
             <div className="overflow-x-auto">
               <table className="w-full table-auto border-collapse text-xs">
                 <thead>
@@ -451,9 +480,14 @@ function GenerateTable() {
                   </tr>
                 </thead>
                 <tbody>
-                  {tableData.opponentTeam.map((row, rowIndex) => (
-                    <tr key={rowIndex} className="hover:bg-gray-50">
-                      {row.map((cell, colIndex) => renderEditableCell('opponentTeam', rowIndex, colIndex, cell))}
+                  {tableData.teamB.map((row, rowIndex) => (
+                    <tr 
+                      key={rowIndex} 
+                      className={`hover:bg-gray-50 ${
+                        selectedUser.team === 'teamB' && selectedUser.rowIndex === rowIndex ? 'bg-blue-100' : ''
+                      }`}
+                    >
+                      {row.map((cell, colIndex) => renderEditableCell('teamB', rowIndex, colIndex, cell))}
                     </tr>
                   ))}
                 </tbody>

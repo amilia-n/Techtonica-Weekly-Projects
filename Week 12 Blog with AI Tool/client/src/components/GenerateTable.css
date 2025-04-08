@@ -132,7 +132,7 @@
   .table-display {
     background-color: aliceblue;
     width: 100%;
-    height: 500px;
+    height: fit-content;
     margin-top: 10px;
     padding: 15px;
     border-radius: 20px;
