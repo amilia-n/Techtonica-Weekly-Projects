@@ -21,6 +21,7 @@ function ListAll() {
       }
       
       const data = await response.json();
+      console.log(data);
       setSavedMatches(data);
     } catch (err) {
       console.error('Error fetching matches:', err);

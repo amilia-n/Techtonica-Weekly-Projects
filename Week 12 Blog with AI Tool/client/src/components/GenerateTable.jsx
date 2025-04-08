@@ -47,7 +47,7 @@ function GenerateTable({ onAnalysisComplete }) {
   const handleTeamSelect = (team) => {
     setSelectedTeam(team);
     // Reset selected user when team changes
-    setSelectedUser({ team: null, rowIndex: null });
+    setSelectedUser({...selectedUser, team });
   };
 
   const handleAgentInputChange = (e) => {
