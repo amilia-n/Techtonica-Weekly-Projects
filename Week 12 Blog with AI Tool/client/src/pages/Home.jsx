@@ -9,18 +9,18 @@ import "./Home.css";
 const Home = () => {
   return (
     <div className="home-container">
-      <h1>AMI'S VALORANT BLOG</h1>
+      <h1>WELCOME TO<br /> AMI'S VALORANT BLOG</h1>
       <div className="instructions">
         Instructions:
         <ul>
-          <li>1) In the browser below, enter your player ID and #. Mine is Ilikebread#888</li>
+          <li>1) In the browser below, enter your player ID with #. Mine is Ilikebread#888</li>
           <li>
             2) Once loaded, select "Matches" in the header. Scroll down to view
             all matches.
           </li>
           <li>3) Select the match you'd like to analyze.</li>
           <li>
-            4) Scroll down to the bottom of the table and copy all texts and paste inside the empty textbox.
+            4) Scroll down to the bottom of the table and copy all texts and enter in the "Paste Your information" textbox.
           </li>
           <li>
             5) Select your agent and press Convert! This should render this data
@@ -32,10 +32,10 @@ const Home = () => {
           </li>
           <li>
             7) Hang tight while it runs! The analysis will always be
-            rendered.
+            rendered momentarily. 
           </li>
           <li>
-            At the very bottom, you will see a list of all previouslyanalyzed matches. 
+            8) At the very bottom, you will see a list of all previously analyzed matches. 
           </li>
         </ul>
       </div>

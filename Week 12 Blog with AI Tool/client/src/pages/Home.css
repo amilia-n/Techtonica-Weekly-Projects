@@ -5,22 +5,26 @@
   min-height: fit-content;
   margin: 0;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.nav {
-  display: flex;
-  justify-self: center;
-  justify-content: center;
-  align-items: center;
-  background-color: azure;
-  width: 300px;
-  height: 40px;
-  border-radius: 20px;
-  margin: 20px 0 20px 0;
+.home-container h1 {
+  font-family: 'Cabin Sketch', cursive;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 30px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.instructions, h1 {
-  /* background-color: rgb(238, 255, 0); */
+.instructions {
+  background-color: rgba(208, 180, 208, 0.352);
   margin: 20px;
   justify-self: center;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;;
 }
