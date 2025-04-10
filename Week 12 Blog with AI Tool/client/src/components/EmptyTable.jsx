@@ -1,34 +1,39 @@
 import React from 'react';
 import './EmptyTable.css';
 
-const EmptyTable = ({
-  tableData,
-  matchInfo,
-  selectedUser,
-  selectedTeam,
+function EmptyTable({ 
+  tableData, 
+  matchInfo, 
   handleCellEdit,
-  handleTeamSelect,
   error,
-  isSavedData = false
-}) => {
+  isSavedData = false 
+}) {
   const renderEditableCell = (team, rowIndex, colIndex, value) => {
+    const isAgentCell = colIndex === 0;
+
+    if (isSavedData) {
+      return (
+        <td 
+          key={`${team}-${rowIndex}-${colIndex}`} 
+          className="px-1 py-0.5 border text-center"
+        >
+          {value}
+        </td>
+      );
+    }
+
     return (
       <td 
         key={`${team}-${rowIndex}-${colIndex}`} 
-        className={`px-1 py-0.5 border text-center ${!isSavedData ? 'cursor-pointer' : ''}`}
-        onClick={() => !isSavedData && handleCellEdit(team, rowIndex, colIndex)}
+        className="px-1 py-0.5 border text-center"
       >
-        {!isSavedData ? (
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
-            className="w-full h-full text-center"
-            placeholder=" "
-          />
-        ) : (
-          <span>{value}</span>
-        )}
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
+          className="w-full h-full text-center"
+          placeholder={isAgentCell ? "Agent name" : ""}
+        />
       </td>
     );
   };
@@ -41,13 +46,11 @@ const EmptyTable = ({
           <div className="flex justify-between items-center">
             <div className="font-semibold">Map: {matchInfo?.map}</div>
             <div className={`font-semibold ${
-              typeof matchInfo?.result === 'string' 
-                ? matchInfo.result === 'Victory' 
-                  ? 'text-green-600' 
-                  : matchInfo.result === 'Defeat'
-                  ? 'text-red-600'
-                  : 'text-gray-300'
-                : 'text-gray-300'
+              matchInfo?.result === 'Victory' 
+                ? 'text-green-600' 
+                : matchInfo?.result === 'Tie' 
+                  ? 'text-yellow-600' 
+                  : 'text-red-600'
             }`}>
               {matchInfo?.result}
             </div>
@@ -87,12 +90,7 @@ const EmptyTable = ({
               </thead>
               <tbody>
                 {tableData?.teamA?.map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className={`hover:bg-gray-50 ${
-                      selectedUser?.team === 'teamA' && selectedUser?.rowIndex === rowIndex ? 'bg-blue-100' : ''
-                    }`}
-                  >
+                  <tr key={rowIndex} className="hover:bg-gray-50">
                     {row.map((cell, colIndex) => renderEditableCell('teamA', rowIndex, colIndex, cell))}
                   </tr>
                 ))}
@@ -121,12 +119,7 @@ const EmptyTable = ({
               </thead>
               <tbody>
                 {tableData?.teamB?.map((row, rowIndex) => (
-                  <tr
-                    key={rowIndex}
-                    className={`hover:bg-gray-50 ${
-                      selectedUser?.team === 'teamB' && selectedUser?.rowIndex === rowIndex ? 'bg-blue-100' : ''
-                    }`}
-                  >
+                  <tr key={rowIndex} className="hover:bg-gray-50">
                     {row.map((cell, colIndex) => renderEditableCell('teamB', rowIndex, colIndex, cell))}
                   </tr>
                 ))}
@@ -137,6 +130,6 @@ const EmptyTable = ({
       </div>
     </div>
   );
-};
+}
 
 export default EmptyTable;

@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Browser from "../components/Browser";
 import GenerateTable from "../components/GenerateTable";
 import RecentAnalysis from "../components/RecentAnalysis";
 import ListAll from "../components/ListAll";
-// import EmptyTable from "../components/EmptyTable";
 import "./Home.css";
+import EmptyTable from "../components/EmptyTable";
 
 const Home = () => {
+  const [recentAnalysis, setRecentAnalysis] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
+
   return (
     <div className="home-container">
       <h1>WELCOME TO<br /> AMI'S VALORANT BLOG</h1>
@@ -27,27 +31,30 @@ const Home = () => {
             into the table on the right.
           </li>
           <li>
-            6) Double check the information, if correct, select Analyze to
-            save and process the game analysis.{" "}
+            6) Double check the information, then select Analyze to
+            save and process the game analysis.
           </li>
           <li>
-            7) Hang tight while it runs! The analysis will always be
-            rendered momentarily. 
+            7) Hang tight while it runs! The analysis will render in a moment. 
           </li>
           <li>
-            8) At the very bottom, you will see a list of all previously analyzed matches. 
+            8) Refresh the page to see the expandable list of all previously analyzed matches. 
           </li>
         </ul>
       </div>
 
-
       <Browser />
 
-      <GenerateTable />
+      <GenerateTable onAnalysisComplete={(analysis) => {
+        console.log("Home component received analysis data:", analysis);
+        setRecentAnalysis(analysis);
+      }} />
 
-      <RecentAnalysis />
+      <RecentAnalysis recentAnalysis={recentAnalysis} />
 
       <ListAll />
+
+
     </div>
   );
 };
