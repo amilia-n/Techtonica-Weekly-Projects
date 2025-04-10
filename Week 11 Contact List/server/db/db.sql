@@ -1,4 +1,4 @@
-DROP DATABASE endangered;
+DROP DATABASE contact_list;
 
 -- Create the database (if it doesn't already exist)
 CREATE DATABASE contact_list;
