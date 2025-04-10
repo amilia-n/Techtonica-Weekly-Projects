@@ -8,8 +8,7 @@ import EmptyTable from "../components/EmptyTable";
 
 const Home = () => {
   const [recentAnalysis, setRecentAnalysis] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [error, setError] = useState(null);
+
 
   return (
     <div className="home-container">
