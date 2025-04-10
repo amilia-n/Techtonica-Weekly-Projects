@@ -1,10 +1,19 @@
 .analysis-container {
   display: flex;
-  background-color: wheat;
+  flex-direction: column;
+  background-color: rgba(255, 225, 0, 0.432);
   min-width: fit-content;
   width: 80%;
   justify-content: center;
   justify-self: center;
-  margin: 10px;
+  margin: 20px;
+  padding: 35px;
+  gap: 15px;
+  border-radius: 25px;
+}
+.recent-analysis {
   padding: 10px;
+}
+.analysis-text{
+  padding: 30px;
 }

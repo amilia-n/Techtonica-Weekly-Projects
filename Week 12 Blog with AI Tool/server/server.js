@@ -14,7 +14,22 @@ const mime = require("mime-types");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware setup
+const stringToInteger = (str) => {
+  if(typeof str === "number") return str;
+  if(typeof str !== "string") return 0;
+  const regex = /\D/g;
+  str.replaceAll(regex, "");
+
+  return parseInt(str);
+}
+
+const formatKDA = (kda) => {
+  if (!kda) return "0/0/0";
+  const parts = kda.replace(/\s+/g, '').split('/');
+  if (parts.length !== 3) return "0/0/0";
+  return parts.join('/');
+}
+
 app.use(
   cors({
     origin: true,
@@ -27,7 +42,6 @@ app.use(express.json());
 
 console.log("Setting up routes...");
 
-// Test routes
 app.get("/test", (req, res) => {
   console.log("GET /test called");
   res.json({ message: "Server is working" });
@@ -82,7 +96,7 @@ const generationConfig = {
           },
           result: {
             type: "string",
-            enum: ["Victory", "Defeat"],
+            enum: ["Victory", "Defeat", "Tie"],
           },
           duration: {
             type: "string",
@@ -109,20 +123,21 @@ const generationConfig = {
             },
             kda: {
               type: "string",
+              pattern: "^\\d+\\/\\d+\\/\\d+$"
             },
-            ddDelta: {
+            damage_delta: {
               type: "string",
             },
             adr: {
               type: "number",
             },
-            hsPercentage: {
+            hs_percent: {
               type: "string",
             },
-            fk: {
+            first_kills: {
               type: "number",
             },
-            fd: {
+            first_deaths: {
               type: "number",
             },
           },
@@ -132,11 +147,11 @@ const generationConfig = {
             "rank",
             "acs",
             "kda",
-            "ddDelta",
+            "damage_delta",
             "adr",
-            "hsPercentage",
-            "fk",
-            "fd",
+            "hs_percent",
+            "first_kills",
+            "first_deaths",
           ],
         },
       },
@@ -159,20 +174,21 @@ const generationConfig = {
             },
             kda: {
               type: "string",
+              pattern: "^\\d+\\/\\d+\\/\\d+$"
             },
-            ddDelta: {
+            damage_delta: {
               type: "string",
             },
             adr: {
               type: "number",
             },
-            hsPercentage: {
+            hs_percent: {
               type: "string",
             },
-            fk: {
+            first_kills: {
               type: "number",
             },
-            fd: {
+            first_deaths: {
               type: "number",
             },
           },
@@ -182,11 +198,11 @@ const generationConfig = {
             "rank",
             "acs",
             "kda",
-            "ddDelta",
+            "damage_delta",
             "adr",
-            "hsPercentage",
-            "fk",
-            "fd",
+            "hs_percent",
+            "first_kills",
+            "first_deaths",
           ],
         },
       },
@@ -225,7 +241,7 @@ app.post("/process-match-data", async (req, res) => {
             parts: [
               {
                 text: `Parse this raw match data into the structured JSON format specified.
-            ONLY include data from:\n${pastedData} and return in this format ${JSON.stringify(
+                ONLY include data from:\n${pastedData} and return in this format ${JSON.stringify(
                   generationConfig.responseSchema
                 )}.`,
               },
@@ -303,80 +319,55 @@ app.post("/process-match-data", async (req, res) => {
   }
 });
 
+
 app.post("/save-match", async (req, res) => {
-  const { map, result, duration, match_date, all_players_data } = req.body;
+  const { map, result, duration, match_date, all_players_data, agentName } = req.body;
 
   try {
     const client = await pool.connect();
     try {
       await client.query("BEGIN");
 
+      // Format KDA for all players
+      const formattedPlayersData = {
+        teamA: all_players_data.teamA.map(player => ({
+          ...player,
+          kda: formatKDA(player.kda)
+        })),
+        teamB: all_players_data.teamB.map(player => ({
+          ...player,
+          kda: formatKDA(player.kda)
+        }))
+      };
+
+      // Insert match data into the matches table
       const matchResult = await client.query(
-        `INSERT INTO matches (map, result, duration, match_date, all_players_data)
+        `INSERT INTO matches (map, result, match_date, duration, all_players_data)
          VALUES ($1, $2, $3, $4, $5)
-         RETURNING *`,
-        [map, result, duration, match_date, all_players_data]
+         RETURNING match_id`,
+        [
+          map,
+          result,
+          match_date,
+          duration,
+          JSON.stringify(formattedPlayersData),
+        ]
       );
 
       const matchId = matchResult.rows[0].match_id;
 
-      // Find which team the user is on using the userTeam metadata
-      const userTeam = all_players_data.userTeam; // 'teamA' or 'teamB'
-      const userData = all_players_data[userTeam].find(player => player.is_user);
-
-      if (userData) {
-        const formattedUserData = {
-          match_id: matchId,
-          player_id: userData.player_id,
-          agent: userData.agent,
-          rank: userData.rank,
-          acs: Math.round(userData.acs),
-          kills: Math.round(userData.kills),
-          deaths: Math.round(userData.deaths),
-          assists: Math.round(userData.assists),
-          kda: userData.kda,
-          damage_delta: userData.damage_delta || userData.ddDelta,
-          adr: Math.round(userData.adr),
-          hs_percent: userData.hs_percent || userData.hsPercentage,
-          first_kills: Math.round(userData.first_kills || userData.fk),
-          first_deaths: Math.round(userData.first_deaths || userData.fd),
-          team: userTeam // Store the actual team (teamA or teamB)
-        };
-
-        const kdaRegex = /^\d+\/\d+\/\d+$/;
-        if (!kdaRegex.test(formattedUserData.kda)) {
-          throw new Error(
-            'Invalid KDA format. Expected format: "kills/deaths/assists"'
-          );
-        }
-
+      // Insert only the required fields into user_stats table
+      if (agentName) {
+        // Make sure we're only inserting the fields that exist in the user_stats table
         await client.query(
-          `INSERT INTO user_stats (
-            match_id, player_id, agent, rank, acs, kills, deaths, assists,
-            kda, damage_delta, adr, hs_percent, first_kills, first_deaths, team
-          ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)`,
-          [
-            formattedUserData.match_id,
-            formattedUserData.player_id,
-            formattedUserData.agent,
-            formattedUserData.rank,
-            formattedUserData.acs,
-            formattedUserData.kills,
-            formattedUserData.deaths,
-            formattedUserData.assists,
-            formattedUserData.kda,
-            formattedUserData.damage_delta,
-            formattedUserData.adr,
-            formattedUserData.hs_percent,
-            formattedUserData.first_kills,
-            formattedUserData.first_deaths,
-            formattedUserData.team,
-          ]
+          `INSERT INTO user_stats (match_id, agent, result)
+           VALUES ($1, $2, $3)`,
+          [matchId, agentName, result]
         );
       }
 
       await client.query("COMMIT");
-      res.json(matchResult.rows[0]);
+      res.json({ match_id: matchId });
     } catch (err) {
       await client.query("ROLLBACK");
       throw err;
@@ -407,32 +398,29 @@ app.get("/matches", async (req, res) => {
   }
 });
 
+
 app.post("/analyze-match", async (req, res) => {
   const { matchInfo, all_players_data, agentName } = req.body;
 
   try {
-    // Use the metadata to determine user's team and match result
-    const userTeam = all_players_data.userTeam;
-    const matchResult = all_players_data.matchResult;
-    const isUserTeamA = userTeam === 'teamA';
+    const matchResult = matchInfo.result;
 
-    // Structure data for analysis with clear team identification
     const processedData = {
       ...all_players_data,
       teamA: all_players_data.teamA.map((player) => ({
         ...player,
-        team_type: isUserTeamA ? 'your team' : 'opponent team'
+        team_type: 'team A'
       })),
       teamB: all_players_data.teamB.map((player) => ({
         ...player,
-        team_type: isUserTeamA ? 'opponent team' : 'your team'
+        team_type: 'team B'
       }))
     };
 
     const promptText = `You are a professional Valorant coach with extensive experience in both game strategy and performance analysis.
 Evaluate the match information, team statistics, and individual player performance metrics.
-Focus your analysis on the user who played as ${agentName} in the ${userTeam === 'teamA' ? 'first' : 'second'} team, which ${matchResult === 'Victory' ? 'won' : 'lost'} the match.
-Output a comprehensive analysis under 150 words to help the User improve. Omit the use of player_id in the analysis.
+Focus your analysis on the overall match performance, where ${agentName} was played in a match that ended in ${matchResult}.
+Output a comprehensive analysis under 150 words to help improve gameplay. Omit the use of player_id in the analysis.
 
 Here is the match data:
 ${JSON.stringify(processedData)}`;
@@ -518,7 +506,6 @@ app.delete("/matches/:id", async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log("Available routes:");

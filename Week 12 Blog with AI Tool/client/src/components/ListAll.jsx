@@ -75,15 +75,15 @@ function ListAll() {
 
     const formatTeamData = (players) => {
       return players.map(player => [
-        player.agent || '',
-        player.rank || '',
-        player.acs || '',
-        player.kda || '',
-        player.ddDelta || '',
-        player.adr || '',
-        player.hsPercentage || '',
-        player.fk || '',
-        player.fd || ''
+        player.agent ?? '',
+        player.rank ?? '',
+        player.acs ?? '0',
+        player.kda ?? '0/0/0',
+        player.damage_delta ?? player.ddDelta ?? '0',
+        player.adr ?? '0',
+        player.hs_percent ?? player.hsPercentage ?? '0%',
+        player.first_kills ?? player.fk ?? '0',
+        player.first_deaths ?? player.fd ?? '0'
       ]);
     };
 
@@ -132,7 +132,13 @@ function ListAll() {
               >
                 <div>
                   <span className="font-semibold">{match.map}</span>
-                  <span className={`ml-2 ${match.result === 'Victory' ? 'text-green-600' : 'text-red-600'}`}>
+                  <span className={`ml-2 ${
+                    match.result === 'Victory' 
+                      ? 'text-green-600' 
+                      : match.result === 'Tie' 
+                        ? 'text-yellow-600' 
+                        : 'text-red-600'
+                  }`}>
                     {match.result}
                   </span>
                 </div>

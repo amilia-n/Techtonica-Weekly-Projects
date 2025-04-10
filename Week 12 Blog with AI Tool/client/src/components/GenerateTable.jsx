@@ -23,13 +23,13 @@ function GenerateTable({ onAnalysisComplete }) {
     result: '',
     duration: ''
   });
-  const [matchResult, setMatchResult] = useState('Victory');
+  const [matchResult, setMatchResult] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState('');
   const pasteBoxRef = useRef(null);
-  const [selectedTeam, setSelectedTeam] = useState(null); // 'teamA' or 'teamB'
-  const [selectedUser, setSelectedUser] = useState({ team: null, rowIndex: null });
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [processedData, setProcessedData] = useState(null);
 
   const loadingGunStyle = {
     width: '60px',
@@ -41,15 +41,7 @@ function GenerateTable({ onAnalysisComplete }) {
   const loadingGunStyle2 = {
     width: '60px',
     height: '60px',
-    marginTop: '5px',
-    marginLeft: '-8px',
     verticalAlign: 'start'
-  };
-
-  const handleTeamSelect = (team) => {
-    setSelectedTeam(team);
-    // Reset selected user when team changes
-    setSelectedUser({...selectedUser, team });
   };
 
   const handleAgentInputChange = (e) => {
@@ -65,40 +57,11 @@ function GenerateTable({ onAnalysisComplete }) {
       agent.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(filtered);
-
-    if (selectedTeam) {
-      const teamData = selectedTeam === 'teamA' ? tableData.teamA : tableData.teamB;
-      const matchIndex = teamData.findIndex(row => 
-        row[0].toLowerCase() === value.toLowerCase()
-      );
-
-      if (matchIndex !== -1) {
-        setSelectedUser({ 
-          team: selectedTeam === 'teamA' ? 'teamA' : 'teamB', 
-          rowIndex: matchIndex 
-        });
-      }
-    }
   };
 
   const handleAgentSelect = (agent) => {
     setAgentInput(agent);
     setSuggestions([]);
-
-    // Only find matching agent in selected team
-    if (selectedTeam) {
-      const teamData = selectedTeam === 'teamA' ? tableData.teamA : tableData.teamB;
-      const matchIndex = teamData.findIndex(row => 
-        row[0].toLowerCase() === agent.toLowerCase()
-      );
-
-      if (matchIndex !== -1) {
-        setSelectedUser({ 
-          team: selectedTeam === 'teamA' ? 'teamA' : 'teamB', 
-          rowIndex: matchIndex 
-        });
-      }
-    }
   };
 
   const handleCellEdit = (team, rowIndex, colIndex, value) => {
@@ -107,13 +70,6 @@ function GenerateTable({ onAnalysisComplete }) {
       newData[team][rowIndex][colIndex] = value;
       return newData;
     });
-
-    if (colIndex === 0 && value.toLowerCase() === agentInput.toLowerCase()) {
-      const currentTeam = team === 'teamA' ? 'teamA' : 'teamB';
-      if (currentTeam === selectedTeam) {
-        setSelectedUser({ team, rowIndex });
-      }
-    }
   };
 
   const handlePasteChange = (e) => {
@@ -131,6 +87,11 @@ function GenerateTable({ onAnalysisComplete }) {
       return;
     }
 
+    if (!matchResult) {
+      setError('Please select Victory or Defeat');
+      return;
+    }
+
     setIsLoading(true);
     setError('');
 
@@ -144,7 +105,8 @@ function GenerateTable({ onAnalysisComplete }) {
         mode: 'cors',
         body: JSON.stringify({
           pastedData,
-          agentName: agentInput
+          agentName: agentInput,
+          matchResult,
         }),
       });
 
@@ -158,7 +120,7 @@ function GenerateTable({ onAnalysisComplete }) {
       setMatchInfo({
         date: responseData.matchInfo?.date || '',
         map: responseData.matchInfo?.map || '',
-        result: responseData.matchInfo?.result || '',
+        result: matchResult,
         duration: responseData.matchInfo?.duration || ''
       });
 
@@ -167,19 +129,21 @@ function GenerateTable({ onAnalysisComplete }) {
         teamB: Array(5).fill().map(() => Array(9).fill(''))
       };
 
+      setProcessedData(responseData);
+
       if (Array.isArray(responseData.all_players_data?.teamA)) {
         responseData.all_players_data.teamA.forEach((player, index) => {
           if (index < 5) {
             newTableData.teamA[index] = [
-              player.agent || '',
-              player.rank || '',
-              player.acs || '',
-              player.kda || '',
-              player.ddDelta || '0',
-              player.adr || '',
-              player.hsPercentage || '0%',
-              player.fk || '0',
-              player.fd || '0'
+              player.agent ?? '',
+              player.rank ?? '',
+              player.acs ?? '0',
+              player.kda ?? '0/0/0',
+              player.damage_delta ?? player.ddDelta ?? '0',
+              player.adr ?? '0',
+              player.hs_percent ?? player.hsPercentage ?? '0%',
+              player.first_kills ?? player.fk ?? '0',
+              player.first_deaths ?? player.fd ?? '0'
             ];
           }
         });
@@ -189,15 +153,15 @@ function GenerateTable({ onAnalysisComplete }) {
         responseData.all_players_data.teamB.forEach((player, index) => {
           if (index < 5) {
             newTableData.teamB[index] = [
-              player.agent || '',
-              player.rank || '',
-              player.acs || '',
-              player.kda || '',
-              player.ddDelta || '0',
-              player.adr || '',
-              player.hsPercentage || '0%',
-              player.fk || '0',
-              player.fd || '0'
+              player.agent ?? '',
+              player.rank ?? '',
+              player.acs ?? '0',
+              player.kda ?? '0/0/0',
+              player.damage_delta ?? player.ddDelta ?? '0',
+              player.adr ?? '0',
+              player.hs_percent ?? player.hsPercentage ?? '0%',
+              player.first_kills ?? player.fk ?? '0',
+              player.first_deaths ?? player.fd ?? '0'
             ];
           }
         });
@@ -213,120 +177,147 @@ function GenerateTable({ onAnalysisComplete }) {
   };
 
   const handleCellClick = (team, rowIndex, colIndex) => {
-    if (colIndex === 0) { 
-      const currentTeam = team === 'teamA' ? 'teamA' : 'teamB';
-      setSelectedTeam(currentTeam);
+    if (colIndex === 0) {
       setSelectedUser({ team, rowIndex });
-      setAgentInput(tableData[team][rowIndex][0]); 
+      setAgentInput(tableData[team][rowIndex][0]);
     }
-  };
-
-  const renderEditableCell = (team, rowIndex, colIndex, value) => {
-    const isSelected = selectedUser.team === team && selectedUser.rowIndex === rowIndex;
-    const isAgentCell = colIndex === 0;
-
-    if (isAgentCell) {
-      return (
-        <td 
-          key={`${team}-${rowIndex}-${colIndex}`} 
-          className={`px-1 py-0.5 border text-center cursor-pointer ${
-            isSelected ? 'bg-blue-100' : 'hover:bg-gray-50'
-          }`}
-          onClick={() => handleCellClick(team, rowIndex, colIndex)}
-        >
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
-            className="w-full h-full text-center"
-            placeholder="Agent name"
-          />
-        </td>
-      );
-    }
-
-    return (
-      <td 
-        key={`${team}-${rowIndex}-${colIndex}`} 
-        className={`px-1 py-0.5 border text-center ${
-          isSelected ? 'bg-blue-50' : ''
-        }`}
-      >
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => handleCellEdit(team, rowIndex, colIndex, e.target.value)}
-          className="w-full h-full text-center"
-        />
-      </td>
-    );
   };
 
   const handleSubmitTable = async () => {
     try {
-      if (!selectedTeam) {
-        setError('Please select your team first');
+      if (!pastedData || !matchResult) {
+        setError('Please ensure all match data is filled out');
         return;
       }
-
-      if (!selectedUser.team) {
-        setError('Please select your row or enter your agent name');
-        return;
-      }
-
-      // Determine which team won based on match result and selected team
-      const isUserTeamA = selectedUser.team === 'teamA';
-      const isUserWinner = matchResult === 'Victory';
-      
-      // Create team data with proper structure
-      const teamAData = isUserTeamA ? tableData[selectedUser.team] : tableData[selectedUser.team === 'teamA' ? 'teamB' : 'teamA'];
-      const teamBData = isUserTeamA ? tableData[selectedUser.team === 'teamA' ? 'teamB' : 'teamA'] : tableData[selectedUser.team];
-
-      const teamA = teamAData.map((row, index) => ({
-        agent: row[0],
-        rank: row[1],
-        acs: parseInt(row[2]) || 0,
-        kda: row[3],
-        ddDelta: row[4],
-        adr: parseFloat(row[5]) || 0,
-        hsPercentage: row[6],
-        fk: parseInt(row[7]) || 0,
-        fd: parseInt(row[8]) || 0,
-        is_user: isUserTeamA && selectedUser.rowIndex === index
-      }));
-
-      const teamB = teamBData.map((row, index) => ({
-        agent: row[0],
-        rank: row[1],
-        acs: parseInt(row[2]) || 0,
-        kda: row[3],
-        ddDelta: row[4],
-        adr: parseFloat(row[5]) || 0,
-        hsPercentage: row[6],
-        fk: parseInt(row[7]) || 0,
-        fd: parseInt(row[8]) || 0,
-        is_user: !isUserTeamA && selectedUser.rowIndex === index
-      }));
-
-      const matchData = {
-        map: matchInfo.map,
-        result: matchResult,
-        duration: matchInfo.duration || '00:00',
-        match_date: matchInfo.date,
-        all_players_data: {
-          teamA,
-          teamB,
-          // Add metadata to help with analysis
-          userTeam: isUserTeamA ? 'teamA' : 'teamB',
-          matchResult
-        }
-      };
 
       setIsAnalyzing(true);
-      await onAnalysisComplete(matchData);
-    } catch (err) {
-      console.error('Error preparing match data:', err);
-      setError(err.message || 'Failed to prepare match data. Please try again.');
+      setError('');
+
+      const safeParseInt = (value, fallback = 0) => {
+        const parsed = parseInt(value);
+        return isNaN(parsed) ? fallback : parsed;
+      };
+
+      const safeParseFloat = (value, fallback = 0) => {
+        const parsed = parseFloat(value);
+        return isNaN(parsed) ? fallback : parsed;
+      };
+
+      const teamAData = tableData.teamA.map((row, index) => {
+        const processedPlayer = processedData?.all_players_data?.teamA?.[index] || {};
+        const [kills = 0, deaths = 0, assists = 0] = (row[3] || '0/0/0').split('/').map(val => safeParseInt(val));
+        const playerId = processedPlayer.player_id || `player_${row[0]}_teamA_${index}`;
+        const acs = safeParseInt(row[2]);
+        const adr = safeParseFloat(row[5]);
+        const firstKills = safeParseInt(row[7]);
+        const firstDeaths = safeParseInt(row[8]);
+        const damageDelta = row[4] || '0';
+        const hsPercent = (row[6] || '0%').toString();
+        const kdaString = `${kills}/${deaths}/${assists}`;
+        
+        return {
+          player_id: playerId,
+          agent: row[0] || '',
+          rank: row[1] || '',
+          acs: acs,
+          kills: kills,
+          deaths: deaths,
+          assists: assists,
+          kda: kdaString,
+          damage_delta: damageDelta,
+          adr: adr,
+          hs_percent: hsPercent,
+          first_kills: firstKills,
+          first_deaths: firstDeaths,
+          team: 'teamA'
+        };
+      });
+
+      const teamBData = tableData.teamB.map((row, index) => {
+        const processedPlayer = processedData?.all_players_data?.teamB?.[index] || {};
+        const [kills = 0, deaths = 0, assists = 0] = (row[3] || '0/0/0').split('/').map(val => safeParseInt(val));
+        const playerId = processedPlayer.player_id || `player_${row[0]}_teamB_${index}`;
+        const acs = safeParseInt(row[2]);
+        const adr = safeParseFloat(row[5]);
+        const firstKills = safeParseInt(row[7]);
+        const firstDeaths = safeParseInt(row[8]);
+        const damageDelta = row[4] || '0';
+        const hsPercent = (row[6] || '0%').toString();
+        const kdaString = `${kills}/${deaths}/${assists}`;
+        
+        return {
+          player_id: playerId,
+          agent: row[0] || '',
+          rank: row[1] || '',
+          acs: acs,
+          kills: kills,
+          deaths: deaths,
+          assists: assists,
+          kda: kdaString,
+          damage_delta: damageDelta,
+          adr: adr,
+          hs_percent: hsPercent,
+          first_kills: firstKills,
+          first_deaths: firstDeaths,
+          team: 'teamB'
+        };
+      });
+
+
+      const formattedData = {
+        map: matchInfo.map || "Unknown Map",
+        result: matchResult,
+        duration: matchInfo.duration || '00:00',
+        match_date: matchInfo.date || new Date().toISOString(),
+        all_players_data: {
+          teamA: teamAData,
+          teamB: teamBData,
+        },
+        agentName: agentInput
+      };
+
+      console.log("Sending data to server:", JSON.stringify(formattedData, null, 2));
+
+      const response = await fetch('http://localhost:3000/save-match', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formattedData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save match data');
+      }
+
+      const result = await response.json();
+      console.log('Match data saved successfully:', result);
+      
+      setPastedData('');
+      setAgentInput('');
+      setMatchResult(null);
+      setError(null);
+      
+      if (onAnalysisComplete) {
+        onAnalysisComplete({
+          match_id: result.match_id,
+          map: matchInfo.map,
+          result: matchResult,
+          duration: matchInfo.duration,
+          match_date: matchInfo.date,
+          all_players_data: {
+            teamA: teamAData,
+            teamB: teamBData
+          },
+          agentName: agentInput
+        });
+      }
+      
+      alert('Match data saved successfully!');
+    } catch (error) {
+      console.error('Error submitting table:', error);
+      setError('Failed to submit match data. Please try again.');
     } finally {
       setIsAnalyzing(false);
     }
@@ -344,6 +335,29 @@ function GenerateTable({ onAnalysisComplete }) {
           onChange={handlePasteChange}
           ref={pasteBoxRef}
         />
+        <div className="win-loss-container">
+          <div className="flex justify-center gap-2">
+          It was a:
+            <button
+              className={`px-3 py-1 rounded ${matchResult === 'Victory' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-300'}`}
+              onClick={() => setMatchResult('Victory')}
+            >
+              Victory
+            </button>
+            <button
+              className={`px-3 py-1 rounded ${matchResult === 'Defeat' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-300'}`}
+              onClick={() => setMatchResult('Defeat')}
+            >
+              Defeat
+            </button>
+            <button
+              className={`px-3 py-1 rounded ${matchResult === 'Tie' ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-300'}`}
+              onClick={() => setMatchResult('Tie')}
+            >
+              Tie
+            </button>
+          </div>
+        </div>
         <div className="agent-input-container">
           <input 
             className='agent-name' 
@@ -409,29 +423,13 @@ function GenerateTable({ onAnalysisComplete }) {
           tableData={tableData}
           matchInfo={{
             map: matchInfo.map,
-            result: (
-              <div className="flex justify-center gap-2">
-                <button
-                  className={`px-3 py-1 rounded ${matchResult === 'Victory' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-300'}`}
-                  onClick={() => setMatchResult('Victory')}
-                >
-                  Victory
-                </button>
-                <button
-                  className={`px-3 py-1 rounded ${matchResult === 'Defeat' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-300'}`}
-                  onClick={() => setMatchResult('Defeat')}
-                >
-                  Defeat
-                </button>
-              </div>
-            ),
+            result: matchInfo.result,
             duration: matchInfo.duration,
             date: matchInfo.date
           }}
           selectedUser={selectedUser}
-          selectedTeam={selectedTeam}
           handleCellEdit={handleCellEdit}
-          handleTeamSelect={handleTeamSelect}
+          handleCellClick={handleCellClick}
           error={error}
         />
         <button 

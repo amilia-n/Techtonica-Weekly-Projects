@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EmptyTable from "./EmptyTable";
 import GenerateTable from "./GenerateTable";
 import "./RecentAnalysis.css";
@@ -9,31 +9,20 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
   const [error, setError] = useState("");
   const [analysis, setAnalysis] = useState(initialAnalysis);
 
+  useEffect(() => {
+    console.log("RecentAnalysis received new data:", initialAnalysis);
+    if (initialAnalysis) {
+      setAnalysis(initialAnalysis);
+      handleAnalysis(initialAnalysis);
+    }
+  }, [initialAnalysis]);
+
   const handleAnalysis = async (matchData) => {
     setIsAnalyzing(true);
     setError("");
 
     try {
-      const saveResponse = await fetch("http://localhost:3000/save-match", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        mode: "cors",
-        body: JSON.stringify(matchData),
-      });
-
-      if (!saveResponse.ok) {
-        const errorData = await saveResponse.json();
-        throw new Error(errorData.error || "Failed to save match data");
-      }
-
-      const saveResult = await saveResponse.json();
-      const matchId = saveResult.match_id;
-
-      const userAgent = matchData.all_players_data[matchData.all_players_data.userTeam]
-        .find(player => player.is_user)?.agent;
+      const userAgent = matchData.agentName || matchData.agent;
 
       const analysisResponse = await fetch(
         "http://localhost:3000/analyze-match",
@@ -46,7 +35,7 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
           mode: "cors",
           body: JSON.stringify({
             matchInfo: {
-              matchId,
+              matchId: matchData.match_id,
               map: matchData.map,
               result: matchData.result,
               date: matchData.match_date,
@@ -54,9 +43,7 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
             },
             all_players_data: {
               teamA: matchData.all_players_data.teamA,
-              teamB: matchData.all_players_data.teamB,
-              userTeam: matchData.all_players_data.userTeam,
-              matchResult: matchData.all_players_data.matchResult
+              teamB: matchData.all_players_data.teamB
             },
             agentName: userAgent,
           }),
@@ -88,14 +75,13 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
 
       setAnalysis({
         ...matchData,
-        match_id: matchId,
         analysis: analysisResult.analysis,
       });
     } catch (err) {
       console.error("Error processing match data:", err);
-      setError(
-        err.message || "Failed to process match data. Please try again."
-      );
+      const errorMessage = err.message || "Failed to process match data. Please try again.";
+      setError(errorMessage);
+      alert(errorMessage);
     } finally {
       setIsAnalyzing(false);
     }
@@ -114,15 +100,15 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
 
     const formatTeam = (team) =>
       team.map((player) => [
-        player.agent || "",
-        player.rank || "",
-        player.acs || "",
-        player.kda || "",
-        player.damage_delta || player.ddDelta || "",
-        player.adr || "",
-        player.hs_percent || player.hsPercentage || "",
-        player.first_kills || player.fk || "",
-        player.first_deaths || player.fd || "",
+        player.agent ?? "",
+        player.rank ?? "",
+        player.acs ?? "0",
+        player.kda ?? "0/0/0",
+        player.damage_delta ?? player.ddDelta ?? "0",
+        player.adr ?? "0",
+        player.hs_percent ?? player.hsPercentage ?? "0%",
+        player.first_kills ?? player.fk ?? "0",
+        player.first_deaths ?? player.fd ?? "0",
       ]);
 
     return {
@@ -133,11 +119,44 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
 
   if (!analysis) {
     return (
+      <div className="analysis-container">
+        Enter match data to get started.
+      </div>
+    );
+  }
 
-          <div className="analysis-container" >
-            Enter match data to get started.
+  if (error) {
+    return (
+      <div className="analysis-container">
+        <div className="text-center text-red-600">
+          <h2 className="text-lg font-bold mb-4">Error</h2>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isAnalyzing) {
+    return (
+      <div className="analysis-container">
+        <div className="flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-lg font-bold mb-4">Generating Analysis...</h2>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
           </div>
+        </div>
+      </div>
+    );
+  }
 
+  if (!analysis.analysis) {
+    return (
+      <div className="analysis-container">
+        <div className="text-center">
+          <h2 className="text-lg font-bold mb-4">Analysis Not Ready</h2>
+          <p>Please wait while we generate your match analysis.</p>
+        </div>
+      </div>
     );
   }
 
@@ -158,8 +177,8 @@ function RecentAnalysis({ recentAnalysis: initialAnalysis }) {
         />
       </div>
       <div className="recent-analysis">
-        <h2 className="text-lg font-bold mb-4">Recent Analysis</h2>
-        <div className="bg-white p-4 rounded-md shadow">
+        <h2 className="text-lg font-bold mb-4">Game Analysis</h2>
+        <div className="bg-white p-4 rounded-md shadow analysis-text">
           {analysis.analysis}
         </div>
       </div>
