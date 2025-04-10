@@ -5,15 +5,15 @@ A full-stack blog application that combines match tracking functionality with AI
 ## Screenshots
 
 ### Home Page
-![Home Page](home.png)
+![Home Page](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%2012%20Blog%20with%20AI%20Tool/client/public/home.png?raw=true)
 *Landing page with instructions and tracker.gg integration*
 
 ### Match Data Entry
-![Match Data Entry](generate.png)
+![Match Data Entry](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%2012%20Blog%20with%20AI%20Tool/client/public/generate.png?raw=true)
 *Match data entry interface with team statistics*
 
 ### Saved Match Analysis
-![Saved Match Analysis](savedmatch.png)
+![Saved Match Analysis](https://github.com/amilia-n/Techtonica-Weekly-Projects/blob/main/Week%2012%20Blog%20with%20AI%20Tool/client/public/savedmatch.png?raw=true)
 *Detailed match analysis with AI-generated insights*
 
 ## Tech Stack
