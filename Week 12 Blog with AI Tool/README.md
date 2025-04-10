@@ -1,6 +1,20 @@
 # Valorant Match Tracker with AI Analysis
 
-A full-stack web application that combines match tracking functionality with AI-powered analysis for Valorant matches. Built using modern web technologies and Google's Generative AI Gemini 2.0 Pro Experimental API.
+A full-stack blog application that combines match tracking functionality with AI-powered analysis for Valorant matches. Built using PERN stack and Google's Generative AI Gemini 2.0 Pro Experimental API.
+
+## Screenshots
+
+### Home Page
+![Home Page](home.png)
+*Landing page with instructions and tracker.gg integration*
+
+### Match Data Entry
+![Match Data Entry](generate.png)
+*Match data entry interface with team statistics*
+
+### Saved Match Analysis
+![Saved Match Analysis](savedmatch.png)
+*Detailed match analysis with AI-generated insights*
 
 ## Tech Stack
 
