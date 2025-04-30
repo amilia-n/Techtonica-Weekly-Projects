@@ -25,6 +25,7 @@ CREATE TABLE individuals (
     FOREIGN KEY (species_id) REFERENCES species(id) ON DELETE CASCADE
 );
 
+-- In the future maybe for location rename to something different, it looks like it could potentially be a keyword.
 -- Create the sightings table
 CREATE TABLE sightings (
     id SERIAL PRIMARY KEY,
