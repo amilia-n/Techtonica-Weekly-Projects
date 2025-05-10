@@ -32,15 +32,14 @@ A backend API implementation with a separate backend server.
 
 4. Start the server:
    ```bash
-   npm start
-   # or
-   yarn start
+   nodemon.index.js
    ```
 
 ## Usage
-- The API will be available at `http://localhost:<PORT>`
+- The API will be available at `http://localhost:<PORT>` //add your port number in .env file
 - Use API documentation to understand available endpoints
 - Test endpoints using Postman or similar API testing tools
+- Check with curl commands 
 
 ## API Documentation
 - Detailed API documentation available in the Backend directory
@@ -51,6 +50,6 @@ A backend API implementation with a separate backend server.
 ## Development
 Built using:
 - Node.js
-- Express.js (or similar framework)
-- Database system
+- Express.js
+- Database system Postgres
 - API testing tools 
