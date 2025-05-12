@@ -53,10 +53,28 @@ An event management application.
 - [View Project Details](./Week%209%20Eventonica)
 
 ### Week 10: Animal Sighting
-A wildlife tracking application.
-- **Technologies**: React, Node.js, Express, PostgreSQL, Maps Integration
-- **Features**: Location-based sightings, image uploads, interactive map
+A wildlife tracking application for endangered species.
+- **Technologies**: React, Node.js, Express, PostgreSQL
+- **Features**: Species and individual tracking, sighting records, image uploads
 - [View Project Details](./Week%2010%20Animal%20Sighting)
+
+### Week 11: Contact List
+A full-stack PERN application for managing contacts with tagging and search features.
+- **Technologies**: React, Node.js, Express, PostgreSQL
+- **Features**: Contact CRUD, tagging, search, validation, test coverage
+- [View Project Details](./Week%2011%20Contact%20List)
+
+### Week 11: Gomoku Game
+A PERN stack version of Gomoku with a persistent leaderboard.
+- **Technologies**: React, Node.js, Express, PostgreSQL
+- **Features**: 15x15 board, turn-based play, win detection, player leaderboard, timer
+- [View Project Details](./Week%2011%20PERN%20Game)
+
+### Week 12: Blog with AI Tool
+A full-stack blog and match tracker with AI-powered analysis for Valorant matches.
+- **Technologies**: React, Node.js, Express, PostgreSQL, Gemini AI API
+- **Features**: Match data entry, AI analysis, historical viewing, team stats, sample data
+- [View Project Details](./Week%2012%20Blog%20with%20AI%20Tool)
 
 ## 💻 Technical Skills Demonstrated
 
@@ -66,13 +84,12 @@ A wildlife tracking application.
 - Responsive Design
 - CSS Frameworks
 - State Management
-- WebSocket Integration
 
 ### Backend Development
 - Node.js
 - Express.js
 - RESTful APIs
-- WebSocket Servers
+- Google Cloud API
 - Authentication & Authorization
 
 ### Database
@@ -83,7 +100,7 @@ A wildlife tracking application.
 
 ### Development Tools
 - Git Version Control
-- npm/yarn Package Management
+- npm Package Management
 - Environment Configuration
 - API Testing (Postman)
 
@@ -91,14 +108,17 @@ A wildlife tracking application.
 ```
 Techtonica-Weekly-Projects/
 ├── Week 1 + 2 Recipe Page/    # Frontend Basics
-├── Week 3 Portfolio Page/     # Advanced Frontend
-├── Week 4 JS+HTML Game/       # JavaScript Game Dev
-├── Week 5 React Game/         # React Fundamentals
-├── Week 6 API/               # Backend Basics
-├── Week 7 Weather App/       # Full-stack Integration
-├── Week 8 Trivia Game/       # Real-time Applications
-├── Week 9 Eventonica/        # Database Management
-└── Week 10 Animal Sighting/  # Advanced Full-stack
+├── Week 3 Portfolio Page/     # Advanced Frontend with Bootstrap
+├── Week 4 JS+HTML Platformer/ # JavaScript Game Development
+├── Week 5 React Game: Gomoku/ # React Game Development
+├── Week 6 Bookshelf API/      # Backend API Queries for Library
+├── Week 7 Weather App/        # PERN Full-stack App with OpenWeatherMap
+├── Week 8 Trivia Game/        # PERN Full-stack with Local Database
+├── Week 9 Eventonica/         # PERN Full-stack Event Management
+├── Week 10 Animal Sighting/   # PERN Full-stack Live Sighting Tracker
+├── Week 11 Contact List/      # PERN Full-stack Contact Manager
+├── Week 11 PERN Gomoku/       # Backend Integration with Leaderboard
+└── Week 12 Blog with AI Tool/ # AI-powered Blog & Performance Tracker
 ```
 
 ## 🚀 Getting Started
@@ -108,7 +128,7 @@ Each project has its own README with specific setup instructions. Generally, for
 1. Clone the repository
 2. Open the `index.html` file in a browser
 
-### Full-stack Projects (Weeks 5-10)
+### Full-stack Projects (Weeks 5-12)
 1. Clone the repository
 2. Navigate to project directory
 3. Install dependencies:
